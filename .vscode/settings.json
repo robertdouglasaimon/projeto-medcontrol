@@ -4,9 +4,9 @@
         {
             "previewLimit": 50,
             "driver": "SQLite",
-            "database": "banco-dados\\farmacia.db",
-            "name": "farmacia",
-            "group": "farmacia"
+            "name": "medcontrol.db",
+            "group": "medcontrol.db",
+            "database": "medcontrol-sistema\\banco-dados\\farmacia.db"
         }
     ]
 }
