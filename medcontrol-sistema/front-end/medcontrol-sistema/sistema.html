@@ -12,6 +12,7 @@
 <body>
   <header>
     <div class="cabecalho-medcontrol">
+      <!-- Informações do Usuário -->
         <div class="usuario-logado">
 
           <span id="cargo-usuario">
@@ -30,7 +31,15 @@
           </span>
 
         </div>
-        
+
+        <div class="guia-atual">
+          <span id="guia-atual">
+            Guia Atual
+            <!-- Inserir aqui a lógica para puxar o guia atual de acordo com a rota -->
+          </span>
+        </div>
+
+      <!-- Logo -->
         <div class="logo">
             <img src="logo/logo-semfundo.png" alt="Logo MedControl">
             <p>MedControl</p>
@@ -62,7 +71,7 @@
 
   
 </body>
-    <script type="module" src="main.js"></script>
+    <script type="module" src="./main.js"></script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </html>

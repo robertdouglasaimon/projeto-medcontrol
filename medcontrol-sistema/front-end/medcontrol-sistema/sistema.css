@@ -141,12 +141,20 @@ aside nav ul li a {
   transition: background 0.3s;
 }
 
-aside nav ul li a:hover,
-aside nav ul li a.active {
+
+aside nav ul li a:not(.active):hover {
   background-color: var(--amarelo-medcontrol);
   color: var(--fundo-principal);
   font-weight: bold;
 }
+
+aside nav ul li a.active {
+  background-color: var(--amarelo-medcontrol);
+  color: var(--fundo-principal);
+  font-weight: bold;
+  box-shadow: inset 4px 0 0 var(--fundo-principal); /* opcional: destaque lateral */
+}
+
 
 #btn-sair:hover {
   background-color: var(--amarelo-medcontrol);
