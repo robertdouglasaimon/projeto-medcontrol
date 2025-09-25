@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MedControl - Sistema</title>
+  <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="sistema.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="shortcut icon" href="logo/logo-semfundo.png" type="image/x-icon">
+</head>
+<body>
+  <header>
+    <div class="cabecalho-medcontrol">
+        <div class="usuario-logado">
+
+          <span id="cargo-usuario">
+            <i class="fas fa-briefcase"></i>
+            Cargo
+          </span>
+
+          <span id="nome-usuario">
+            <i class="fas fa-user"></i>
+            <span id="nome-usuario">Nome do Usuário</span>
+          </span>
+
+          <span id="sair">
+            <i class="fas fa-sign-out-alt"></i>
+            <a href="">Sair</a>
+          </span>
+
+        </div>
+        
+        <div class="logo">
+            <img src="logo/logo-semfundo.png" alt="Logo MedControl">
+            <p>MedControl</p>
+        </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <aside>
+      <nav>
+        <ul>
+          <li><a href="#clientes"><i class="fas fa-user"></i> Clientes</a></li>
+          <li><a href="#produtos"><i class="fas fa-box"></i> Produtos</a></li>
+          <li><a href="#estoque"><i class="fas fa-warehouse"></i> Estoque</a></li>
+          <li><a href="#vendas"><i class="fas fa-shopping-cart"></i> Vendas</a></li>
+          <li><a href="#fornecedores"><i class="fas fa-truck"></i> Fornecedores</a></li>
+          <li><a href="#relatorios"><i class="fas fa-chart-line"></i> Relatórios</a></li>
+        </ul>
+      </nav>
+      <div class="logout">
+        <button id="btn-sair"><i class="fas fa-sign-out-alt"></i> Sair</button>
+      </div>
+    </aside>
+
+    <main id="app">
+      <!-- Conteúdo dinâmico será injetado aqui -->
+    </main>
+  </div>
+
+  
+</body>
+    <script type="module" src="main.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</html>

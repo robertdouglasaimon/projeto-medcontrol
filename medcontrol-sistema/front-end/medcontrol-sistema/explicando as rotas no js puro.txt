@@ -1,0 +1,21 @@
+🧠 Explicação do conceito de rotas com hash
+
+Quando você acessar uma URL como:
+" localhost/medcontrol-sistema/index.html#clientes "
+
+O navegador não recarrega a página — ele apenas muda o valor do location.hash. Isso permite que a gente escute essa mudança e carregue o conteúdo correspondente. Então não vai precisar
+usar React ou Next, e não vai precisar criar caralhocentas páginas HTML para cada elemento!
+Essa foi a forma que eu encontrei da gente estudar JS puro, sem precisar subir pra TS (Pois
+meu amigo que ta fazendo comigo ta aprendendo e não tem habilidade suficiente ainda, e fica
+viável para ambos) e muito menos avançar de uma vez para React/Next. 
+
+A ideia aqui é justamente aprimorar o entendimento e o domino como Javascript Vanila (O JS
+purão da galera! ahahhah')
+
+-------------------------------------------------------------------------------------------
+🧠 Etapa 1: Entendendo o hash na URL
+
+Quando você acessa uma URL como: 
+sistema.html#clientes
+
+Tudo depois do # é chamado de hash. O navegador não recarrega a página, mas o valor do location.hash muda. Isso permite que a gente escute essa mudança e reaja a ela com JavaScript.

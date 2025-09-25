@@ -1,0 +1,178 @@
+@charset "UTF-8";
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --font-padrao: Arial, Helvetica, sans-serif;
+    --cor-branca: #fff;
+    --cor-preta: #000;
+    --amarelo-medcontrol: #fbc531;
+    --fundo-principal: #0F1720;
+
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f5f6fa;
+}
+
+.cabecalho-medcontrol {
+  display: flex;
+  justify-content: space-between;
+
+  /*Invertendo os elementos de posicao*/
+  flex-direction: row-reverse;
+}
+
+header {
+  width: 100%;
+  background-color: var(--fundo-principal);
+  color: #f5f6fa;
+  padding: 1rem;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.container {
+  display: flex;
+  height: calc(100vh - 70px);
+}
+
+.logo {
+    width: 240px;
+    display: flex;
+    padding-right: 2rem;
+    justify-content: center;
+    background-color: var(--fundo-principal);
+    align-items: center;
+    /* gap: 0px; */
+}
+
+.logo img {
+    width: 20%;
+    height: 50%;
+    background-color: var(--fundo-principal);
+    position: relative;;
+    top: 2px;
+    left: -1rem;
+}
+
+.logo p {
+      font-size: 1.3rem;
+      text-align: left;
+      color: var(--amarelo-medcontrol);
+}
+
+#cargo-usuario {
+  margin-right: 15px;
+}
+
+#cargo-usuario i {
+  color: var(--amarelo-medcontrol);
+}
+
+#nome-usuario i {
+  color: var(--amarelo-medcontrol);
+}
+
+#sair {
+  margin-left: 15px;
+}
+
+#sair a {
+  text-decoration: none;
+  color: var(--cor-branca);
+}
+
+#sair a:hover {
+  color: var(--amarelo-medcontrol);
+  transform: scale(1.1);
+  transition: all 0.3s ease-in-out;
+}
+
+#sair i {
+  color: var(--amarelo-medcontrol);
+}
+
+#usuario-logado {
+  display: flex;
+  align-items: center;
+
+  font-size: 1.3rem;
+  text-align: left;
+  color: var(--amarelo-medcontrol);
+}
+
+aside {
+  width: 240px;
+  height: 100vh;
+  background-color: #0F1720;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+}
+
+aside nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+aside nav ul li {
+  border-bottom: 1px solid #2f3640;
+}
+
+aside nav ul li a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 1rem;
+  color: white;
+  text-decoration: none;
+  transition: background 0.3s;
+}
+
+aside nav ul li a:hover,
+aside nav ul li a.active {
+  background-color: var(--amarelo-medcontrol);
+  color: var(--fundo-principal);
+  font-weight: bold;
+}
+
+#btn-sair:hover {
+  background-color: var(--amarelo-medcontrol);
+  color: var(--fundo-principal);
+  transform: scale(1.1);
+  transition: all 0.3s ease-in-out;
+}
+
+.logout {
+  padding: 1rem;
+  text-align: center;
+}
+
+.logout button {
+  background-color: var(--amarelo-medcontrol);
+  border: none;
+  padding: 0.6rem 1.2rem;
+  font-weight: bold;
+  color: #2f3640;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+}
+
+main#app {
+  flex-grow: 1;
+  padding: 2rem;
+  overflow-y: auto;
+}
