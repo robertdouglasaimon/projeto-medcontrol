@@ -1,0 +1,69 @@
+@charset "UTF-8";
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --font-padrao: Arial, Helvetica, sans-serif;
+    --cor-branca: #fff;
+    --cor-preta: #000;
+}
+
+body {
+    color: var(--cor-branca) ;
+}
+
+
+/* Efeito de glow no logo -----------------------*/
+.efeito-glow-logo {
+  animation: pulse-glow 2s infinite;
+}
+
+@keyframes pulse-glow {
+  0% { filter: drop-shadow(0 0 5px #ffffff); }
+  50% { filter: drop-shadow(0 0 15px #ffffff); }
+  100% { filter: drop-shadow(0 0 5px #ffffff); }
+}
+/*-----------------------------------------------*/
+
+.btn:hover {
+    transform: scale(1.1);
+    transition: 0.3s ease-in-out;
+}
+
+.form-control {
+    color: #fff !important;
+}
+
+
+
+/* Rodapé */
+footer {
+    color: var(--cor-branca);
+}
+
+footer a {
+    text-decoration: none;
+    color: var(--cor-branca);
+    margin: 0 8px 0 0;
+}
+
+footer a:hover {
+    font-size: medium;
+    font-weight: 500;
+    color: #FDBD58;
+    transform: scale(1.1);
+    transition: 0.3s ease-in-out;
+}
+
+/* Adaptando a tela para dispositivos móveis */
+
+/* Celulares e tablets */
+@media (max-width: 767px) {
+    .card {
+        margin: 20px auto;
+    }
+}
