@@ -1,32 +1,154 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./src/css/medcontrol.css">
-    <title>Document</title>
+    <link rel="stylesheet" href="./src/css/style.css">
+    <link rel="icon" type="image/png" sizes="16x16"  href="./src/assets/img/logo/remedio.png">
+
+    <title>MedControl</title>
+
 </head>
+
 <body>
+
+    <div class="topo"></div>
     <header>
-        <h1>MedControl - Sistema de Gerenciamento Farmacêutico</h1>
+        <h1> <img src="./src/assets/img//logo/logo.png" alt=""> MedControl</h1>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Produtos</a></li>
+                <li><a href="#">Sobre</a></li>
+                <li><a href="#">Contato</a></li>
+            </ul>
+
+            <input type="text" placeholder="Buscar produtos"> </button>
+
+            <button id="Admin">Admin</button>
+        </nav>
     </header>
+    </div>
 
-    <main>
-        <script>
-            // testando se o js ta rodando de boas pra ti direto no html:
-            alert("Bem-vindo ao MedControl - Sistema de Gerenciamento Farmacêutico!");
-        </script>
-    </main>
+    <!-- ------------------Banner-----------------------
+    ------------------------------------------------->
 
-    
+    <div class="banner">
+
+        <h2>Sua saúde é nossa prioridade</h2>
+        <p>Encontre todos os medicamentos e produtos de saúde que você precisa com a <br> qualidade e confiança que
+            você
+            merece!</p>
+
+        <button id="ver-produtos">Ver Produtos</button>
+    </div>
+
+    <!------------------ Destaque + cards ---------------
+    ---------------------------------------------------->
+
+    <section class="destaque">
+        <h3 id="categorias-destaque">Categorias em destaque</h3>
+        <p>Explore nossas principais categorias de produtos farmacêuticos e de bem-estar</p>
+    </section>
+
+    <div class="cards-container">
+        <div class="card">
+            <img class="card-img" src="./src/assets/img/Destaques/medicamentos.jpg" alt="Medicamentos">
+            <div class="card-content">
+                <h4>Medicamentos</h4>
+                <p>Medicamentos com e sem prescrição médica</p>
+                <a href="#" class="btn-explorar btn-verde">Explorar</a>
+            </div>
+        </div>
+
+
+        <div class="card">
+            <img class="card-img" src="./src/assets/img/Destaques/produtos de beleza.jpg"
+                alt="Produtos de beleza e cuidados pessoais">
+            <div class="card-content">
+                <h4>Cosméticos e produtos para cuidados pessoais</h4>
+                <p>Suplementos alimentares e vitaminas</p>
+                <a href="#" class="btn-explorar btn-azul">Explorar</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <img class="card-img" src="./src/assets/img/Destaques/suplementos.png" alt="Vitaminas e suplementos">
+            <div class="card-content">
+                <h4>Vitaminas e suplementos</h4>
+                <p>Suplementos alimentares e vitaminas</p>
+                <a href="#" class="btn-explorar btn-verde">Explorar</a>
+            </div>
+        </div>
+    </div>
+
+    <!------------------ Motivo -----------------------
+    ------------------------------------------------->
+
+    <div class="motivo">
+        <h3>Por que escolher a MedControl?</h3>
+        <p>Oferecemos os melhores serviços farmacêuticos com qualidade garantida</p>
+
+        <div class="motivo-container">
+            <div class="motivo-card">
+                <img src="./src/assets/img/icons/caminhao.png" alt="entrega">
+                <h4>Entrega Rápida</h4>
+                <p>Entregamos seus medicamentos em até 30 minutos na região metropolitana</p>
+            </div>
+
+            <div class="motivo-card">
+                <img src="./src/assets/img/icons/coracao.png" alt="atendimento">
+                <h4>Atendimento Personalizado</h4>
+                <p>Farmacêuticos especializados para orientar sobre seus medicamentos</p>
+            </div>
+
+            <div class="motivo-card">
+                <img src="./src/assets/img/icons/escudo.png" alt="qualidade">
+                <h4>Qualidade garantida</h4>
+                <p>Todos os produtos são armazenados conforme normas de qualidade</p>
+            </div>
+
+            <div class="motivo-card">
+                <img src="./src/assets/img/icons/relogio.png" alt="24h">
+                <h4>Funcionamento 24h</h4>
+                <p>Atendimento online 24h para suas necessidades de saúde</p>
+            </div>
+        </div>
+    </div>
+
+        <!------------------Footer -------------------
+        --------------------------------------------->
+
     <footer>
-        <p>© 
-            <script>
-            document.write(new Date().getFullYear());
-            </script>
-             MedControl. Todos os direitos reservados.
-        </p>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>MedControl</h4>
+                <p>Sua farmácia de confiança, oferencdo medicamentos e produtos e produtos de saúde com qualidade garantida</p>
+            
+            </div>
+
+            <div class="footer-section">
+                <h4>Links Rápidos</h4>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Produtos</a></li>
+                    <li><a href="#">Sobre</a></li>
+                    <li><a href="#">Contato</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Contato</h4>
+                <p>Telefone: (61) 9155-9011</p>
+                <img src="./src/assets/img/icons/whatsapp.png" alt="wpp">
+                <img src="./src/assets/img/icons/instagram.png" alt="insta">
+                <img src="./src/assets/img/icons/facebook.png" alt="face">
+                <img src="./src/assets/img/icons/linkedin.png" alt="">
+            </div>
+            </div>  
     </footer>
+        
+
 </body>
-    <script src="./src/js/medcontrol.js"></script>
 </html>
