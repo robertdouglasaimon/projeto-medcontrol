@@ -12,13 +12,14 @@
     --cor-preta: #000;
     --amarelo-medcontrol: #fbc531;
     --fundo-principal: #0F1720;
+    --fundo-secundario: #161C27;
 
 }
 
 body {
   margin: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f5f6fa;
+  background-color: var(--fundo-secundario);
 }
 
 .cabecalho-medcontrol {
@@ -183,4 +184,58 @@ main#app {
   flex-grow: 1;
   padding: 2rem;
   overflow-y: auto;
+}
+/*----------------------------------------------------------------------------------------*/
+
+/*Estilizando o "clientes.js"-------------------------------------------------------------*/
+
+.card-clientes {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px;
+  color: var(--cor-branca);
+}
+
+.card-clientes p {
+  font-size: 2.8rem;
+  margin-top: 2rem;
+}
+
+.valores-clientes {
+  font-size: 50px;
+  font-weight: bold;
+}
+
+.total-clientes {
+  width: 391px ;
+  height: 170px;
+  background-color: #fbc531;
+  border-radius: 15px;
+  text-align: center;
+}
+
+.cliente-ativo {
+  width: 391px ;
+  height: 170px;
+  background-color: #1138b9;
+  border-radius: 15px;
+  text-align: center;
+}
+
+.cliente-inativo {
+  width: 391px ;
+  height: 170px;
+  background-color: #e84118;
+  border-radius: 15px;
+  text-align: center;
+}
+
+.cliente-receita {
+  width: 391px ;
+  height: 170px;
+  background-color: #44bd32;
+  border-radius: 15px;
+  text-align: center;
 }

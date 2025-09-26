@@ -25,7 +25,7 @@ function carregarTela() {
                 document.querySelectorAll("aside nav a").forEach(link => {
                 link.classList.remove('active');
                 if (link.hash === `#${hash}`) {
-                    link.classList.add('active');
+                    link.classList.add('inactive');
                 }
                 });
 
