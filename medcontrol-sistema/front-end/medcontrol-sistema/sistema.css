@@ -185,57 +185,211 @@ main#app {
   padding: 2rem;
   overflow-y: auto;
 }
-/*----------------------------------------------------------------------------------------*/
+/*-------------------------------------------------------------------------------------------------------------------------------------------*/
 
-/*Estilizando o "clientes.js"-------------------------------------------------------------*/
+/*Estilizando o "clientes.js"----------------------------------------------------------------------------------------------------------------*/
+.container {
+  max-width: 100% !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  width: 100% !important;
+}
+
 
 .card-clientes {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
-  gap: 8px;
+  gap: 10px;
   color: var(--cor-branca);
 }
 
 .card-clientes p {
-  font-size: 2.8rem;
-  margin-top: 2rem;
+  font-size: 1.5rem;
+  margin-top: 1rem;
+  color: var(--cor-preta);
 }
 
 .valores-clientes {
-  font-size: 50px;
+  position: relative;
+  top: -26px;
+  font-size: 40px;
   font-weight: bold;
+  color: var(--cor-preta);
 }
 
 .total-clientes {
-  width: 391px ;
-  height: 170px;
-  background-color: #fbc531;
+  width: 300px;
+  height: 100px;
+  background-color: var(--cor-branca);
   border-radius: 15px;
   text-align: center;
 }
 
 .cliente-ativo {
-  width: 391px ;
-  height: 170px;
-  background-color: #1138b9;
+  width: 300px;
+  height: 100px;
+  background-color: var(--cor-branca);
   border-radius: 15px;
   text-align: center;
 }
 
 .cliente-inativo {
-  width: 391px ;
-  height: 170px;
-  background-color: #e84118;
+  width: 300px;
+  height: 100px;
+  background-color: var(--cor-branca);
   border-radius: 15px;
   text-align: center;
 }
 
 .cliente-receita {
-  width: 391px ;
-  height: 170px;
-  background-color: #44bd32;
+  width: 300px;
+  height: 100px;
+  background-color: var(--cor-branca);
   border-radius: 15px;
   text-align: center;
+}
+
+/* Hover para cada card */
+.total-clientes:hover {
+  background-color: #f9ca24;
+  transform: scale(1.05);
+  transition: all 0.3s ease-in-out;
+
+  /* listra azul na parte inferior do card */
+  border-bottom: 5px solid #0984e3;
+}
+
+.cliente-ativo:hover {
+  background-color: #0d6efd;
+  transform: scale(1.05);
+  transition: all 0.3s ease-in-out;
+
+  /* listra azul na parte inferior do card */
+  border-bottom: 5px solid #0984e3;
+}
+
+.cliente-inativo:hover {
+  background-color: #ff6b6b;
+  transform: scale(1.05);
+  transition: all 0.3s ease-in-out;
+  
+  /* listra azul na parte inferior do card */
+  border-bottom: 5px solid #0984e3;
+}
+
+.cliente-receita:hover {
+  background-color: #4cd137;
+  transform: scale(1.05);
+  transition: all 0.3s ease-in-out;
+
+  /* listra azul na parte inferior do card */
+  border-bottom: 5px solid #0984e3;
+}
+
+/* Estilo referente a barra de pesquisa -------------------------------------------------*/
+.clientes-header {
+  margin-top: 1rem;
+}
+
+.clientes-header h2 {
+  background-color: var(--fundo-principal);
+  padding: 10px;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  margin-top: 2rem;
+  color: var(--cor-branca);
+  border-radius: 5px;
+}
+
+.clientes-pesquisa {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.search-container {
+  display: flex;
+  gap: 10px;
+}
+
+.buscar-input {
+  flex: 1;
+  padding: 15px;
+  border-radius: 5px 0 0 5px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  min-width: 0;
+}
+
+.input-wrapper {
+  position: relative;
+  display: flex;
+  width: 100%;
+  max-width: 100%;
+}
+
+.btn-novo-cliente {
+  background-color: orange;
+  color: white;
+  border: none;
+  border-radius: 0 5px 5px 0;
+  padding: 15px 20px;
+  cursor: pointer;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal.hidden {
+  display: none;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 300px;
+}
+
+.fechar-modal {
+  float: right;
+  cursor: pointer;
+  font-size: 20px;
+}
+/*-------------------------------------------------------*/
+
+/* Estilo relacionado a tabela de clientes --------------*/
+.clientes-tabela h2 {
+  background-color: var(--fundo-principal);
+  padding: 10px;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  margin-top: 2rem;
+  color: var(--cor-branca);
+  border-radius: 5px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background-color: var(--cor-branca);
+  border-radius: 8px;
+  overflow: hidden;
 }
