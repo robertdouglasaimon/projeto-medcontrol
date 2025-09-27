@@ -201,7 +201,7 @@ main#app {
 .card-clientes {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
   justify-content: space-between;
   gap: 10px;
   color: var(--cor-branca);
@@ -355,6 +355,98 @@ main#app {
   justify-content: center;
   align-items: center;
 }
+
+.modal-content {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 2rem;
+  width: 100%;
+  max-width: 500px;
+  margin: auto;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  position: relative;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.modal-content h3 {
+  text-align: center;
+  font-size: 1.6rem;
+  margin-bottom: 1.5rem;
+  color: #2f3640;
+}
+
+.fechar-modal {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #e84118;
+  transition: transform 0.2s;
+}
+
+.fechar-modal:hover {
+  transform: scale(1.2);
+}
+
+.cadastro-cliente-modal {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.cadastro-cliente-modal input,
+.cadastro-cliente-modal select {
+  padding: 0.8rem 1rem;
+  border: 1px solid #dcdde1;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+}
+
+.cadastro-cliente-modal input:focus,
+.cadastro-cliente-modal select:focus {
+  border-color: #00a8ff;
+  outline: none;
+}
+
+/* Botão Salvar */
+.cadastro-cliente-modal button[type="submit"] {
+  background-color: #44bd32;
+  color: white;
+  border: none;
+  padding: 0.8rem;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.cadastro-cliente-modal button[type="submit"]:hover {
+  background-color: #4cd137;
+}
+
+/* Botão Cancelar */
+.cadastro-cliente-modal .cancelar {
+  background-color: #e84118;
+  color: white;
+  border: none;
+  padding: 0.8rem;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.cadastro-cliente-modal .cancelar:hover {
+  background-color: #c23616;
+}
+
 
 .modal.hidden {
   display: none;
