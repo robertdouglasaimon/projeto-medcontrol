@@ -36,8 +36,10 @@ const db = new sqlite3.Database(dbPath, sqlite3.OPEN_READWRITE, (err) => {
   }
 });
 
+
+// RETAS E CONFIGURAÇÕES PARA A TELA DE CLIENTES --------------------------------------------
 // Rota direta para SELECT de cadastro_clientes:
-app.get('/cadastro_clientes', (req, res) => {
+app.get('/tabela_clientes', (req, res) => {
   db.all('SELECT * FROM cadastro_clientes', [], (err, rows) => {
     if (err) {
       console.error('Erro na consulta:', err.message);
@@ -47,6 +49,58 @@ app.get('/cadastro_clientes', (req, res) => {
     }
   });
 });
+
+// Rota para puxar os dados do dashboard da tela de clientes (cadastro_clientes):
+app.get('/total_clientes', (req, res) => {
+  db.all('SELECT COUNT(id_cliente) AS total_clientes FROM cadastro_clientes', [], (err, rows) => {
+    if (err) {
+      console.error('Erro na consulta:', err.message);
+      res.status(500).send('Erro ao buscar clientes');
+    } else {
+      res.json(rows);
+    }
+  });
+})
+
+// Rota para pegar o total de clientes ATIVOS em cadastro_clientes:
+app.get('/total_clientes_ativos', (req, res) => {
+  db.all('SELECT COUNT(id_cliente) AS total_clientes_ativos FROM cadastro_clientes WHERE status_cliente =  "ativo"', [], (err, rows) => {
+    if (err) {
+      console.error('Erro na consulta:', err.message);
+      res.status(500).send('Erro ao buscar clientes');
+    } else {
+      res.json(rows);
+    }
+  });
+})
+
+// Rota para pegar o total de clientes INATIVOS em cadastro_clientes:
+app.get('/total_clientes_inativos', (req, res) => {
+  db.all('SELECT COUNT(id_cliente) AS total_clientes_inativos FROM cadastro_clientes WHERE status_cliente =  "inativo"', [], (err, rows) => {
+    if (err) {
+      console.error('Erro na consulta:', err.message);
+      res.status(500).send('Erro ao buscar clientes');
+    } else {
+      res.json(rows);
+    }
+  }) 
+})
+
+// Rota para adicionar novos contatos ao banco de dados pelo front-end da tela de clientes:
+app.post('/novo_cliente', (req, res) => {
+  const { nome_cliente, telefone, endereco, cpf, status_cliente } = req.body;
+  db.run('INSERT INTO cadastro_clientes (nome_cliente, telefone, endereco, cpf, status_cliente) VALUES (?, ?, ?, ?, ?)', [nome_cliente, telefone, endereco, cpf, status_cliente], (err) => {
+    if (err) {
+      console.error('Erro ao inserir cliente:', err.message);
+      res.status(500).send('Erro ao inserir cliente');
+    } else {
+      res.sendStatus(200);
+    }
+  });
+});
+
+
+/*-------------------------------------------------------------------------------------------*/
 
 
 // Inicia o servidor e manda um console.log avisando que a porta 3000 foi aberta:

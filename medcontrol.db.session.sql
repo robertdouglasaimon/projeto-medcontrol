@@ -9,26 +9,48 @@ SELECT * FROM historico_fornecimento;
 -- Renomeando a coluna historico_compra para endereco
 ALTER TABLE cadastro_clientes RENAME COLUMN historico_compra TO endereco;
 
+-- Deletando a coluna status_cliente:
+ALTER TABLE cadastro_clientes DROP COLUMN status_cliente;
+
+-- Adicionando a coluna status_cliente:
+ALTER TABLE cadastro_clientes ADD COLUMN status_cliente VARCHAR(8);
+
 -- Fazendo a inserção dos dados manualmente na tabela cadastro_clientes :D
 INSERT INTO cadastro_clientes (
-    id_cliente, 
-    nome_cliente, 
-    cpf, 
-    telefone, 
-    endereco
-) 
-VALUES
-(1, 'Ana Beatriz Silva', '123.456.789-00', '(61) 99876-4321', 'Rua das Acácias, 120 - Valparaíso de Goiás'),
-(2, 'Carlos Eduardo Lima', '987.654.321-11', '(61) 99654-3210', 'Av. Central, 45 - Jardim Céu Azul'),
-(3, 'Fernanda Oliveira', '111.222.333-44', '(61) 99555-6677', 'Rua 5, Qd 10 Lt 20 - Parque Esplanada'),
-(4, 'João Pedro Martins', '555.666.777-88', '(61) 99444-8899', 'Rua das Palmeiras, 300 - Etapa A'),
-(5, 'Mariana Costa', '999.888.777-66', '(61) 99333-1122', 'Av. Independência, 200 - Etapa B'),
-(6, 'Rafael Souza', '444.333.222-11', '(61) 99222-3344', 'Rua das Mangueiras, 87 - Jardim Oriente'),
-(7, 'Juliana Mendes', '321.654.987-00', '(61) 99111-5566', 'Rua 12, Lt 15 - Morada Nobre'),
-(8, 'Lucas Henrique Rocha', '888.777.666-55', '(61) 99000-7788', 'Rua dos Cravos, 210 - Etapa C'),
-(9, 'Patrícia Almeida', '222.333.444-55', '(61) 98989-8989', 'Rua das Rosas, 99 - Jardim Ipanema'),
-(10, 'Thiago Ribeiro', '666.555.444-33', '(61) 98888-7766', 'Av. Goiás, 150 - Centro');
+  nome_cliente, 
+  cpf, 
+  telefone, 
+  endereco, 
+  status_cliente
+) VALUES
+('João Silva', '123.456.789-00', '(61) 99999-1111', 'Rua das Palmeiras, 45', 'Ativo'),
+('Maria Oliveira', '987.654.321-00', '(61) 98888-2222', 'Av. Central, 120', 'Inativo'),
+('Carlos Souza', '456.789.123-00', '(61) 97777-3333', 'Rua do Comércio, 89', 'Ativo'),
+('Ana Paula Lima', '321.654.987-00', '(61) 96666-4444', 'Travessa das Flores, 12', 'Inativo'),
+('Fernanda Costa', '789.123.456-00', '(61) 95555-5555', 'Rua dos Cravos, 78', 'Ativo'),
+('Ricardo Mendes', '654.321.789-00', '(61) 94444-6666', 'Av. Brasil, 300', 'Inativo'),
+('Juliana Rocha', '159.753.486-00', '(61) 93333-7777', 'Rua do Sol, 10', 'Ativo'),
+('Eduardo Martins', '258.369.147-00', '(61) 92222-8888', 'Rua das Acácias, 56', 'Inativo'),
+('Patrícia Almeida', '369.258.147-00', '(61) 91111-9999', 'Rua dos Ipês, 101', 'Ativo'),
+('Bruno Ferreira', '741.852.963-00', '(61) 90000-0000', 'Av. Goiás, 200', 'Inativo');
 
+INSERT INTO cadastro_clientes (
+  nome_cliente, 
+  cpf, 
+  telefone, 
+  endereco, 
+  status_cliente
+) VALUES
+('Ana Beatriz Silva', '123.456.789-00', '(61) 99876-4321', 'Rua das Acácias, 120 - Valparaíso de Goiás', 'Ativo'),
+('Carlos Eduardo Lima', '987.654.321-11', '(61) 99887-6543', 'Av. Central, 45 - Jardim Céu Azul', 'Inativo'),
+('Fernanda Oliveira', '111.222.333-44', '(61) 99555-6677', 'Rua das Palmeiras, 10 - Etapa E', 'Ativo'),
+('Marcos Martins', '555.666.777-88', '(61) 99444-8889', 'Rua das Palmeiras, 30 - Etapa A', 'Inativo'),
+('Mariana Costa', '999.888.777-66', '(61) 99333-7766', 'Av. Independência, 20 - Etapa B', 'Ativo'),
+('Rafael Souza', '444.333.222-11', '(61) 99222-3344', 'Rua das Mangueiras, 87 - Jardim Oriente', 'Inativo'),
+('Juliana Mendes', '321.654.987-00', '(61) 99111-2233', 'Rua 14, Lt 25 - Morada Nobre', 'Ativo'),
+('Lucas Henrique Bonfim', '888.777.666-55', '(61) 99000-7788', 'Rua dos Cravos, 210 - Jardim Ipê', 'Inativo'),
+('Patricia Almeida', '777.666.555-44', '(61) 98999-6677', 'Rua 10, Lt 45 - Jardim Oriente', 'Ativo'),
+('Thiago Ribeiro', '666.555.444-33', '(61) 98888-7766', 'Av. Goiás, 150 - Centro', 'Inativo');
 
--- Adicionando mais uma coluna na tabela cadastro_clientes:
-ALTER TABLE cadastro_clientes ADD COLUMN status_cliente VARCHAR(15); 
+-- Deletando os dados nulos da tabela cadastro_clientes:
+DELETE FROM cadastro_clientes WHERE status_cliente IS NULL;
