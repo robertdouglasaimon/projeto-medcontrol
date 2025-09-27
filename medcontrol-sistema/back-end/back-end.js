@@ -64,7 +64,7 @@ app.get('/total_clientes', (req, res) => {
 
 // Rota para pegar o total de clientes ATIVOS em cadastro_clientes:
 app.get('/total_clientes_ativos', (req, res) => {
-  db.all('SELECT COUNT(id_cliente) AS total_clientes_ativos FROM cadastro_clientes WHERE status_cliente =  "ativo"', [], (err, rows) => {
+  db.all('SELECT COUNT(id_cliente) AS total_clientes_ativos FROM cadastro_clientes WHERE status_cliente =  "Ativo"', [], (err, rows) => {
     if (err) {
       console.error('Erro na consulta:', err.message);
       res.status(500).send('Erro ao buscar clientes');
@@ -76,7 +76,7 @@ app.get('/total_clientes_ativos', (req, res) => {
 
 // Rota para pegar o total de clientes INATIVOS em cadastro_clientes:
 app.get('/total_clientes_inativos', (req, res) => {
-  db.all('SELECT COUNT(id_cliente) AS total_clientes_inativos FROM cadastro_clientes WHERE status_cliente =  "inativo"', [], (err, rows) => {
+  db.all('SELECT COUNT(id_cliente) AS total_clientes_inativos FROM cadastro_clientes WHERE status_cliente =  "Inativo"', [], (err, rows) => {
     if (err) {
       console.error('Erro na consulta:', err.message);
       res.status(500).send('Erro ao buscar clientes');
@@ -89,15 +89,25 @@ app.get('/total_clientes_inativos', (req, res) => {
 // Rota para adicionar novos contatos ao banco de dados pelo front-end da tela de clientes:
 app.post('/novo_cliente', (req, res) => {
   const { nome_cliente, telefone, endereco, cpf, status_cliente } = req.body;
-  db.run('INSERT INTO cadastro_clientes (nome_cliente, telefone, endereco, cpf, status_cliente) VALUES (?, ?, ?, ?, ?)', [nome_cliente, telefone, endereco, cpf, status_cliente], (err) => {
-    if (err) {
-      console.error('Erro ao inserir cliente:', err.message);
-      res.status(500).send('Erro ao inserir cliente');
-    } else {
-      res.sendStatus(200);
+
+  db.run(
+    'INSERT INTO cadastro_clientes (nome_cliente, telefone, endereco, cpf, status_cliente) VALUES (?, ?, ?, ?, ?)',
+    [nome_cliente, telefone, endereco, cpf, status_cliente],
+    (err) => {
+      if (err) {
+        if (err.message.includes('UNIQUE constraint failed')) {
+          res.status(409).json({ mensagem: "CPF já cadastrado!" });
+        } else {
+          console.error('Erro ao inserir cliente:', err.message);
+          res.status(500).json({ mensagem: "Erro ao inserir cliente." });
+        }
+      } else {
+        res.status(200).json({ mensagem: "Cliente cadastrado com sucesso" });
+      }
     }
-  });
+  );
 });
+
 
 
 /*-------------------------------------------------------------------------------------------*/

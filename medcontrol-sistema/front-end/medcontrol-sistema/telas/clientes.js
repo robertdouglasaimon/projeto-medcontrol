@@ -67,13 +67,13 @@ export function render() {
         <h3>Cadastrar Novo Cliente</h3>
         <!-- Formulário de cadastro aqui -->
         <form class="cadastro-cliente-modal">
-          <input type="text" placeholder="Nome do cliente" required />
-          <input type="text" placeholder="Insira o telefone" required />
-          <input type="text" placeholder="Insira o endereço" required />
-          <input type="text" placeholder="Insira o CPF" required />
-          <select>
-            <option value="ativo">Ativo</option>
-            <option value="inativo">Inativo</option>
+          <input type="text" name="nome_cliente" placeholder="Nome do cliente" required />
+          <input type="text" name="telefone" placeholder="Insira o telefone" required />
+          <input type="text" name="endereco" placeholder="Insira o endereço" required />
+          <input type="text" name="cpf" placeholder="Insira o CPF" required />
+          <select name="status_cliente">
+            <option value="Ativo">Ativo</option>
+            <option value="Inativo">Inativo</option>
           </select>
           <button type="submit">Salvar</button>
           <button type="button" class="cancelar">Cancelar</button>
@@ -139,62 +139,70 @@ export function render() {
   setTimeout(() => {
     const form = div.querySelector(".cadastro-cliente-modal");
     const table = div.querySelector(".clientes-tabela table tbody");
+    const modal = div.querySelector("#modalNovoCliente");
 
-    form.addEventListener("submit", (event) => {
-      event.preventDefault();
 
-      const nome = form.querySelector("input[type='text']:nth-child(1)").value;
-      const telefone = form.querySelector("input[type='text']:nth-child(2)").value;
-      const endereco = form.querySelector("input[type='text']:nth-child(3)").value;
-      const cpf = form.querySelector("input[type='text']:nth-child(4)").value;
-      const status = form.querySelector("select").value;
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
 
-      // Verifica se todos os campos foram preenchidos (Validação 1)
-      if (!nome || !telefone || !endereco || !cpf || !status) {
-        alert("Por favor, preencha todos os campos.");
-        return;
-      }
+    const nome = form.querySelector("input[name='nome_cliente']").value;
+    const telefone = form.querySelector("input[name='telefone']").value;
+    const endereco = form.querySelector("input[name='endereco']").value;
+    const cpf = form.querySelector("input[name='cpf']").value;
+    const status = form.querySelector("select[name='status_cliente']").value;
 
-      // Verifica se o CPF possui 11 caracteres (Validação 2)
-      if (cpf.length !== 11) {
-        alert("O CPF deve conter 11 caracteres.");
-        return;
-      }
+    // ✅ Validações
 
-      // Verifica se o telefone possui 11 caracteres (Validação 3)
-      if (telefone.length !== 11) {
-        alert("O telefone deve conter 11 caracteres.");
-        return;
-      }
+    // Verifica se todos os campos foram preenchidos:
+    if (!nome || !telefone || !endereco || !cpf || !status) {
+      alert("Por favor, preencha todos os campos.");
+      return;
+    }
+    
+    // Verifica se o CPF possui 11 dígitos:
+    if (cpf.length !== 14) {
+      alert("O CPF deve conter 14 caracteres (Considerando o formato XXX.XXX.XXX-XX).");
+      return;
+    }
 
-      // Verifica se o telefone possui apenas números (Validação 4)
-      // if (!/^\d+$/.test(telefone)) {
-      //   alert("O telefone deve conter apenas números.");
-      //   return;
-      // }
+    // Verificando se o CPF ta sendo escrito de forma correta:
+    if (!/^\d{3}\.\d{3}\.\d{3}-\d{2}$/.test(cpf)) {
+      alert("O CPF deve estar no formato 000.000.000-00.");
+      return;
+    }
 
-      // Verifica se o CPF possui apenas números (Validação 5)
-      // if (!/^\d+$/.test(cpf)) {
-      //   alert("O CPF deve conter apenas números.");
-      //   return;
-      // }
-   
-      fetch('http://localhost:3000/novo_cliente', {
+    // Verifica se o telefone possui 14 dígitos:
+    if (telefone.length !== 11) {
+      alert("O telefone deve conter 11 caracteres.");
+      return;
+    }
+
+    try {
+      const response = await fetch('http://localhost:3000/novo_cliente', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ nome_cliente, telefone, endereco, cpf, status_cliente })
-      })
-      .then(response => response.json())
-      .then(data => {
-        console.log(data);
-        console.log("Cliente cadastrado com sucesso!");
-      })
-      .catch(error => {
-        console.error('Erro ao cadastrar cliente:', error);
+        body: JSON.stringify({
+          nome_cliente: nome,
+          telefone,
+          endereco,
+          cpf,
+          status_cliente: status
+        })
       });
 
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(errorText || "Erro ao cadastrar cliente.");
+      }
+
+      const data = await response.json();
+      alert(`✅ ${data.mensagem}`);
+      form.reset();
+      modal.classList.add("hidden");
+
+      // ✅ Só adiciona na tabela se deu certo
       const novaLinha = document.createElement("tr");
       novaLinha.innerHTML = `
         <td>${nome}</td>
@@ -207,18 +215,14 @@ export function render() {
           <button class="btn btn-danger excluir-cliente">Excluir</button>
         </td>
       `;
-
       table.appendChild(novaLinha);
-      form.reset();
 
-      // Script para exibir mensagem de sucesso ou erro ao cadastrar um novo cliente:
-      if(err == false) {
-        alert("Cliente cadastrado com sucesso!");
-      } else {
-        alert("Erro ao cadastrar cliente!");
-      }
+    } catch (error) {
+      console.error('❌ Erro ao cadastrar cliente:', error.message);
+      alert(`❌ ${error.message}`);
+    }
+  });
 
-  }) ;
 
   }, 0);
 
