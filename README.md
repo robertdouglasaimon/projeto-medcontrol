@@ -15,7 +15,6 @@
 
 ## 🛠️ Tecnologias Utilizadas
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
-![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
 ![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=node.js&logoColor=white)
 ![Express](https://img.shields.io/badge/Express-000000?style=for-the-badge&logo=express&logoColor=white)
 ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
@@ -23,7 +22,7 @@
 ![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)
 
 
-- **Front-end:** JavaScript ou TypeScript puro
+- **Front-end:** JavaScript puro
 - **Back-end:** Node.js com Express
 - **Banco de Dados:** SQLite (gerenciado via Python)
 - **Modelagem:** BRModelo para DER e lógica relacional
