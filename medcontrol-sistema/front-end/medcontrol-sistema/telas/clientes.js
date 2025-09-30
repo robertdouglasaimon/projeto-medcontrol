@@ -35,7 +35,7 @@ export function render() {
           </span>
         </div>
 
-        <div class="cliente-receita">
+        <!--  <div class="cliente-receita">
           <p>
             <i class="fas fa-receipt"></i>
             Receita em Aberto
@@ -43,7 +43,7 @@ export function render() {
           <span class="valores-clientes cliente-receita-valor">
             <!-- Inserir aqui o total de clientes pelo banco de dados -->
           </span>
-        </div>
+        </div> -->
     
       </div>
     </section>
@@ -330,6 +330,7 @@ export function render() {
     .then((data) => {
       data.forEach((item) => {
         const row = document.createElement("tr");
+        row.setAttribute("data-id", item.id_cliente);
         row.innerHTML = `
           <td>${item.nome_cliente}</td>
           <td>${item.telefone}</td>
@@ -337,8 +338,8 @@ export function render() {
           <td>${item.cpf}</td>
           <td>${item.status_cliente}</td>
           <td>
-            <button class="btn btn-warning editar-cliente">Editar</button>
-            <button class="btn btn-danger excluir-cliente">Excluir</button>
+            <button class="btn btn-warning  editar-cliente">Editar</button>
+            <button class="btn btn-danger  excluir-cliente">Excluir</button>
           </td>
         `;
         tbody.appendChild(row);
@@ -346,5 +347,52 @@ export function render() {
     })
   }, 0);
 
+
+  // Editando os itens da tabela pelo front através do botão editar e excluindo pelo botão excluir:
+  setTimeout(() => {
+    const tbody = div.querySelector("tbody");
+
+    // Script para excluir um cliente:
+    tbody.addEventListener("click", async (event) => {
+      const btn = event.target;
+      if (!btn.classList.contains("excluir-cliente")) return;
+
+      const row = btn.closest("tr");
+      const id_cliente = row.getAttribute("data-id");
+      console.log("ID do cliente:", id_cliente);
+
+      const confirmar = confirm("Tem certeza que deseja excluir esse cliente?");
+      if (!confirmar) return;
+
+      try {
+        const res = await fetch(`http://localhost:3000/deletar_cliente/${id_cliente}`, {
+          method: "DELETE"
+        });
+        console.log("Status da resposta:", res.status);
+
+        if (!res.ok) {
+          throw new Error("Erro ao excluir cliente!");
+        }
+
+        const data = await res.json();
+        console.log("Resposta do servidor:", data);
+
+        row.remove();
+        alert(`✅ ${data.mensagem}`);
+      } catch (error) {
+        console.error("❌ Erro ao excluir cliente:", error.message);
+        alert(`❌ ${error.message}`);
+      }
+
+    });
+
+    // Script para editar os dados de um cliente:
+    
+  },0);
+
+
+
   return div;
-} 
+}
+
+

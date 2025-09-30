@@ -12,6 +12,15 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// Configurando o CORS para permitir que o back-end seja acessado de outras origens:
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*"); // ou substitua "*" por "http://127.0.0.1:5500" se quiser restringir
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+  res.header("Access-Control-Allow-Headers", "Content-Type");
+  next();
+});
+
+
 /** Dicionário de expressões:
  * const app = express(); : Cria uma instância do Express, que é um framework web para Node.js. Isso permite criar e configurar rotas, middlewares e outros recursos para o back-end.
  * 
@@ -38,12 +47,13 @@ const db = new sqlite3.Database(dbPath, sqlite3.OPEN_READWRITE, (err) => {
 
 
 // RETAS E CONFIGURAÇÕES PARA A TELA DE CLIENTES --------------------------------------------
+
 // Rota direta para SELECT de cadastro_clientes:
 app.get('/tabela_clientes', (req, res) => {
   db.all('SELECT * FROM cadastro_clientes', [], (err, rows) => {
     if (err) {
       console.error('Erro na consulta:', err.message);
-      res.status(500).send('Erro ao buscar clientes');
+      res.status(500).json({ mensagem: "Erro ao buscar clientes." });
     } else {
       res.json(rows);
     }
@@ -55,7 +65,7 @@ app.get('/total_clientes', (req, res) => {
   db.all('SELECT COUNT(id_cliente) AS total_clientes FROM cadastro_clientes', [], (err, rows) => {
     if (err) {
       console.error('Erro na consulta:', err.message);
-      res.status(500).send('Erro ao buscar clientes');
+      res.status(500).json({ mensagem: "Erro ao buscar clientes." });
     } else {
       res.json(rows);
     }
@@ -67,7 +77,7 @@ app.get('/total_clientes_ativos', (req, res) => {
   db.all('SELECT COUNT(id_cliente) AS total_clientes_ativos FROM cadastro_clientes WHERE status_cliente =  "Ativo"', [], (err, rows) => {
     if (err) {
       console.error('Erro na consulta:', err.message);
-      res.status(500).send('Erro ao buscar clientes');
+      res.status(500).json({ mensagem: "Erro ao buscar clientes ativos." });
     } else {
       res.json(rows);
     }
@@ -79,7 +89,7 @@ app.get('/total_clientes_inativos', (req, res) => {
   db.all('SELECT COUNT(id_cliente) AS total_clientes_inativos FROM cadastro_clientes WHERE status_cliente =  "Inativo"', [], (err, rows) => {
     if (err) {
       console.error('Erro na consulta:', err.message);
-      res.status(500).send('Erro ao buscar clientes');
+      res.status(500).json({ mensagem: "Erro ao buscar clientes inativos." });
     } else {
       res.json(rows);
     }
@@ -93,7 +103,7 @@ app.post('/novo_cliente', (req, res) => {
   db.run(
     'INSERT INTO cadastro_clientes (nome_cliente, telefone, endereco, cpf, status_cliente) VALUES (?, ?, ?, ?, ?)',
     [nome_cliente, telefone, endereco, cpf, status_cliente],
-    (err) => {
+    function (err) {
       if (err) {
         if (err.message.includes('UNIQUE constraint failed')) {
           res.status(409).json({ mensagem: "CPF já cadastrado!" });
@@ -102,16 +112,41 @@ app.post('/novo_cliente', (req, res) => {
           res.status(500).json({ mensagem: "Erro ao inserir cliente." });
         }
       } else {
-        res.status(200).json({ mensagem: "Cliente cadastrado com sucesso" });
+        res.status(201).json({ mensagem: "Cliente cadastrado com sucesso", id_cliente: this.lastID });
       }
     }
   );
 });
 
+/*-------------------------------------------------------------------------------------------*/
+// Rota para "deletar" da tabela cadastro_clientes/
+
+// Garantindo que o back-end seja acessado de outras origens:
+// Nota: Foi necessário pois o back-end não tava permitindo que o front-end fosse acessado de outras origens. E consequentemente não mandava os alertas de sucesso (mesmo tendo feito o delete dos dados, ele não avisava que tava feito e sim dava erro de fetch). Por isso foi necesário GARANTIR que o back-end fosse acessado de outras origens e assim, permitindo os alertas de sucesso lá no front-end. Cuidar para NUNCA APAGAR ESSA OPÇÃO POR DESCUIDO!
+app.options('/deletar_cliente/:id_cliente', (req, res) => {
+  res.sendStatus(200);
+});
+
+// Rota para deletar da tabela cadastro_clientes:
+app.delete('/deletar_cliente/:id_cliente', (req, res) => {
+  const id_cliente = req.params.id_cliente;
+
+  db.run('DELETE FROM cadastro_clientes WHERE id_cliente = ?', [id_cliente], function (err) {
+    if (err) {
+      console.error('Erro ao deletar cliente:', err.message);
+      res.status(500).json({ mensagem: "Erro ao deletar cliente." });
+    } else {
+      if (this.changes === 0) {
+        res.status(404).json({ mensagem: "Cliente não encontrado." });
+      } else {
+        res.status(200).json({ mensagem: "Cliente deletado com sucesso" });
+      }
+    }
+  });
+});
 
 
 /*-------------------------------------------------------------------------------------------*/
-
 
 // Inicia o servidor e manda um console.log avisando que a porta 3000 foi aberta:
 app.listen(3000, () => {
