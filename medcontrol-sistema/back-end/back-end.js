@@ -36,6 +36,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const dbPath = path.resolve(__dirname, '../../medcontrol-sistema/banco-dados/farmacia.db');
 
+
 // Conectando ao banco de dados:
 const db = new sqlite3.Database(dbPath, sqlite3.OPEN_READWRITE, (err) => {
   if (err) {
@@ -144,6 +145,58 @@ app.delete('/deletar_cliente/:id_cliente', (req, res) => {
     }
   });
 });
+
+// Rota para editar da tabela cadastro_clientes:
+app.put('/editar_cliente/:id_cliente', (req, res) => {
+  const id_cliente = req.params.id_cliente;
+  const { nome_cliente, telefone, endereco, cpf, status_cliente } = req.body;
+
+  db.run(
+    'UPDATE cadastro_clientes SET nome_cliente = ?, telefone = ?, endereco = ?, cpf = ?, status_cliente = ? WHERE id_cliente = ?',
+    [nome_cliente, telefone, endereco, cpf, status_cliente, id_cliente],
+    function (err) {
+      if (err) {
+        console.error('Erro ao editar cliente:', err.message);
+        res.status(500).json({ mensagem: "Erro ao editar cliente." });
+      } else {
+        if (this.changes === 0) {
+          res.status(404).json({ mensagem: "Cliente não encontrado." });
+        } else {
+          res.status(200).json({ mensagem: "Cliente editado com sucesso" });
+        }
+      }
+    }
+  );
+});
+
+// Rota para cadastrar funcionarios:-----------------------------------------------------
+// Configurando o front-end para estar em execução:
+app.use(express.static(path.join(__dirname, '../front-end/medcontrol-login')));
+
+// Rota para cadastrar funcionarios:
+app.post('/cadastrar_funcionario', (req, res) => {
+  const { nome_funcionario, cargo_funcionario, tel_funcionario, email_funcionario, login_funcionario, senha_funcionario } = req.body;
+
+  db.run(
+    `INSERT INTO funcionarios (nome_funcionario, cargo_funcionario, tel_funcionario, email_funcionario, login_funcionario, senha_funcionario)
+     VALUES (?, ?, ?, ?, ?, ?)`,
+    [nome_funcionario, cargo_funcionario, tel_funcionario, email_funcionario, login_funcionario, senha_funcionario],
+    function (err) {
+      if (err) {
+        if (err.message.includes('UNIQUE constraint failed')) {
+          return res.status(409).json({ mensagem: "Login já cadastrado!" });
+        }
+        console.error('Erro ao cadastrar funcionário:', err.message);
+        return res.status(500).json({ mensagem: "Erro ao cadastrar funcionário." });
+      }
+
+      res.status(201).json({ mensagem: "Funcionário cadastrado com sucesso", id_funcionario: this.lastID });
+    }
+  );
+});
+/*-----------------------------------------------------------------------------------*/
+
+
 
 
 /*-------------------------------------------------------------------------------------------*/

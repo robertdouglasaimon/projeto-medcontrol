@@ -386,8 +386,126 @@ export function render() {
 
     });
 
-    // Script para editar os dados de um cliente:
-    
+// Script para editar os dados de um cliente (Modal de editar): -------------------------------
+    tbody.addEventListener("click", async (event) => {
+      const btn = event.target;
+      if (!btn.classList.contains("editar-cliente")) return;
+
+      const row = btn.closest("tr");
+      const id_cliente = row.getAttribute("data-id");
+      console.log("ID do cliente:", id_cliente);
+
+      const nome = row.querySelector("td:nth-child(1)").textContent;
+      const telefone = row.querySelector("td:nth-child(2)").textContent;
+      const endereco = row.querySelector("td:nth-child(3)").textContent;
+      const cpf = row.querySelector("td:nth-child(4)").textContent;
+      const status = row.querySelector("td:nth-child(5)").textContent;
+
+      console.log("Dados do cliente:", { id_cliente, nome, telefone, endereco, cpf, status });
+
+      const modal = document.createElement("div");
+      modal.classList.add("modal");
+      modal.innerHTML = `
+        <div class="modal-content">
+          <h3>Editar Cliente</h3>
+          <form id="form-editar-cliente">
+            <div class="form-group">
+              <label for="nome">Nome:</label>
+              <input type="text" id="nome" value="${nome}" required>
+            </div>
+            <div class="form-group">
+              <label for="telefone">Telefone:</label>
+              <input type="text" id="telefone" value="${telefone}" required>
+            </div>
+            <div class="form-group">
+              <label for="endereco">Endereço:</label>
+              <input type="text" id="endereco" value="${endereco}" required>
+            </div>
+            <div class="form-group">
+              <label for="cpf">CPF:</label>
+              <input type="text" id="cpf" value="${cpf}" required>
+            </div>
+
+            <label for="status">Status:</label>
+            <select name="Status" id="status-cliente">
+              <option value="Ativo">Ativo</option>
+              <option value="Inativo">Inativo</option>
+            </select>
+
+            <button type="submit" class="btn btn-primary">Salvar</button>
+            <button type="button" class="btn btn-secondary close-modal">Fechar</button>
+          </form>
+        </div>
+      `;
+
+      document.body.appendChild(modal);
+
+// Fecha o modal ao clicar no botão "fechar" ou clicar "fora do modal": ---------------------
+    modal.addEventListener("click", (event) => {
+      if (event.target.classList.contains("close-modal") || event.target.classList.contains("modal")) {
+        modal.remove();
+      }
+    });
+
+// Script para salvar os dados editados:------------------------------------------------------
+      const form = document.getElementById("form-editar-cliente");
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+
+        const nome = document.getElementById("nome").value;
+        const telefone = document.getElementById("telefone").value;
+        const endereco = document.getElementById("endereco").value;
+        const cpf = document.getElementById("cpf").value;
+        const status = document.getElementById("status-cliente").value;
+
+        // Validações
+
+        // Verifica se todos os campos foram preenchidos:
+        if (!nome || !telefone || !endereco || !cpf || !status) {
+          alert("Todos os campos devem ser preenchidos!");
+          return;
+        }
+
+        // Verifica se o CPF está no formato correto:
+        if (!/^\d{3}\.\d{3}\.\d{3}-\d{2}$/.test(cpf)) {
+          alert("O CPF deve estar no formato XXX.XXX.XXX-XX!");
+          return;
+        }
+
+        // Verifica se o telefone está no formato correto:
+        if (!/^\(\d{2}\) \d{5}-\d{4}$/.test(telefone)) {
+          alert("O telefone deve estar no formato (XX) XXXXX-XXXX!");
+          return;
+        }
+ 
+        try {
+          console.log("Dados enviados:", { nome, telefone, endereco, cpf, status });
+          const res = await fetch(`http://localhost:3000/editar_cliente/${id_cliente}`, {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ nome_cliente: nome, telefone, endereco, cpf, status_cliente: status })
+          });
+          if (!res.ok) {
+            throw new Error("Erro ao editar cliente!");
+          } else {
+            const data = await res.json();
+            console.log("Resposta do servidor:", data);
+            row.querySelector("td:nth-child(1)").textContent = nome;
+            row.querySelector("td:nth-child(2)").textContent = telefone;
+            row.querySelector("td:nth-child(3)").textContent = endereco;
+            row.querySelector("td:nth-child(4)").textContent = cpf;
+            row.querySelector("td:nth-child(5)").textContent = status;
+            alert(`✅ ${data.mensagem}`);
+          }
+        } catch (error) {
+          console.error("❌ Erro ao editar cliente:", error.message);
+          alert(`❌ ${error.message}`)
+        }
+        modal.remove();
+      });
+    });   
   },0);
 
 

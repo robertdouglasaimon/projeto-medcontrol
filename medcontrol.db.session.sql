@@ -5,6 +5,31 @@ SELECT* FROM controle_estoque;
 SELECT* FROM cadastro_fornecedores;
 SELECT * FROM historico_fornecimento;
 
+DROP TABLE funcionarios;
+
+-- Criando a tabela de funcionários da empresa:
+CREATE TABLE IF NOT EXISTS funcionarios (
+  id_funcionario INTEGER PRIMARY KEY AUTOINCREMENT,
+  nome_funcionario VARCHAR(100) NOT NULL,
+  cargo_funcionario VARCHAR(100) NOT NULL,
+  salario_funcionario DECIMAL(10, 2) DEFAULT 1.500,
+  tel_funcionario VARCHAR(20),
+  email_funcionario VARCHAR(100),
+  login_funcionario VARCHAR(100) NOT NULL,
+  senha_funcionario VARCHAR(100) NOT NULL
+)
+
+INSERT INTO funcionarios (
+  nome_funcionario,
+  cargo_funcionario,
+  salario_funcionario,
+  tel_funcionario,
+  email_funcionario,
+  login_funcionario,
+  senha_funcionario
+) VALUES 
+('Robert Douglas', 'Proprietário/Administrador', 10000.00, '(61) 98462-5920', 'robertdouglas@medcontrol.com', 'robertdouglasaimon', '123456789');
+
 
 -- Renomeando a coluna historico_compra para endereco
 ALTER TABLE cadastro_clientes RENAME COLUMN historico_compra TO endereco;
@@ -71,5 +96,6 @@ DELETE FROM cadastro_clientes WHERE status_cliente IS NULL;
 -- Deletando linhas especificas da tabela cadastro_clientes:
 DELETE FROM cadastro_clientes WHERE id_cliente = 11;
 
-SELECT * FROM cadastro_clientes;
+DELETE FROM funcionarios WHERE id_funcionario = 7;
+DELETE FROM funcionarios WHERE id_funcionario = 8;
 

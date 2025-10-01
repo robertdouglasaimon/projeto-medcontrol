@@ -29,27 +29,15 @@ body {
 }
 /*-----------------------------------------------*/
 
-.btn-login {
-    font-weight: 600;
-}
-
 .btn:hover {
     transform: scale(1.1);
     transition: 0.3s ease-in-out;
-    border: orange 1px solid !important;
 }
 
-.btn-cadastrar {
-    margin-top: 0.5rem;
-    background-color: var(--cor-preta) !important;
-    color: var(--cor-branca) !important;
-    border: none !important;
+.form-control {
+    color: #fff !important;
 }
 
-.btn-cadastrar a {
-    text-decoration: none;
-    color: var(--cor-branca);
-}
 
 
 /* Rodapé */
