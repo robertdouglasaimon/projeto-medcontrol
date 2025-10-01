@@ -12,22 +12,33 @@ document.getElementById("form-cadastro").addEventListener("submit", async (e) =>
   };
 
   try {
-    const res = await fetch("http://localhost:3000/cadastrar_funcionario", {
+    const res = await fetch("http://127.0.0.1:3000/cadastrar_funcionario", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(dados)
     });
 
-    const data = await res.json();
+    console.log("Status da resposta:", res.status);
+    console.log("Tipo de conteúdo:", res.headers.get("content-type"));
+
+    let data;
+    try {
+      data = await res.json();
+    } catch (jsonError) {
+      console.error("Erro ao converter resposta em JSON:", jsonError);
+      alert("Erro inesperado ao processar resposta do servidor.");
+      return;
+    }
 
     if (res.ok) {
-      // Redirecionar para a tela de cadastro efetuado:
-      window.location.href = "cadastro_efetuado.html";
+      window.location.href = "/medcontrol-sistema/front-end/medcontrol-login/src/pages/cadastro_efetuado.html";
     } else {
-      alert(data.mensagem);
+      alert(data.mensagem || "Erro desconhecido.");
     }
   } catch (error) {
-    alert("Erro ao cadastrar funcionário.");
-    console.error(error);
+    console.error("Erro no fetch:", error);
+    alert("Erro ao cadastrar funcionário. Detalhes no console.");
   }
+
+
 });

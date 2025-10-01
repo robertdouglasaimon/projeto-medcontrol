@@ -190,7 +190,13 @@ app.post('/cadastrar_funcionario', (req, res) => {
         return res.status(500).json({ mensagem: "Erro ao cadastrar funcionário." });
       }
 
-      res.status(201).json({ mensagem: "Funcionário cadastrado com sucesso", id_funcionario: this.lastID });
+      res.setHeader("Access-Control-Allow-Origin", "*");
+      res.setHeader("Content-Type", "application/json");
+      res.status(201).json({
+        mensagem: "Funcionário cadastrado com sucesso",
+        id_funcionario: this.lastID
+      });
+
     }
   );
 });

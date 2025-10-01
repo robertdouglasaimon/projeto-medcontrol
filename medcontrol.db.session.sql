@@ -94,8 +94,9 @@ INSERT INTO cadastro_clientes (
 DELETE FROM cadastro_clientes WHERE status_cliente IS NULL;
 
 -- Deletando linhas especificas da tabela cadastro_clientes:
-DELETE FROM cadastro_clientes WHERE id_cliente = 11;
+DELETE FROM funcionarios WHERE id_funcionario = 15;
+DELETE FROM funcionarios WHERE id_funcionario = 16;
+DELETE FROM funcionarios WHERE id_funcionario = 17;
+DELETE FROM funcionarios WHERE id_funcionario = 20;
 
-DELETE FROM funcionarios WHERE id_funcionario = 7;
-DELETE FROM funcionarios WHERE id_funcionario = 8;
 
