@@ -63,7 +63,7 @@
                             <span class="input-group-text bg-dark-subtle border-0" style="background-color: #2e2e4a; border-right: none;">
                                     <i class="fas fa-user text-secondary"></i>
                             </span>
-                            <input type="text" class="form-control"placeholder="Usuário" required style=" border: none; color: black !important;" id="login">
+                            <input type="text" class="form-control"placeholder="Usuário" required style=" border: none; color: black !important;" id="username" autocomplete="username">
                         </div>
 
                         <!-- Senha -->
@@ -71,7 +71,7 @@
                             <span class="input-group-text bg-dark-subtle border-0" style="background-color: #2e2e4a; border-right: none;">
                                 <i class="fas fa-lock text-secondary"></i>
                             </span>
-                            <input type="password" class="form-control" placeholder="Senha" required  style="border: none; color: black !important;" id="senha">
+                            <input type="password" class="form-control" placeholder="Senha" required  style="border: none; color: black !important;" id="senha" autocomplete="current-password">
                         </div>
                             
                             
@@ -86,13 +86,16 @@
     </main>
 
     <footer class="d-flex justify-content-center fixed-bottom mb-3 text-align-center">
-        <a href="#">© MedControl </a>
+        <a href="#">© MedControl </a><span id="ano"></span> todos os direitos reservados.
+
+
         <script> 
-            document.write(new Date().getFullYear());                 
-        </script> todos os direitos reservados.
+            // Obter o ano atual e envia para o HTML dentro da tag <span>:
+            document.getElementById("ano").textContent = new Date().getFullYear();            
+        </script> 
     </footer>
 </body>
     <script src="/medcontrol-sistema/front-end/medcontrol-login/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="/medcontrol-sistema/front-end/medcontrol-login/node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="../js/medcontrol.js"></script>
+        <script src="/medcontrol-sistema/front-end/medcontrol-login/src/js/medcontrol.js"></script>
 </html>

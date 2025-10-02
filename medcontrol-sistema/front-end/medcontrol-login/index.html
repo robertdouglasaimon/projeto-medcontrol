@@ -24,7 +24,7 @@
                         <h2 class="h4 mb-4 fw-medium text-white">Acesso ao Sistema</h2> 
                         
                         <!-- Formulário de Login -->
-                        <form id="login-form">
+                        <form id="form-cadastro">
 
                         <!-- Usuário ou E-mail -->    
                         <div class="input-group mb-3">
@@ -32,7 +32,7 @@
                                     <i class="fas fa-user text-secondary"></i>
                             </span>
                             <input type="text" class="form-control" id="username" placeholder="Usuário ou E-mail" required 
-                                    style=" border: none; color: white;">
+                                    style=" border: none; color: white;" autocomplete="username">
                         </div>
 
                         <!-- Senha -->
@@ -40,10 +40,10 @@
                             <span class="input-group-text bg-dark-subtle border-0" style="background-color: #2e2e4a; border-right: none;">
                                 <i class="fas fa-lock text-secondary"></i>
                             </span>
-                            <input type="password" class="form-control" id="password" placeholder="Senha" required  style="border: none; color: white;">
+                            <input type="password" class="form-control" id="password" placeholder="Senha" required  style="border: none; color: white;" autocomplete="current-password">
                         </div>
                             
-                        <!-- Lemmbrar-me -->
+                        <!-- Lembrar-me -->
                         <div class="d-flex justify-content-between align-items-center mb-4">
                             <div class="form-check text-start">
                                 <input class="form-check-input" type="checkbox" id="rememberMe">
@@ -72,13 +72,16 @@
     </main>
 
     <footer class="d-flex justify-content-center fixed-bottom mb-3 text-align-center">
-        <a href="#">© MedControl </a>
+        <a href="#">© MedControl </a><span id="ano"></span> todos os direitos reservados.
+
+
         <script> 
-            document.write(new Date().getFullYear());                 
-        </script> todos os direitos reservados.
+            // Obter o ano atual e envia para o HTML dentro da tag <span>:
+            document.getElementById("ano").textContent = new Date().getFullYear();            
+        </script> 
     </footer>
 </body>
-    <script src="./front-end/src/js/bootstrap.min.js"></script>
-    <script src="node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="./src/js/medcontrol.js"></script>
+    <script src="/medcontrol-sistema/front-end/medcontrol-login/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/medcontrol-sistema/front-end/medcontrol-login/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="/medcontrol-sistema/front-end/medcontrol-login/src/js/medcontrol.js"></script>
 </html>

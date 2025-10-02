@@ -21,6 +21,7 @@
                     <div class="card-body text-center text-white">
                         <img src="/medcontrol-sistema/front-end/medcontrol-login/src/assets/img/logo-semfundo.png" alt="Logo MedControl" class="mb-4 img-fluid efeito-glow-logo" style="width: 80px;"> 
 
+                        <form id="form-cadastro">
                         <!-- Título -->
                         <h2 class="h4 mb-4 fw-medium text-white">Cadastro efetuado com sucesso!</h2> 
                         
@@ -38,13 +39,16 @@
     </main>
 
     <footer class="d-flex justify-content-center fixed-bottom mb-3 text-align-center">
-        <a href="#">© MedControl </a>
+        <a href="#">© MedControl </a><span id="ano"></span> todos os direitos reservados.
+
+
         <script> 
-            document.write(new Date().getFullYear());                 
-        </script> todos os direitos reservados.
+            // Obter o ano atual e envia para o HTML dentro da tag <span>:
+            document.getElementById("ano").textContent = new Date().getFullYear();            
+        </script> 
     </footer>
 </body>
-    <script src="./front-end/src/js/bootstrap.min.js"></script>
-    <script src="node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="./src/js/medcontrol.js"></script>
+    <script src="/medcontrol-sistema/front-end/medcontrol-login/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/medcontrol-sistema/front-end/medcontrol-login/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="/medcontrol-sistema/front-end/medcontrol-login/src/js/medcontrol.js"></script>
 </html>

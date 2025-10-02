@@ -71,6 +71,10 @@ footer a:hover {
     transition: 0.3s ease-in-out;
 }
 
+#ano {
+    margin-right: 5px;
+}
+
 /* Adaptando a tela para dispositivos móveis */
 
 /* Celulares e tablets */

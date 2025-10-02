@@ -4,6 +4,7 @@ SELECT* FROM vendas;
 SELECT* FROM controle_estoque;
 SELECT* FROM cadastro_fornecedores;
 SELECT * FROM historico_fornecimento;
+SELECT * FROM funcionarios;
 
 DROP TABLE funcionarios;
 
@@ -93,10 +94,17 @@ INSERT INTO cadastro_clientes (
 -- Deletando os dados nulos da tabela cadastro_clientes:
 DELETE FROM cadastro_clientes WHERE status_cliente IS NULL;
 
--- Deletando linhas especificas da tabela cadastro_clientes:
-DELETE FROM funcionarios WHERE id_funcionario = 15;
-DELETE FROM funcionarios WHERE id_funcionario = 16;
-DELETE FROM funcionarios WHERE id_funcionario = 17;
-DELETE FROM funcionarios WHERE id_funcionario = 20;
+-- Deletando linhas especificas da tabela cadastro_clientes 44 a 51:
+DELETE FROM funcionarios WHERE id_funcionario = 44;
 
+
+
+-- Criando um index na tabela cadastro_clientes:
+CREATE UNIQUE INDEX idx_nome_cliente ON cadastro_clientes(nome_cliente);
+CREATE UNIQUE INDEX idx_telefone_cliente ON cadastro_clientes(telefone);
+CREATE UNIQUE INDEX idx_endereco_cliente ON cadastro_clientes(endereco);
+
+PRAGMA index_list('cadastro_clientes');
+
+SELECT * FROM funcionarios;
 
