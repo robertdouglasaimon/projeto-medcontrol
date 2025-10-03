@@ -14,24 +14,25 @@
   <header>
     <div class="cabecalho-medcontrol">
       <!-- Informações do Usuário -->
-        <div class="usuario-logado">
+       <div class="usuario-logado">
 
-          <span id="cargo-usuario">
-            <i class="fas fa-briefcase"></i>
-            Cargo
-          </span>
+        <span id="cargo-usuario">
+          <i class="fas fa-briefcase"></i>
+          <span id="cargo-texto">Cargo</span>
+        </span>
 
-          <span id="nome-usuario">
-            <i class="fas fa-user"></i>
-            <span id="nome-usuario">Nome do Usuário</span>
-          </span>
+        <span id="nome-usuario">
+          <i class="fas fa-user"></i>
+          <span id="nome-texto">Nome do Usuário</span>
+        </span>
 
-          <span id="sair">
-            <i class="fas fa-sign-out-alt"></i>
-            <a href="">Sair</a>
-          </span>
+        <span id="sair">
+          <i class="fas fa-sign-out-alt"></i>
+          <a href="/medcontrol-sistema/front-end/medcontrol-login/index.html">Sair</a>
+        </span>
+        
+       </div>
 
-        </div>
 
         <div class="guia-atual">
           <span id="guia-atual">
@@ -62,7 +63,10 @@
         </ul>
       </nav>
       <div class="logout">
-        <button id="btn-sair"><i class="fas fa-sign-out-alt"></i> Sair</button>
+        <button id="btn-sair">
+          <i class="fas fa-sign-out-alt"></i>
+          <a href="/medcontrol-sistema/front-end/medcontrol-login/index.html" style="text-decoration: none; color: var(--cor-preta)">Sair</a>
+        </button>   
       </div>
     </aside>
 
@@ -74,6 +78,7 @@
   
 </body>
     <script type="module" src="./main.js"></script>
+    <script src="/medcontrol-sistema/front-end/medcontrol-login/src/js/medcontrol.js"></script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </html>

@@ -13,9 +13,17 @@ A ideia aqui é justamente aprimorar o entendimento e o domino como Javascript V
 purão da galera! ahahhah')
 
 -------------------------------------------------------------------------------------------
-🧠 Etapa 1: Entendendo o hash na URL
+🧠 Entendendo o hash na URL
 
 Quando você acessa uma URL como: 
 sistema.html#clientes
 
 Tudo depois do # é chamado de hash. O navegador não recarrega a página, mas o valor do location.hash muda. Isso permite que a gente escute essa mudança e reaja a ela com JavaScript.
+
+-------------------------------------------------------------------------------------------
+Blindando o projeto com better-sqlite3 e bcrypt
+Usamos npm install better-sqlite3 para melhorar a manipulação de dados do back-end pois o sqlite3 puro tava dando conflito e problemas demais com as rotas, enquanto que o better-sqlite3 é mais permissivo em alguns pontos e blinda melhor as consultas (Aqui se errar
+uma virgula quebra tudo, bom para manter a consistência do fluxo de dados).
+
+E usamos bcrypt para pegar a senha nova cadastrada, encriptar ela, e sempre que houver o login, a senha sera quebrada em um condigo encriptado enorme, vai ser comparado o login, depois a senha que foi quebrada e remontada, e só assim batendo senha com senha e login com login a liberação do acesso do usuário. Melhorando a segurança do sistema e impedindo injeções
+de dados maiciosos concretos (criptografia impede consultas injetadas especificas).

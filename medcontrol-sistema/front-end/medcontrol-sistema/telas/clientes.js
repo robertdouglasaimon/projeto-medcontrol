@@ -178,7 +178,7 @@ export function render() {
     }
 
     try {
-      const response = await fetch('http://localhost:3000/novo_cliente', {
+      const response = await fetch('http://localhost:3001/novo_cliente', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -256,10 +256,9 @@ export function render() {
   // Scrip para inserir os dados especificos puxados do banco de dados nos dashboards:
   setTimeout(() => {
 
-
     // Inserindo o total de clientes no dashboard
     const totalClientes = div.querySelector(".total-clientes-valor");
-    fetch("http://localhost:3000/total_clientes")
+    fetch("http://localhost:3001/total_clientes")
     .then((response) => {
       if (response.ok) {
         return response.json();
@@ -268,7 +267,7 @@ export function render() {
       }
     })
     .then((data) => {
-      totalClientes.textContent = data[0].total_clientes;
+      totalClientes.textContent = data.total_clientes;
     })
     .catch((error) => {
       console.error("Erro ao buscar clientes:", error);
@@ -277,37 +276,41 @@ export function render() {
 
     // Inserindo o total de clientes ativos no dashboard
     const totalClientesAtivos = div.querySelector(".cliente-ativo-valor");
-    fetch("http://localhost:3000/total_clientes_ativos")
+    fetch("http://localhost:3001/total_clientes_ativos")
     .then((response) => {
       if (response.ok) {
         return response.json();
       } else {
         console.error("Erro ao buscar clientes:", error);
+        res.status(500).json({ mensagem: "Erro ao buscar clientes ativos." });
       }
     })
     .then((data) => {
-      totalClientesAtivos.textContent = data[0].total_clientes_ativos;
+      totalClientesAtivos.textContent = data.total_clientes_ativos;
     })
     .catch((error) => {
-      console.error("Erro ao buscar clientes:", error);
+      console.error("❌ Erro ao buscar clientes ativos:", err.message);
+      res.status(500).json({ mensagem: "Erro ao buscar clientes ativos." });
     });
 
 
     // Inserindo o total de clientes inativos no dashboard
     const totalClientesInativos = div.querySelector(".cliente-inativo-valor");
-    fetch("http://localhost:3000/total_clientes_inativos")
+    fetch("http://localhost:3001/total_clientes_inativos")
     .then((response) => {
       if (response.ok) {
         return response.json();
       } else {
         console.error("Erro ao buscar clientes:", error);
+        res.status(500).json({ mensagem: "Erro ao buscar clientes inativos." });
       }
     })
     .then((data) => {
-      totalClientesInativos.textContent = data[0].total_clientes_inativos;
+      totalClientesInativos.textContent = data.total_clientes_inativos;
     })
     .catch((error) => {
-      console.error("Erro ao buscar clientes:", error);
+      console.error("❌ Erro ao buscar clientes inativos:", err.message);
+      res.status(500).json({ mensagem: "Erro ao buscar clientes inativos." });
     });
 
 
@@ -321,7 +324,7 @@ export function render() {
     tbody.innerHTML = ""; // Limpa o conteúdo anterior
 
     // Criando a função para receber os dados do banco de dados via fetch no na tabela
-    fetch("http://localhost:3000/tabela_clientes") 
+    fetch("http://localhost:3001/tabela_clientes") 
     .then((response) => {
       if (response.ok) {
         return response.json();
@@ -365,7 +368,7 @@ export function render() {
       if (!confirmar) return;
 
       try {
-        const res = await fetch(`http://localhost:3000/deletar_cliente/${id_cliente}`, {
+        const res = await fetch(`http://localhost:3001/deletar_cliente/${id_cliente}`, {
           method: "DELETE"
         });
         console.log("Status da resposta:", res.status);
@@ -480,7 +483,7 @@ export function render() {
  
         try {
           console.log("Dados enviados:", { nome, telefone, endereco, cpf, status });
-          const res = await fetch(`http://localhost:3000/editar_cliente/${id_cliente}`, {
+          const res = await fetch(`http://localhost:3001/editar_cliente/${id_cliente}`, {
             method: "PUT",
             headers: {
               "Content-Type": "application/json"
@@ -507,7 +510,6 @@ export function render() {
       });
     });   
   },0);
-
 
 
   return div;

@@ -61,7 +61,7 @@ header {
     height: 50%;
     background-color: var(--fundo-principal);
     position: relative;;
-    top: 2px;
+    top: -6px;
     left: -1rem;
 }
 

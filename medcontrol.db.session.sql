@@ -94,9 +94,11 @@ INSERT INTO cadastro_clientes (
 -- Deletando os dados nulos da tabela cadastro_clientes:
 DELETE FROM cadastro_clientes WHERE status_cliente IS NULL;
 
--- Deletando linhas especificas da tabela cadastro_clientes 44 a 51:
-DELETE FROM funcionarios WHERE id_funcionario = 44;
-
+-- Deletando linhas especificas da tabela cadastro_clientes 52 ao 64:
+DELETE FROM funcionarios WHERE id_funcionario = 65;
+DELETE FROM funcionarios WHERE id_funcionario = 66;
+DELETE FROM funcionarios WHERE id_funcionario = 68;
+DELETE FROM funcionarios WHERE id_funcionario = 69;
 
 
 -- Criando um index na tabela cadastro_clientes:
@@ -107,4 +109,6 @@ CREATE UNIQUE INDEX idx_endereco_cliente ON cadastro_clientes(endereco);
 PRAGMA index_list('cadastro_clientes');
 
 SELECT * FROM funcionarios;
+
+SELECT COUNT(id_cliente) AS total_clientes_ativos FROM cadastro_clientes WHERE status_cliente = "Ativo"
 

@@ -9,3 +9,10 @@ na máquina.
 
 - Por fim, sempre modular os dados com base no PDF de arquitetura, para manter a regularidade com o modelo. Para evitar
 se perder no decorrer do desenvolvimento.
+
+
+Biblioteca better-sqlite3 para manipular os dados (pois o sqlite3 puro tava dando problemas):
+npm install better-sqlite3
+
+Biblioteca para criptografar as senhas:
+npm install bcrypt

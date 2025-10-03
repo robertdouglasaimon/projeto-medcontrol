@@ -8,5 +8,6 @@
             "group": "medcontrol.db",
             "database": "medcontrol-sistema\\banco-dados\\farmacia.db"
         }
-    ]
+    ],
+    "liveServer.settings.port": 5501
 }

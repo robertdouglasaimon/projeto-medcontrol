@@ -59,6 +59,12 @@ footer a:hover {
     transition: 0.3s ease-in-out;
 }
 
+.btn-voltar a {
+    text-decoration: none !important;
+    color: var(--cor-preta);
+    font-weight: 400;
+}
+
 #ano {
     margin-right: 5px;
 }

@@ -4,6 +4,8 @@ import cors from 'cors';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import Database from 'better-sqlite3';
+import bcrypt from 'bcrypt'; // Biblioteca para criptografia da senha.
+
 
 // Configuração básica
 const app = express();
@@ -39,7 +41,7 @@ app.get('/tabela_clientes', (req, res) => {
 // Rota: total de clientes
 app.get('/total_clientes', (req, res) => {
   try {
-    const total = db.prepare('SELECT COUNT(id_cliente) AS total_clientes FROM cadastro_clientes').get();
+    const total = db.prepare("SELECT COUNT(id_cliente) AS total_clientes FROM cadastro_clientes").get();
     res.setHeader("Content-Type", "application/json");
     res.json(total);
   } catch (err) {
@@ -50,7 +52,7 @@ app.get('/total_clientes', (req, res) => {
 // Rota: total de clientes ativos
 app.get('/total_clientes_ativos', (req, res) => {
   try {
-    const ativos = db.prepare('SELECT COUNT(id_cliente) AS total_clientes_ativos FROM cadastro_clientes WHERE status_cliente = "Ativo"').get();
+    const ativos = db.prepare("SELECT COUNT(id_cliente) AS total_clientes_ativos FROM cadastro_clientes WHERE status_cliente = 'Ativo'").get();
     res.setHeader("Content-Type", "application/json");
     res.json(ativos);
   } catch (err) {
@@ -61,7 +63,7 @@ app.get('/total_clientes_ativos', (req, res) => {
 // Rota: total de clientes inativos
 app.get('/total_clientes_inativos', (req, res) => {
   try {
-    const inativos = db.prepare('SELECT COUNT(id_cliente) AS total_clientes_inativos FROM cadastro_clientes WHERE status_cliente = "Inativo"').get();
+    const inativos = db.prepare("SELECT COUNT(id_cliente) AS total_clientes_inativos FROM cadastro_clientes WHERE status_cliente = 'Inativo'").get();
     res.setHeader("Content-Type", "application/json");
     res.json(inativos);
   } catch (err) {
@@ -140,11 +142,21 @@ app.post('/cadastrar_funcionario', (req, res) => {
   } = req.body;
 
   try {
+    const senhaCriptografada = bcrypt.hashSync(senha_funcionario, 10); // Criptografia da senha usando a biblioteca bcrypt.
+
     const stmt = db.prepare(`
       INSERT INTO funcionarios (nome_funcionario, cargo_funcionario, tel_funcionario, email_funcionario, login_funcionario, senha_funcionario)
       VALUES (?, ?, ?, ?, ?, ?)
     `);
-    const info = stmt.run(nome_funcionario, cargo_funcionario, tel_funcionario, email_funcionario, login_funcionario, senha_funcionario);
+    const info = stmt.run(
+      nome_funcionario,
+      cargo_funcionario,
+      tel_funcionario,
+      email_funcionario,
+      login_funcionario,
+      senhaCriptografada
+    );
+
     res.setHeader("Content-Type", "application/json");
     res.status(201).json({ mensagem: "Funcionário cadastrado com sucesso", id_funcionario: info.lastInsertRowid });
 
@@ -160,11 +172,51 @@ app.post('/cadastrar_funcionario', (req, res) => {
   }
 });
 
+
+// Rota para o login de funcionários no sistema:
+app.post('/login_funcionario', (req, res) => {
+  const { login_funcionario, senha_funcionario } = req.body;
+
+  try {
+    const stmt = db.prepare(`SELECT * FROM funcionarios WHERE login_funcionario = ?`);
+    const funcionario = stmt.get(login_funcionario);
+
+    res.setHeader("Content-Type", "application/json");
+
+    if (funcionario && bcrypt.compareSync(senha_funcionario, funcionario.senha_funcionario)) {
+      // Monta resposta segura com flag de login e dados essenciais
+      res.status(200).json({
+        autenticado: true,
+        funcionario: {
+          id: funcionario.id,
+          nome: funcionario.nome_funcionario,
+          cargo: funcionario.cargo_funcionario,
+          email: funcionario.email_funcionario
+        }
+      });
+    } else {
+      res.status(401).json({ autenticado: false, mensagem: "Login ou senha inválidos" });
+    }
+  } catch (err) {
+    console.error("❌ Erro ao verificar login:", err.message);
+    res.status(500).json({ autenticado: false, mensagem: "Erro interno no servidor" });
+  }
+});
+
+
+
+
+
+//------------------------------------------------------------------------------------------//
+
 // Servir arquivos estáticos do front-end
 app.use(express.static(path.join(__dirname, '../../front-end/medcontrol-login')));
 
 // Iniciar servidor
-app.listen(3000, () => {
-  console.log('🚀 Servidor rodando na porta 3000');
-  console.log('🌐 Acesse http://localhost:3000');
+const PORT = 3001;
+
+app.listen(PORT, () => {
+  console.log(`🚀 Servidor rodando na porta ${PORT}`);
+  console.log(`🌐 Acesse http://localhost:${PORT}`);
 });
+

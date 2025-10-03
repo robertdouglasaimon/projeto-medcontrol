@@ -1,3 +1,5 @@
+//------------------------------------------------------------------------------------------//
+// cadastro_efetuado.js (Configurações da tela de cadastro efetuado)
 document.getElementById("form-cadastro").addEventListener("submit", async (e) => {
   e.preventDefault(); // 🔒 Impede reload
 
@@ -11,7 +13,7 @@ document.getElementById("form-cadastro").addEventListener("submit", async (e) =>
   };
 
   try {
-    const res = await fetch("http://127.0.0.1:3000/cadastrar_funcionario", {
+    const res = await fetch("http://localhost:3001/cadastrar_funcionario", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(dados)
@@ -42,10 +44,14 @@ document.getElementById("form-cadastro").addEventListener("submit", async (e) =>
 
     // Redirecionamento para página de sucesso
     console.log("🔁 Redirecionando para página de sucesso...");
-    window.location.replace("/medcontrol-sistema/front-end/medcontrol-login/src/pages/cadastro_efetuado.html");
+    window.location.href = "cadastro_efetuado.html";
 
   } catch (error) {
     console.error("🔥 Erro no fetch:", error);
     alert("Erro ao cadastrar funcionário. Detalhes no console.");
   }
 });
+
+//------------------------------------------------------------------------------------------//
+
+//------------------------------------------------------------------------------------------//
