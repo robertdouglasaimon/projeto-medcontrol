@@ -12,14 +12,6 @@ export function render() {
         <span class="produtos-total total-clientes-valor">30</span>
       </div>
 
-      <div class="card-produtos valor-estoque">
-        <p>
-          <i class="fas fa-money-bill"></i>
-          Valor do Estoque
-        </p>
-        <span class="valores-produtos-estoque valor-estoque-valor">R$ 250,00</span>
-      </div>
-
       <div class="card-produtos produto-mais-vendido">
         <p>
           <i class="fas fa-chart-line"></i>
@@ -36,8 +28,27 @@ export function render() {
         <span class="valores-produtos-menos-vendidos valor-menos-vendido">10</span>
       </div>
 
+      <div class="card-produtos valor-estoque">
+        <p>
+          <i class="fas fa-money-bill"></i>
+          Valor do Estoque
+        </p>
+        <span class="valores-produtos-estoque valor-estoque-valor">R$ 250,00</span>
+      </div>
+
     </section>
 
+    <section class="produtos-header">
+      <h2> <i class="fas fa-box"></i> Buscar produto </h2>
+
+      <div class="produto-pesquisa">
+        <div class="input-wrapper">
+          <input type="text" placeholder="Buscar por produto" class="buscar-input" />
+          <button class="btn-novo-cliente" id="btnNovoCliente">+ Novo Produto</button>
+        </div>
+      </div>
+
+    </section>
     
   `;
   return div;
