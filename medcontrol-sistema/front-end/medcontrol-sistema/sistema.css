@@ -216,7 +216,7 @@ main#app {
 .valores-clientes {
   position: relative;
   top: -26px;
-  font-size: 40px;
+  font-size: 2.5rem !important;
   font-weight: bold;
   color: var(--cor-preta);
 }
@@ -575,3 +575,154 @@ table {
 
 /*-------------------------------------------------------------------------------------------*/
 
+/*-------------------------------------------------------------------------------------------/*Estilizando o "produtos.js"----------------------------------------------------------------------------------------------------------------*/
+
+/*Mantendo os cards lado a lado na horizontal*/
+.produtos-cards {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.card-produtos p {
+  font-size: 1.5rem;
+  margin-top: 1rem;
+  color: var(--cor-preta);
+}
+
+.total-produtos {
+  width: 300px;
+  height: 100px;
+  background-color: var(--cor-branca);
+  border-radius: 15px;
+  text-align: center;
+}
+.total-produtos p {
+  font-size: 1.5rem;
+  margin-top: -0rem;
+  padding-top: 10px;
+  color: var(--cor-preta);
+}
+
+.produtos-total {
+  position: relative;
+  top: -26px;
+  font-size: 2.5rem !important;
+  font-weight: bold;
+  color: var(--cor-preta);
+}
+
+.valor-estoque {
+  width: 300px;
+  height: 100px;
+  background-color: var(--cor-branca);
+  border-radius: 15px;
+  text-align: center;
+}
+
+.valor-estoque p {
+  font-size: 1.5rem;
+  position: relative;
+  top: -0.4rem;
+  color: var(--cor-preta);
+}
+
+.valores-produtos-estoque {
+  font-size: 2.5rem !important;
+  color: var(--cor-preta);
+  font-weight: bold;
+  position: relative;
+  top: -1.7rem;
+}
+
+.produto-mais-vendido {
+  width: 300px;
+  height: 100px;
+  background-color: var(--cor-branca);
+  border-radius: 15px;
+  text-align: center;
+}
+
+.produto-mais-vendido p {
+  font-size: 1.5rem;
+  position: relative;
+  top: -0.3rem;
+  color: var(--cor-preta);
+}
+
+.valores-produtos-mais-vendidos {
+  font-size: 2.5rem !important;
+  color: var(--cor-preta);
+  font-weight: bold;
+  position: relative;
+  top: -1.7rem;
+}
+
+.produto-menos-vendido {
+  width: 300px;
+  height: 100px;
+  background-color: var(--cor-branca);
+  border-radius: 15px;
+  text-align: center;
+}
+
+.produto-menos-vendido p {
+  font-size: 1.5rem;
+  position: relative;
+  top: -0.3rem;
+  color: var(--cor-preta);
+}
+
+.valores-produtos-menos-vendidos {
+  font-size: 2.5rem !important;
+  color: var(--cor-preta);
+  font-weight: bold;
+  position: relative;
+  top: -1.7rem;
+}
+
+
+/* Hover no card: -------------------------*/
+.card-produtos:hover {
+  transform: scale(1.05);
+  transition: all 0.3s ease-in-out;
+}
+
+/* Cores e hover para cada card produtos: */
+.total-produtos:hover {
+  background-color: #f1e96e;
+  transform: scale(1.05);
+  transition: all 0.3s ease-in-out;
+
+  /* listra azul na parte inferior do card */
+  border-bottom: 5px solid #11d8df;
+}
+
+.valor-estoque:hover {
+  background-color: #04f066;
+  transform: scale(1.05);
+  transition: all 0.3s ease-in-out;
+  
+
+  border-bottom: 5px solid #11d8df;
+}
+
+.produto-mais-vendido:hover {
+  background-color: #0883d4;
+  transform: scale(1.05);
+  transition: all 0.3s ease-in-out;
+
+ 
+  border-bottom: 5px solid #11d8df;
+}
+
+.produto-menos-vendido:hover {
+  background-color: #cf6646;
+  transform: scale(1.05);
+  transition: all 0.3s ease-in-out;
+  
+  border-bottom: 5px solid #11d8df;
+}
+/*----------------------------------------*/
