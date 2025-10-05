@@ -100,6 +100,7 @@ export function render() {
         </thead>
         <tbody>
           <!-- Dados da tabela do banco de dados serão inseridos aqui -->
+          <td>Carregando...</td>
         </tbody>
       </table>
     </section>

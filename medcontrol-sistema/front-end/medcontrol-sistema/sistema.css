@@ -486,6 +486,29 @@ table {
   overflow: hidden;
 }
 
+.clientes-tabela th {
+  height: 50px;
+  text-align: left;
+  padding-left: 20px;
+  background-color: var(--fundo-principal);
+  color: var(--cor-branca);
+}
+
+.clientes-tabela tr:hover {
+  background-color: var(--amarelo-medcontrol);
+}
+
+.clientes td i {
+  color: var(--amarelo-medcontrol);
+}
+
+/* Descolando os nomes do canto da tabela: */
+.clientes-tabela td {
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+}
+
+
 /* Estilo do modal de editar cliente --------------------------------------------------------*/
 .modal-content {
   background-color: var(--cor-branca);
@@ -727,6 +750,8 @@ table {
 }
 /*----------------------------------------*/
 
+/*----------------------------------------*/
+/* Barra de pesquisa */
 .produtos-header {
   margin-top: 1rem;
 }
@@ -740,3 +765,78 @@ table {
   color: var(--cor-branca);
   border-radius: 5px;
 }
+/*----------------------------------------*/
+
+/*----------------------------------------*/
+/* Estilo referente a tabela de produtos: */
+.produtos-lista {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.produtos-lista th, .produtos-lista td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.produtos-lista th {
+  background-color: var(--fundo-principal);
+  color: var(--cor-branca);
+}
+
+.produtos-lista tr:hover {
+  background-color: var(--amarelo-medcontrol);
+}
+
+.produtos-lista td i {
+  color: var(--amarelo-medcontrol);
+}
+
+/*Botões de editar e excluir de produtos: */
+
+.btn-editar-produto {
+  background-color: var(--amarelo-medcontrol);
+  color: var(--cor-branca);
+  border: none;
+  border-radius: 4px;
+  padding: 8px 12px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-right: 5px;
+  transition: all 0.3s ease-in-out;
+}
+
+.btn-excluir-produto {
+  background-color: #e84118;
+  color: var(--cor-branca);
+  border: none;
+  /* border-radius: 4px; */
+  padding: 8px 12px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-right: 5px;
+  transition: all 0.3s ease-in-out;
+}
+
+.btn-excluir-produto:hover {
+  background-color: #c23616;
+  transform: scale(1.05);
+  transition: all 0.3s ease-in-out;
+  color: var(--cor-preta);
+}
+
+.btn-editar-produto:hover {
+  background-color: #7e771e;
+  transform: scale(1.05);
+  transition: all 0.3s ease-in-out;
+  color: var(--cor-preta);
+}
+
+/*----------------------------------------*/
