@@ -4,30 +4,172 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="./../css/produtos.css">
-    <link rel="icon" type="image/png" sizes="16x16"  href="./../assets/img/logo/remedio.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./../assets/img/logo/remedio.png">
 
     <title>MedControl</title>
 
 </head>
 
 <body>
+
+    <!----------------topo + input + button-----------------
+    -------------------------------------------------------->
     <div class="topo">
         <header>
             <h1> <img src="./../assets/img/logo/logo.png" alt=""> MedControl</h1>
-            
+
             <nav>
+                <ul>
+                    <li><a href="/medcontrol-homepage/index.html">Home</a></li>
+                    <li><a href="/medcontrol-homepage/src/pages/produtos.html">Produtos</a></li>
+                    <li><a href="#">Sobre</a></li>
+                    <li><a href="#">Contato</a></li>
+                </ul>
+                <input type="text" placeholder="Buscar produtos">
+            </nav>
+
+            <button id="Admin">Admin</button>
+        </header>
+
+    </div>
+
+    <!------------------seção cards----------------
+    ---------------------------------------------->
+    <div class="container-produtos">
+        <h1>Produtos</h1>
+
+        <div class="cards-wrapper">
+            <div class="card">
+                <img class="card-img" src="/medcontrol-homepage/src/assets/img/Produtos/Allegra.jpg"
+                    alt="Medicamento Allegra">
+                <div class="card-conteudo">
+                    <h4>Allegra</h4>
+                    <p>11,90</p>
+                    <a href="#" class="btn-explorar btn-verde">Adicionar ao carrinho</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <img class="card-img" src="/medcontrol-homepage/src/assets/img/Produtos/dipirona.jpg"
+                    alt="Medicamento Dipirona">
+                <div class="card-conteudo">
+                    <h4>Dipirona</h4>
+                    <p>11,90</p>
+                    <a href="#" class="btn-explorar btn-verde">Adicionar ao carrinho</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <img class="card-img" src="/medcontrol-homepage/src/assets/img/Produtos/dorflex.jpg"
+                    alt="Medicamento Dorflex">
+                <div class="card-conteudo">
+                    <h4>Dorflex</h4>
+                    <p>11,90</p>
+                    <a href="#" class="btn-explorar btn-verde">Adicionar ao carrinho</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <img class="card-img" src="/medcontrol-homepage/src/assets/img/Produtos/ibruprofeno.jpg"
+                    alt="Medicamento Ibuprofeno">
+                <div class="card-conteudo">
+                    <h4>Ibuprofeno</h4>
+                    <p>11,90</p>
+                    <a href="#" class="btn-explorar btn-verde">Adicionar ao carrinho</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <img class="card-img" src="/medcontrol-homepage/src/assets/img/Produtos/amoxilina.jpg"
+                    alt="Medicamento Amoxilina">
+                <div class="card-conteudo">
+                    <h4>Amoxilina</h4>
+                    <p>11,90</p>
+                    <a href="#" class="btn-explorar btn-verde">Adicionar ao carrinho</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <img class="card-img" src="/medcontrol-homepage/src/assets/img/Produtos/loratadina.jpg"
+                    alt="Loratadina">
+                <div class="card-conteudo">
+                    <h4>Loratadina</h4>
+                    <p>11,90</p>
+                    <a href="#" class="btn-explorar btn-verde">Adicionar ao carrinho</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!--------------btn paginas-----------------
+      -->
+
+      <div class="paginas">
+                <button class="escuro">&lt;</button>
+                <button class="active">1</button>
+                <button>2</button>
+                <button>3</button>
+                <button class="green">&gt;</button>
+            </div>
+
+
+    <!------------------Footer -------------------
+        --------------------------------------------->
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>MedControl</h4>
+                <p>Sua farmácia de confiança, oferencendo medicamentos e produtos e produtos de saúde com qualidade
+                    garantida</p>
+
+            </div>
+
+            <div class="footer-section">
+                <h4>Links Rápidos</h4>
                 <ul>
                     <li><a href="#">Home</a></li>
                     <li><a href="#">Produtos</a></li>
                     <li><a href="#">Sobre</a></li>
                     <li><a href="#">Contato</a></li>
                 </ul>
-                <input type="text" placeholder="Buscar produtos" >
-            </nav>
+            </div>
 
-            <button id="Admin">Admin</button>
-            
-        </header>
-    </div>
-    </body>
+            <div class="footer-section">
+                <h4>Contato</h4>
+                <p>Telefone: (61) 9155-9011</p>
+                <a href="https://web.whatsapp.com" target="_blank" style="text-decoration:none;">
+
+                    <img src="/medcontrol-homepage/src/assets/img/icons/whatsapp.png" alt="wpp">
+                </a>
+
+                <a href="https://www.instagram.com" target="_blank" style="text-decoration:none;">
+                    <img src="/medcontrol-homepage/src/assets/img/icons/instagram.png" alt="insta"
+                        style="text-decoration:none;">
+                </a>
+
+
+                <a href="https://www.facebook.com" target="_blank" style="text-decoration:none;">
+                    <img src="/medcontrol-homepage/src/assets/img/icons/facebook.png" alt="face">
+                </a>
+
+                <a href="https://www.linkedin.com " target="_blank" style="text-decoration:none;">
+                    <img src="/medcontrol-homepage/src/assets/img/icons/linkedin.png" alt="">
+                </a>
+            </div>
+        </div>
+    </footer>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>

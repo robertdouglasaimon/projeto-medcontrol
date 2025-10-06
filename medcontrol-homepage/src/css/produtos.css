@@ -100,6 +100,7 @@ nav input {
     min-width: 150px;
     max-width: 300px;
 }
+
 /* --------------btn admin ------------ 
 ------------------------------------------*/
 
@@ -124,4 +125,225 @@ nav input {
     color: white;
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(44, 128, 184, 0.3);
+}
+
+/* --------------Cards - Produtos ------------ 
+------------------------------------------*/
+
+.container-produtos {
+    width: 90%;
+    max-width: 1200px;
+    margin: 40px auto;
+    text-align: center;
+}
+
+.container-produtos h1 {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+.cards-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    flex: 1 1 300px;
+    max-width: 300px;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+.card-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.card-conteudo {
+    padding: 20px;
+    text-align: left;
+}
+
+.card-conteudo h4 {
+    margin: 0 0 10px 0;
+    font-size: 1.2rem;
+    color: #2c3e50;
+}
+
+.card-conteudo p {
+    margin: 0 0 20px 0;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #27ae60;
+}
+
+.btn-explorar {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-verde {
+    background-color: #008000;
+    color: white;
+}
+
+.btn-verde:hover {
+    background-color: #008000;
+}
+
+/* ------------------------- Paginas----------------------------------------
+---------------------------------------------------------------------
+ */
+
+.paginas {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 20px;
+}
+
+.paginas button {
+  background: #323238;
+  border: none;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.paginas button.active {
+  background: #008000;
+  color: white;
+}
+
+.paginas button.green {
+  color: white;
+  background-color: transparent;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.paginas button.escuro {
+  color: white;
+  text-decoration: none;
+  background-color: transparent;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+p {
+    text-decoration: none;
+    text-align: center;
+    color: white;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+p a{
+    text-decoration: none;
+    color: white;
+}
+
+p a:hover{
+    text-decoration: underline;
+}
+
+/* --------------Footer ------------------
+------------------------------------------ */
+
+footer {
+    width: 100vw;
+    background: #101829;
+    color: white;
+    padding: 3rem 0;
+    margin-top: 40px;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    gap: 3rem;
+    padding: 0 20px;
+}
+
+.footer-section {
+    text-align: left;
+}
+
+.footer-section h4 {
+    font-size: 1.3rem;
+    margin-bottom: 1.2rem;
+    position: relative;
+    padding-bottom: 0.5rem;
+}
+
+.footer-section h4::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 50px;
+    height: 3px;
+    background-color: #3498db;
+    border-radius: 2px;
+}
+
+.footer-section p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #e0e0e0;
+    margin-bottom: 1rem;
+    max-width: 300px;
+}
+
+.footer-section ul {
+    list-style: none;
+    font-size: 1rem;
+}
+
+.footer-section ul li {
+    margin-bottom: 0.7rem;
+
+}
+
+.footer-section ul li a {
+    color: #e0e0e0;
+    list-style: none;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.footer-section ul li a:hover {
+    color: #3498db;
+    padding-left: 5px;
+}
+
+.footer-section img {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+    display: inline-block;
 }
