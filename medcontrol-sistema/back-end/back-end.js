@@ -202,6 +202,37 @@ app.post('/login_funcionario', (req, res) => {
     res.status(500).json({ autenticado: false, mensagem: "Erro interno no servidor" });
   }
 });
+/*-----------------------------------------------------------------------------------------*/
+// Rota: dashboard da tela de produtos (total de produtos, produtos mais vendidosm produtos menos vendidos e valor do estoque)
+
+// Total de produtos
+app.get('/dashboard_produtos', (req, res) => {
+  try {
+    const stmt = db.prepare("SELECT COUNT(id_produto) AS total_produtos FROM cadastro_produtos");
+    const totalProdutos = stmt.get(); // Pega o total de produtos que criamos na consulta da linha acima.
+    res.setHeader("Content-Type", "application/json");
+    res.json(totalProdutos);
+  } catch (err) {
+    res.status(500).json({ mensagem: "Erro ao buscar produtos."})
+  }
+})
+
+
+
+
+
+// Rota: tabela de produtos
+app.get('/cadastro_produtos', (req, res) => {
+  try {
+    const stmt = db.prepare('SELECT * FROM cadastro_produtos');
+    const produtos = stmt.all(); // Pega todos os produtos.
+
+    res.setHeader("Content-Type", "application/json"); // Define o cabeçalho da resposta como JSON.
+    res.status(200).json(produtos); // Envia a resposta com os produtos.
+  } catch (err) {
+    res.status(500).json({ mensagem: "Erro ao buscar produtos." });
+  }
+})
 
 
 
