@@ -44,6 +44,11 @@ img {
     margin-bottom: 10px;
 }
 
+.carrinho {
+    width: 30px;
+    height: 30px;
+}
+
 nav {
     display: flex;
     align-items: center;
