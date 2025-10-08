@@ -375,5 +375,62 @@ export function render() {
 
   },0);
 
+
+// Excluindo os itens da tabela pelo front através do botão editar (modificando no banco de dados as informações do produto):
+  setTimeout(() => {
+    const botaoExcluir = div.querySelector(".btn-excluir-produto");
+
+    botaoExcluir.addEventListener("click", async (event) => {
+      event.preventDefault(); // Evita o comportamento padrão do link
+
+      const row = event.target.closest("tr");
+      const id_produto = row.querySelector("td:nth-child(1)").textContent;
+      const nome_produto = row.querySelector("td:nth-child(2)").textContent;
+      const descricao = row.querySelector("td:nth-child(3)").textContent;
+      const fabricante = row.querySelector("td:nth-child(4)").textContent;
+      const qtd_estoque = row.querySelector("td:nth-child(5)").textContent;
+      const lote = row.querySelector("td:nth-child(6)").textContent;
+      const data_validade = row.querySelector("td:nth-child(7)").textContent;
+      const preco_venda = row.querySelector("td:nth-child(8)").textContent;
+      const quantidade_vendida = row.querySelector("td:nth-child(9)").textContent;
+
+      try {
+        const response = await fetch('http://localhost:3001/deletar_produto/:id_produto', {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            id: id_produto,
+            nome_produto,
+            descricao,
+            fabricante,
+            qtd_estoque,
+            lote,
+            data_validade,
+            preco_venda,
+            quantidade_vendida
+          })
+        });
+
+        const data = await response.json();
+
+        // Verifica se a resposta foi negativa
+        if (!response.ok) {
+          throw new Error(data.mensagem || "Erro ao excluir o produto.");
+        }
+
+        alert(`✅ ${data.mensagem}`);
+
+        // Remove a linha da tabela
+        row.remove();
+
+      } catch (error) {
+        console.error('❌ Erro ao excluir o produto:', error.message);
+        alert(`❌ ${error.message}`);
+      }
+    });
+  },0);
+
   return div;
 }

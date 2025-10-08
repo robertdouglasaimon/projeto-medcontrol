@@ -290,6 +290,18 @@ app.post('/novo_produto', (req, res) => {
   }
 });
 
+// Rota: deletar produto da tabela cadastro_produtos do banco de dados:
+app.delete('/deletar_produto/:id_produto', (req, res) => {  
+  const id = req.params.id_produto;
+  const stmt = db.prepare('DELETE FROM cadastro_produtos WHERE id_produto = ?');
+  const result = stmt.run(id);
+
+  if (result.changes > 0) {
+    res.status(200).json({ mensagem: "Produto deletado com sucesso." });
+  } else {
+    res.status(404).json({ mensagem: "Produto nao encontrado." });
+  }
+});
 /*-----------------------------------------------------------------------------------------*/
 
 
