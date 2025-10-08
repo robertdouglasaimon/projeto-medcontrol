@@ -26,6 +26,7 @@ const __dirname = path.dirname(__filename);
 const dbPath = path.resolve(__dirname, '../banco-dados/farmacia.db');
 const db = new Database(dbPath);
 
+/*-----------------------------------------------------------------------------------------*/
 // Rota: listar clientes
 app.get('/tabela_clientes', (req, res) => {
   try {
@@ -203,6 +204,8 @@ app.post('/login_funcionario', (req, res) => {
   }
 });
 /*-----------------------------------------------------------------------------------------*/
+
+/*-----------------------------------------------------------------------------------------*/
 // Rota: dashboard da tela de produtos (total de produtos, produtos mais vendidosm produtos menos vendidos e valor do estoque)
 
 // Total de produtos
@@ -217,7 +220,41 @@ app.get('/dashboard_produtos', (req, res) => {
   }
 })
 
+// Produto mais vendido
+app.get('/dashboard_produtos_mais_vendidos', (req, res) => {
+  try {
+    const stmt = db.prepare("SELECT nome_produto, SUM(quantidade_vendida) AS total_vendido FROM cadastro_produtos GROUP BY nome_produto ORDER BY total_vendido DESC LIMIT 1");
+    const produtoMaisVendido = stmt.get(); // Pega o produto mais vendido que criamos na consulta da linha acima.
+    res.setHeader("Content-Type", "application/json");
+    res.json(produtoMaisVendido);
+  } catch (err) {
+    res.status(500).json({ mensagem: "Erro ao buscar produtos."})
+  }
+})
 
+// Rota para obter o produto menos vendido:
+app.get('/dashboard_produtos_menos_vendidos', (req, res) => {
+  try {
+    const stmt = db.prepare("SELECT nome_produto, SUM(quantidade_vendida) AS total_vendido FROM cadastro_produtos GROUP BY nome_produto ORDER BY total_vendido ASC LIMIT 1");
+    const produtoMenosVendido = stmt.get(); // Pega o produto menos vendido que criamos na consulta da linha acima.
+    res.setHeader("Content-Type", "application/json");
+    res.json(produtoMenosVendido);
+  } catch (err) {
+    res.status(500).json({ mensagem: "Erro ao buscar produtos."})
+  }
+})
+
+// Rota para obter o valor total do estoque:
+app.get('/dashboard_total_estoque', (req, res) => {
+  try {
+    const stmt = db.prepare("SELECT CONCAT('R$', FORMAT((SELECT SUM(preco_venda) AS total_estoque FROM cadastro_produtos), 'f2')) AS total_estoque;");
+    const totalEstoque = stmt.get(); // Pega o total do estoque que criamos na consulta da linha acima.
+    res.setHeader("Content-Type", "application/json");
+    res.json(totalEstoque);
+  } catch (err) {
+    res.status(500).json({ mensagem: "Erro ao buscar produtos."})
+  }
+})
 
 
 
@@ -234,12 +271,31 @@ app.get('/cadastro_produtos', (req, res) => {
   }
 })
 
+// Rota: cadastrar novo produto
+app.post('/novo_produto', (req, res) => {
+  const { nome_produto, descricao, fabricante, qtd_estoque, lote, data_validade, preco_venda, quantidade_vendida } = req.body;
+
+  try {
+    const stmt = db.prepare(`
+      INSERT INTO cadastro_produtos (nome_produto, descricao, fabricante, qtd_estoque, lote, data_validade, preco_venda, quantidade_vendida )
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+    `);
+
+    stmt.run(nome_produto, descricao, fabricante, qtd_estoque, lote, data_validade, preco_venda, quantidade_vendida);
+
+    res.setHeader("Content-Type", "application/json");
+    res.status(201).json({ mensagem: "Produto cadastrado com sucesso." });
+  } catch (err) {
+    res.status(500).json({ mensagem: "Erro ao cadastrar produto." });
+  }
+});
+
+/*-----------------------------------------------------------------------------------------*/
 
 
 
 
 //------------------------------------------------------------------------------------------//
-
 // Servir arquivos estáticos do front-end
 app.use(express.static(path.join(__dirname, '../../front-end/medcontrol-login')));
 

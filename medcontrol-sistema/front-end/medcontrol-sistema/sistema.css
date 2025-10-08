@@ -676,11 +676,11 @@ table {
 }
 
 .valores-produtos-mais-vendidos {
-  font-size: 2.5rem !important;
+  font-size: 1.8rem !important;
   color: var(--cor-preta);
   font-weight: bold;
   position: relative;
-  top: -1.7rem;
+  top: -1.2rem;
 }
 
 .produto-menos-vendido {
@@ -689,6 +689,7 @@ table {
   background-color: var(--cor-branca);
   border-radius: 15px;
   text-align: center;
+  font-size: 1.8rem !important;
 }
 
 .produto-menos-vendido p {
@@ -778,6 +779,10 @@ table {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+.produtos-lista tr, th, td {
+  text-align: center !important;
+}
+
 .produtos-lista th, .produtos-lista td {
   padding: 12px;
   text-align: left;
@@ -841,3 +846,103 @@ table {
 }
 
 /*----------------------------------------*/
+
+/* Botão da barra de busca */
+.btn-novo-produto {
+  background-color: orange;
+  color: white;
+  border: none;
+  border-radius: 0 5px 5px 0;
+  padding: 15px 20px;
+  cursor: pointer;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+/* Configurações do modal cadastro de produtos:  -----------*/
+/* Modal container */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* fundo escuro */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+/* Esconde o modal */
+.modal.hidden {
+  display: none;
+}
+
+/* Conteúdo do modal */
+.modal-content {
+  background-color: var(--cor-branca);
+  padding: 30px;
+  border-radius: 10px;
+  width: 500px;
+  max-width: 90%;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  position: relative;
+}
+
+/* Botão de fechar (X) */
+.fechar-modal {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--cor-preta);
+}
+
+/* Formulário */
+.cadastro-produto-modal {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cadastro-produto-modal input {
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.cadastro-produto-modal button {
+  padding: 10px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.cadastro-produto-modal button[type="submit"] {
+  background-color: #44bd32;
+  color: var(--cor-branca);
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.cadastro-produto-modal button[type="submit"]:hover {
+  background-color: #4cd137;
+  color: var(--cor-branca);
+}
+
+.cadastro-produto-modal .cancelar {
+  background-color:#e84118;
+  color: var(--cor-branca);
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.cadastro-produto-modal .cancelar:hover {
+  background-color: #c23616;
+  color: var(--cor-branca);
+}
+/*-------------------------------------------------------*/

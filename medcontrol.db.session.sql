@@ -181,3 +181,19 @@ INSERT INTO cadastro_produtos (
 (59, 'Inalador Nebulizador Compact', 'Tratamento de doenças respiratórias', 'Omron', 'NEBU2025AH', '2028-01-01', 199.90, 5, 'Acessório'),
 (60, 'Teste de Gravidez Clearblue', 'Detecção rápida de gravidez', 'Clearblue', 'TEST2025AI', '2027-01-01', 24.90, 15, 'Acessório'),
 (61, 'Creme para Pés Baruel', 'Hidratação e controle de odores', 'Baruel', 'PES2025AJ', '2026-12-01', 13.90, 20, 'Dermocosmético');
+
+-- Produto mais vendido
+SELECT (SELECT nome_produto FROM cadastro_produtos ORDER BY preco_venda DESC LIMIT 1) AS produtos_mais_vendido;
+
+-- Criando a coluna quantidade_vendida na tabela cadastro_produtos:
+ALTER TABLE cadastro_produtos ADD COLUMN quantidade_vendida INTEGER DEFAULT 0;
+
+-- Inserindo 61 valores na nova coluna quantidade_vendida:
+
+
+
+UPDATE cadastro_produtos SET quantidade_vendida = 90 WHERE id_produto = 61;
+
+SELECT nome_produto, SUM(quantidade_vendida) AS total_vendido FROM cadastro_produtos GROUP BY nome_produto ORDER BY total_vendido DESC LIMIT 1;
+
+SELECT CONCAT('R$', FORMAT((SELECT SUM(preco_venda) AS total_estoque FROM cadastro_produtos), 'f2')) AS total_estoque;

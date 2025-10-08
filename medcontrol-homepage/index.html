@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    
+    <!-- Chamando o fontawesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="./src/css/style.css">
     <link rel="icon" type="image/png" sizes="16x16" href="./src/assets/img/logo/remedio.png">
 
@@ -26,10 +27,17 @@
                     <li><a href="/medcontrol-homepage/src/pages/sobre.html">Sobre</a></li>
                     <li><a href="#">Contato</a></li>
                 </ul>
-          <input type="search" class="form-control" placeholder="Buscar produtos">
+
+                <input type="search" class="form-control" placeholder="Buscar produtos" class="placeholder">
             </nav>
 
-            <button type="button" class="btn btn-outline-dark">Admin</button>
+            <div class="botoes-suporte">
+                <!-- Importando o icone do carrinho do fontawesome -->
+                <button id="carrinho-icone" class="btn btn-outline-dark justify-content-center">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                </button>
+                <button type="button" class="btn btn-outline-dark">Admin</button>
+            </div>
         </header>
     </div>
 
