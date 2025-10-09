@@ -1,0 +1,86 @@
+@charset "UTF-8";
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --font-padrao: Arial, Helvetica, sans-serif;
+    --cor-branca: #fff;
+    --cor-preta: #000;
+}
+
+body {
+    color: var(--cor-branca) ;
+}
+
+
+/* Efeito de glow no logo -----------------------*/
+.efeito-glow-logo {
+  animation: pulse-glow 2s infinite;
+}
+
+@keyframes pulse-glow {
+  0% { filter: drop-shadow(0 0 5px #ffffff); }
+  50% { filter: drop-shadow(0 0 15px #ffffff); }
+  100% { filter: drop-shadow(0 0 5px #ffffff); }
+}
+/*-----------------------------------------------*/
+
+.btn-login {
+    font-weight: 600;
+}
+
+.btn:hover {
+    transform: scale(1.1);
+    transition: 0.3s ease-in-out;
+    border: orange 1px solid !important;
+}
+
+.btn-cadastrar {
+    margin-top: 0.5rem;
+    background-color: var(--cor-preta) !important;
+    color: var(--cor-branca) !important;
+    border: none !important;
+}
+
+.btn-cadastrar a {
+    text-decoration: none;
+    color: var(--cor-branca);
+}
+
+
+/* Rodapé */
+footer {
+    color: var(--cor-branca);
+}
+
+footer a {
+    text-decoration: none;
+    color: var(--cor-branca);
+    margin: 0 8px 0 0;
+}
+
+footer a:hover {
+    font-size: medium;
+    font-weight: 500;
+    color: #FDBD58;
+    transform: scale(1.1);
+    transition: 0.3s ease-in-out;
+}
+
+
+#ano {
+    margin-right: 5px;
+}
+
+/* Adaptando a tela para dispositivos móveis */
+
+/* Celulares e tablets */
+@media (max-width: 767px) {
+    .card {
+        margin: 20px auto;
+    }
+}

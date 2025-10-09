@@ -1,0 +1,18 @@
+Para poder gerenciar o banco de dados é necessário ter instalado:
+
+- O venv, que pode ser instalado atráves do comando: pip install venv ou, rodando o código e ao aparecer a notificação
+alertando a falta do componente, confirmar e fazer a instalação automatica.
+
+- É necessario a instalação do sqlite3 para poder acessar e manipular o banco de dados. Para instalar a biblioteca, basta
+executar o comando "pip install sqlite3". Mas atenção, só vai instalar se já tiver o .venv instalado e rodando normalmente
+na máquina.
+
+- Por fim, sempre modular os dados com base no PDF de arquitetura, para manter a regularidade com o modelo. Para evitar
+se perder no decorrer do desenvolvimento.
+
+
+Biblioteca better-sqlite3 para manipular os dados (pois o sqlite3 puro tava dando problemas):
+npm install better-sqlite3
+
+Biblioteca para criptografar as senhas:
+npm install bcrypt

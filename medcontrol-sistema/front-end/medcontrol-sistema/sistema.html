@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./sistema.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="shortcut icon" href="logo/logo-semfundo.png" type="image/x-icon">
+  <title>MedControl - Sistema</title>
+</head>
+<body>
+  <header>
+    <div class="cabecalho-medcontrol">
+      <!-- Informações do Usuário -->
+       <div class="usuario-logado">
+
+        <span id="cargo-usuario">
+          <i class="fas fa-briefcase"></i>
+          <span id="cargo-texto">Cargo</span>
+        </span>
+
+        <span id="nome-usuario">
+          <i class="fas fa-user"></i>
+          <span id="nome-texto">Nome do Usuário</span>
+        </span>
+
+        <span id="sair">
+          <i class="fas fa-sign-out-alt"></i>
+          <a href="/medcontrol-sistema/front-end/medcontrol-login/index.html">Sair</a>
+        </span>
+        
+       </div>
+
+
+        <div class="guia-atual">
+          <span id="guia-atual">
+            Guia Atual
+            <!-- Inserir aqui a lógica para puxar o guia atual de acordo com a rota -->
+          </span>
+        </div>
+
+      <!-- Logo -->
+        <div class="logo">
+            <img src="logo/logo-semfundo.png" alt="Logo MedControl">
+            <p>MedControl</p>
+        </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <aside>
+      <nav>
+        <ul>
+          <li><a href="#clientes"><i class="fas fa-user"></i> Clientes</a></li>
+          <li><a href="#produtos"><i class="fas fa-box"></i> Produtos</a></li>
+          <li><a href="#estoque"><i class="fas fa-warehouse"></i> Estoque</a></li>
+          <li><a href="#vendas"><i class="fas fa-shopping-cart"></i> Vendas</a></li>
+          <li><a href="#fornecedores"><i class="fas fa-truck"></i> Fornecedores</a></li>
+          <li><a href="#funcionarios"><i class="fas fa-users"></i> Funcionários</a></li>
+          <li><a href="#relatorios"><i class="fas fa-chart-line"></i> Relatórios</a></li>
+        </ul>
+      </nav>
+      <div class="logout">
+        <button id="btn-sair">
+          <i class="fas fa-sign-out-alt"></i>
+          <a href="/medcontrol-sistema/front-end/medcontrol-login/index.html" style="text-decoration: none; color: var(--cor-preta)">Sair</a>
+        </button>   
+      </div>
+    </aside>
+
+    <main id="app">
+      <!-- Conteúdo dinâmico será injetado aqui -->
+    </main>
+
+  </div>
+
+  
+</body>
+    <script type="module" src="./main.js"></script>
+    <script src="/medcontrol-sistema/front-end/medcontrol-login/src/js/medcontrol.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  
+  <footer>
+    <p>&copy; 
+      <script>document.write(new Date().getFullYear());</script>
+       <a href="/medcontrol-homepage/index.html" target="_blank">MedControl</a>. 
+       Desenvolvido por <a href="https://github.com/robertdouglasaimon" target="_blank">Robert Douglas</a>.
+    </p>
+  </footer>
+</html>

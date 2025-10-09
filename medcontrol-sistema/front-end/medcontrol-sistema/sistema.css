@@ -1,0 +1,1044 @@
+@charset "UTF-8";
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --font-padrao: Arial, Helvetica, sans-serif;
+    --cor-branca: #fff;
+    --cor-preta: #000;
+    --amarelo-medcontrol: #fbc531;
+    --fundo-principal: #0F1720;
+    --fundo-secundario: #161C27;
+
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--fundo-secundario);
+}
+
+.cabecalho-medcontrol {
+  display: flex;
+  justify-content: space-between;
+
+  /*Invertendo os elementos de posicao*/
+  flex-direction: row-reverse;
+}
+
+header {
+  width: 100%;
+  background-color: var(--fundo-principal);
+  color: #f5f6fa;
+  padding: 1rem;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+footer {
+  width: 100%;
+  background-color: var(--fundo-principal);
+  color: #f5f6fa;
+  padding: 1rem;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  padding-left: 15rem;
+}
+
+footer a {
+  text-align: center;
+  text-decoration: none;
+  color: var(--cor-branca);
+}
+
+footer a:hover {
+  color: var(--amarelo-medcontrol);
+  transform: scale(1);
+  text-decoration: none;
+}
+
+.container {
+  display: flex;
+  height: calc(100vh - 70px);
+}
+
+.logo {
+    width: 240px;
+    display: flex;
+    padding-right: 2rem;
+    justify-content: center;
+    background-color: var(--fundo-principal);
+    align-items: center;
+    /* gap: 0px; */
+}
+
+.logo img {
+    width: 20%;
+    height: 50%;
+    background-color: var(--fundo-principal);
+    position: relative;;
+    top: -6px;
+    left: -1rem;
+}
+
+.logo p {
+      font-size: 1.3rem;
+      text-align: left;
+      color: var(--amarelo-medcontrol);
+}
+
+#cargo-usuario {
+  margin-right: 15px;
+}
+
+#cargo-usuario i {
+  color: var(--amarelo-medcontrol);
+}
+
+#nome-usuario i {
+  color: var(--amarelo-medcontrol);
+}
+
+#sair {
+  margin-left: 15px;
+}
+
+#sair a {
+  text-decoration: none;
+  color: var(--cor-branca);
+}
+
+#sair a:hover {
+  color: var(--amarelo-medcontrol);
+  transform: scale(1.1);
+  transition: all 0.3s ease-in-out;
+}
+
+#sair i {
+  color: var(--amarelo-medcontrol);
+}
+
+#usuario-logado {
+  display: flex;
+  align-items: center;
+
+  font-size: 1.3rem;
+  text-align: left;
+  color: var(--amarelo-medcontrol);
+}
+
+aside {
+  width: 240px;
+  height: 100vh;
+  background-color: #0F1720;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+}
+
+aside nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+aside nav ul li {
+  border-bottom: 1px solid #2f3640;
+}
+
+aside nav ul li a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 1rem;
+  color: white;
+  text-decoration: none;
+  transition: background 0.3s;
+}
+
+
+aside nav ul li a:not(.active):hover {
+  background-color: var(--amarelo-medcontrol);
+  color: var(--fundo-principal);
+  font-weight: bold;
+}
+
+aside nav ul li a.active {
+  background-color: var(--amarelo-medcontrol);
+  color: var(--fundo-principal);
+  font-weight: bold;
+  box-shadow: inset 4px 0 0 var(--fundo-principal); /* opcional: destaque lateral */
+}
+
+
+#btn-sair:hover {
+  background-color: var(--amarelo-medcontrol);
+  color: var(--fundo-principal);
+  transform: scale(1.1);
+  transition: all 0.3s ease-in-out;
+}
+
+.logout {
+  padding: 1rem;
+  text-align: center;
+}
+
+.logout button {
+  background-color: var(--amarelo-medcontrol);
+  border: none;
+  padding: 0.6rem 1.2rem;
+  font-weight: bold;
+  color: #2f3640;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+}
+
+main#app {
+  flex-grow: 1;
+  padding: 2rem;
+  overflow-y: auto;
+}
+/*-------------------------------------------------------------------------------------------------------------------------------------------*/
+
+/*Estilizando o "clientes.js"----------------------------------------------------------------------------------------------------------------*/
+.container {
+  max-width: 100% !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  width: 100% !important;
+}
+
+
+.card-clientes {
+  display: flex;
+  flex-direction: row;
+  /* flex-wrap: wrap; */
+  justify-content: space-between;
+  gap: 10px;
+  color: var(--cor-branca);
+}
+
+.card-clientes p {
+  font-size: 1.5rem;
+  margin-top: 1rem;
+  color: var(--cor-preta);
+}
+
+.valores-clientes {
+  position: relative;
+  top: -26px;
+  font-size: 2.5rem !important;
+  font-weight: bold;
+  color: var(--cor-preta);
+}
+
+.total-clientes {
+  width: 300px;
+  height: 100px;
+  background-color: var(--cor-branca);
+  border-radius: 15px;
+  text-align: center;
+}
+
+.cliente-ativo {
+  width: 300px;
+  height: 100px;
+  background-color: var(--cor-branca);
+  border-radius: 15px;
+  text-align: center;
+}
+
+.cliente-inativo {
+  width: 300px;
+  height: 100px;
+  background-color: var(--cor-branca);
+  border-radius: 15px;
+  text-align: center;
+}
+
+.cliente-receita {
+  width: 300px;
+  height: 100px;
+  background-color: var(--cor-branca);
+  border-radius: 15px;
+  text-align: center;
+}
+
+/* Hover para cada card */
+.total-clientes:hover {
+  background-color: #f9ca24;
+  transform: scale(1.05);
+  transition: all 0.3s ease-in-out;
+
+  /* listra azul na parte inferior do card */
+  border-bottom: 5px solid #0984e3;
+}
+
+.cliente-ativo:hover {
+  background-color: #0d6efd;
+  transform: scale(1.05);
+  transition: all 0.3s ease-in-out;
+
+  /* listra azul na parte inferior do card */
+  border-bottom: 5px solid #0984e3;
+}
+
+.cliente-inativo:hover {
+  background-color: #ff6b6b;
+  transform: scale(1.05);
+  transition: all 0.3s ease-in-out;
+  
+  /* listra azul na parte inferior do card */
+  border-bottom: 5px solid #0984e3;
+}
+
+.cliente-receita:hover {
+  background-color: #4cd137;
+  transform: scale(1.05);
+  transition: all 0.3s ease-in-out;
+
+  /* listra azul na parte inferior do card */
+  border-bottom: 5px solid #0984e3;
+}
+
+/* Estilo referente a barra de pesquisa -------------------------------------------------*/
+.clientes-header {
+  margin-top: 1rem;
+}
+
+.clientes-header h2 {
+  background-color: var(--fundo-principal);
+  padding: 10px;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  margin-top: 2rem;
+  color: var(--cor-branca);
+  border-radius: 5px;
+}
+
+.clientes-pesquisa {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.search-container {
+  display: flex;
+  gap: 10px;
+}
+
+.buscar-input {
+  flex: 1;
+  padding: 15px;
+  border-radius: 5px 0 0 5px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  min-width: 0;
+}
+
+.input-wrapper {
+  position: relative;
+  display: flex;
+  width: 100%;
+  max-width: 100%;
+}
+
+.btn-novo-cliente {
+  background-color: orange;
+  color: white;
+  border: none;
+  border-radius: 0 5px 5px 0;
+  padding: 15px 20px;
+  cursor: pointer;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 2rem;
+  width: 100%;
+  max-width: 500px;
+  margin: auto;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  position: relative;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.modal-content h3 {
+  text-align: center;
+  font-size: 1.6rem;
+  margin-bottom: 1.5rem;
+  color: #2f3640;
+}
+
+.fechar-modal {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #e84118;
+  transition: transform 0.2s;
+}
+
+.fechar-modal:hover {
+  transform: scale(1.2);
+}
+
+.cadastro-cliente-modal {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.cadastro-cliente-modal input,
+.cadastro-cliente-modal select {
+  padding: 0.8rem 1rem;
+  border: 1px solid #dcdde1;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+}
+
+.cadastro-cliente-modal input:focus,
+.cadastro-cliente-modal select:focus {
+  border-color: #00a8ff;
+  outline: none;
+}
+
+/* Botão Salvar */
+.cadastro-cliente-modal button[type="submit"] {
+  background-color: #44bd32;
+  color: white;
+  border: none;
+  padding: 0.8rem;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.cadastro-cliente-modal button[type="submit"]:hover {
+  background-color: #4cd137;
+}
+
+/* Botão Cancelar */
+.cadastro-cliente-modal .cancelar {
+  background-color: #e84118;
+  color: white;
+  border: none;
+  padding: 0.8rem;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.cadastro-cliente-modal .cancelar:hover {
+  background-color: #c23616;
+}
+
+
+.modal.hidden {
+  display: none;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 300px;
+}
+
+.fechar-modal {
+  float: right;
+  cursor: pointer;
+  font-size: 20px;
+}
+/*-------------------------------------------------------*/
+
+/* Estilo relacionado a tabela de clientes --------------*/
+.clientes-tabela h2 {
+  background-color: var(--fundo-principal);
+  padding: 10px;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  margin-top: 2rem;
+  color: var(--cor-branca);
+  border-radius: 5px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background-color: var(--cor-branca);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.clientes-tabela th {
+  height: 50px;
+  text-align: left;
+  padding-left: 20px;
+  background-color: var(--fundo-principal);
+  color: var(--cor-branca);
+}
+
+.clientes-tabela tr:hover {
+  background-color: var(--amarelo-medcontrol);
+}
+
+.clientes td i {
+  color: var(--amarelo-medcontrol);
+}
+
+/* Descolando os nomes do canto da tabela: */
+.clientes-tabela td {
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+}
+
+
+/* Estilo do modal de editar cliente --------------------------------------------------------*/
+.modal-content {
+  background-color: var(--cor-branca);
+  padding: 20px;
+  border-radius: 8px;
+  width: 400px;
+  max-width: 100%;
+}
+
+.modal-content h3 {
+  text-align: center;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: var(--fundo-principal);
+}
+
+.modal-content form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Estilo dos inputs do modal de editar cliente: */
+.modal-content input,
+.modal-content select {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+/* Deixando os inputs um abaixo do outro: */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+/*----------------------------------*/
+/* Botão Salvar */
+.btn-primary {
+  background-color: #4cd137;
+  color: var(--cor-branca) ;
+  font-weight: bold;  
+  border: none;
+  border-radius: 4px;
+  padding: 8px 12px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background-color: #28a315;
+  color: var(--cor-branca);
+  transform: scale(1.05);
+  transition: all 0.3s ease-in-out;
+}
+/*----------------------------------*/
+
+/*----------------------------------*/
+/* Botão Fechar */
+.btn-secondary {
+  background-color: #e84118;
+  color: var(--cor-branca);
+  font-weight: bold;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 12px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.btn-secondary:hover {
+  background-color: #c23616;
+  color: var(--cor-branca);
+  transform: scale(1.05);
+  transition: all 0.3s ease-in-out;
+}
+
+/* Icone de "x" de fechar no modal: */
+.fechar-modal {
+  float: right;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+
+/*-------------------------------------------------------------------------------------------*/
+
+/*-------------------------------------------------------------------------------------------/*Estilizando o "produtos.js"----------------------------------------------------------------------------------------------------------------*/
+
+.estoque-cars {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+/*Mantendo os cards lado a lado na horizontal*/
+.produtos-cards {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.card-produtos p {
+  font-size: 1.5rem;
+  margin-top: 1rem;
+  color: var(--cor-preta);
+}
+
+.total-produtos {
+  width: 300px;
+  height: 100px;
+  background-color: var(--cor-branca);
+  border-radius: 15px;
+  text-align: center;
+}
+.total-produtos p {
+  font-size: 1.5rem;
+  margin-top: -0rem;
+  padding-top: 10px;
+  color: var(--cor-preta);
+}
+
+.produtos-total {
+  position: relative;
+  top: -26px;
+  font-size: 2.5rem !important;
+  font-weight: bold;
+  color: var(--cor-preta);
+}
+
+.valor-estoque {
+  width: 300px;
+  height: 100px;
+  background-color: var(--cor-branca);
+  border-radius: 15px;
+  text-align: center;
+}
+
+.valor-estoque p {
+  font-size: 1.5rem;
+  position: relative;
+  top: -0.4rem;
+  color: var(--cor-preta);
+}
+
+.valores-produtos-estoque {
+  font-size: 2.5rem !important;
+  color: var(--cor-preta);
+  font-weight: bold;
+  position: relative;
+  top: -1.7rem;
+}
+
+.produto-mais-vendido {
+  width: 300px;
+  height: 100px;
+  background-color: var(--cor-branca);
+  border-radius: 15px;
+  text-align: center;
+}
+
+.produto-mais-vendido p {
+  font-size: 1.5rem;
+  position: relative;
+  top: -0.3rem;
+  color: var(--cor-preta);
+}
+
+.valores-produtos-mais-vendidos {
+  font-size: 1.8rem !important;
+  color: var(--cor-preta);
+  font-weight: bold;
+  position: relative;
+  top: -1.2rem;
+}
+
+.produto-menos-vendido {
+  width: 300px;
+  height: 100px;
+  background-color: var(--cor-branca);
+  border-radius: 15px;
+  text-align: center;
+  font-size: 1.8rem !important;
+}
+
+.produto-menos-vendido p {
+  font-size: 1.5rem;
+  position: relative;
+  top: -0.3rem;
+  color: var(--cor-preta);
+}
+
+.valores-produtos-menos-vendidos {
+  font-size: 2.5rem !important;
+  color: var(--cor-preta);
+  font-weight: bold;
+  position: relative;
+  top: -1.7rem;
+}
+
+
+/* Hover no card: -------------------------*/
+.card-produtos:hover {
+  transform: scale(1.05);
+  transition: all 0.3s ease-in-out;
+}
+
+/* Cores e hover para cada card produtos: */
+.total-produtos:hover {
+  background-color: #f1e96e;
+  transform: scale(1.05);
+  transition: all 0.3s ease-in-out;
+
+  /* listra azul na parte inferior do card */
+  border-bottom: 5px solid #11d8df;
+}
+
+.valor-estoque:hover {
+  background-color: #04f066;
+  transform: scale(1.05);
+  transition: all 0.3s ease-in-out;
+  
+
+  border-bottom: 5px solid #11d8df;
+}
+
+.produto-mais-vendido:hover {
+  background-color: #0883d4;
+  transform: scale(1.05);
+  transition: all 0.3s ease-in-out;
+
+ 
+  border-bottom: 5px solid #11d8df;
+}
+
+.produto-menos-vendido:hover {
+  background-color: #cf6646;
+  transform: scale(1.05);
+  transition: all 0.3s ease-in-out;
+  
+  border-bottom: 5px solid #11d8df;
+}
+/*----------------------------------------*/
+
+/*----------------------------------------*/
+/* Barra de pesquisa */
+.produtos-header {
+  margin-top: 1rem;
+}
+
+.produtos-header h2 {
+  background-color: var(--fundo-principal);
+  padding: 10px;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  margin-top: 2rem;
+  color: var(--cor-branca);
+  border-radius: 5px;
+}
+/*----------------------------------------*/
+
+/*----------------------------------------*/
+/* Estilo referente a tabela de produtos: */
+.produtos-lista {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.produtos-lista tr, th, td {
+  text-align: center !important;
+}
+
+.produtos-lista th, .produtos-lista td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.produtos-lista th {
+  background-color: var(--fundo-principal);
+  color: var(--cor-branca);
+}
+
+.produtos-lista tr:hover {
+  background-color: var(--amarelo-medcontrol);
+}
+
+.produtos-lista td i {
+  color: var(--amarelo-medcontrol);
+}
+
+/*Botões de editar e excluir de produtos: */
+
+.btn-editar-produto {
+  background-color: var(--amarelo-medcontrol);
+  color: var(--cor-branca);
+  border: none;
+  border-radius: 4px;
+  padding: 8px 14px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-right: 5px;
+  transition: all 0.3s ease-in-out;
+}
+
+.btn-excluir-produto {
+  background-color: #e84118;
+  color: var(--cor-branca);
+  border: none;
+  /* border-radius: 4px; */
+  padding: 8px 12px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 5px;
+  margin-right: 5px;
+  transition: all 0.3s ease-in-out;
+}
+
+.btn-excluir-produto:hover {
+  background-color: #c23616;
+  transform: scale(1.05);
+  transition: all 0.3s ease-in-out;
+  color: var(--cor-preta);
+}
+
+.btn-editar-produto:hover {
+  background-color: #7e771e;
+  transform: scale(1.05);
+  transition: all 0.3s ease-in-out;
+  color: var(--cor-preta);
+}
+
+/*----------------------------------------*/
+
+/* Botão da barra de busca */
+.btn-novo-produto {
+  background-color: orange;
+  color: white;
+  border: none;
+  border-radius: 0 5px 5px 0;
+  padding: 15px 20px;
+  cursor: pointer;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+/* Configurações do modal cadastro de produtos:  -----------*/
+/* Modal container */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* fundo escuro */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+/* Esconde o modal */
+.modal.hidden {
+  display: none;
+}
+
+/* Conteúdo do modal */
+.modal-content {
+  background-color: var(--cor-branca);
+  padding: 30px;
+  border-radius: 10px;
+  width: 500px;
+  max-width: 90%;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  position: relative;
+}
+
+/* Botão de fechar (X) */
+.fechar-modal {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--cor-preta);
+}
+
+/* Formulário */
+.cadastro-produto-modal {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cadastro-produto-modal input {
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.cadastro-produto-modal button {
+  padding: 10px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.cadastro-produto-modal button[type="submit"] {
+  background-color: #44bd32;
+  color: var(--cor-branca);
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.cadastro-produto-modal button[type="submit"]:hover {
+  background-color: #4cd137;
+  color: var(--cor-branca);
+  transform: scale(1.05);
+  transition: all 0.3s ease-in-out
+}
+
+.cadastro-produto-modal .cancelar {
+  background-color:#e84118;
+  color: var(--cor-branca);
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.cadastro-produto-modal .cancelar:hover {
+  background-color: #c23616;
+  color: var(--cor-branca);
+  transform: scale(1.05);
+  transition: all 0.3s ease-in-out
+}
+/*-------------------------------------------------------------------------------------------*/
+
+
+/*------------------------------------------------------------------------------------------*/
+/*Estilizando o "estoque.js*/
+
+
+/* Estilos relaciopados aos cards do dashboard do estoque */
+.card-estoque {
+  font-size: 1.5rem;
+  margin-top: 1rem;
+  color: var(--cor-preta);
+} 
+
+.card-estoque p {
+  font-size: 1.5rem;
+  margin-top: 1rem;
+  color: var(--cor-preta);
+}
+
+.total-estoque {
+  width: 300px;
+  height: 100px;
+  background-color: var(--cor-branca);
+  border-radius: 15px;
+  text-align: center;
+}
+.total-estoque p {
+  font-size: 1.5rem;
+  margin-top: -0rem;
+  padding-top: 10px;
+  color: var(--cor-preta);
+}
+
+.estoque-total {
+  position: relative;
+  top: -26px;
+  font-size: 2.5rem !important;
+  font-weight: bold;
+  color: var(--cor-preta);
+}
+
+.total-estoque-valor{
+  width: 300px;
+  height: 100px;
+  background-color: var(--cor-branca);
+  border-radius: 15px;
+  text-align: center;
+  font-size: 1.8rem !important;
+  color: var(--cor-preta);
+  font-weight: bold;
+  position: relative;
+  top: -1.2rem;
+}
+/*---------------------------------------------------------*/
+
+
+
+
+
+/*-----------------------------------------------------------------------------------------*/

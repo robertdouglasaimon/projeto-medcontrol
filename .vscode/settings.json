@@ -1,0 +1,13 @@
+{
+    "sqltools.useNodeRuntime": true,
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "name": "medcontrol.db",
+            "group": "medcontrol.db",
+            "database": "medcontrol-sistema\\banco-dados\\farmacia.db"
+        }
+    ],
+    "liveServer.settings.port": 5501
+}

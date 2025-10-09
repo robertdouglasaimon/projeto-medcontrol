@@ -1,0 +1,12 @@
+@charset 'UTF-8';
+
+:root {
+    --cor-branca: #fff;
+    --cor-preta: #000;
+}
+
+.btn-voltar a {
+    text-decoration: none;
+    color: var(--cor-preta);
+    font-weight: 500;
+}
