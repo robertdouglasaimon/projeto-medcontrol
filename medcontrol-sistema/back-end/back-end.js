@@ -291,17 +291,58 @@ app.post('/novo_produto', (req, res) => {
 });
 
 // Rota: deletar produto da tabela cadastro_produtos do banco de dados:
-app.delete('/deletar_produto/:id_produto', (req, res) => {  
-  const id = req.params.id_produto;
-  const stmt = db.prepare('DELETE FROM cadastro_produtos WHERE id_produto = ?');
-  const result = stmt.run(id);
+app.delete('/deletar_produto/:nome_produto', (req, res) => {
+  const nome = req.params.nome_produto;
+  const stmt = db.prepare('DELETE FROM cadastro_produtos WHERE nome_produto = ?');
+  const result = stmt.run(nome);
 
   if (result.changes > 0) {
-    res.status(200).json({ mensagem: "Produto deletado com sucesso." });
+    res.status(200).json({ mensagem: 'Produto deletado com sucesso.' });
   } else {
-    res.status(404).json({ mensagem: "Produto nao encontrado." });
+    res.status(404).json({ mensagem: 'Produto não encontrado.' });
   }
 });
+
+// Rota: editar produto da tabela cadastro_produtos do banco de dados:
+app.put('/editar_produto/:id_produto', (req, res) => {
+  const id = req.params.id_produto;
+  const {
+    nome_produto,
+    descricao,
+    fabricante,
+    qtd_estoque,
+    lote,
+    data_validade,
+    preco_venda,
+    quantidade_vendida
+  } = req.body;
+  console.log("🔧 Requisição recebida para editar produto:", req.params.id_produto);
+
+  const stmt = db.prepare(`
+    UPDATE cadastro_produtos
+    SET nome_produto = ?, descricao = ?, fabricante = ?, qtd_estoque = ?, lote = ?, data_validade = ?, preco_venda = ?, quantidade_vendida = ?
+    WHERE id_produto = ?
+  `);
+
+  const resultado = stmt.run(
+    nome_produto,
+    descricao,
+    fabricante,
+    qtd_estoque,
+    lote,
+    data_validade,
+    preco_venda,
+    quantidade_vendida,
+    id
+  );
+
+  if (resultado.changes > 0) {
+    res.status(200).json({ mensagem: 'Produto editado com sucesso.' });
+  } else {
+    res.status(404).json({ mensagem: 'Produto não encontrado.' });
+  }
+});
+
 /*-----------------------------------------------------------------------------------------*/
 
 

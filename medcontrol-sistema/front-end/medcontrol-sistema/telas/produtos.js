@@ -354,6 +354,8 @@ export function render() {
     .then(produtos => {
       produtos.forEach((item) => {
         const row = document.createElement("tr");
+        row.setAttribute("nome_produto", item.nome_produto);
+        row.setAttribute("data-id_produto", item.id_produto); // ✅ necessário para editar e excluir.
         row.innerHTML = `
           <td>${item.nome_produto}</td>
           <td>${item.descricao}</td>
@@ -376,61 +378,154 @@ export function render() {
   },0);
 
 
-// Excluindo os itens da tabela pelo front através do botão editar (modificando no banco de dados as informações do produto):
+  // Excluindo os itens da tabela pelo front através do botão excluir (modificando no banco de dados as informações do produto):
   setTimeout(() => {
-    const botaoExcluir = div.querySelector(".btn-excluir-produto");
+      const tbody = div.querySelector("tbody");
 
-    botaoExcluir.addEventListener("click", async (event) => {
-      event.preventDefault(); // Evita o comportamento padrão do link
+    // Script para excluir um produto:
+    tbody.addEventListener("click", async (event) => {
+      const btn = event.target;
+      if (!btn.classList.contains("btn-excluir-produto")) return;
 
-      const row = event.target.closest("tr");
-      const id_produto = row.querySelector("td:nth-child(1)").textContent;
-      const nome_produto = row.querySelector("td:nth-child(2)").textContent;
-      const descricao = row.querySelector("td:nth-child(3)").textContent;
-      const fabricante = row.querySelector("td:nth-child(4)").textContent;
-      const qtd_estoque = row.querySelector("td:nth-child(5)").textContent;
-      const lote = row.querySelector("td:nth-child(6)").textContent;
-      const data_validade = row.querySelector("td:nth-child(7)").textContent;
-      const preco_venda = row.querySelector("td:nth-child(8)").textContent;
-      const quantidade_vendida = row.querySelector("td:nth-child(9)").textContent;
+      const row = btn.closest("tr");
+      const nome_produto = row.getAttribute("nome_produto");
+      console.log("Nome do produto:", nome_produto);
+
+      const confirmar = confirm("Tem certeza que deseja excluir esse produto?");
+      if (!confirmar) return;
 
       try {
-        const response = await fetch('http://localhost:3001/deletar_produto/:id_produto', {
-          method: 'DELETE',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            id: id_produto,
-            nome_produto,
-            descricao,
-            fabricante,
-            qtd_estoque,
-            lote,
-            data_validade,
-            preco_venda,
-            quantidade_vendida
-          })
+        const res = await fetch(`http://localhost:3001/deletar_produto/${nome_produto}`, {
+          method: "DELETE"
         });
+        console.log("Status da resposta:", res.status);
 
-        const data = await response.json();
-
-        // Verifica se a resposta foi negativa
-        if (!response.ok) {
-          throw new Error(data.mensagem || "Erro ao excluir o produto.");
+        if (!res.ok) {
+          throw new Error("Erro ao excluir o produto!");
         }
 
-        alert(`✅ ${data.mensagem}`);
+        const data = await res.json();
+        console.log("Resposta do servidor:", data);
 
-        // Remove a linha da tabela
         row.remove();
-
+        alert(`✅ ${data.mensagem}`);
       } catch (error) {
-        console.error('❌ Erro ao excluir o produto:', error.message);
+        console.error("❌ Erro ao excluir cliente:", error.message);
         alert(`❌ ${error.message}`);
       }
     });
   },0);
+
+  // Editando os itens da tabela pelo front através do botão editar (modificando no banco de dados as informações do produto):
+  setTimeout(() => {
+    const tbody = div.querySelector("tbody");
+
+    tbody.addEventListener("click", async (event) => {
+      const btn = event.target;
+      if (!btn.classList.contains("btn-editar-produto")) {
+        return;
+      } else {
+        btn.classList.add("hidden");
+      }
+
+      const row = btn.closest("tr");
+      const id_produto = row.getAttribute("data-id_produto");
+      console.log("ID capturado:", id_produto);
+
+      const nome_produto = row.querySelector("td:nth-child(1)").textContent;
+      const descricao = row.querySelector("td:nth-child(2)").textContent;
+      const fabricante = row.querySelector("td:nth-child(3)").textContent;
+      const qtd_estoque = row.querySelector("td:nth-child(4)").textContent;
+      const lote = row.querySelector("td:nth-child(5)").textContent;
+      const data_validade = row.querySelector("td:nth-child(6)").textContent;
+      const preco_venda = row.querySelector("td:nth-child(7)").textContent;
+      const quantidade_vendida = row.querySelector("td:nth-child(8)").textContent;
+
+      const modal = document.createElement("div");
+      modal.classList.add("modal");
+      modal.innerHTML = `
+        <div class="modal-content">
+          <h3>Editar Produto</h3>
+          <form class="cadastro-produto-modal" id="cadastro-produto-modal">
+            <label for="nome_produto">Nome do Produto:</label>
+            <input type="text" id="nome_produto" value="${nome_produto}" required>
+            <label for="descricao">Descrição:</label>
+            <input type="text" id="descricao" value="${descricao}" required>
+            <label for="fabricante">Fabricante:</label>
+            <input type="text" id="fabricante" value="${fabricante}" required>
+            <label for="qtd_estoque">Quantidade em Estoque:</label>
+            <input type="number" id="qtd_estoque" value="${qtd_estoque}" required>
+            <label for="lote">Lote:</label>
+            <input type="text" id="lote" value="${lote}" required>
+            <label for="data_validade">Data de Validade:</label>
+            <input type="date" id="data_validade" value="${data_validade}" required>
+            <label for="preco_venda">Preço de Venda:</label>
+            <input type="number" id="preco_venda" value="${preco_venda}" required>
+            <label for="quantidade_vendida">Quantidade Vendida:</label>
+            <input type="number" id="quantidade_vendida" value="${quantidade_vendida}" required>
+            <button type="submit">Salvar</button>
+            <button type="button" class="cancelar">Cancelar</button>
+          </form>
+        </div>
+      `;
+
+      document.body.appendChild(modal); // ✅ modal agora está no DOM! Agora vai brasil porra!
+
+      modal.addEventListener("click", (event) => {
+        if (event.target.classList.contains("modal") || event.target.classList.contains("cancelar")) {
+          modal.remove();
+        }
+      });
+
+      // Script para salvar o produto:
+      const form = modal.querySelector(".cadastro-produto-modal");
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        console.log("🧪 Submit disparado"); // ✅ Testando
+
+        const nome_produto = form.querySelector("#nome_produto").value.trim();
+        const descricao = form.querySelector("#descricao").value.trim();
+        const fabricante = form.querySelector("#fabricante").value.trim();
+        const qtd_estoque = form.querySelector("#qtd_estoque").value.trim();
+        const lote = form.querySelector("#lote").value.trim();
+        const data_validade = form.querySelector("#data_validade").value.trim();
+        const preco_venda = form.querySelector("#preco_venda").value.trim();
+        const quantidade_vendida = form.querySelector("#quantidade_vendida").value.trim();
+
+        // Verifica se todos os campos foram preenchidos:
+        if (!nome_produto || !descricao || !fabricante || !qtd_estoque || !lote || !data_validade || !preco_venda || !quantidade_vendida) {
+          alert("Todos os campos devem ser preenchidos!");
+          return;
+        }
+
+        try {
+          const res = await fetch(`http://localhost:3001/editar_produto/${id_produto}`, {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ nome_produto, descricao, fabricante, qtd_estoque, lote, data_validade, preco_venda, quantidade_vendida })
+          });
+
+          if (!res.ok) throw new Error("Erro ao editar o produto!");
+
+          const data = await res.json();
+          row.querySelector("td:nth-child(1)").textContent = nome_produto;
+          row.querySelector("td:nth-child(2)").textContent = descricao;
+          row.querySelector("td:nth-child(3)").textContent = fabricante;
+          row.querySelector("td:nth-child(4)").textContent = qtd_estoque;
+          row.querySelector("td:nth-child(5)").textContent = lote;
+          row.querySelector("td:nth-child(6)").textContent = data_validade;
+          row.querySelector("td:nth-child(7)").textContent = preco_venda;
+          row.querySelector("td:nth-child(8)").textContent = quantidade_vendida;
+
+          alert(`✅ ${data.mensagem}`);
+          modal.remove();
+        } catch (error) {
+          console.error("❌ Erro ao editar o produto:", error.message);
+          alert(`❌ ${error.message}`);
+        }
+      });
+    });
+  }, 0);
 
   return div;
 }
