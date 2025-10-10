@@ -1,5 +1,4 @@
 
-
 .roboto {
   font-family: "Roboto", sans-serif;
   font-optical-sizing: auto;
@@ -51,8 +50,9 @@ h1 {
 }
 
 img {
-    height: 50px;
-    margin-bottom: 10px;
+    /* height: 50px; */
+    /* margin-bottom: 10px; */
+    width: 100px;
 }
 
 .carrinho {
@@ -449,6 +449,71 @@ p {
     margin-bottom: 20px;
     text-align: left;
 }
+
+/* -------------Instalacoes--------------
+----------------------------------------- */
+
+.instalacoes-container {
+    display: flex;
+    flex-direction: column;
+    padding: 60px 5%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.instalacoes-texto {
+    order: 1;
+    text-align: center;
+    max-width: 850px;
+    margin: 0 auto 50px auto;
+}
+
+.instalacao-imagens {
+    order: 2;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.instalacao-imagens img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+.instalacao-imagens img:hover {
+    transform: scale(1.03);
+}
+
+.instalacoes-texto h2 {
+    font-family: 'Montserrat', sans-serif; 
+    font-size: 2.5rem;
+    color: #212121;
+    margin-bottom: 15px;
+}
+
+.instalacoes-texto h3 {
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: #004d40;
+    margin-bottom: 20px;
+}
+
+.instalacoes-texto p {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #666;
+    margin-bottom: 20px;
+    text-align: justify;
+}
+
+.instalacoes-texto p:last-of-type {
+    margin-bottom: 0;
+}
+
 
 
 
