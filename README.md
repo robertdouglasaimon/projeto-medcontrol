@@ -23,7 +23,7 @@
 
 
 - **Front-end:** JavaScript puro
-- **Back-end:** Node.js com Express
+- **Back-end:** Node.js com Express, SQLite/Better-SQLite e BCrypt
 - **Banco de Dados:** SQLite (gerenciado via Python)
 - **Modelagem:** BRModelo para DER e lógica relacional
 
