@@ -32,6 +32,7 @@ export function render () {
 
         <section class="estoque-header">
             <h2> <i class="fas fa-chart-line"></i> Gráfico de Estoque </h2>
+            <canvas id="graficoEstoque" width="120" height="50"></canvas>
         </section>
     `;
 
@@ -49,6 +50,41 @@ export function render () {
             card.classList.add('seguro');
         }
     }, 0);
+
+    // Grafico de Estoque que está sendo atualizado em tempo real lá pelo back-end com a API do Flask (Python: app.py):
+    setTimeout(() => {
+    fetch('http://localhost:5000/grafico-estoque')
+        .then(res => res.json())
+        .then(data => {
+        const ctx = document.getElementById('graficoEstoque').getContext('2d');
+
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+            labels: ['Entradas', 'Saídas', 'Perdas', 'Total'],
+            datasets: [{
+                label: 'Estoque',
+                data: [data.produtos_entrados, data.produtos_saidos, data.produtos_perdidos, data.total_estoque],
+                backgroundColor: ['#3498db','#f39c12', '#e74c3c', '#2ecc71']
+            }]
+            },
+            options: {
+            responsive: true,
+            scales: {
+                y: {
+                beginAtZero: true
+                }
+            }
+            }
+        });
+    });
+
+
+
+
+
+    }, 0);
+
 
     return div;
 }

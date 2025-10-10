@@ -217,3 +217,17 @@ INSERT INTO controle_estoque (
 (58, 'Hidroclorotiazida 50mg', '12 caixas', '2026-12-05', '0', 'HCTZ50Z26'),
 (59, 'Creme Anti-idade FPS 60', '30 unidades', '2027-01-01', '3 unidades', 'CREMANTIFPS60A27'),
 (60, 'Sabonete Esfoliante Facial', '40 unidades', '2026-09-15', '4 unidades', 'SABESFOLB27');
+
+
+-- Adicionando coluna na tabela controle_estoque:
+ALTER TABLE controle_estoque ADD COLUMN ;
+
+
+-- Querry que faz a contagem dos produtos que sairam (saida_produto), os produtos perdidos (perdas_descarte), e a quantidade total do estoque (id_controle_estoque):
+SELECT 
+  COUNT(entrada_produto) AS produtos_entrados,
+  SUM(CASE WHEN saida_produto IS NOT NULL THEN 1 ELSE 0 END) AS produtos_saidos, 
+  SUM(CASE WHEN perdas_descarte IS NOT NULL THEN 1 ELSE 0 END) AS produtos_perdidos, 
+  COUNT(*) AS total_estoque 
+  
+FROM controle_estoque;

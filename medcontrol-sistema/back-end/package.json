@@ -5,6 +5,7 @@
   "dependencies": {
     "bcrypt": "^6.0.0",
     "better-sqlite3": "^12.4.1",
+    "chartjs": "^0.3.24",
     "cors": "^2.8.5",
     "express": "^4.21.2",
     "path": "^0.12.7",
