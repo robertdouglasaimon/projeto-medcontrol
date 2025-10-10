@@ -1,3 +1,14 @@
+
+
+.roboto {
+  font-family: "Roboto", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: weight;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+}
+
 /* --------------Reset pagina -------------
 ------------------------------------------*/
 
@@ -5,7 +16,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: sans-serif;
+    font-family: "Roboto", sans-serif;
 }
 
 /* --------------Body --------------------
@@ -203,7 +214,7 @@ nav input {
     font-size: 2.5em;
     color: black;
     margin-bottom: 20px;
-    border-bottom: 3px solid #008000 ;
+    border-bottom: 2px solid #008000 ;
     display: inline-block;
     padding-bottom: 5px;
 }
@@ -212,7 +223,7 @@ nav input {
     margin-bottom: 15px;
     color: #555;
     text-align: justify;
-    border-left: 1px solid #008000 ;
+    border-left: 3px solid #008000 ;
     padding-left: 10px;
     font-size: 1em;
 }
@@ -315,23 +326,129 @@ p {
 
 /*-------------- Valores------------------
 ----------------------------------------- */
-h3 {
-    font-size: 2rem;
-    font-weight: 700;
-    margin-bottom: 10px;       /*  Esta fora do container */
-    margin-top: 20px;
-    color: black;
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.secao-valores {
+    background-color: #ffffff;
+    padding: 50px 0;
     text-align: center;
 }
 
-p {
-    font-size: 1.2em;
-    text-align: center; /*  Esta fora do container */
-    margin: 0 auto 40px;
-    color: #666;  
+.secao-valores h2 {
+    font-size: 32px;
+    color: black;
+    margin-bottom: 15px;
+}
+
+.secao-valores .valores-subtitulo {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 40px;
+}
+
+.valores-lista {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+}
+
+.valor-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.valor-item h3 {
+    font-size: 18px;
+    color: black;
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+.valor-item p {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.6;
+}
+
+.valor-icone {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.valor-icone i {
+    font-size: 27px;
+    color: #ffffff;
+}
+
+.fundo-verde {
+    background-color: #2ecc71;
+}
+
+.fundo-azul {
+    background-color: #3498db;
 }
 
 
+/* --------------inovações-------------
+---------------------------------------- */
+
+.revolucao-digital-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+    padding: 60px 5%;
+    max-width: 1200px;
+    margin: 0 auto;
+    font-family: 'Roboto', sans-serif;
+}
+
+.inovacao-imagem-wrapper {
+    flex: 1;
+    max-width: 45%;
+}
+
+.inovacao-imagem {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.inovacao-texto {
+    flex: 1;
+    max-width: 55%;
+    border-left: 3px solid #008000;
+    padding-left: 40px;
+}
+
+.inovacao-texto h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.5em;
+    color: #212121;
+    margin-top: 0;
+    margin-bottom: 25px;
+    text-align: left;
+    border-bottom: 2px solid #008000;
+}
+
+.inovacao-texto p {
+    font-size: 1em;
+    line-height: 1.7;
+    color: #666;
+    margin-bottom: 20px;
+    text-align: left;
+}
 
 
 
