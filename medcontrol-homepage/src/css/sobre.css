@@ -515,36 +515,126 @@ p {
 }
 
 
+/* -------------contato--------------
+----------------------------------------- */
+
+
+.info-secao {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f8f9fa;
+    padding: 40px 10px;
+    text-align: center;
+}
+
+.info-cabecalho {
+    margin-bottom: 40px;
+}
+
+.info-cabecalho h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #212529;
+    margin-bottom: 15px;
+}
+
+.info-cabecalho p {
+    font-size: 1rem;
+    color: #6c757d;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.info-cards-container {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+.info-card {
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.07);
+    padding: 30px 25px;
+    width: 100%;
+    max-width: 320px;
+    border: 1px solid #e9ecef;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
 
 
 
+.info-card-icone {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin: 0 auto 20px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 20px;
+}
 
+.info-icone-verde {
+    background-color: #28a745;
+}
 
+.info-icone-azul {
+    background-color: #007bff;
+}
 
+.info-card-titulo {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #343a40;
+    margin-bottom: 15px;
+}
 
+.info-card-info {
+    color: #666;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    flex-grow: 1;
+    margin-bottom: 20px;
+}
 
+.info-card-btn {
+    display: inline-block;
+    padding: 10px 25px;
+    border: 2px solid;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
 
+.info-btn-verde {
+    border-color: #28a745;
+    color: #28a745;
+}
 
+.info-btn-azul {
+    border-color: #007bff;
+    color: #007bff;
+}
 
+.info-btn-verde:hover {
+    background-color: #28a745;
+    color: #ffffff;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.info-btn-azul:hover {
+    background-color: #007bff;
+    color: #ffffff;
+}
 
 /* --------------Footer ------------------
 ------------------------------------------ */

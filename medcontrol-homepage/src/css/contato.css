@@ -1,3 +1,4 @@
+
 .roboto {
   font-family: "Roboto", sans-serif;
   font-optical-sizing: auto;
@@ -156,219 +157,205 @@ nav input {
     box-shadow: 0 4px 8px rgba(44, 128, 184, 0.3);
 }
 
-/* --------------Banner ------------------
+/* --------------titulo ------------
 ------------------------------------------ */
-
-.banner {
-    background: url('./../assets/img/banner/banner2.jpg');
-    background-size: cover;
-    background-position: center;
-    height: 350px;
-    padding: 80px 5%;
+.pagina-cabecalho {
     text-align: center;
-    margin-top: 0px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    overflow-x: hidden;
-
+    padding: 60px 20px;
+    background-color: #ffffff;
 }
 
-h2 {
-    font-size: 2.5rem;
-    margin-bottom: 10px;
-    color: black;
+.pagina-titulo {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #212529;
+    margin-bottom: 15px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
 }
 
-p {
+.pagina-subtitulo {
     font-size: 1.2rem;
-    color: black;
-    margin-bottom: 30px;
-    font-weight: 500;
-}
-
-#ver-produtos {
-
-    color: white;
-    background-color: #008000;
-    border: none;
-    padding: 10px 30px;
-    border-radius: 5px;
-    font-weight: 500;
-    cursor: pointer;
-    align-items: center;
-
-}
-
-
-/* --------------Destaque + cards ------------------
--------------------------------------------------- */
-
-.destaque {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px 20px;
-}
-
-.destaque h3 {
-    font-size: 2rem;
-    color: black;
-    margin-bottom: 10px;
-    text-align: center;
-}
-
-.destaque p {
-    font-size: 1rem;
-    color: #555;
-    text-align: center;
-    margin-bottom: 40px;
-    max-width: 600px;
+    color: #6c757d;
+    max-width: 650px;
     margin-left: auto;
     margin-right: auto;
-}
-
-.cards-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 30px;
-}
-
-.card {
-    background: white;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    width: 100%;
-    max-width: 350px;
-    display: flex;
-    flex-direction: column;
-}
-
-.card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-    border: solid 1px black;
-}
-
-.card-img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    display: block;
-}
-
-.card-content {
-    padding: 20px;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-}
-
-.card h4 {
-    font-size: 1.3rem;
-    color: black;
-    margin-bottom: 10px;
-    line-height: 1.3;
-}
-
-.card p {
-    font-size: 0.9rem;
-    color: #555;
-    margin-bottom: 20px;
-    margin-top: 10px;;
-    flex-grow: 1;
-}
-
-.btn-explorar {
-    display: flex;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 6px;
-    font-weight: 400;
+    line-height: 1.6;
     text-align: center;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    text-decoration: none;
-    align-self: auto;
 }
 
-.btn-verde {
-    color: #008000;
-    background-color: white;
-    border: 2px solid #008000;
+/* --------------input contato ------------
+------------------------------------------ */
 
-}
-
-.btn-azul {
-    color: #2196F3;
-    background-color: white;
-    border: 2px solid #2196F3;
-}
-
-.btn-explorar:hover {
-    transform: scale(1.05);
-}
-
-/* ------------------Motivos ------------------
--------------------------------------------- */
-
-
-.motivo {
-    background: white;
+.contato-titulo-container {
+    text-align: center;
     padding: 40px 20px;
-    text-align: center;
-    margin-top: 40px;
 }
 
-.motivo h3 {
-    font-size: 1.8rem;
-    color: black;
-    margin-bottom: 15px;
-    font-weight: 600;
+.contato-titulo-container h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: #212529;
+    margin-bottom: 10px;
 }
 
-.motivo p {
-    font-size: 1rem;
-    color: #7f8c8d;
+.contato-titulo-container p {
+    font-size: 1.2rem;
+    color: #6c757d;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.contato-principal-secao {
+    background-color: #f8f9fa;
+    padding: 0 20px 60px 20px;
+}
+
+.contato-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.contato-card {
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.contato-grid {
+    display: flex;
+}
+
+.contato-coluna-form,
+.contato-coluna-info {
+    flex: 1;
+    padding: 40px;
+}
+
+.contato-coluna-info {
+    background-color: #f8f9fa;
+    display: flex;
+    flex-direction: column;
+}
+
+.contato-coluna-form h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+}
+
+.coluna-subtitulo {
+    color: #6c757d;
     margin-bottom: 30px;
 }
 
-.motivo-container {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    max-width: 1200px;
-    margin: 0 auto;
-    flex-wrap: wrap;
+.form-grupo {
+    margin-bottom: 20px;
 }
 
-.motivo-card {
-    background: transparent;
-    padding: 0;
-    text-align: center;
-    min-width: 200px;
+.form-grupo label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #343a40;
 }
 
-.motivo-card img {
-    width: 50px;
-    height: 50px;
-    margin-bottom: 15px;
-    object-fit: contain;
+.form-grupo input,
+.form-grupo textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ced4da;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: 'Roboto', sans-serif;
+    transition: border-color 0.3s, box-shadow 0.3s;
 }
 
-.motivo-card h4 {
+.form-grupo input:focus,
+.form-grupo textarea:focus {
+    outline: none;
+    border-color: #28a745;
+    box-shadow: 0 0 0 4px rgba(40, 167, 69, 0.15);
+}
+
+.btn-enviar {
+    width: 100%;
+    padding: 15px;
+    background-color: #28a745;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
     font-size: 1.1rem;
-    color: black;
-    margin-bottom: 10px;
-    font-weight: 600;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
 }
 
-.motivo-card p {
-    color: #7f8c8d;
-    line-height: 1.4;
-    font-size: 0.9rem;
-    max-width: 250px;
+.btn-enviar:hover {
+    background-color: #218838;
+    transform: translateY(-2px);
+}
+
+.info-logo-wrapper {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.info-logo-wrapper img {
+    width: 500px;
+    max-width: 200px;
+}
+
+.info-lista {
+    list-style: none;
+    padding: 0;
+    font-size: 1.1rem;
+}
+
+.info-lista li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+    color: #495057;
+}
+
+.info-lista i {
+    color: #28a745;
+    font-size: 1.2rem;
+    margin-right: 15px;
+    width: 20px;
+    text-align: center;
+}
+
+.mapa-wrapper {
+    margin-top: auto;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.mapa-wrapper iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+@media (max-width: 992px) {
+    .contato-grid {
+        flex-direction: column;
+    }
+
+    .contato-titulo-container h1 {
+        font-size: 2.2rem;
+    }
+
+    .contato-coluna-form,
+    .contato-coluna-info {
+        padding: 30px;
+    }
 }
 
 /* --------------Footer ------------------
@@ -393,6 +380,7 @@ footer {
 
 .footer-section {
     text-align: left;
+
 }
 
 .footer-section h4 {
@@ -419,23 +407,26 @@ footer {
     color: #e0e0e0;
     margin-bottom: 1rem;
     max-width: 300px;
+    text-align: left;
 }
 
 .footer-section ul {
     list-style: none;
     font-size: 1rem;
+    text-align: left;
 }
 
 .footer-section ul li {
     margin-bottom: 0.7rem;
+    text-align: left;
 
 }
 
 .footer-section ul li a {
     color: #e0e0e0;
-    list-style: none;
     text-decoration: none;
     transition: all 0.3s ease;
+    text-align: left;
 }
 
 .footer-section ul li a:hover {
