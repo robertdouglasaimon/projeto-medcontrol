@@ -1,4 +1,3 @@
-
 .roboto {
   font-family: "Roboto", sans-serif;
   font-optical-sizing: auto;
@@ -10,7 +9,6 @@
 
 /* --------------Reset pagina -------------
 ------------------------------------------*/
-
 * {
     margin: 0;
     padding: 0;
@@ -29,7 +27,6 @@ body {
 
 /* --------------topo + input -------------
 ------------------------------------------*/
-
 header {
     background-color: white;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -50,8 +47,6 @@ h1 {
 }
 
 img {
-    /* height: 50px; */
-    /* margin-bottom: 10px; */
     width: 100px;
 }
 
@@ -89,7 +84,6 @@ nav ul li a {
     padding: 8px 5px;
     transition: all 0.3s ease;
     position: relative;
-    
 }
 
 nav ul li a:hover {
@@ -131,11 +125,9 @@ nav input {
     left: 2rem;
 }
 
-/* --------------btn admin ------------ 
+/* --------------btn admin ------------
 ------------------------------------------*/
-
 #Admin {
-
     color: black;
     border: none;
     padding: 10px 30px;
@@ -147,7 +139,6 @@ nav input {
     align-items: center;
     margin-left: 20px;
     white-space: nowrap;
-
 }
 
 #Admin:hover {
@@ -166,13 +157,11 @@ nav input {
 }
 
 .pagina-titulo {
+    font-family: 'Montserrat', sans-serif;
     font-size: 3rem;
     font-weight: 700;
     color: #212529;
     margin-bottom: 15px;
-    text-align: center;
-    display: flex;
-    justify-content: center;
 }
 
 .pagina-subtitulo {
@@ -182,35 +171,13 @@ nav input {
     margin-left: auto;
     margin-right: auto;
     line-height: 1.6;
-    text-align: center;
 }
 
 /* --------------input contato ------------
 ------------------------------------------ */
-
-.contato-titulo-container {
-    text-align: center;
-    padding: 40px 20px;
-}
-
-.contato-titulo-container h1 {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 2.8rem;
-    font-weight: 700;
-    color: #212529;
-    margin-bottom: 10px;
-}
-
-.contato-titulo-container p {
-    font-size: 1.2rem;
-    color: #6c757d;
-    max-width: 600px;
-    margin: 0 auto;
-}
-
 .contato-principal-secao {
     background-color: #f8f9fa;
-    padding: 0 20px 60px 20px;
+    padding: 60px 20px;
 }
 
 .contato-container {
@@ -222,7 +189,6 @@ nav input {
     background-color: #ffffff;
     border-radius: 15px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
 }
 
 .contato-grid {
@@ -334,7 +300,6 @@ nav input {
     width: 100%;
     aspect-ratio: 16 / 9;
     border-radius: 8px;
-    overflow: hidden;
 }
 
 .mapa-wrapper iframe {
@@ -343,24 +308,8 @@ nav input {
     border: 0;
 }
 
-@media (max-width: 992px) {
-    .contato-grid {
-        flex-direction: column;
-    }
-
-    .contato-titulo-container h1 {
-        font-size: 2.2rem;
-    }
-
-    .contato-coluna-form,
-    .contato-coluna-info {
-        padding: 30px;
-    }
-}
-
 /* --------------Footer ------------------
 ------------------------------------------ */
-
 footer {
     width: 100vw;
     background: #101829;
@@ -380,7 +329,6 @@ footer {
 
 .footer-section {
     text-align: left;
-
 }
 
 .footer-section h4 {
@@ -419,7 +367,6 @@ footer {
 .footer-section ul li {
     margin-bottom: 0.7rem;
     text-align: left;
-
 }
 
 .footer-section ul li a {
@@ -443,8 +390,22 @@ footer {
 
 /* --------------- Responsividade-----------------
 ------------------------------------------------ */
-@media (max-width: 600px) {
+@media (max-width: 992px) {
+    .contato-grid {
+        flex-direction: column;
+    }
 
+    .contato-titulo-container h1 {
+        font-size: 2.2rem;
+    }
+
+    .contato-coluna-form,
+    .contato-coluna-info {
+        padding: 30px;
+    }
+}
+
+@media (max-width: 600px) {
     header {
         flex-direction: column;
         align-items: center;

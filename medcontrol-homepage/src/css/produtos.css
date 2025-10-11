@@ -57,13 +57,6 @@ img {
     height: 30px;
 }
 
-.carrinho-icone {
-    display: flex;
-    align-items: center;
-    cursor: pointer !important;
-    padding-right: 10px !important;
-}
-
 nav {
     display: flex;
     align-items: center;
