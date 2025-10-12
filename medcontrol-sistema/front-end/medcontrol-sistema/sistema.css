@@ -81,8 +81,8 @@ footer a:hover {
 }
 
 .logo img {
-    width: 20%;
-    height: 50%;
+    width: 60%;
+    height: 80%;
     background-color: var(--fundo-principal);
     position: relative;;
     top: -6px;
@@ -93,6 +93,9 @@ footer a:hover {
       font-size: 1.3rem;
       text-align: left;
       color: var(--amarelo-medcontrol);
+      position: relative;
+      left: -2rem;
+      top: 3px;
 }
 
 #cargo-usuario {
@@ -1062,7 +1065,7 @@ table {
   font-weight: bold;
   position: relative;
   top: -1.5rem;
-  left: 4.5rem;
+  left: 8.3rem;
 }
 
 .nivel-estoque p {
@@ -1113,8 +1116,7 @@ table {
 
 .nivel-estoque.seguro:hover {
   background-color: #0eb345;
-  border-bottom: 5px solid #60e737 !important; /* verde */
-  
+  border-bottom: 5px solid #60e737 !important; /* verde */  
 }
 
 .nivel-estoque.critico:hover {

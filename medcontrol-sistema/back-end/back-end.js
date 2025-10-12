@@ -343,12 +343,62 @@ app.put('/editar_produto/:id_produto', (req, res) => {
   }
 });
 
-/*-----------------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------------------------*/
+
+/*--------------------------------------------------------------------------------------------*/
+// Rota:dashboard da tela de estoque (total de estoque, perdas e descarte, nivel de estoque)
+
+// Rota: Obter o valor total do estoque:
+app.get('/dashboard_estoque', (req, res) => {
+  try {
+    const stmt = db.prepare("SELECT SUM(qtd_estoque) AS total_estoque FROM controle_estoque;");
+    const totalEstoque = stmt.get();
+    res.setHeader("Content-Type", "application/json");
+    res.json(totalEstoque);
+  } catch (err) {
+    res.status(500).json({ mensagem: "Erro ao buscar produtos."})
+  }
+})
+
+// Rota: Obter o valor de perdas e descarte:
+app.get('/dashboard_perdas_descarte', (req, res) => {
+  try {
+    const stmt = db.prepare("SELECT SUM(perdas_descarte) AS total_perdas_descarte FROM controle_estoque");
+    const totalPerdasDescarte = stmt.get(); 
+    res.setHeader("Content-Type", "application/json");
+    res.json(totalPerdasDescarte);
+  } catch (err) {
+    res.status(500).json({ mensagem: "Erro ao buscar produtos."})
+}})
+
+// Rota: Obter o nivel de estoque:
+app.get("/nivel_estoque", (req, res) => {
+  try {
+    const stmt = db.prepare(`
+      SELECT 
+        ROUND((SUM(p.qtd_estoque) * 100.0) / (
+          SELECT SUM(qtd_estoque) FROM controle_estoque
+        ), 2) AS nivel_estoque
+      FROM cadastro_produtos AS p;
+    `);
+
+    const resultado = stmt.get();
+    console.log("📦 Resultado da consulta:", resultado);
+
+    res.json({ nivel_estoque: resultado.nivel_estoque });
+  } catch (error) {
+    console.error("❌ Erro ao consultar nível de estoque:", error.message);
+    res.status(500).json({ erro: "Erro ao consultar nível de estoque." });
+  }
+});
+//---------------------------------------------------------------------------------------//
 
 
 
+/*---------------------------------------------------------------------------------------------*/
 
-//------------------------------------------------------------------------------------------//
+
+//---------------------------------------------------------------------------------------------//
 // Servir arquivos estáticos do front-end
 app.use(express.static(path.join(__dirname, '../../front-end/medcontrol-login')));
 
