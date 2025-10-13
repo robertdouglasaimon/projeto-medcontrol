@@ -392,14 +392,133 @@ export function render () {
                     <td>${item.perdas_descarte}</td>
                     <td>
                         <button class="btn btn-warning editar-lote btn-estoque-editar">Editar</button>
-                        <button class="btn btn-danger excluir-lote btn-estoque-excluir">Excluir</button>
+                        <button class="btn btn-danger  excluir-lote  btn-estoque-excluir">Excluir</button>
                     </td>
                 `;
                 tbody.appendChild(row);
                 });            
             });
-        }, 10);
+    }, 10);
 
+
+// Script para editar a linha da tabela:
+    setTimeout(() => {
+        const tbody = document.querySelector('tbody');
+
+        tbody.addEventListener("click", async (event) => {
+                const btn = event.target;
+                if(!btn.classList.contains("editar-lote")) return;
+
+
+                const row = btn.closest("tr");
+                const id_controle_estoque = row.getAttribute("data-id_controle_estoque");
+
+                const lote_estoque = row.querySelector('td:nth-child(1)').textContent;
+                const qtd_entrada = row.querySelector('td:nth-child(2)').textContent;
+                const saida_produto = row.querySelector('td:nth-child(3)').textContent;
+                const qtd_estoque = row.querySelector('td:nth-child(4)').textContent;
+                const produto_validade = row.querySelector('td:nth-child(5)').textContent;
+                const perdas_descarte = row.querySelector('td:nth-child(6)').textContent;
+
+                console.log("Dados do lote: ", {id_controle_estoque, lote_estoque, qtd_entrada, saida_produto, qtd_estoque, produto_validade, perdas_descarte});
+
+                const modal = document.createElement("div");
+                modal.classList.add("modal");
+                modal.innerHTML = `
+                    <div class="modal-content">
+                        <h3>Editar Lote</h3>
+                        <form id="form-editar-lote">
+                            <label for="lote_estoque">Lote:</label>
+                            <input type="text" id="lote_estoque" value="${lote_estoque}" required>
+
+                            <label for="qtd_entrada">Quantidade de Entrada:</label>
+                            <input type="number" id="qtd_entrada" value="${qtd_entrada}" required>
+
+                            <label for="saida_produto">Saida de Produto:</label>
+                            <input type="number" id="saida_produto" value="${saida_produto}" required>
+
+                            <label for="qtd_estoque">Quantidade no Estoque:</label>
+                            <input type="number" id="qtd_estoque" value="${qtd_estoque}" required>
+
+                            <label for="produto_validade">Validade do Produto:</label>
+                            <input type="date" id="produto_validade" value="${produto_validade}" required>
+
+                            <label for="perdas_descarte">Perdas e Descarte:</label>
+                            <input type="number" id="perdas_descarte" value="${perdas_descarte}" required>
+
+                            <button type="submit" class="btn btn-primary">Salvar</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                        </form>
+                    </div>
+                `;
+                document.body.appendChild(modal);
+
+    // Fecha o modal ao clicar no botão "fechar" ou clicar "fora do modal": ---------------------
+            modal.addEventListener("click", (event) => {
+            if (
+                event.target.classList.contains("close-modal") || 
+                event.target.classList.contains("modal") || 
+                event.target.classList.contains("btn-secondary")) {
+                modal.remove();
+            }
+            });
+
+    // Script para salvar os dados editados:------------------------------------------------------ 
+                const form = document.querySelector("#form-editar-lote");
+                form.addEventListener("submit", async (event) => {
+                    event.preventDefault();
+
+                    const lote_estoque = form.querySelector("#lote_estoque").value;
+                    const qtd_entrada = form.querySelector("#qtd_entrada").value;
+                    const saida_produto = form.querySelector("#saida_produto").value;
+                    const qtd_estoque = form.querySelector("#qtd_estoque").value;
+                    const produto_validade = form.querySelector("#produto_validade").value;
+                    const perdas_descarte = form.querySelector("#perdas_descarte").value;
+
+                    // Validação dos dados:
+                    if (!lote_estoque || !qtd_entrada || !saida_produto || !qtd_estoque || !produto_validade || !perdas_descarte) {
+                        alert("Todos os campos devem ser preenchidos.");
+                        return;
+                    }	
+
+                    // Envia os dados para o back-end:
+                    try {
+                        console.log("Dados do lote: ", {id_controle_estoque, lote_estoque, qtd_entrada, saida_produto, qtd_estoque, produto_validade, perdas_descarte});
+                        const response = await fetch(`http://localhost:3001/editar_lote/${id_controle_estoque}`, {
+                        method: "PUT",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({ lote_estoque, qtd_entrada, saida_produto, qtd_estoque, produto_validade, perdas_descarte })
+                        });
+
+                        if (!res.ok) {
+                            alert("❌ Erro ao editar o lote.");
+                            throw new Error("Erro ao editar o lote.");
+                        } else {
+                            const data = await response.json();
+
+                            console.log("✅ Lote editado com sucesso:", data);
+                            row.querySelector("td:nth-child(2)").textContent = lote_estoque;
+                            row.querySelector("td:nth-child(3)").textContent = qtd_entrada;
+                            row.querySelector("td:nth-child(4)").textContent = saida_produto;
+                            row.querySelector("td:nth-child(5)").textContent = qtd_estoque;
+                            row.querySelector("td:nth-child(6)").textContent = produto_validade;
+                            row.querySelector("td:nth-child(7)").textContent = perdas_descarte;
+
+                            alert(`✅ ${data.mensagem} Lote editado com sucesso!`);
+                            window.location.reload();
+                            return;
+                        }
+                    } catch (error) {
+                        console.error("❌ Erro ao editar o lote:", error);
+                        alert(`❌ ${error.message}`)
+                    }
+                    modal.remove();
+            });
+        });
+
+    },0);
 
   // Script para apagar da tabela e do bando um registro pelo front-end atraves do botão excluir:
     setTimeout(() => {

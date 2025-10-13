@@ -417,7 +417,31 @@ app.post('/cadastro_lote', (req, res) => {
   res.status(201).json({ mensagem: 'Cadastro efetuado com sucesso!' });
 });
 
+// Rota: para editar um registro do banco de dados e da tabela controle_estoque:
+app.put('/editar_lote/:id_controle_estoque', (req, res) => {
+  const id = req.params.id_controle_estoque;
+  const {
+    lote_estoque,
+    qtd_entrada,
+    saida_produto,
+    qtd_estoque,
+    produto_validade,
+    perdas_descarte
+  } = req.body;
 
+  const stmt = db.prepare(`
+    UPDATE controle_estoque
+    SET lote_estoque = ?, qtd_entrada = ?, saida_produto = ?, qtd_estoque = ?, produto_validade = ?, perdas_descarte = ?
+    WHERE id_controle_estoque = ?
+  `);
+
+  const result = stmt.run(lote_estoque, qtd_entrada, saida_produto, qtd_estoque, produto_validade, perdas_descarte, id);
+  if (result.changes > 0) {
+    res.status(200).json({ mensagem: 'Registro editado com sucesso!' });
+  } else {
+    res.status(404).json({ mensagem: 'Registro nao encontrado.' });
+  }
+});
 
 // Rota: para deletar um registro do banco de dados e da tabela controle_estoque:
 app.delete('/deletar_lote/:id_controle_estoque', (req, res) => {
