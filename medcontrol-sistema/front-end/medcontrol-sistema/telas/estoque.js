@@ -34,9 +34,67 @@ export function render () {
             <h2> <i class="fas fa-chart-line"></i> Gráfico de Estoque </h2>
             <canvas id="graficoEstoque" width="120" height="50"></canvas>
         </section>
+
+        <section class="lote-header">
+            <h2> <i class="fas fa-barcode"></i> Buscar por Lote </h2>
+
+            <div class="lote-pesquisa">
+                <div class="input-wrapper">
+                    <input type="text" id="busca-lote" placeholder="Buscar por numero de lote" class="buscar-input-lote">
+                    <button class="btn-novo-lote" id="btnNovoLote">+ Novo Registro</i></button>
+                </div>
+            </div>
+        </section>
+
+    <!-- Modal do botão 'Novo Lote'-->
+    <div id="modalNovoLote" class="modal hidden">
+      
+      <div class="modal-content">
+        <span class="fechar-modal" id="fecharModal">&times;</span>
+        <h3>Cadastrar novo registro de estoque</h3>
+
+        <!-- Formulário de cadastro aqui -->
+        <form class="cadastro-lote-modal">
+            <input type="text" name="lote_estoque" placeholder="Lote" required />
+            <input type="text" name="qtd_entrada" placeholder="Entrada" required />
+            <input type="text" name="saida_produto" placeholder="Saída" required />
+            <input type="text" name="qtd_estoque" placeholder="Estoque" required />
+            <input type="date" name="produto_validade" placeholder="Validade" required />
+            <input type="text" name="perdas_descarte" placeholder="Perdas" required />
+
+
+          <button type="submit">Salvar</button>
+          <button type="button" class="cancelar">Cancelar</button>
+        </form>
+      </div>
+    </div>
+
+        <section class="lote-tabela">
+            <h2> <i class="fas fa-table"></i> Tabela de Registro e Lotes do Estoque </h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Lote do Produto</th>
+                        <th>Quantidade de Entrada</th>
+                        <th>Quatidade de Saida</th>
+                        <th>Quantidade em Estoque</th>
+                        <th>Validade do Lote</th>
+                        <th>Perda ou Descarte</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody class="tabela-estoque">
+                    <!-- Dados da tabela do banco de dados serão inseridos aqui -->
+                    <td>Carregando...</td>
+                 </tbody>
+            </table>
+        </section>
+
+
+
     `;
 
-    // Alterador de estilo do dashboard de Nivel de Estoque de acordo com a criticidade do estoque (Se for menor que o 50, fica vermelho, se for maior ou igual fica verde):
+    // Alterador de estilo do dashboard de Nivel de Estoque de acordo com a criticidade do estoque (Se for menor que o 50.00 fica vermelho, se for maior ou igual fica verde):
     setTimeout(() => {
         const card = document.querySelector('.nivel-estoque'); // direto no DOM
         const valorSpan = card.querySelector('.nivel-estoque-valor');
@@ -121,14 +179,15 @@ export function render () {
 
     }, 0);
     //-----------------------------------------------------------------------------------------//
-
+    
+    
     // Grafico de Estoque que está sendo atualizado em tempo real lá pelo back-end com a API do Flask (Python: app.py)
     setTimeout(() => {
     /*
     ===============================================================
     📄 Arquivo: estoque.js
-    🎯 Finalidade: Consumir a API Flask que retorna múltiplos conjuntos
-                de dados de estoque e renderizar um gráfico com Chart.js
+    🎯 Finalidade: Consumir a API Flask lá do "app.py" que retorna múltiplos conjuntos
+        de dados de estoque e renderiza um gráfico com Chart.js
     ===============================================================
 
     🧠 Visão geral:
@@ -136,6 +195,7 @@ export function render () {
     - grafico_geral: dados agregados de entradas, saídas, perdas e total
     - grafico_perdas_detalhado: soma dos valores numéricos extraídos da coluna perdas_descarte
     - Este script acessa os dados de grafico_geral e renderiza o gráfico principal.
+    - Pode vir mais blocos de dados, vai dependendo da API Flask e de como ela retorna os dados de lá, só seguir as etapas no comentário abaixo e no back-end: app.py que dá bom.
     ===============================================================
     */
     fetch('http://localhost:5000/grafico-estoque')
@@ -143,7 +203,7 @@ export function render () {
         .then(data => {
         /*
         ===============================================================
-        🎯 Seleção do elemento <canvas> onde o gráfico será desenhado
+        🎯 Seleção do elemento <canvas> onde o gráfico vai ser desenhado:
         ---------------------------------------------------------------
         ctx: contexto 2D do canvas com id "graficoEstoque"
         Esse elemento deve existir no HTML:
@@ -188,9 +248,195 @@ export function render () {
             }
         });
         });
-    }, 0); // Executa imediatamente após o carregamento
+    }, 0);
+   //-----------------------------------------------------------------------------------------//
+
+  // Script relacionado a barra de busca da tela de estoque:
+    setTimeout(() => {
+        const input = div.querySelector('.buscar-input-lote');
+        const table = div.querySelector('.lote-tabela table tbody');
+
+        input.addEventListener('input', () => {
+            const itemQueSeraBuscado = input.value.toLowerCase();
+            const rows = table.querySelectorAll('tr');
+
+            rows.forEach((row) => {
+                const lote = row.querySelector('td:nth-child(1)').textContent.toLowerCase();
+                if (lote.includes(itemQueSeraBuscado)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+    },0);
 
 
+    // Script relacionado ao modal do botão "+ Novo Produto":
+    setTimeout(() => {
+    const div = document; // usa document direto
+    const form = div.querySelector('.cadastro-lote-modal');
+    const table = div.querySelector('.lote-tabela table tbody');
+    const modal = div.querySelector('#modalNovoLote');
+    const btnNovoLote = div.querySelector('#btnNovoLote');
+    const fecharModal = div.querySelector('#fecharModal');
+    const cancelar = div.querySelector('.cancelar');
+
+    // Abrir modal
+    btnNovoLote.addEventListener('click', () => {
+    modal.classList.remove('hidden');
+    });
+
+    // Fechar modal no X ou botão cancelar
+    fecharModal.addEventListener('click', () => {
+    modal.classList.add('hidden');
+    });
+
+    cancelar.addEventListener('click', () => {
+    modal.classList.add('hidden');
+    });
+
+    // Fechar ao clicar fora
+    window.addEventListener('click', (event) => {
+    if (event.target === modal) {
+    modal.classList.add('hidden');
+    }
+    });
+
+    // Submissão do formulário (Enviar dados para o back-end e atualizar a tabela)
+    form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    const lote_estoque = form.querySelector('input[name="lote_estoque"]').value;
+    const qtd_entrada = form.querySelector('input[name="qtd_entrada"]').value;
+    const saida_produto = form.querySelector('input[name="saida_produto"]').value;
+    const qtd_estoque = form.querySelector('input[name="qtd_estoque"]').value;
+    const produto_validade = form.querySelector('input[name="produto_validade"]').value;
+    const perdas_descarte = form.querySelector('input[name="perdas_descarte"]').value;
+
+    if (!lote_estoque || !qtd_entrada || !saida_produto || !qtd_estoque || !produto_validade || !perdas_descarte) {
+    alert('Todos os campos devem ser preenchidos.');
+    return;
+    }
+
+    try {
+    const response = await fetch('http://localhost:3001/cadastro_lote', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+        lote_estoque,
+        qtd_entrada,
+        saida_produto,
+        qtd_estoque,
+        produto_validade,
+        perdas_descarte
+        })
+    });
+
+    if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(errorText || 'Erro ao cadastrar lote.');
+    }
+
+    const data = await response.json();
+    alert(`✅ ${data.mensagem}`);
+    form.reset();
+    modal.classList.add('hidden');
+
+    const novaLinha = document.createElement('tr');
+    novaLinha.innerHTML = `
+        <td>${lote_estoque}</td>
+        <td>${qtd_entrada}</td>
+        <td>${saida_produto}</td>
+        <td>${qtd_estoque}</td>
+        <td>${produto_validade}</td>
+        <td>${perdas_descarte}</td>
+        <td>
+        <button class="btn-editar-lote editar-lote">Editar</button>
+        <button class="btn-excluir-lote excluir-lote">Excluir</button>
+        </td>
+    `;
+    table.appendChild(novaLinha);
+
+    } catch (error) {
+    console.error('❌ Erro ao cadastrar lote:', error.message);
+    alert(`❌ Erro ao cadastrar lote: ${error.message}`);
+    }
+    });
+    }, 50);
+
+
+   // Script para a tabela de estoque:
+    setTimeout(() => {
+            const tbody = document.querySelector('tbody');
+            tbody.innerHTML = "";
+
+            fetch('http://localhost:3001/tabela_estoque')
+            .then((response) => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw new Error('Erro ao obter os dados da tabela de estoque.');
+                }
+            })
+            .then((data) => {
+                data.forEach(item => {
+                const row = document.createElement('tr');
+                row.setAttribute("data-id_controle_estoque", item.id_controle_estoque); 
+                row.innerHTML = `
+                    <td>${item.lote_estoque}</td>
+                    <td>${item.qtd_entrada}</td>
+                    <td>${item.saida_produto}</td>
+                    <td>${item.qtd_estoque}</td>
+                    <td>${item.produto_validade}</td>
+                    <td>${item.perdas_descarte}</td>
+                    <td>
+                        <button class="btn btn-warning editar-lote btn-estoque-editar">Editar</button>
+                        <button class="btn btn-danger excluir-lote btn-estoque-excluir">Excluir</button>
+                    </td>
+                `;
+                tbody.appendChild(row);
+                });            
+            });
+        }, 10);
+
+
+  // Script para apagar da tabela e do bando um registro pelo front-end atraves do botão excluir:
+    setTimeout(() => {
+    const table = document.querySelector('table');
+
+    table.addEventListener('click', async (event) => {
+        if (event.target.classList.contains('excluir-lote')) {
+          
+        const row = event.target.closest('tr');
+        const id = row.getAttribute('data-id_controle_estoque');
+
+            if (!id) {
+                alert('❌ ID do lote não encontrado.');
+                return;
+            }
+
+            const confirmar = confirm('Tem certeza de que deseja excluir o lote?');
+            if (!confirmar) return;
+
+            try {
+                const response = await fetch(`http://localhost:3001/deletar_lote/${id}`, {
+                method: 'DELETE'
+                });
+
+                if (response.ok) {
+                alert('✅ Lote excluído com sucesso!');
+                row.remove();
+                } else {
+                throw new Error('Erro ao excluir o lote.');
+                }
+            } catch (error) {
+                console.error('❌ Erro ao excluir o lote:', error.message);
+                alert(`❌ Erro ao excluir o lote: ${error.message}`);
+            }
+        }
+    });
+    }, 10);
 
     return div;
 }

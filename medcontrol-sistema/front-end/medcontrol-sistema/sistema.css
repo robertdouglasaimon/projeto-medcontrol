@@ -1123,8 +1123,8 @@ table {
   background-color: #b30e0e;
   border-bottom: 5px solid #e84118 !important; /* vermelho */
 }
-/*----------------------------------------------*/
-
+/*---------------------------------------------------------------*/
+/* Estilo relacionado ao titulo da sessão do gráfico de estoque*/
 .estoque-header h2 {
   background-color: var(--fundo-principal);
   padding: 10px;
@@ -1134,12 +1134,160 @@ table {
   color: var(--cor-branca);
   border-radius: 5px;
 }
-
-
-
 /*---------------------------------------------------------*/
+/*Estilo relacionado a barra de busca da tela de estoque: */
 
+.lote-header h2 {
+  background-color: var(--fundo-principal);
+  padding: 10px;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  margin-top: 2rem;
+  color: var(--cor-branca);
+  border-radius: 5px;
+}
 
+.lote-pesquisa {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.buscar-input-lote {
+  flex: 1;
+  padding: 15px;
+  border-radius: 5px 0 0 5px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  min-width: 0;
+}
+
+.btn-novo-lote {
+  background-color: orange;
+  color: white;
+  border: none;
+  border-radius: 0 5px 5px 0;
+  padding: 15px 20px;
+  cursor: pointer;
+  font-weight: bold;
+  white-space: nowrap;
+}
+/*----------------------------------------------------------*/
+/* Estilos relacionados a tabela de estoque --------------*/
+.lote-tabela h2 {
+  background-color: var(--fundo-principal);
+  padding: 10px;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  margin-top: 2rem;
+  color: var(--cor-branca);
+  border-radius: 5px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background-color: var(--cor-branca);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+th, td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: var(--fundo-principal);
+  color: var(--cor-branca);
+  font-weight: bold;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+tr:hover {
+  background-color: var(--amarelo-medcontrol);
+}
+
+.btn-estoque-editar {
+  background-color: var(--amarelo-medcontrol);
+  color: var(--cor-branca);
+  border: none;
+  border-radius: 4px;
+  padding: 8px 17px;
+  font-size: 14px;
+  cursor: pointer;
+  margin-bottom: 0.3rem;
+}
+
+.btn-estoque-editar:hover {
+  background-color: rgb(190, 147, 29);
+}
+
+.btn-estoque-excluir {
+  background-color: #e84118;
+  color: var(--cor-branca);
+  border: none;
+  border-radius: 4px;
+  padding: 8px 15px;
+  font-size: 14px;
+  cursor: pointer;
+}
+/*---------------------------------------------------------*/
+/* Estilos relacionados ao modal de cadastro de novo registro de lote ------------------*/
+.cadastro-lote-modal {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.cadastro-lote-modal input {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.cadastro-lote-modal button[type="submit"] {
+  background-color: #4cd137;
+  color: var(--cor-branca);
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.cadastro-lote-modal button[type="submit"]:hover {
+  background-color: #28a315;
+  color: var(--cor-branca);
+  transition: all 0.3s ease-in-out;
+  transform: scale(1.05);
+}
+
+.cadastro-lote-modal .cancelar {
+  background-color: #e84118;
+  color: var(--cor-branca);
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.cadastro-lote-modal .cancelar:hover {
+  background-color: #c82333;
+  color: var(--cor-branca);
+  transition: all 0.3s ease-in-out;
+  transform: scale(1.05);
+}
 
 
 

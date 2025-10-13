@@ -78,7 +78,7 @@ def grafico_estoque():
         
         
         # -------------------------------
-        # 🔗 Junta os dois resultados
+        # 🔗 Chamando as consultas na resposta final (É obrigatoria essa chamada, sem ela não roda as consultas)
         # -------------------------------
         resposta_final = {
             'grafico_geral': dados_estoque_grafico1,
