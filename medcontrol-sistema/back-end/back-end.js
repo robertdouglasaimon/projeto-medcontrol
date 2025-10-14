@@ -391,12 +391,70 @@ app.get("/nivel_estoque", (req, res) => {
     res.status(500).json({ erro: "Erro ao consultar nível de estoque." });
   }
 });
-//---------------------------------------------------------------------------------------//
 
+// Rota: Obter os valores da tabela controle_estoque (lote_estoque, qtd_entrada, saida_produto, qtd_estoque, produto_validade, perdas_descarte, id_controle_estoque[Não vou usar o id, mas precisa chamar]) para criar a tabela de estoque:
+app.get('/tabela_estoque', (req, res) => {
+  try {
+    const stmt = db.prepare("SELECT id_controle_estoque, lote_estoque, qtd_entrada, saida_produto, qtd_estoque, produto_validade, perdas_descarte FROM controle_estoque;");
+    const tabelaEstoque = stmt.all();
+    res.setHeader("Content-Type", "application/json");
+    res.json(tabelaEstoque);
+  } catch (err) {
+    res.status(500).json({ mensagem: "Erro ao buscar produtos."})
+  }
+})
 
+// Rota: para cadastro de novo registro de Lote:
+app.post('/cadastro_lote', (req, res) => {
+  const { lote_estoque, qtd_entrada, saida_produto, qtd_estoque, produto_validade, perdas_descarte } = req.body;
 
-/*---------------------------------------------------------------------------------------------*/
+  const stmt = db.prepare(`
+    INSERT INTO controle_estoque (lote_estoque, qtd_entrada, saida_produto, qtd_estoque, produto_validade, perdas_descarte)
+    VALUES (?, ?, ?, ?, ?, ?)
+  `);
 
+  stmt.run(lote_estoque, qtd_entrada, saida_produto, qtd_estoque, produto_validade, perdas_descarte);
+  res.status(201).json({ mensagem: 'Cadastro efetuado com sucesso!' });
+});
+
+// Rota: para editar um registro do banco de dados e da tabela controle_estoque:
+app.put('/editar_lote/:id_controle_estoque', (req, res) => {
+  const id = req.params.id_controle_estoque;
+  const {
+    lote_estoque,
+    qtd_entrada,
+    saida_produto,
+    qtd_estoque,
+    produto_validade,
+    perdas_descarte
+  } = req.body;
+
+  const stmt = db.prepare(`
+    UPDATE controle_estoque
+    SET lote_estoque = ?, qtd_entrada = ?, saida_produto = ?, qtd_estoque = ?, produto_validade = ?, perdas_descarte = ?
+    WHERE id_controle_estoque = ?
+  `);
+
+  const result = stmt.run(lote_estoque, qtd_entrada, saida_produto, qtd_estoque, produto_validade, perdas_descarte, id);
+  if (result.changes > 0) {
+    res.status(200).json({ mensagem: 'Registro editado com sucesso!' });
+  } else {
+    res.status(404).json({ mensagem: 'Registro nao encontrado.' });
+  }
+});
+
+// Rota: para deletar um registro do banco de dados e da tabela controle_estoque:
+app.delete('/deletar_lote/:id_controle_estoque', (req, res) => {
+  const id = req.params.id_controle_estoque;
+  const stmt = db.prepare('DELETE FROM controle_estoque WHERE id_controle_estoque = ?');
+  const result = stmt.run(id);
+
+  if (result.changes > 0) {
+    res.status(200).json({ mensagem: 'Registro deletado com sucesso!' });
+  } else {
+    res.status(404).json({ mensagem: 'Registro nao encontrado.' });
+  }
+});
 
 //---------------------------------------------------------------------------------------------//
 // Servir arquivos estáticos do front-end

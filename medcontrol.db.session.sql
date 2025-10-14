@@ -335,7 +335,10 @@ SELECT
 FROM controle_estoque
 WHERE saida_produto IS NOT NULL;
 
+
 SELECT SUM(saida_produto) AS total_saida_produto FROM controle_estoque;
-
-
 SELECT SUM(qtd_estoque) AS total_estoque FROM cadastro_produtos;
+
+DELETE FROM controle_estoque WHERE id_controle_estoque = 61;DELETE FROM controle_estoque WHERE id_controle_estoque = 61;
+
+SELECT * FROM controle_estoque;
