@@ -50,18 +50,6 @@ img {
     width: 100px;
 }
 
-.carrinho {
-    width: 30px;
-    height: 30px;
-}
-
-.carrinho-icone {
-    display: flex;
-    align-items: center;
-    cursor: pointer !important;
-    padding-right: 10px !important;
-}
-
 nav {
     display: flex;
     align-items: center;
@@ -125,6 +113,7 @@ nav input {
     left: 2rem;
 }
 
+
 /* --------------btn admin ------------
 ------------------------------------------*/
 #Admin {
@@ -146,6 +135,111 @@ nav input {
     color: white;
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(44, 128, 184, 0.3);
+}
+
+
+/* ------------- menu hamburguer mobile ------------
+----------------------------------------------------*/
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    color: #333;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.menu-toggle.active {
+    transform: rotate(90deg);
+}
+
+.mobile-action {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+        position: absolute;
+        top: 10px;
+        right: 25px;
+        z-index: 1001;
+    }
+
+    nav {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        background-color: #fff;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        padding: 20px 0;
+        z-index: 1000;
+    }
+
+    nav.active {
+        display: flex;
+        animation: slideDown 0.3s ease forwards;
+    }
+
+    nav ul {
+        flex-direction: column;
+        gap: 15px;
+        align-items: center;
+    }
+
+    nav ul li a {
+        text-align: center;
+    }
+
+    nav input {
+        width: 80%;
+        margin-top: 10px;
+        text-align: center;
+    }
+
+    header {
+        position: relative;
+        flex-wrap: wrap;
+        padding-right: 60px;
+        padding-top: 25px;
+    }
+
+    header img {
+        width: 100px;
+        padding-top: 15px;
+        margin-right: 80px;
+    }
+
+    header h1 {
+        padding-top: 10px;
+    }
+
+    .botoes-suporte {
+        display: none;
+    }
+
+    .mobile-action {
+        display: block;
+        width: 90%;
+        margin-top: 15px;
+    }
+
+    @keyframes slideDown {
+        from {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
 }
 
 /* --------------titulo ------------
