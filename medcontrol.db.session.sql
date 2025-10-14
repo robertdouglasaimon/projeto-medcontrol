@@ -240,67 +240,6 @@ ALTER TABLE controle_estoque DROP COLUMN qtd_estoque;
 
 -- Gerando 60 itens para coluna qtd_estoque (valores aleatórios):
 UPDATE controle_estoque SET qtd_estoque = 500 WHERE id_controle_estoque = 1;
-UPDATE controle_estoque SET qtd_estoque = 273 WHERE id_controle_estoque = 1;
-UPDATE controle_estoque SET qtd_estoque = 591 WHERE id_controle_estoque = 2;
-UPDATE controle_estoque SET qtd_estoque = 485 WHERE id_controle_estoque = 3;
-UPDATE controle_estoque SET qtd_estoque = 314 WHERE id_controle_estoque = 4;
-UPDATE controle_estoque SET qtd_estoque = 734 WHERE id_controle_estoque = 5;
-UPDATE controle_estoque SET qtd_estoque = 420 WHERE id_controle_estoque = 6;
-UPDATE controle_estoque SET qtd_estoque = 982 WHERE id_controle_estoque = 7;
-UPDATE controle_estoque SET qtd_estoque = 655 WHERE id_controle_estoque = 8;
-UPDATE controle_estoque SET qtd_estoque = 358 WHERE id_controle_estoque = 9;
-UPDATE controle_estoque SET qtd_estoque = 794 WHERE id_controle_estoque = 10;
-UPDATE controle_estoque SET qtd_estoque = 678 WHERE id_controle_estoque = 11;
-UPDATE controle_estoque SET qtd_estoque = 423 WHERE id_controle_estoque = 12;
-UPDATE controle_estoque SET qtd_estoque = 147 WHERE id_controle_estoque = 13;
-UPDATE controle_estoque SET qtd_estoque = 864 WHERE id_controle_estoque = 14;
-UPDATE controle_estoque SET qtd_estoque = 229 WHERE id_controle_estoque = 15;
-UPDATE controle_estoque SET qtd_estoque = 950 WHERE id_controle_estoque = 16;
-UPDATE controle_estoque SET qtd_estoque = 531 WHERE id_controle_estoque = 17;
-UPDATE controle_estoque SET qtd_estoque = 371 WHERE id_controle_estoque = 18;
-UPDATE controle_estoque SET qtd_estoque = 857 WHERE id_controle_estoque = 19;
-UPDATE controle_estoque SET qtd_estoque = 264 WHERE id_controle_estoque = 20;
-UPDATE controle_estoque SET qtd_estoque = 482 WHERE id_controle_estoque = 21;
-UPDATE controle_estoque SET qtd_estoque = 935 WHERE id_controle_estoque = 22;
-UPDATE controle_estoque SET qtd_estoque = 721 WHERE id_controle_estoque = 23;
-UPDATE controle_estoque SET qtd_estoque = 808 WHERE id_controle_estoque = 24;
-UPDATE controle_estoque SET qtd_estoque = 657 WHERE id_controle_estoque = 25;
-UPDATE controle_estoque SET qtd_estoque = 231 WHERE id_controle_estoque = 26;
-UPDATE controle_estoque SET qtd_estoque = 289 WHERE id_controle_estoque = 27;
-UPDATE controle_estoque SET qtd_estoque = 749 WHERE id_controle_estoque = 28;
-UPDATE controle_estoque SET qtd_estoque = 614 WHERE id_controle_estoque = 29;
-UPDATE controle_estoque SET qtd_estoque = 823 WHERE id_controle_estoque = 30;
-UPDATE controle_estoque SET qtd_estoque = 455 WHERE id_controle_estoque = 31;
-UPDATE controle_estoque SET qtd_estoque = 649 WHERE id_controle_estoque = 32;
-UPDATE controle_estoque SET qtd_estoque = 992 WHERE id_controle_estoque = 33;
-UPDATE controle_estoque SET qtd_estoque = 654 WHERE id_controle_estoque = 34;
-UPDATE controle_estoque SET qtd_estoque = 533 WHERE id_controle_estoque = 35;
-UPDATE controle_estoque SET qtd_estoque = 810 WHERE id_controle_estoque = 36;
-UPDATE controle_estoque SET qtd_estoque = 128 WHERE id_controle_estoque = 37;
-UPDATE controle_estoque SET qtd_estoque = 694 WHERE id_controle_estoque = 38;
-UPDATE controle_estoque SET qtd_estoque = 512 WHERE id_controle_estoque = 39;
-UPDATE controle_estoque SET qtd_estoque = 367 WHERE id_controle_estoque = 40;
-UPDATE controle_estoque SET qtd_estoque = 749 WHERE id_controle_estoque = 41;
-UPDATE controle_estoque SET qtd_estoque = 310 WHERE id_controle_estoque = 42;
-UPDATE controle_estoque SET qtd_estoque = 451 WHERE id_controle_estoque = 43;
-UPDATE controle_estoque SET qtd_estoque = 615 WHERE id_controle_estoque = 44;
-UPDATE controle_estoque SET qtd_estoque = 921 WHERE id_controle_estoque = 45;
-UPDATE controle_estoque SET qtd_estoque = 832 WHERE id_controle_estoque = 46;
-UPDATE controle_estoque SET qtd_estoque = 247 WHERE id_controle_estoque = 47;
-UPDATE controle_estoque SET qtd_estoque = 549 WHERE id_controle_estoque = 48;
-UPDATE controle_estoque SET qtd_estoque = 693 WHERE id_controle_estoque = 49;
-UPDATE controle_estoque SET qtd_estoque = 898 WHERE id_controle_estoque = 50;
-UPDATE controle_estoque SET qtd_estoque = 165 WHERE id_controle_estoque = 51;
-UPDATE controle_estoque SET qtd_estoque = 475 WHERE id_controle_estoque = 52;
-UPDATE controle_estoque SET qtd_estoque = 990 WHERE id_controle_estoque = 53;
-UPDATE controle_estoque SET qtd_estoque = 324 WHERE id_controle_estoque = 54;
-UPDATE controle_estoque SET qtd_estoque = 213 WHERE id_controle_estoque = 55;
-UPDATE controle_estoque SET qtd_estoque = 753 WHERE id_controle_estoque = 56;
-UPDATE controle_estoque SET qtd_estoque = 381 WHERE id_controle_estoque = 57;
-UPDATE controle_estoque SET qtd_estoque = 814 WHERE id_controle_estoque = 58;
-UPDATE controle_estoque SET qtd_estoque = 905 WHERE id_controle_estoque = 59;
-UPDATE controle_estoque SET qtd_estoque = 546 WHERE id_controle_estoque = 60;
-
 
 
 -- Preciso de uma consulta que converta um valor de uma soma em uma porcentagem.
@@ -342,3 +281,7 @@ SELECT SUM(qtd_estoque) AS total_estoque FROM cadastro_produtos;
 DELETE FROM controle_estoque WHERE id_controle_estoque = 61;DELETE FROM controle_estoque WHERE id_controle_estoque = 61;
 
 SELECT * FROM controle_estoque;
+
+SELECT SUM(perdas_descarte) AS total_perdas_descarte FROM controle_estoque;
+
+

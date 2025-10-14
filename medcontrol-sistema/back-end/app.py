@@ -41,8 +41,11 @@ def grafico_estoque():
             SELECT 
                 SUM(
                     CAST(
-                        SUBSTR(perdas_descarte, 1, INSTR(perdas_descarte, ' ') - 1)
-                        AS INTEGER
+                        CASE 
+                            WHEN INSTR(perdas_descarte, ' ') > 0 
+                            THEN SUBSTR(perdas_descarte, 1, INSTR(perdas_descarte, ' ') - 1)
+                            ELSE perdas_descarte
+                        END AS INTEGER
                     )
                 ) AS total_unidades_perdidas
             FROM controle_estoque

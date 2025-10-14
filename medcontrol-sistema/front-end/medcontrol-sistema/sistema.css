@@ -1288,7 +1288,109 @@ tr:hover {
   transition: all 0.3s ease-in-out;
   transform: scale(1.05);
 }
-
-
-
 /*-----------------------------------------------------------------------------------------*/
+
+
+/*------------------------------------------------------------------------------------------*/
+/*Estilizando o "vendas.js*/
+.vendas-cards {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.card-vendas p {
+  font-size: 1.5rem;
+  margin-top: 1rem;
+  color: var(--cor-preta);
+}
+
+.receita-total-dia {
+  width: 300px;
+  height: 100px;
+  background-color: var(--cor-branca);
+  border-radius: 15px;
+  text-align: center;
+  font-size: 1.5rem;
+  color: var(--cor-preta);
+}
+
+.valor-total-dia {
+  font-size: 2.5rem !important;
+  font-weight: bold;
+  color: var(--cor-preta);
+  position: relative;
+  top: -26px;
+}
+
+.vendas-realizadas {
+  width: 300px;
+  height: 100px;
+  background-color: var(--cor-branca);
+  border-radius: 15px;
+  color: var(--cor-preta);
+  text-align: center;
+}
+
+.vendas-realizadas p {
+  font-size: 1.5rem;
+  margin-top: 1rem;
+  color: var(--cor-preta);
+}
+
+.valor-vendas-realizadas {
+  font-size: 2.5rem !important;
+  font-weight: bold;
+  color: var(--cor-preta);
+  position: relative;
+  top: -26px;
+}
+
+.vendas-medias {
+  width: 300px;
+  height: 100px;
+  background-color: var(--cor-branca);
+  border-radius: 15px;
+  color: var(--cor-preta);
+  text-align: center;
+}
+
+.valor-vendas-medias {
+  font-size: 2.5rem !important;
+  font-weight: bold;
+  color: var(--cor-preta);
+  position: relative;
+  top: -26px;
+}
+
+/* Hover dos cards de vendas ----------------*/
+.receita-total-dia:hover {
+  transform: scale(1.05);
+  transition: all 0.3s ease-in-out;
+  background-color: #3ce8ff;
+  color: var(--cor-branca);
+
+  /* Listra na parte inferior do card */
+  border-bottom: 5px solid #0023c0 !important;
+}
+
+.vendas-realizadas:hover {
+  transform: scale(1.05);
+  transition: all 0.3s ease-in-out;
+  background-color: #20dd5f;
+  color: var(--cor-branca);
+
+  border-bottom: 5px solid #0023c0 !important;
+}
+
+.vendas-medias:hover {
+  transform: scale(1.05);
+  transition: all 0.3s ease-in-out;
+  background-color: #72dafa;
+  color: var(--cor-branca);
+
+  border-bottom: 5px solid #0023c0 !important;
+}
+/*-----------------------------------------*/

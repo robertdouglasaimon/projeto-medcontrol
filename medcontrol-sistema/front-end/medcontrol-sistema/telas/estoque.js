@@ -113,7 +113,7 @@ export function render () {
         } else {
             console.warn("⚠️ valorEstoque inválido:", valorSpan.textContent);
         }
-    }, 500); // pequeno delay pra garantir que DOM atualizou
+    }, 100); // pequeno delay pra garantir que DOM atualizou
 
     // Scripts relativos aos valores dos dashboards -------------------------------------------//
     // Total de Estoque:
@@ -314,11 +314,12 @@ export function render () {
     const produto_validade = form.querySelector('input[name="produto_validade"]').value;
     const perdas_descarte = form.querySelector('input[name="perdas_descarte"]').value;
 
+    // Verifica se todos os campos foram preenchidos:
     if (!lote_estoque || !qtd_entrada || !saida_produto || !qtd_estoque || !produto_validade || !perdas_descarte) {
     alert('Todos os campos devem ser preenchidos.');
     return;
     }
-
+ 
     try {
     const response = await fetch('http://localhost:3001/cadastro_lote', {
         method: 'POST',
@@ -366,7 +367,7 @@ export function render () {
     }, 50);
 
 
-   // Script para a tabela de estoque:
+    // Script para a tabela de estoque:
     setTimeout(() => {
             const tbody = document.querySelector('tbody');
             tbody.innerHTML = "";
@@ -401,7 +402,7 @@ export function render () {
     }, 10);
 
 
-// Script para editar a linha da tabela:
+    // Script para editar a linha da tabela:
     setTimeout(() => {
         const tbody = document.querySelector('tbody');
 
@@ -435,7 +436,7 @@ export function render () {
                             <input type="number" id="qtd_entrada" value="${qtd_entrada}" required>
 
                             <label for="saida_produto">Saida de Produto:</label>
-                            <input type="number" id="saida_produto" value="${saida_produto}" required>
+                            <input type="text" id="saida_produto" value="${saida_produto}" required>
 
                             <label for="qtd_estoque">Quantidade no Estoque:</label>
                             <input type="number" id="qtd_estoque" value="${qtd_estoque}" required>
@@ -444,7 +445,7 @@ export function render () {
                             <input type="date" id="produto_validade" value="${produto_validade}" required>
 
                             <label for="perdas_descarte">Perdas e Descarte:</label>
-                            <input type="number" id="perdas_descarte" value="${perdas_descarte}" required>
+                            <input type="text" id="perdas_descarte" value="${perdas_descarte}" required>
 
                             <button type="submit" class="btn btn-primary">Salvar</button>
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
@@ -520,7 +521,7 @@ export function render () {
 
     },0);
 
-  // Script para apagar da tabela e do bando um registro pelo front-end atraves do botão excluir:
+    // Script para apagar da tabela e do bando um registro pelo front-end atraves do botão excluir:
     setTimeout(() => {
     const table = document.querySelector('table');
 
@@ -555,7 +556,7 @@ export function render () {
             }
         }
     });
-    }, 10);
+    },0);
 
     return div;
 }
