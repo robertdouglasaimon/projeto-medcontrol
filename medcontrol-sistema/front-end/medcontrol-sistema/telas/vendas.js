@@ -26,9 +26,38 @@ export function render () {
                 </p>
                 <span class="total-vendas-medias  valor-vendas-medias">R$ 100</span>
             </div>
-
-
         </section>
+
+        <section class="vendas-header">
+            <h2> <i class="fas fa-money-check"></i> Vendas Realizadas </h2>
+
+            <div class="vendas-pesquisa">
+                <div class="input-wrapper">
+                    <input type="text" id="busca-vendas" placeholder="Buscar Vendas" class="buscar-input-vendas">
+                    
+                    <button class="btn-novo-venda" id="btnNovaVenda">
+                        + Novo Registro
+                    </button>
+                </div>
+        </section>
+
+        <section class="vendas-lista">
+            <h2> <i class="fas fa-table"></i> Tabela de Vendas</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Produto</th>
+                        <th>Quantidade</th>
+                        <th>Valor</th>
+                        <th>Açoes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <!-- Inserir aqui as vendas realizadas pelo banco de dados -->
+                </tbody>
+            </table>
+        </section>
+        
 
 
     `;
