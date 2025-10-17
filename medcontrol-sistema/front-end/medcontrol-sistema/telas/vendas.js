@@ -26,10 +26,22 @@ export function render () {
                 </p>
                 <span class="total-vendas-medias  valor-vendas-medias">R$ 100</span>
             </div>
-
-
         </section>
 
+        <section class="vendas-header">
+            <h2> <i class="fas fa-money-check"></i> Vendas Realizadas </h2>
+
+            <div class="vendas-pesquisa">
+                <div class="input-wrapper">
+                    <input type="text" id="busca-vendas" placeholder="Buscar Vendas" class="buscar-input-vendas">
+                    
+                    <button class="btn-novo-venda" id="btnNovaVenda">
+                        + Novo Registro
+                    </button>
+                </div>
+        </section>
+        
+        
 
     `;
 
