@@ -1433,5 +1433,26 @@ tr:hover {
   white-space: nowrap;
 
 }
+/*----------------------------------------*/
 
+/* Estilos da tabela de vendas -----------*/
+.vendas-lista h2 {
+  background-color: var(--fundo-principal);
+  padding: 10px;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  margin-top: 2rem;
+  color: var(--cor-branca);
+  border-radius: 5px;
+}
+
+.vendas-tabela {
+  background-color: var(--fundo-principal);
+  padding: 10px;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  margin-top: 2rem;
+  color: var(--cor-branca);
+  border-radius: 5px;
+}
 /*----------------------------------------*/
