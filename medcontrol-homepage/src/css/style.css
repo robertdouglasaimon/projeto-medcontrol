@@ -285,6 +285,11 @@ p {
 
 }
 
+#ver-produtos:hover{
+    transform: translateY(-4px);
+    transition: 300ms;
+    background-color: #019415;
+}
 
 /* --------------Destaque + cards ------------------
 -------------------------------------------------- */
