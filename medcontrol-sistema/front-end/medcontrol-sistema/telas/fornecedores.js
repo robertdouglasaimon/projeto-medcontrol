@@ -4,7 +4,6 @@ export function render() {
   div.innerHTML = `
     <section class="fornecedores-cards">
       <div class="card-fornecedores">
-
         <div class="total-de-fornecedores">
            <p>
               <i class="fa fa-building"></i>
@@ -34,7 +33,6 @@ export function render() {
         </div>
 
       </div>
-
     <section class="fornecedores-header">
       <h2> <i class="fas fa-star"></i> Buscar fornecedor</h2>
     
