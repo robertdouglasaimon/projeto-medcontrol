@@ -455,6 +455,23 @@ app.delete('/deletar_lote/:id_controle_estoque', (req, res) => {
     res.status(404).json({ mensagem: 'Registro nao encontrado.' });
   }
 });
+//------------------------------------------------------------------------------------------------------------------------------------------//
+
+//------------------------------------------------------------------------------------------------------------------------------------------//
+// Rota: dashboard da tela de vendas (total de vendas, vendas realizadas, médias por vendas)
+app.get('/dashboard_vendas', (req, res) => {
+  try {
+    const stmt = db.prepare("SELECT COUNT(id_venda) AS total_vendas, SUM(valor_venda) AS vendas_realizadas, AVG(valor_venda) AS vendas_medias FROM vendas;");
+    const dashboardVendas = stmt.get();
+    res.setHeader("Content-Type", "application/json");
+    res.json(dashboardVendas);
+  } catch (err) {
+    res.status(500).json({ mensagem: "Erro ao buscar vendas."})
+  }
+})
+
+
+
 
 //---------------------------------------------------------------------------------------------//
 // Servir arquivos estáticos do front-end

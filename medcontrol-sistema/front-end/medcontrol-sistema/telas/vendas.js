@@ -62,5 +62,11 @@ export function render () {
 
     `;
 
+    // Script relacionado aos valores dos dashboard de vendas:
+    setTimeout(() => {
+        
+    
+    }, 0);
+
     return div;
 }

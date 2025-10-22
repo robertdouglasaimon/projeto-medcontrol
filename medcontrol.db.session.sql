@@ -284,4 +284,50 @@ SELECT * FROM controle_estoque;
 
 SELECT SUM(perdas_descarte) AS total_perdas_descarte FROM controle_estoque;
 
+SELECT * FROM vendas;
+
+CREATE TABLE vendas (
+    id_vendas INTEGER PRIMARY KEY AUTOINCREMENT,
+    produtos_vendidos VARCHAR(100) NOT NULL,
+    data_venda DATE NOT NULL,
+    registro_receita_medica VARCHAR(100) NOT NULL,
+    cupom_fiscal VARCHAR(100) NOT NULL,
+    id_cliente INTEGER NOT NULL,
+    id_controle_estoque INTEGER NOT NULL,
+    
+    FOREIGN KEY (id_cliente) REFERENCES cadastro_clientes(id_cliente),
+    FOREIGN KEY (id_controle_estoque) REFERENCES controle_estoque(id_controle_estoque)
+);
+
+INSERT INTO vendas (
+    produtos_vendidos,
+    data_venda,
+    registro_receita_medica,
+    cupom_fiscal,
+    id_cliente,
+    id_controle_estoque
+)
+VALUES
+('Clonazepam 2mg', '2025-10-14', 'RX20251014N', 'CF000014', 114, 214),
+('Ácido Fólico 5mg', '2025-10-15', 'RX20251015O', 'CF000015', 115, 215),
+('Fluoxetina 20mg', '2025-10-16', 'RX20251016P', 'CF000016', 116, 216),
+('Ranitidina 150mg', '2025-10-17', 'RX20251017Q', 'CF000017', 117, 217),
+('Captopril 25mg', '2025-10-18', 'RX20251018R', 'CF000018', 118, 218),
+('Atenolol 50mg', '2025-10-19', 'RX20251019S', 'CF000019', 119, 219),
+('Nimesulida 100mg', '2025-10-20', 'RX20251020T', 'CF000020', 120, 220),
+('Azitromicina 500mg', '2025-10-21', 'RX20251021U', 'CF000021', 121, 221),
+('Cetoprofeno 100mg', '2025-10-22', 'RX20251022V', 'CF000022', 122, 222),
+('Hidroclorotiazida 25mg', '2025-10-23', 'RX20251023W', 'CF000023', 123, 223),
+('Levotiroxina 100mcg', '2025-10-24', 'RX20251024X', 'CF000024', 124, 224),
+('Carbamazepina 200mg', '2025-10-25', 'RX20251025Y', 'CF000025', 125, 225),
+('Diclofenaco Sódico 50mg', '2025-10-26', 'RX20251026Z', 'CF000026', 126, 226),
+('Bromoprida 10mg', '2025-10-27', 'RX20251027AA', 'CF000027', 127, 227),
+('Cloridrato de Propranolol 40mg', '2025-10-28', 'RX20251028AB', 'CF000028', 128, 228),
+('Furosemida 40mg', '2025-10-29', 'RX20251029AC', 'CF000029', 129, 229),
+('Gliclazida 30mg', '2025-10-30', 'RX20251030AD', 'CF000030', 130, 230);
+
+
+
+
+
 
