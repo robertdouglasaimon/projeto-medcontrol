@@ -9,8 +9,12 @@ CORS(app)
 @app.route('/grafico-estoque')
 def grafico_estoque():
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-    db_path = os.path.join(BASE_DIR, 'D:/ARQUIVOS DOS CURSOS DE PROGRAMACAO CIENCIA DE DADOS E MAIS (NUNCA APAGAR EM HIPOTESE NENHUMA)/projeto-medcontrol/medcontrol-sistema/banco-dados/farmacia.db') 
+    db_path = os.path.join(BASE_DIR, 'E:/PROJETO DO GITHUB DESKTOP - NUNCA APAGAR/projeto-medcontrol/medcontrol-sistema/banco-dados/farmacia.db') 
     
+    print("E:\PROJETO DO GITHUB DESKTOP - NUNCA APAGAR\projeto-medcontrol\medcontrol-sistema\banco-dados\farmacia.db", db_path)
+
+
+
     try:
         db = sqlite3.connect(db_path)
 

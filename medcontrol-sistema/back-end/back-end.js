@@ -461,10 +461,23 @@ app.delete('/deletar_lote/:id_controle_estoque', (req, res) => {
 // Rota: dashboard da tela de vendas (total de vendas, vendas realizadas, médias por vendas)
 app.get('/dashboard_vendas', (req, res) => {
   try {
-    const stmt = db.prepare("SELECT COUNT(id_venda) AS total_vendas, SUM(valor_venda) AS vendas_realizadas, AVG(valor_venda) AS vendas_medias FROM vendas;");
+    const stmt = db.prepare("SELECT COUNT(id_vendas) AS total_vendas, SUM(valor_venda) AS vendas_realizadas, ROUND(AVG(valor_venda), 2) AS vendas_medias FROM vendas;");
     const dashboardVendas = stmt.get();
     res.setHeader("Content-Type", "application/json");
     res.json(dashboardVendas);
+  } catch (err) {
+    res.status(500).json({ mensagem: "Erro ao buscar vendas."})
+  }
+})
+
+
+// Rota: relacionada aos dados da tabela de vendas:
+app.get('/tabela_vendas', (req, res) => {
+  try {
+    const stmt = db.prepare("SELECT * FROM vendas;");
+    const tabelaVendas = stmt.all();
+    res.setHeader("Content-Type", "application/json");
+    res.json(tabelaVendas);
   } catch (err) {
     res.status(500).json({ mensagem: "Erro ao buscar vendas."})
   }

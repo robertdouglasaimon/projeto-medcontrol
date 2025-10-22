@@ -327,7 +327,43 @@ VALUES
 ('Gliclazida 30mg', '2025-10-30', 'RX20251030AD', 'CF000030', 130, 230);
 
 
+-- Adicionando a coluna valor_venda na tabela vendas:
+ALTER TABLE vendas ADD COLUMN vendas_medias DECIMAL(10, 2) DEFAULT 1.500;
 
 
+UPDATE vendas SET vendas_medias = 2.500 WHERE id_vendas = 1;
+UPDATE vendas SET vendas_medias = 1.200 WHERE id_vendas = 2;
+UPDATE vendas SET vendas_medias = 3.750 WHERE id_vendas = 3;
+UPDATE vendas SET vendas_medias = 1.000 WHERE id_vendas = 4;
+UPDATE vendas SET vendas_medias = 2.000 WHERE id_vendas = 5;
+UPDATE vendas SET vendas_medias = 1.800 WHERE id_vendas = 6;
+UPDATE vendas SET vendas_medias = 2.300 WHERE id_vendas = 7;
+UPDATE vendas SET vendas_medias = 1.600 WHERE id_vendas = 8;
+UPDATE vendas SET vendas_medias = 4.000 WHERE id_vendas = 9;
+UPDATE vendas SET vendas_medias = 1.100 WHERE id_vendas = 10;
+UPDATE vendas SET vendas_medias = 2.750 WHERE id_vendas = 11;
+UPDATE vendas SET vendas_medias = 1.950 WHERE id_vendas = 12;
+UPDATE vendas SET vendas_medias = 3.200 WHERE id_vendas = 13;
+UPDATE vendas SET vendas_medias = 1.300 WHERE id_vendas = 14;
+UPDATE vendas SET vendas_medias = 2.100 WHERE id_vendas = 15;
+UPDATE vendas SET vendas_medias = 1.700 WHERE id_vendas = 16;
+UPDATE vendas SET vendas_medias = 2.850 WHERE id_vendas = 17;
+UPDATE vendas SET vendas_medias = 1.400 WHERE id_vendas = 18;
+UPDATE vendas SET vendas_medias = 3.000 WHERE id_vendas = 19;
+UPDATE vendas SET vendas_medias = 1.250 WHERE id_vendas = 20;
+UPDATE vendas SET vendas_medias = 2.600 WHERE id_vendas = 21;
+UPDATE vendas SET vendas_medias = 1.900 WHERE id_vendas = 22;
+UPDATE vendas SET vendas_medias = 3.500 WHERE id_vendas = 23;
+UPDATE vendas SET vendas_medias = 1.050 WHERE id_vendas = 24;
+UPDATE vendas SET vendas_medias = 2.400 WHERE id_vendas = 25;
+UPDATE vendas SET vendas_medias = 1.800 WHERE id_vendas = 26;
+UPDATE vendas SET vendas_medias = 3.100 WHERE id_vendas = 27;
+UPDATE vendas SET vendas_medias = 1.600 WHERE id_vendas = 28;
+UPDATE vendas SET vendas_medias = 2.200 WHERE id_vendas = 29;
+UPDATE vendas SET vendas_medias = 1.500 WHERE id_vendas = 30;
 
-
+SELECT 
+    COUNT(id_vendas) AS total_vendas, 
+    SUM(valor_venda) AS vendas_realizadas, 
+    ROUND(AVG(valor_venda), 2) AS vendas_medias 
+FROM vendas;
