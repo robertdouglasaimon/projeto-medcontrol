@@ -367,3 +367,22 @@ SELECT
     SUM(valor_venda) AS vendas_realizadas, 
     ROUND(AVG(valor_venda), 2) AS vendas_medias 
 FROM vendas;
+
+INSERT INTO vendas (
+    id_vendas, 
+    produtos_vendidos, 
+    vendas_medias, 
+    data_venda, 
+    registro_receita_medica, 
+    valor_venda, 
+    cupom_fiscal,
+
+    id_cliente,
+    id_controle_estoque
+)
+VALUES
+(31, 'Paracetamol 500mg', '2025-10-31', 'RX20251031AE', 'CF000031', 131, 231, 1, 1);
+
+
+SELECT id_controle_estoque FROM controle_estoque ORDER BY id_controle_estoque DESC LIMIT 1;
+SELECT id_cliente FROM cadastro_clientes ORDER BY id_cliente DESC LIMIT 1;

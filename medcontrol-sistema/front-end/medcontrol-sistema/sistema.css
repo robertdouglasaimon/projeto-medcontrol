@@ -1455,4 +1455,94 @@ tr:hover {
   color: var(--cor-branca);
   border-radius: 5px;
 }
+
+.btn-editar-venda {
+  background-color: var(--amarelo-medcontrol);
+  color: var(--cor-branca);
+  border: none;
+  border-radius: 5px;
+  padding: 8px 14.5px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-right: 5px;
+  transition: all 0.3s ease-in-out;
+}
+
+.btn-editar-venda:hover {
+  background-color: #c23616;
+  transform: scale(1.05);
+}
+
+.btn-excluir-venda {
+  background-color: #e84118;
+  color: var(--cor-branca);
+  border: none;
+  /* border-radius: 4px; */
+  padding: 8px 12px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 5px;
+  margin-right: 5px;
+
+  transform: scale(1.0);
+  transition: all 0.3s ease-in-out;
+}
+/*----------------------------------------*/
+
+/*Estilos do modal de vendas -------------*/
+.cadastro-venda-modal {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.cadastro-venda-modal input {
+  padding: 10px;
+  font-family: var(--font-padrao);
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.salvar-modal {
+  background-color: #44bd32;
+  color: white;
+  border: none;
+  padding: 0.8rem;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.cancelar-modal {
+  background-color: #e84118;
+  color: white;
+  border: none;
+  padding: 0.8rem;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.cadastro-venda-modal button[type="submit"]:hover {
+  background-color: #4cd137;
+  color: var(--cor-branca);
+  transform: scale(1.05);
+  transition: all 0.3s ease-in-out
+}
+
+.cadastro-venda-modal button[type="button"]:hover {
+  background-color: #e84118;
+  color: var(--cor-branca);
+  transform: scale(1.05);
+  transition: all 0.3s ease-in-out;
+  font-weight: bold;
+}
+
+
+
 /*----------------------------------------*/

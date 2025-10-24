@@ -41,6 +41,30 @@ export function render () {
                 </div>
         </section>
 
+        <!-- Modal do botão 'Novo Registro' -->>
+        <div id="modalNovoVenda" class="modal hidden">
+            <div class="modal-content">
+                <span class="fechar-modal" id="fecharModal">&times;</span>
+
+                <h3>Cadastrar Nova Venda</h3>
+
+                <!-- Formulário de cadastro aqui -->
+                <form class="cadastro-venda-modal">
+                    <input type="text" name="produtos_vendidos" placeholder="Produto vendido" required />
+                    <input type="text" name="vendas_medias" placeholder="Valor da venda" required />
+                    <input type="date" name="data_venda" required />
+                    <input type="text" name="registro_receita_medica" placeholder="Receita médica para a venda" required />
+                    <input type="text" name="valor_venda" placeholder="Valor médio da venda" required />                                      
+                    <input type="text" name="cupom_fiscal" placeholder="Cupom fiscal" required />
+
+                    <button type="submit" class="salvar-modal">Salvar</button>
+                    <button type="button" class="cancelar-modal">Cancelar</button>
+                </form>
+
+            </div>
+        </div>
+
+
         <section class="vendas-lista">
             <h2> <i class="fas fa-table"></i> Tabela de Vendas</h2>
             <table>
@@ -49,8 +73,9 @@ export function render () {
                         <th>Produtos Vendidos</th>
                         <th>Valor da Venda</th>
                         <th>Valor Médio da Venda</th>
+                        <th>Cumpom Fiscal</th>
                         <th>Data da Venda</th>
-                        <th>Açoes</th>
+                        <th>Ações</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -58,8 +83,6 @@ export function render () {
                 </tbody>
             </table>
         </section>
-        
-    
 
     `;
 
@@ -123,7 +146,6 @@ export function render () {
     
     }, 0);
 
-
     // Script relacionado a barra de busca por nome do produto vendido ou pelo valor da venda:
     setTimeout(() => {
         const inputBusca = document.querySelector(".buscar-input-vendas");
@@ -143,7 +165,6 @@ export function render () {
         })  
     }, 0);
 
-
     // Script para inserir os dados do banco de dados na tabela de vendas :
     setTimeout(() => {
         fetch("http://localhost:3001/tabela_vendas")
@@ -158,15 +179,15 @@ export function render () {
             const tbody = document.querySelector(".vendas-lista table tbody");
             data.forEach((venda) => {
                 const row = document.createElement("tr");
-                const id = venda.id_vendas;
                 row.innerHTML = `
                     <td>${venda.produtos_vendidos}</td>
                     <td>R$ ${venda.valor_venda}</td>
                     <td>R$ ${venda.vendas_medias}</td>
+                    <td>${venda.cupom_fiscal}</td>
                     <td>${venda.data_venda}</td>
                     <td>
-                        <button class="btn btn-warning  btn-editar-venda" data-id="${id}">Editar</button>
-                        <button class="btn btn-danger  btn-excluir-venda" data-id="${id}">Excluir</button>
+                        <button class="btn btn-warning btn-editar-venda">Editar</button>
+                        <button class="btn btn-danger  btn-excluir-venda">Excluir</button>
                     </td>
                 `;
                 tbody.appendChild(row);
@@ -175,7 +196,144 @@ export function render () {
         .catch((error) => {
             console.error("Erro ao buscar vendas:", error);
         })
-    })
+    }, 0);
+
+    // Script para cadastrar um novo cliente pelo botão e modal "+ Nova Venda":
+    setTimeout(() => {
+        const form = document.querySelector(".cadastro-venda-modal");
+        const table = document.querySelector(".vendas-lista table tbody");
+        const modal = document.querySelector("#modalNovoVenda");     
+
+        const btnNovoVenda = document.querySelector("#btnNovaVenda");
+        const fecharModal = document.querySelector("#fecharModal");
+        const btnCancelar = document.querySelector(".cancelar-modal");
+
+        // Abrir o modal
+        if (btnNovoVenda && modal) {
+            btnNovoVenda.addEventListener("click", () => {
+                modal.classList.remove("hidden");
+            });
+        }
+
+        // Fechar o modal pelo ícone ×
+        if (fecharModal && modal) {
+            fecharModal.addEventListener("click", () => {
+                modal.classList.add("hidden");
+            });
+        }
+
+        // Fechar o modal pelo botão cancelar
+        if (btnCancelar && modal) {
+            btnCancelar.addEventListener("click", () => {
+                modal.classList.add("hidden");
+            });
+        }
+
+        // Fechar o modal ao clicar fora dele
+        modal.addEventListener("click", (event) => {
+            if (event.target === modal) {
+                modal.classList.add("hidden");
+            }
+        });
+
+    // ESQUEMA para pegar os IDs automaticamente de cliente e estoque para não dar conflito no UPDATE lá no front. 
+    // Os ids de cliente e estoque devem ser pegos automaticamente no back-end e passados para o front-end só que 
+    // sem aparecer na tela de cadastro de vendas. Tudo vai acontecer pelo back-end, mas os ids serao passados pelo 
+    // front-end:
+        let id_cliente = null;
+        let id_controle_estoque = null;
+
+        btnNovoVenda.addEventListener("click", async () => {
+        modal.classList.remove("hidden");
+
+        // Busca os IDs automaticamente
+            try {
+                const clienteRes = await fetch("http://localhost:3001/cliente-ultimo");
+                const clienteData = await clienteRes.json();
+                id_cliente = clienteData.id_cliente;
+
+                const estoqueRes = await fetch("http://localhost:3001/estoque-ultimo");
+                const estoqueData = await estoqueRes.json();
+                id_controle_estoque = estoqueData.id_controle_estoque;
+            } catch (err) {
+                console.error("Erro ao buscar IDs automáticos:", err);
+            }
+        });
+    // Fim do ESQUEMA --------------------------------------------------------------------------------------------//
+
+        form.addEventListener("submit", async (event) => {
+            event.preventDefault();
+
+            const produtos_vendidos = form.querySelector("input[name='produtos_vendidos']").value.trim();
+            const vendas_medias = form.querySelector("input[name='vendas_medias']").value.trim();
+            const data_venda = form.querySelector("input[name='data_venda']").value.trim();
+            const registro_receita_medica = form.querySelector("input[name='registro_receita_medica']").value.trim();
+            const valor_venda = form.querySelector("input[name='valor_venda']").value.trim();
+            const cupom_fiscal = form.querySelector("input[name='cupom_fiscal']").value.trim();
+
+             // ✅ Validações:
+             if (!produtos_vendidos || !vendas_medias || !data_venda || !registro_receita_medica || !valor_venda || !cupom_fiscal) {
+                alert("Por favor, preencha todos os campos obrigatórios.");
+                return;
+            }
+
+            // Verifica se o campo da data de validade foi preenchido corretamente:
+            if (data_venda && !/^\d{4}-\d{2}-\d{2}$/.test(data_venda)) {
+            alert("Por favor, insira a data de validade no formato AAAA-MM-DD.");
+            return;
+            }
+
+            try {
+                const resposta = await fetch("http://localhost:3001/cadastrar_venda", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        produtos_vendidos,
+                        vendas_medias,
+                        data_venda,
+                        registro_receita_medica,
+                        valor_venda,
+                        cupom_fiscal,
+
+                        id_cliente,
+                        id_controle_estoque
+                    })
+                });
+
+                const data = await resposta.json();
+                console.log("Resposta do backend:", resposta);
+                console.log("Dados recebidos:", data);
+
+                
+                // Verifica se a resposta foi negativa
+                if (!resposta.ok) {
+                    throw new Error(data.message || data.response || "Erro ao cadastrar venda.");
+                }
+
+                alert(`✅ ${data.mensagem}`);
+                form.reset();
+                modal.classList.add("hidden");
+                location.reload();
+
+                // ✅ Só adiciona na tabela se deu certo
+                const novaLinha = document.createElement("tr");
+                novaLinha.innerHTML = `
+                <td>${produtos_vendidos}</td>
+                <td>R$ ${valor_venda}</td>
+                <td>R$ ${vendas_medias}</td>
+                <td>${data_venda}</td>
+                <td>
+                    <button class="btn btn-warning  btn-editar-venda">Editar</button>
+                    <button class="btn btn-danger  btn-excluir-venda">Excluir</button>
+                </td>
+                `;
+                table.appendChild(novaLinha);
+
+            } catch (error) {
+                console.error("Erro ao cadastrar venda:", error);
+            }         
+        });
+    }, 0);
 
 
     return div;

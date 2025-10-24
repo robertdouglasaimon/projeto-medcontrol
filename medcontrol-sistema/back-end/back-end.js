@@ -484,6 +484,48 @@ app.get('/tabela_vendas', (req, res) => {
 })
 
 
+// Rota: para cadastro de novo registro de vendas:
+app.post('/cadastrar_venda', (req, res) => {
+  try {
+    const { id_vendas, produtos_vendidos, vendas_medias, data_venda, registro_receita_medica, valor_venda, cupom_fiscal, id_cliente,
+    id_controle_estoque } = req.body;
+
+    const stmt = db.prepare(`
+      INSERT INTO vendas (id_vendas, produtos_vendidos, vendas_medias, data_venda, registro_receita_medica, valor_venda, cupom_fiscal, id_cliente,
+    id_controle_estoque)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+    `);
+
+    stmt.run(id_vendas, produtos_vendidos, vendas_medias, data_venda, registro_receita_medica, valor_venda, cupom_fiscal, id_cliente,
+    id_controle_estoque);
+    res.status(201).json({ mensagem: 'Cadastro efetuado com sucesso!' });
+  } catch (err) {
+    res.status(500).json({ mensagem: "Erro ao cadastrar venda."})
+  }
+});
+
+// Rota para pegar o id do cliente para a tabela de vendas:
+app.get('/cliente-ultimo', (req, res) => {
+  try {
+    const row = db.prepare("SELECT id_cliente FROM cadastro_clientes ORDER BY id_cliente DESC LIMIT 1").get();
+    res.json({ id_cliente: row?.id_cliente || null });
+  } catch (err) {
+    res.status(500).json({ mensagem: "Erro ao buscar cliente." });
+  }
+});
+
+// Rota para pegar o id do estoque para a tabela de vendas:
+app.get('/estoque-ultimo', (req, res) => {
+  try {
+    const row = db.prepare("SELECT id_controle_estoque FROM controle_estoque ORDER BY id_controle_estoque DESC LIMIT 1").get();
+    res.json({ id_controle_estoque: row?.id_controle_estoque || null });
+  } catch (err) {
+    res.status(500).json({ mensagem: "Erro ao buscar estoque." });
+  }
+});
+
+
+
 
 
 //---------------------------------------------------------------------------------------------//
