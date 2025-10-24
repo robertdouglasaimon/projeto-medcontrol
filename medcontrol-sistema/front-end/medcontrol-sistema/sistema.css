@@ -1937,3 +1937,199 @@ table {
   font-size: 20px;
 }
 /*----------------------------------*/
+
+/*----------------------------------------*/
+
+/*-------------------------------------------------------------------------------------------------------------------------------------------*/
+
+/*Estilizando o "funcionarios.js"----------------------------------------------------------------------------------------------------------------*/
+
+.container {
+  max-width: 100% !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  width: 100% !important;
+}
+
+.card-funcionarios {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 10px;
+  color: var(--cor-branca);
+}
+
+.card-funcionarios p {
+  font-size: 1.5rem;
+  margin-top: 1rem;
+  color: var(--cor-preta);
+}
+
+.valores-funcionarios {
+  position: relative;
+  top: -26px;
+  font-size: 2.5rem !important;
+  font-weight: bold;
+  color: var(--cor-preta);
+}
+
+.total-funcionarios {
+  width: 300px;
+  height: 100px;
+  background-color: var(--cor-branca);
+  border-radius: 15px;
+  text-align: center;
+}
+
+.funcionario-ativo {
+  width: 300px;
+  height: 100px;
+  background-color: var(--cor-branca);
+  border-radius: 15px;
+  text-align: center;
+}
+
+.funcionario-desligado {
+  width: 300px;
+  height: 100px;
+  background-color: var(--cor-branca);
+  border-radius: 15px;
+  text-align: center;
+}
+
+/* Hover para cada card */
+.total-funcionarios:hover {
+  background-color: #f9ca24;
+  transform: scale(1.05);
+  transition: all 0.3s ease-in-out;
+
+  /* listra azul na parte inferior do card */
+  border-bottom: 5px solid #0984e3;
+}
+
+.funcionario-ativo:hover {
+  background-color: #0d6efd;
+  transform: scale(1.05);
+  transition: all 0.3s ease-in-out;
+
+  /* listra azul na parte inferior do card */
+  border-bottom: 5px solid #0984e3;
+}
+
+.funcionario-desligado:hover {
+  background-color: #ff6b6b;
+  transform: scale(1.05);
+  transition: all 0.3s ease-in-out;
+
+  /* listra azul na parte inferior do card */
+  border-bottom: 5px solid #0984e3;
+}
+
+/* ----------------------------------------------------------- 
+   SEÇÃO DE BUSCA - FUNCIONÁRIOS
+   ----------------------------------------------------------- */
+.funcionarios-header {
+  margin-top: 1rem;
+}
+
+.funcionarios-header h2 {
+  background-color: var(--fundo-principal);
+  padding: 10px;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  margin-top: 2rem;
+  color: var(--cor-branca);
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.funcionarios-pesquisa {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.input-wrapper {
+  position: relative;
+  display: flex;
+  width: 100%;
+  max-width: 100%;
+}
+
+/* ------- Input de busca ------ */
+.buscar-input-funcionario {
+  flex: 1;
+  padding: 15px;
+  border-radius: 5px 0 0 5px;
+  border: 1px solid #ccc;
+  background-color: var(--cor-branca);
+  color: var(--cor-preta);
+  font-size: 1rem;
+  min-width: 0;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.buscar-input-funcionario::placeholder {
+  color: #888;
+}
+
+/* ---- INPUT  ------ */
+.buscar-input-funcionario:focus {
+  border-color: var(--amarelo-medcontrol);
+  outline: none;
+  background-color: var(--cor-branca);
+
+}
+
+/* ------- Botão de novo funcionário ------- */
+.btn-novo-funcionario {
+  background-color: #FFA500;
+  color: var(--cor-branca);
+  border: none;
+  border-radius: 0 5px 5px 0;
+  padding: 15px 20px;
+  cursor: pointer;
+  font-weight: bold;
+  white-space: nowrap;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* ----------------------------------------------------------- 
+   Tabela de Funcionários
+   ----------------------------------------------------------- */
+
+.funcionarios-tabela h2 {
+  background-color: var(--fundo-principal);
+  padding: 10px;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  margin-top: 2rem;
+  color: var(--cor-branca);
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background-color: var(--cor-branca);
+  border-radius: 8px;
+  overflow: hidden;
+  color: var(--cor-preta);
+}
+
+.funcionarios-tabela th {
+  height: 50px;
+  text-align: left;
+  padding-left: 20px;
+  background-color: var(--fundo-principal);
+  color: var(--cor-branca);
+}
