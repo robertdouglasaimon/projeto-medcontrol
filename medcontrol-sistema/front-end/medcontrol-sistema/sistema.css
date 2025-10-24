@@ -1,18 +1,18 @@
 @charset "UTF-8";
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 :root {
-    --font-padrao: Arial, Helvetica, sans-serif;
-    --cor-branca: #fff;
-    --cor-preta: #000;
-    --amarelo-medcontrol: #fbc531;
-    --fundo-principal: #0F1720;
-    --fundo-secundario: #161C27;
+  --font-padrao: Arial, Helvetica, sans-serif;
+  --cor-branca: #fff;
+  --cor-preta: #000;
+  --amarelo-medcontrol: #fbc531;
+  --fundo-principal: #0F1720;
+  --fundo-secundario: #161C27;
 
 }
 
@@ -38,7 +38,7 @@ header {
   text-align: center;
   font-size: 1.5rem;
   font-weight: bold;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 footer {
@@ -49,7 +49,7 @@ footer {
   text-align: center;
   font-size: 1.5rem;
   font-weight: bold;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   padding-left: 15rem;
 }
 
@@ -71,31 +71,32 @@ footer a:hover {
 }
 
 .logo {
-    width: 240px;
-    display: flex;
-    padding-right: 2rem;
-    justify-content: center;
-    background-color: var(--fundo-principal);
-    align-items: center;
-    /* gap: 0px; */
+  width: 240px;
+  display: flex;
+  padding-right: 2rem;
+  justify-content: center;
+  background-color: var(--fundo-principal);
+  align-items: center;
+  /* gap: 0px; */
 }
 
 .logo img {
-    width: 60%;
-    height: 80%;
-    background-color: var(--fundo-principal);
-    position: relative;;
-    top: -6px;
-    left: -1rem;
+  width: 60%;
+  height: 80%;
+  background-color: var(--fundo-principal);
+  position: relative;
+  ;
+  top: -6px;
+  left: -1rem;
 }
 
 .logo p {
-      font-size: 1.3rem;
-      text-align: left;
-      color: var(--amarelo-medcontrol);
-      position: relative;
-      left: -2rem;
-      top: 3px;
+  font-size: 1.3rem;
+  text-align: left;
+  color: var(--amarelo-medcontrol);
+  position: relative;
+  left: -2rem;
+  top: 3px;
 }
 
 #cargo-usuario {
@@ -146,7 +147,7 @@ aside {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
 }
 
 aside nav ul {
@@ -180,7 +181,8 @@ aside nav ul li a.active {
   background-color: var(--amarelo-medcontrol);
   color: var(--fundo-principal);
   font-weight: bold;
-  box-shadow: inset 4px 0 0 var(--fundo-principal); /* opcional: destaque lateral */
+  box-shadow: inset 4px 0 0 var(--fundo-principal);
+  /* opcional: destaque lateral */
 }
 
 
@@ -212,6 +214,7 @@ main#app {
   padding: 2rem;
   overflow-y: auto;
 }
+
 /*-------------------------------------------------------------------------------------------------------------------------------------------*/
 
 /*Estilizando o "clientes.js"----------------------------------------------------------------------------------------------------------------*/
@@ -303,7 +306,7 @@ main#app {
   background-color: #ff6b6b;
   transform: scale(1.05);
   transition: all 0.3s ease-in-out;
-  
+
   /* listra azul na parte inferior do card */
   border-bottom: 5px solid #0984e3;
 }
@@ -377,7 +380,7 @@ main#app {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0,0,0,0.5);
+  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -396,8 +399,15 @@ main#app {
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .modal-content h3 {
@@ -491,6 +501,7 @@ main#app {
   cursor: pointer;
   font-size: 20px;
 }
+
 /*-------------------------------------------------------*/
 
 /* Estilo relacionado a tabela de clientes --------------*/
@@ -578,8 +589,8 @@ table {
 /* Botão Salvar */
 .btn-primary {
   background-color: #4cd137;
-  color: var(--cor-branca) ;
-  font-weight: bold;  
+  color: var(--cor-branca);
+  font-weight: bold;
   border: none;
   border-radius: 4px;
   padding: 8px 12px;
@@ -593,6 +604,7 @@ table {
   transform: scale(1.05);
   transition: all 0.3s ease-in-out;
 }
+
 /*----------------------------------*/
 
 /*----------------------------------*/
@@ -657,6 +669,7 @@ table {
   border-radius: 15px;
   text-align: center;
 }
+
 .total-produtos p {
   font-size: 1.5rem;
   margin-top: -0rem;
@@ -763,7 +776,7 @@ table {
   background-color: #04f066;
   transform: scale(1.05);
   transition: all 0.3s ease-in-out;
-  
+
 
   border-bottom: 5px solid #11d8df;
 }
@@ -773,7 +786,7 @@ table {
   transform: scale(1.05);
   transition: all 0.3s ease-in-out;
 
- 
+
   border-bottom: 5px solid #11d8df;
 }
 
@@ -781,9 +794,10 @@ table {
   background-color: #cf6646;
   transform: scale(1.05);
   transition: all 0.3s ease-in-out;
-  
+
   border-bottom: 5px solid #11d8df;
 }
+
 /*----------------------------------------*/
 
 /*----------------------------------------*/
@@ -801,6 +815,7 @@ table {
   color: var(--cor-branca);
   border-radius: 5px;
 }
+
 /*----------------------------------------*/
 
 /*----------------------------------------*/
@@ -814,11 +829,14 @@ table {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.produtos-lista tr, th, td {
+.produtos-lista tr,
+th,
+td {
   text-align: center !important;
 }
 
-.produtos-lista th, .produtos-lista td {
+.produtos-lista th,
+.produtos-lista td {
   padding: 12px;
   text-align: left;
   border-bottom: 1px solid #ddd;
@@ -902,7 +920,8 @@ table {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* fundo escuro */
+  background-color: rgba(0, 0, 0, 0.5);
+  /* fundo escuro */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -921,7 +940,7 @@ table {
   border-radius: 10px;
   width: 500px;
   max-width: 90%;
-  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   position: relative;
 }
 
@@ -972,7 +991,7 @@ table {
 }
 
 .cadastro-produto-modal .cancelar {
-  background-color:#e84118;
+  background-color: #e84118;
   color: var(--cor-branca);
   font-weight: bold;
   transition: background-color 0.3s;
@@ -984,6 +1003,7 @@ table {
   transform: scale(1.05);
   transition: all 0.3s ease-in-out
 }
+
 /*-------------------------------------------------------------------------------------------*/
 
 
@@ -1005,13 +1025,13 @@ table {
   height: 100px;
   background-color: var(--cor-branca);
   border-radius: 15px;
-} 
+}
 
 .card-estoque p {
   font-size: 1.5rem;
   margin-top: 1rem;
   color: var(--cor-preta);
-  
+
 }
 
 .total-estoque {
@@ -1035,7 +1055,7 @@ table {
   color: var(--cor-preta);
 }
 
-.total-estoque-valor{
+.total-estoque-valor {
   width: 300px;
   height: 100px;
   border-radius: 15px;
@@ -1069,12 +1089,12 @@ table {
 }
 
 .nivel-estoque p {
-    text-align: center;
-    font-size: 1.5rem;
-    color: var(--cor-preta);
-    position: relative;
-    top: -0.2rem;
-    margin-bottom: 15px;
+  text-align: center;
+  font-size: 1.5rem;
+  color: var(--cor-preta);
+  position: relative;
+  top: -0.2rem;
+  margin-bottom: 15px;
 }
 
 .nivel-estoque-valor {
@@ -1116,13 +1136,16 @@ table {
 
 .nivel-estoque.seguro:hover {
   background-color: #0eb345;
-  border-bottom: 5px solid #60e737 !important; /* verde */  
+  border-bottom: 5px solid #60e737 !important;
+  /* verde */
 }
 
 .nivel-estoque.critico:hover {
   background-color: #b30e0e;
-  border-bottom: 5px solid #e84118 !important; /* vermelho */
+  border-bottom: 5px solid #e84118 !important;
+  /* vermelho */
 }
+
 /*---------------------------------------------------------------*/
 /* Estilo relacionado ao titulo da sessão do gráfico de estoque*/
 .estoque-header h2 {
@@ -1134,6 +1157,7 @@ table {
   color: var(--cor-branca);
   border-radius: 5px;
 }
+
 /*---------------------------------------------------------*/
 /*Estilo relacionado a barra de busca da tela de estoque: */
 
@@ -1173,6 +1197,7 @@ table {
   font-weight: bold;
   white-space: nowrap;
 }
+
 /*----------------------------------------------------------*/
 /* Estilos relacionados a tabela de estoque --------------*/
 .lote-tabela h2 {
@@ -1194,7 +1219,8 @@ table {
   overflow: hidden;
 }
 
-th, td {
+th,
+td {
   padding: 12px 15px;
   text-align: left;
   border-bottom: 1px solid #ddd;
@@ -1238,6 +1264,7 @@ tr:hover {
   font-size: 14px;
   cursor: pointer;
 }
+
 /*---------------------------------------------------------*/
 /* Estilos relacionados ao modal de cadastro de novo registro de lote ------------------*/
 .cadastro-lote-modal {
@@ -1288,6 +1315,7 @@ tr:hover {
   transition: all 0.3s ease-in-out;
   transform: scale(1.05);
 }
+
 /*-----------------------------------------------------------------------------------------*/
 
 
@@ -1393,6 +1421,7 @@ tr:hover {
 
   border-bottom: 5px solid #0023c0 !important;
 }
+
 /*------------------------------------------*/
 /*Estilos da barra de busca da tela de vendas*/
 
@@ -1433,6 +1462,7 @@ tr:hover {
   white-space: nowrap;
 
 }
+
 /*----------------------------------------*/
 
 /* Estilos da tabela de vendas -----------*/
