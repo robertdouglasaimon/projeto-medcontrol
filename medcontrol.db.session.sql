@@ -386,3 +386,5 @@ VALUES
 
 SELECT id_controle_estoque FROM controle_estoque ORDER BY id_controle_estoque DESC LIMIT 1;
 SELECT id_cliente FROM cadastro_clientes ORDER BY id_cliente DESC LIMIT 1;
+
+DELETE FROM vendas WHERE id_vendas = 31;

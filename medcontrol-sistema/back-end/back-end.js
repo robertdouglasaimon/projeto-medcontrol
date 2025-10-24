@@ -523,8 +523,25 @@ app.get('/estoque-ultimo', (req, res) => {
     res.status(500).json({ mensagem: "Erro ao buscar estoque." });
   }
 });
+//------------------------------------------------------------------------------------------------------------------------------------------//
 
+// Rota para apagar um registro da tabela através do botão excluir:
+app.delete('/deletar_venda/:id_vendas', (req, res) => {
+  try {  
+    const id = req.params.id_vendas;
+    const stmt = db.prepare('DELETE FROM vendas WHERE id_vendas = ?');
+    const resultado = stmt.run(id);
 
+    if (resultado.changes > 0) {
+      res.status(200).json({ mensagem: 'Registro deletado com sucesso!' });
+    } else {
+      res.status(404).json({ mensagem: 'Registro nao encontrado.' });
+    }
+  } catch (err) {
+    res.status(500).json({ mensagem: 'A tentativa de deletar um registro não funcionou corretamente.' });
+  };
+
+});
 
 
 

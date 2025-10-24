@@ -168,35 +168,43 @@ export function render () {
     // Script para inserir os dados do banco de dados na tabela de vendas :
     setTimeout(() => {
         fetch("http://localhost:3001/tabela_vendas")
-        .then((response) => {
-            if (response.ok) {
-                return response.json();
-            } else {
-                throw new Error("Erro ao buscar vendas.");
-            }
-        })
-        .then((data) => {
-            const tbody = document.querySelector(".vendas-lista table tbody");
-            data.forEach((venda) => {
-                const row = document.createElement("tr");
-                row.innerHTML = `
-                    <td>${venda.produtos_vendidos}</td>
-                    <td>R$ ${venda.valor_venda}</td>
-                    <td>R$ ${venda.vendas_medias}</td>
-                    <td>${venda.cupom_fiscal}</td>
-                    <td>${venda.data_venda}</td>
-                    <td>
-                        <button class="btn btn-warning btn-editar-venda">Editar</button>
-                        <button class="btn btn-danger  btn-excluir-venda">Excluir</button>
-                    </td>
-                `;
-                tbody.appendChild(row);
+            .then((response) => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw new Error("Erro ao buscar vendas.");
+                }
+            })
+            .then((data) => {
+                const tbody = document.querySelector(".vendas-lista table tbody");
+
+                data.forEach((venda) => {
+                    const row = document.createElement("tr");
+
+                    row.innerHTML = `
+                        <td>${venda.produtos_vendidos}</td>
+                        <td>R$ ${venda.valor_venda}</td>
+                        <td>R$ ${venda.vendas_medias}</td>
+                        <td>${venda.cupom_fiscal}</td>
+                        <td>${venda.data_venda}</td>
+                        <td>
+                            <button class="btn btn-warning btn-editar-venda">Editar</button>
+                            <button 
+                                class="btn btn-danger btn-excluir-venda"
+                                data-id-venda="${venda.id_vendas}"
+                            >Excluir</button>
+                        </td>
+                    `;
+
+                
+                    tbody.appendChild(row);
+                });
+            })
+            .catch((error) => {
+                console.error("Erro ao buscar vendas:", error);
             });
-        })
-        .catch((error) => {
-            console.error("Erro ao buscar vendas:", error);
-        })
-    }, 0);
+    },0);
+
 
     // Script para cadastrar um novo cliente pelo botão e modal "+ Nova Venda":
     setTimeout(() => {
@@ -334,6 +342,59 @@ export function render () {
             }         
         });
     }, 0);
+
+
+    // Excluindo os itens da tabela pelo front através do botão excluir (modificando no banco de dados as informações das vendas):
+    setTimeout(() => {
+        const tbody = document.querySelector("tbody");
+
+        tbody.addEventListener("click", async (event) => {
+            const btn = event.target;
+
+            if (!btn.classList.contains("btn-excluir-venda")) {
+                console.log("Não clicou no botão de excluir");
+                return;
+            }
+
+            console.log("Clicou no botão de excluir, iniciando processo de exclusão...");
+
+            // ✅ Pega o ID direto do botão
+            const id_vendas = btn.getAttribute("data-id-venda");
+            console.log("ID da venda a excluir:", id_vendas);
+
+            if (!id_vendas) {
+                console.error("❌ ID da venda está undefined ou vazio");
+                return;
+            }
+
+            const confirmacao = confirm("Tem certeza que deseja excluir esse registro?");
+            if (!confirmacao) return;
+
+            try {
+                const resposta = await fetch(`http://localhost:3001/deletar_venda/${id_vendas}`, {
+                    method: "DELETE"
+                });
+
+                console.log("Status da resposta:", resposta.status);
+
+                if (!resposta.ok) {
+                    throw new Error("Erro ao excluir venda.");
+                }
+
+                const data = await resposta.json();
+                console.log("Resposta do servidor:", data);
+
+                // ✅ Remove a linha da tabela
+                const row = btn.closest("tr");
+                row.remove();
+                alert(`✅ ${data.mensagem}`);
+            } catch (error) {
+                console.error("❌ Erro ao excluir venda:", error);
+                alert(`❌ ${error.message}`);
+            }
+        });
+    }, 0);
+
 
 
     return div;
