@@ -68,6 +68,7 @@ export function render() {
             <th>Nome</th>
             <th>Cargo</th>
             <th>Admissão</th>
+            <th>Desligamento</th>
             <th>Salário</th>
             <th>Status</th>
             <th>Ações</th>
@@ -77,7 +78,7 @@ export function render() {
         <tbody> 
     
         <!-- Dados da tabela do banco de dados serão inseridos aqui -->
-         <td colspan="6" style="text-align: center;">Carregando...</td>
+         <td>Carregando...</td>
         </tbody>
 
       </table>
