@@ -4,39 +4,42 @@ export function render() {
   div.innerHTML = `
     <section class="fornecedores-cards">
       <div class="card-fornecedores">
+
         <div class="total-de-fornecedores">
-           <p>
-              <i class="fa fa-building"></i>
-              Total de fornecedores
-           <p>
+          <p>
+            <i class="fa fa-building"></i>
+            Total de Fornecedores
+          <p>
+          <span class="valores-fornecedores fornecedores-total-valor">
+            <!-- Inserir aqui o total de clientes pelo banco de dados -->
+          </span>
         </div>
 
-        <div class="ativos-no-mês">
+        <div class="fornecedores-ativos">
           <p>
-            <i class="fa fa-handshake-o"></i>
-            Ativos no mês
+            <i class="fa fa-handshake"></i>
+            Ativos
           </p>
+          <span class="valores-fornecedores fornecedores-ativos-valor">
+            <!-- Inserir aqui o total de clientes pelo banco de dados -->
+          </span>
         </div>
 
-        <div class="melhor-avaliados">
+        <div class="fornecedores-inativos">
           <p>
-            <i class="fa fa-star-o"></i>
-            Melhor avaliados
+            <i class="fa fa-times-circle"></i>
+            Inativos
           </p>
-        </div>
-
-        <div class="compras-pendentes">
-          <p>
-            <i class="fa fa-money"></i>
-            Compras Pendentes
-          </p>
+          <span class="valores-fornecedores fornecedores-inativos-valor">
+            <!-- Inserir aqui o total de clientes pelo banco de dados -->
+          </span>
         </div>
 
       </div>
     <section class="fornecedores-header">
       <h2> <i class="fas fa-star"></i> Buscar fornecedor</h2>
     
-      <div class="forncedor-pesquisa">
+      <div class="fornecedor-pesquisa">
         <div class="input-wrapper">
           <input type="text" placeholder="Buscar por nome" class="buscar-input" />
           <button class="btn-novo-fornecedor" id="btnNovoFornecedor">+ Novo Forncedor</button>
@@ -54,10 +57,10 @@ export function render() {
         <!-- Formulário de cadastro aqui -->
         <form class="cadastro-fornecedor-modal">
           <input type="text" name="nome_fornecedor" placeholder="Nome da empresa" required />
-          <input type="text" name="cnpj" placeholder="Insira o CNPJ" required />
-          <input type="text" name="endereco" placeholder="Insira o endereço comercial" required />
-          <input type="text" name="categoria-fornecimento" placeholder="Categoria de fornecimento(ex:matéria-prima, transporte, tecnologia)" required />
-          <input type="text" name="telefone" placeholder="Insira o telefone comercial" required />
+          <input type="text" name="data-entrega" placeholder="Insira a data de entrega" required />
+          <input type="text" name="produto" placeholder="Insira o nome do produto" required />
+          <input type="text" name="quantidade" placeholder="Insira a quantidade do produto" required />
+          <input type="text" name="Observação" placeholder="Insira uma observação" required />
           <select name="status_fornecedor">
             <option value="Ativo">Ativo</option>
             <option value="Inativo">Inativo</option>
@@ -74,15 +77,16 @@ export function render() {
         <thead>
           <tr>
             <th>Nome de Empresa</th>
-            <th>Telefone</th>
-            <th>Endereço</th>
-            <th>CNPJ</th>
+            <th>Data de entrega</th>
+            <th>Produto</th>
+            <th>Quantidade</th>
+            <th>Observação</th>
             <th>Status</th>
             <th>Ações</th>
           </tr>
         </thead>
         <tbody>
-          <!-- Dados da tabela do banco de dados serão inseridos aqui -->
+          <!-- Dados da tabela do banco de dados serão inseridos aqui --> 
           <td>Carregando...</td>
         </tbody>
       </table>
