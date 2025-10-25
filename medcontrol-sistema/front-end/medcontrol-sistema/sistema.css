@@ -228,7 +228,7 @@ main#app {
 .card-clientes {
   display: flex;
   flex-direction: row;
-  /* flex-wrap: wrap; */
+  flex-wrap: wrap;
   justify-content: space-between;
   gap: 10px;
   color: var(--cor-branca);
@@ -282,30 +282,30 @@ main#app {
 
 /* Hover para cada card */
 .total-clientes:hover {
-  background-color: #f9ca24;
+  background-color: #0077ff;
   transform: scale(1.05);
   transition: all 0.3s ease-in-out;
 
   /* listra azul na parte inferior do card */
-  border-bottom: 5px solid #0984e3;
+  border-bottom: 5px solid orange;
 }
 
 .cliente-ativo:hover {
-  background-color: #0d6efd;
+  background-color: #59f01d;
   transform: scale(1.05);
   transition: all 0.3s ease-in-out;
 
   /* listra azul na parte inferior do card */
-  border-bottom: 5px solid #0984e3;
+  border-bottom: 5px solid orange;
 }
 
 .cliente-inativo:hover {
-  background-color: #ff6b6b;
+  background-color: #fa3636;
   transform: scale(1.05);
   transition: all 0.3s ease-in-out;
   
   /* listra azul na parte inferior do card */
-  border-bottom: 5px solid #0984e3;
+  border-bottom: 5px solid orange;
 }
 
 .cliente-receita:hover {
@@ -314,7 +314,7 @@ main#app {
   transition: all 0.3s ease-in-out;
 
   /* listra azul na parte inferior do card */
-  border-bottom: 5px solid #0984e3;
+  border-bottom: 5px solid orange;
 }
 
 /* Estilo referente a barra de pesquisa -------------------------------------------------*/
@@ -370,6 +370,7 @@ main#app {
   font-weight: bold;
   white-space: nowrap;
 }
+/* Estilo referente ao modal-------------------------------------------------*/
 
 .modal {
   position: fixed;
@@ -528,14 +529,36 @@ table {
 .clientes td i {
   color: var(--amarelo-medcontrol);
 }
-
-/* Descolando os nomes do canto da tabela: */
-.clientes-tabela td {
-  padding: 8px;
-  border-bottom: 1px solid #ddd;
+/*Botões de editar e excluir de produtos: */
+.editar-cliente {
+  background-color: var(--amarelo-medcontrol);
+  color: var(--cor-branca);
+  border: none;
+  border-radius: 4px;
+  padding: 8px 17px;
+  font-size: 14px;
+  cursor: pointer;
+  margin-bottom: 0.3rem;
 }
 
+.excluir-cliente {
+  background-color: #e84118;
+  color: var(--cor-branca);
+  border: none;
+  border-radius: 4px;
+  padding: 8px 17px;
+  font-size: 14px;
+  cursor: pointer;
+  margin-bottom: 0.3rem;
+}
 
+.excluir-cliente:hover {
+  background-color: #c23616;
+}
+
+.editar-cliente:hover {
+  background-color: rgb(190, 147, 29)
+}
 /* Estilo do modal de editar cliente --------------------------------------------------------*/
 .modal-content {
   background-color: var(--cor-branca);
@@ -576,22 +599,39 @@ table {
 
 /*----------------------------------*/
 /* Botão Salvar */
-.btn-primary {
-  background-color: #4cd137;
-  color: var(--cor-branca) ;
-  font-weight: bold;  
+.cadastro-cliente-modal button[type="submit"] {
+  background-color: #44bd32;
+  color: white;
   border: none;
+  padding: 0.5rem;
   border-radius: 4px;
-  padding: 8px 12px;
-  font-size: 14px;
+  font-weight: bold;
   cursor: pointer;
 }
 
-.btn-primary:hover {
+.cadastro-cliente-modal button[type="submit"]:hover {
   background-color: #28a315;
   color: var(--cor-branca);
-  transform: scale(1.05);
   transition: all 0.3s ease-in-out;
+  transform: scale(1.05);
+}
+/* Botão  Cancelar */
+.cadastro-cliente-modal .cancelar {
+  background-color: #e84118;
+  color: var(--cor-branca);
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.cadastro-cliente-modal .cancelar:hover {
+  background-color: #c82333;
+  color: var(--cor-branca);
+  transition: all 0.3s ease-in-out;
+  transform: scale(1.05);
 }
 /*----------------------------------*/
 
@@ -1011,7 +1051,7 @@ table {
   font-size: 1.5rem;
   margin-top: 1rem;
   color: var(--cor-preta);
-  
+
 }
 
 .total-estoque {
@@ -1237,6 +1277,9 @@ tr:hover {
   padding: 8px 15px;
   font-size: 14px;
   cursor: pointer;
+}
+.btn-estoque-excluir:hover {
+  background-color: #c23616;
 }
 /*---------------------------------------------------------*/
 /* Estilos relacionados ao modal de cadastro de novo registro de lote ------------------*/

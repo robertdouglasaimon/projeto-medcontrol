@@ -44,7 +44,7 @@ export function render() {
         <div class="fornecedor-pesquisa">
           <div class="input-wrapper">
             <input type="text" placeholder="Buscar por nome" class="buscar-input" />
-            <button class="btn-novo-fornecedor" id="btnNovoFornecedor">+ Novo Forncedor</button>
+            <button class="btn-novo-fornecedor" id="btnNovoFornecedor">+ Novo Fornecedor</button>
           </div>
         </div>
       </section>
