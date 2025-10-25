@@ -487,16 +487,16 @@ app.get('/tabela_vendas', (req, res) => {
 // Rota: para cadastro de novo registro de vendas:
 app.post('/cadastrar_venda', (req, res) => {
   try {
-    const { id_vendas, produtos_vendidos, vendas_medias, data_venda, registro_receita_medica, valor_venda, cupom_fiscal, id_cliente,
+    const { id_vendas, produtos_vendidos, vendas_medias, data_venda, valor_venda, cupom_fiscal, id_cliente,
     id_controle_estoque } = req.body;
 
     const stmt = db.prepare(`
-      INSERT INTO vendas (id_vendas, produtos_vendidos, vendas_medias, data_venda, registro_receita_medica, valor_venda, cupom_fiscal, id_cliente,
+      INSERT INTO vendas (id_vendas, produtos_vendidos, vendas_medias, data_venda, valor_venda, cupom_fiscal, id_cliente,
     id_controle_estoque)
       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
     `);
 
-    stmt.run(id_vendas, produtos_vendidos, vendas_medias, data_venda, registro_receita_medica, valor_venda, cupom_fiscal, id_cliente,
+    stmt.run(id_vendas, produtos_vendidos, vendas_medias, data_venda, valor_venda, cupom_fiscal, id_cliente,
     id_controle_estoque);
     res.status(201).json({ mensagem: 'Cadastro efetuado com sucesso!' });
   } catch (err) {
@@ -541,6 +541,32 @@ app.delete('/deletar_venda/:id_vendas', (req, res) => {
     res.status(500).json({ mensagem: 'A tentativa de deletar um registro não funcionou corretamente.' });
   };
 
+});
+
+// Rota para atualizar um registro da tabela de vendas:
+app.put('/editar_venda/:id_vendas', (req, res) => {
+  try {
+    const id = req.params.id_vendas;
+    const { id_vendas, produtos_vendidos, vendas_medias, data_venda, valor_venda, cupom_fiscal, id_cliente,
+    id_controle_estoque } = req.body;
+
+    const stmt = db.prepare(`
+      UPDATE vendas
+      SET id_vendas = ?, produtos_vendidos = ?, vendas_medias = ?, data_venda = ?, valor_venda = ?, cupom_fiscal = ?, id_cliente = ?,
+      id_controle_estoque = ?
+      WHERE id_vendas = ?
+    `);
+
+    const resultado = stmt.run(id_vendas, produtos_vendidos, vendas_medias, data_venda, valor_venda, cupom_fiscal, id_cliente,
+    id_controle_estoque, id);
+    if (resultado.changes > 0) {
+      res.status(200).json({ mensagem: 'Registro atualizado com sucesso!' });
+    } else {
+      res.status(404).json({ mensagem: 'Registro não encontrado.' });
+    }
+  } catch (err) {
+    res.status(500).json({ mensagem: 'A tentativa de editar um registro não funcionou corretamente.' });
+  };
 });
 
 

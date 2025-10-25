@@ -52,10 +52,9 @@ export function render () {
                 <form class="cadastro-venda-modal">
                     <input type="text" name="produtos_vendidos" placeholder="Produto vendido" required />
                     <input type="text" name="vendas_medias" placeholder="Valor da venda" required />
-                    <input type="date" name="data_venda" required />
-                    <input type="text" name="registro_receita_medica" placeholder="Receita médica para a venda" required />
-                    <input type="text" name="valor_venda" placeholder="Valor médio da venda" required />                                      
+                    <input type="text" name="valor_venda" placeholder="Valor médio da venda" required />
                     <input type="text" name="cupom_fiscal" placeholder="Cupom fiscal" required />
+                    <input type="date" name="data_venda" required />  
 
                     <button type="submit" class="salvar-modal">Salvar</button>
                     <button type="button" class="cancelar-modal">Cancelar</button>
@@ -180,7 +179,7 @@ export function render () {
 
                 data.forEach((venda) => {
                     const row = document.createElement("tr");
-
+                    row.setAttribute("data-id-venda", venda.id_vendas); 
                     row.innerHTML = `
                         <td>${venda.produtos_vendidos}</td>
                         <td>R$ ${venda.valor_venda}</td>
@@ -204,7 +203,6 @@ export function render () {
                 console.error("Erro ao buscar vendas:", error);
             });
     },0);
-
 
     // Script para cadastrar um novo cliente pelo botão e modal "+ Nova Venda":
     setTimeout(() => {
@@ -343,6 +341,138 @@ export function render () {
         });
     }, 0);
 
+    // Editar itens da tabela pelo front：
+    setTimeout(() => {
+        const tbody = document.querySelector("tbody");
+
+        tbody.addEventListener("click", async (event) => {
+            const btn = event.target;
+
+            if (!btn.classList.contains("btn-editar-venda")) {
+                console.log("Não clicou no botão de editar");
+                return;
+            } else {
+                console.log("Clicou no botão de editar");
+                btn.classList.add("hidden");
+            }
+
+            const row = btn.closest("tr");
+            const id_vendas = row.getAttribute("data-id-venda");
+            console.log("ID da venda a editar:", id_vendas);
+            console.log("🔗 URL da edição:", `http://localhost:3001/editar_venda/${id_vendas}`);
+
+
+            const produtos_vendidos = row.querySelector("td:nth-child(1)").textContent;
+            const valor_venda = row.querySelector("td:nth-child(2)").textContent;
+            const vendas_medias = row.querySelector("td:nth-child(3)").textContent;
+            const cupom_fiscal = row.querySelector("td:nth-child(4)").textContent;
+            const data_venda = row.querySelector("td:nth-child(5)").textContent;
+
+            const modal = document.createElement("div");
+            modal.classList.add("modal");
+            modal.innerHTML = `
+              <div class="modal-content">
+                    <h2>Editar Venda</h2>
+                    <form class="cadastro-venda-modal-editar">
+                        <label for="produtos_vendidos">Produtos Vendidos:</label>
+                        <input type="text" name="produtos_vendidos" value="${produtos_vendidos}" required>
+                        <label for="valor_venda">Valor da Venda:</label>
+                        <input type="text" name="valor_venda" value="${valor_venda}" required>
+                        <label for="vendas_medias">Vendas Médias:</label>
+                        <input type="text" name="vendas_medias" value="${vendas_medias}" required>
+                        <label for="cupom_fiscal">Cupom Fiscal:</label>
+                        <input type="text" name="cupom_fiscal" value="${cupom_fiscal}" required>
+                        <label for="data_venda">Data da Venda:</label>
+                        <input type="date" name="data_venda" value="${data_venda}" required>
+
+                        <button type="submit" class="btn salvar-modal">Salvar</button>
+                        <button class="btn close-modal">Fechar</button>
+                    </form>
+              </div> 
+            `;
+
+            document.body.appendChild(modal); -// ✅ modal agora está no DOM! Agora vai brasil porra!
+            modal.addEventListener("click", (event) => {
+                    if(event.target.classList.contains("modal") || event.target.classList.contains("close-modal")) {
+                        modal.remove();
+                        btn.classList.remove("hidden");
+                    }
+            });
+
+            // Script para salvar a edição da venda:
+            const form = modal.querySelector(".cadastro-venda-modal-editar");
+            form.addEventListener("submit", async (event) => {
+                event.preventDefault();
+                console.log("🧪 Salvando edição da venda...");
+
+                const produtos_vendidos = form.querySelector("input[name='produtos_vendidos']").value.trim();
+                const valor_venda = form.querySelector("input[name='valor_venda']").value.trim();
+                const vendas_medias = form.querySelector("input[name='vendas_medias']").value.trim();
+                const cupom_fiscal = form.querySelector("input[name='cupom_fiscal']").value.trim();
+                const data_venda = form.querySelector("input[name='data_venda']").value.trim();
+
+                // Verifica se todos os campos foram preenchidos:
+                if (!produtos_vendidos || !valor_venda || !vendas_medias || !cupom_fiscal || !data_venda) {
+                    alert("Todos os campos devem ser preenchidos!");
+                    return;
+                }
+
+                try {
+
+                    // Fazendo um malabarismo aqui para inserir os ids dos clientes e do estoque na venda sem ser feito um cadastro novo
+                    // e sem ser feito pelo front-end, para evitar o erro de chave estrangeira na tabela venda:
+                    // 🔥 Busca o último cliente
+                    const clienteRes = await fetch("http://localhost:3001/cliente-ultimo");
+                    const clienteData = await clienteRes.json();
+                    const id_cliente = clienteData.id_cliente;
+
+                    // 🔥 Busca o último estoque
+                    const estoqueRes = await fetch("http://localhost:3001/estoque-ultimo");
+                    const estoqueData = await estoqueRes.json();
+                    const id_controle_estoque = estoqueData.id_controle_estoque;
+
+
+
+                    // Continuando com o código normalmente e editando a venda:
+                    const resposta = await fetch(`http://localhost:3001/editar_venda/${id_vendas}`, {
+                        method: "PUT",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({
+                            produtos_vendidos,
+                            valor_venda,
+                            vendas_medias,
+                            cupom_fiscal,
+                            data_venda,
+
+                            id_vendas, // Adicionar a redundância de id_vendas novamente aqui só para evitar o erro de chave estrangeira.
+                            id_cliente,
+                            id_controle_estoque
+                        })
+                    });
+                    
+                    if(!resposta.ok) {
+                    throw new Error("Erro ao editar venda!");    
+                    }
+                    
+                    const data = await resposta.json();
+                    row.querySelector("td:nth-child(1)").textContent = data.produtos_vendidos;
+                    row.querySelector("td:nth-child(2)").textContent = `R$ ${valor_venda}`;
+                    row.querySelector("td:nth-child(3)").textContent = `R$ ${vendas_medias}`;
+                    row.querySelector("td:nth-child(4)").textContent = data.cupom_fiscal;
+                    row.querySelector("td:nth-child(5)").textContent = data.data_venda;
+
+                    alert(`${data.mensagem}`);
+                    modal.remove();
+                    
+                } catch (error) {
+                    console.error("❌ Erro ao editar venda:", error);
+                    alert(`❌ ${error.message}`);
+                }
+            });
+        });
+    }, 0);
 
     // Excluindo os itens da tabela pelo front através do botão excluir (modificando no banco de dados as informações das vendas):
     setTimeout(() => {
@@ -396,6 +526,6 @@ export function render () {
     }, 0);
 
 
-
     return div;
+
 }
