@@ -249,9 +249,6 @@ export function render() {
           return;
         }
 
-
-
-
         try {
           const resposta = await fetch("http://localhost:3001/cadastro_fornecedores", {
             method: "POST",
