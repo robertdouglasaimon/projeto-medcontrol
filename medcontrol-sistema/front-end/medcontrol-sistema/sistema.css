@@ -538,6 +538,7 @@ table {
   padding: 8px 17px;
   font-size: 14px;
   cursor: pointer;
+  font-weight: bold;
   margin-bottom: 0.3rem;
 }
 
@@ -549,6 +550,7 @@ table {
   padding: 8px 17px;
   font-size: 14px;
   cursor: pointer;
+  font-weight: bold;
   margin-bottom: 0.3rem;
 }
 
@@ -1137,7 +1139,7 @@ table {
   background-color: #0e7eb3;
 
   /*Listra verde na parte inferior do card*/
-  border-bottom: 5px solid #44bd32 !important;
+  border-bottom: 5px solid orange !important;
 }
 
 .perdas-descarte:hover {
@@ -1145,7 +1147,7 @@ table {
   transition: all 0.3s ease-in-out;
   background-color: #e40202;
 
-  border-bottom: 5px solid #44bd32 !important;
+  border-bottom: 5px solid orange !important;
 }
 
 
@@ -1261,6 +1263,7 @@ tr:hover {
   border-radius: 4px;
   padding: 8px 17px;
   font-size: 14px;
+  font-weight: bold;
   cursor: pointer;
   margin-bottom: 0.3rem;
 }
@@ -1276,6 +1279,7 @@ tr:hover {
   border-radius: 4px;
   padding: 8px 15px;
   font-size: 14px;
+  font-weight: bold;
   cursor: pointer;
 }
 .btn-estoque-excluir:hover {
@@ -1639,7 +1643,7 @@ tr:hover {
 
 
 /*----------------------------------------*/
-/*----------------Estilizando "fornecedores.js"*/
+/*----------------Estilizando "fornecedores.js"--------------------------------------------------------------------------------*/
 .card-fornecedores{
   display: flex;
   flex-direction: row;
@@ -1690,39 +1694,30 @@ tr:hover {
 
 /* Hover para cada card */
 .total-de-fornecedores:hover {
-  background-color: #4ae911;
+  background-color: #0077ff;
   transform: scale(1.05);
   transition: all 0.3s ease-in-out;
 
-  /* listra amarela na parte inferior do card */
-  border-bottom: 5px solid #e4e001;
+  /* listra azul na parte inferior do card */
+  border-bottom: 5px solid orange;
 }
 
 .fornecedores-ativos:hover {
-  background-color: #2855e7;
+  background-color: #59f01d;
   transform: scale(1.05);
   transition: all 0.3s ease-in-out;
 
-  /* listra azul-claro na parte inferior do card */
-  border-bottom: 5px solid #04cac0;
+  /* listra azul na parte inferior do card */
+  border-bottom: 5px solid orange;
 }
 
 .fornecedores-inativos:hover {
-  background-color: #b40404;
+  background-color: #fa3636;
   transform: scale(1.05);
   transition: all 0.3s ease-in-out;
   
-  /* listra preta na parte inferior do card */
-  border-bottom: 5px solid #0c0c0c;
-}
-
-.cliente-receita:hover {
-  background-color: #4cd137;
-  transform: scale(1.05);
-  transition: all 0.3s ease-in-out;
-
-  /* listra azul-claro na parte inferior do card */
-  border-bottom: 5px solid #0984e3;
+  /* listra azul na parte inferior do card */
+  border-bottom: 5px solid orange;
 }
 
 /* Estilo da barra de pesquisa -------------------------------------------------*/
@@ -1778,7 +1773,7 @@ tr:hover {
   font-weight: bold;
   white-space: nowrap;
 }
-
+/* Modal -------------------------------------------------*/
 .modal {
   position: fixed;
   top: 0;
@@ -1850,34 +1845,6 @@ tr:hover {
   outline: none;
 }
 
-/* Botão Salvar */
-.cadastro-fornecedor-modal button[type="submit"] {
-  background-color: #44bd32;
-  color: white;
-  border: none;
-  padding: 0.8rem;
-  border-radius: 8px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.cadastro-fornecedor-modal button[type="submit"]:hover {
-  background-color: #4cd137;
-}
-
-/* Botão Cancelar */
-.cadastro-fornecedor-modal .cancelar {
-  background-color: #e84118;
-  color: white;
-  border: none;
-  padding: 0.8rem;
-  border-radius: 8px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
 .cadastro-fornecedor-modal .cancelar:hover {
   background-color: #c23616;
 }
@@ -1943,11 +1910,6 @@ table {
   border-bottom: 1px solid #ddd;
 }
 
-
-
-
-
-/* Estilo do modal de editar cliente --------------------------------------------------------*/
 .modal-content {
   background-color: var(--cor-branca);
   padding: 20px;
@@ -1968,6 +1930,38 @@ table {
   flex-direction: column;
   gap: 10px;
 }
+/*Botões de editar e excluir de produtos: */
+.btn-fornecedores-editar {
+  background-color: var(--amarelo-medcontrol);
+  color: var(--cor-branca);
+  border: none;
+  border-radius: 4px;
+  padding: 8px 17px;
+  font-size: 14px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-bottom: 0.3rem;
+}
+
+.btn-fornecedores-excluir{
+  background-color: #e84118;
+  color: var(--cor-branca);
+  border: none;
+  border-radius: 4px;
+  padding: 8px 17px;
+  font-size: 14px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-bottom: 0.3rem;
+}
+
+.btn-fornecedores-excluir:hover {
+  background-color: #c23616;
+}
+
+.btn-fornecedores-editar:hover {
+  background-color: rgb(190, 147, 29)
+}
 
 /* Estilo dos inputs do modal de editar cliente: */
 .modal-content input,
@@ -1987,43 +1981,40 @@ table {
 
 /*----------------------------------*/
 /* Botão Salvar */
-.btn-primary {
-  background-color: #4cd137;
-  color: var(--cor-branca) ;
-  font-weight: bold;  
+.cadastro-fornecedor-modal button[type="submit"] {
+  background-color: #44bd32;
+  color: white;
   border: none;
+  padding: 0.5rem;
   border-radius: 4px;
-  padding: 8px 12px;
-  font-size: 14px;
+  font-weight: bold;
   cursor: pointer;
 }
 
-.btn-primary:hover {
+.cadastro-fornecedor-modal button[type="submit"]:hover {
   background-color: #28a315;
   color: var(--cor-branca);
-  transform: scale(1.05);
   transition: all 0.3s ease-in-out;
+  transform: scale(1.05);
 }
-/*----------------------------------*/
 
-/*----------------------------------*/
-/* Botão Fechar */
-.btn-secondary {
+/* Botão Cancelar */
+.cadastro-fornecedor-modal .cancelar{
   background-color: #e84118;
   color: var(--cor-branca);
-  font-weight: bold;
   border: none;
   border-radius: 4px;
-  padding: 8px 12px;
-  font-size: 14px;
+  padding: 0.5rem;
+  font-size: 1rem;
   cursor: pointer;
+  font-weight: bold;
 }
 
-.btn-secondary:hover {
-  background-color: #c23616;
+.cadastro-fornecedor-modal .cancelar:hover {
+  background-color: #c82333;
   color: var(--cor-branca);
-  transform: scale(1.05);
   transition: all 0.3s ease-in-out;
+  transform: scale(1.05);
 }
 
 /* Icone de "x" de fechar no modal: */
