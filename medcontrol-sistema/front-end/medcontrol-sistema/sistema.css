@@ -1557,7 +1557,7 @@ tr:hover {
   border-radius: 8px;
   font-weight: bold;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: all 0.3s ease-in-out;
 }
 
 .cancelar-modal {
@@ -1942,6 +1942,9 @@ table {
   padding: 8px;
   border-bottom: 1px solid #ddd;
 }
+
+
+
 
 
 /* Estilo do modal de editar cliente --------------------------------------------------------*/

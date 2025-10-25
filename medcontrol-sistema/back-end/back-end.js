@@ -568,10 +568,85 @@ app.put('/editar_venda/:id_vendas', (req, res) => {
     res.status(500).json({ mensagem: 'A tentativa de editar um registro não funcionou corretamente.' });
   };
 });
+//------------------------------------------------------------------------------------------------------------------//
+
+
+//------------------------------------------------------------------------------------------------------------------//
+// Rota: dashboard da tela de fornecedores-------------------------------------------------------------------//
+// Rota: Obter o total de fornecedores:
+app.get('/dashboard_fornecedores_total', (req, res) => {
+  try {
+    const stmt = db.prepare("SELECT COUNT(id_fornecedor) AS total_fornecedores FROM cadastro_fornecedores;");
+    const dashboard_fornecedores_total = stmt.get();
+    res.setHeader("Content-Type", "application/json");
+    res.json(dashboard_fornecedores_total);
+  } catch (err) {
+    res.status(500).json({ mensagem: "Erro ao buscar fornecedores."})
+  }
+});
+
+// Rota: Obert o total de fornecedores ativos:
+app.get('/dashboard_fornecedores_ativos', (req, res) => {
+  try {
+    const stmt = db.prepare("SELECT COUNT(status) AS total_fornecedores_ativos FROM cadastro_fornecedores WHERE status = 'Ativo';");
+    const dashboard_fornecedores_ativos = stmt.get();
+    res.setHeader("Content-Type", "application/json");
+    res.json(dashboard_fornecedores_ativos);
+  } catch (err) {
+    res.status(500).json({ mensagem: "Erro ao buscar fornecedores."})
+  }
+});
+
+// Rota: Obert o total de fornecedores inativos:
+app.get('/dashboard_fornecedores_inativos', (req, res) => {
+  try {
+    const stmt = db.prepare("SELECT COUNT(status) AS total_fornecedores_inativos FROM cadastro_fornecedores WHERE status = 'Inativo';");
+    const dashboard_fornecedores_inativos = stmt.get();
+    res.setHeader("Content-Type", "application/json");
+    res.json(dashboard_fornecedores_inativos);
+  } catch (err) {
+    res.status(500).json({ mensagem: "Erro ao buscar fornecedores."})
+  }
+});
+//-------------------------------------------------------------------------------------------------------//
+
+// Rota: relacionada aos dados da tabela de fornecedores:
+app.get('/tabela_fornecedores', (req, res) => {
+  try {
+    const stmt = db.prepare("SELECT * FROM cadastro_fornecedores;");
+    const fornecedores = stmt.all();
+    res.setHeader("Content-Type", "application/json");
+    res.json(fornecedores);
+  } catch (err) {
+    res.status(500).json({ mensagem: "Erro ao buscar fornecedores."})
+  }
+});
+
+// Rota: relacionada ao cadastro de novos fornecedores pelo botão "+ Novo fornecedor":
+app.post('/cadastro_fornecedores', (req, res) => {
+  try {
+    const idFornecedor = req.params.id_fornecedor;
+    const {nome_fornecedor, cnpj, contato, status} = req.body;
+    const stmt = db.prepare("INSERT INTO cadastro_fornecedores (nome_fornecedor, cnpj, contato, status) VALUES (?, ?, ?, ?);");
+    const resultado = stmt.run(nome_fornecedor, cnpj, contato, status);
+    if (resultado.changes > 0) {
+      res.status(200).json({ mensagem: 'Fornecedor cadastrado com sucesso!' });
+    } else {
+      res.status(404).json({ mensagem: 'Fornecedor nao cadastrado.' });
+    }
+  } catch (err) {
+    res.status(500).json({ mensagem: 'A tentativa de cadastrar um fornecedor nao funcionou corretamente.' });
+  };
+});
 
 
 
-//---------------------------------------------------------------------------------------------//
+
+
+
+
+
+//-------------------------------------------------------------------------------------------------------------------//
 // Servir arquivos estáticos do front-end
 app.use(express.static(path.join(__dirname, '../../front-end/medcontrol-login')));
 

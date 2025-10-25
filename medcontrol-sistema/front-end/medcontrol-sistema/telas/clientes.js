@@ -170,8 +170,8 @@ export function render() {
     }
 
     // Verifica se o telefone possui 14 dígitos:
-    if (telefone.length !== 11) {
-      alert("O telefone deve conter 11 caracteres.");
+    if (telefone.length !== 14) {
+      alert("O telefone deve conter 14 caracteres.");
       return;
     }
 

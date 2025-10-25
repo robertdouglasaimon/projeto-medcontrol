@@ -63,15 +63,7 @@ INSERT INTO cadastro_clientes (
   status_cliente
 ) VALUES
 ('João Silva', '123.456.789-00', '(61) 99999-1111', 'Rua das Palmeiras, 45', 'Ativo'),
-('Maria Oliveira', '987.654.321-00', '(61) 98888-2222', 'Av. Central, 120', 'Inativo'),
-('Carlos Souza', '456.789.123-00', '(61) 97777-3333', 'Rua do Comércio, 89', 'Ativo'),
-('Ana Paula Lima', '321.654.987-00', '(61) 96666-4444', 'Travessa das Flores, 12', 'Inativo'),
-('Fernanda Costa', '789.123.456-00', '(61) 95555-5555', 'Rua dos Cravos, 78', 'Ativo'),
-('Ricardo Mendes', '654.321.789-00', '(61) 94444-6666', 'Av. Brasil, 300', 'Inativo'),
-('Juliana Rocha', '159.753.486-00', '(61) 93333-7777', 'Rua do Sol, 10', 'Ativo'),
-('Eduardo Martins', '258.369.147-00', '(61) 92222-8888', 'Rua das Acácias, 56', 'Inativo'),
-('Patrícia Almeida', '369.258.147-00', '(61) 91111-9999', 'Rua dos Ipês, 101', 'Ativo'),
-('Bruno Ferreira', '741.852.963-00', '(61) 90000-0000', 'Av. Goiás, 200', 'Inativo');
+
 
 INSERT INTO cadastro_clientes (
   nome_cliente, 
@@ -81,15 +73,7 @@ INSERT INTO cadastro_clientes (
   status_cliente
 ) VALUES
 ('João Silva', '123.456.789-00', '(61) 99999-1111', 'Rua das Palmeiras, 45', 'Ativo'),
-('Maria Oliveira', '987.654.321-00', '(61) 98888-2222', 'Av. Central, 120', 'Inativo'),
-('Carlos Souza', '456.789.123-00', '(61) 97777-3333', 'Rua do Comércio, 89', 'Ativo'),
-('Ana Paula Lima', '321.654.987-00', '(61) 96666-4444', 'Travessa das Flores, 12', 'Inativo'),
-('Fernanda Costa', '789.123.456-00', '(61) 95555-5555', 'Rua dos Cravos, 78', 'Ativo'),
-('Ricardo Mendes', '654.321.789-00', '(61) 94444-6666', 'Av. Brasil, 300', 'Inativo'),
-('Juliana Rocha', '159.753.486-00', '(61) 93333-7777', 'Rua do Sol, 10', 'Ativo'),
-('Eduardo Martins', '258.369.147-00', '(61) 92222-8888', 'Rua das Acácias, 56', 'Inativo'),
-('Patrícia Almeida', '369.258.147-00', '(61) 91111-9999', 'Rua dos Ipês, 101', 'Ativo'),
-('Bruno Ferreira', '741.852.963-00', '(61) 90000-0000', 'Av. Goiás, 200', 'Inativo');
+
 
 -- Deletando os dados nulos da tabela cadastro_clientes:
 DELETE FROM cadastro_clientes WHERE status_cliente IS NULL;
@@ -150,34 +134,6 @@ INSERT INTO controle_estoque (
 ) VALUES
 (1, 'Dipirona 500mg', '10 caixas', '2026-03-15', '1 caixa', 'DIP500A25'),
 (2, 'Paracetamol 750mg', '15 caixas', '2025-12-01', '0', 'PARA750B25'),
-(3, 'Ibuprofeno 400mg', '20 caixas', '2026-06-10', '2 caixas', 'IBU400C25'),
-(4, 'Omeprazol 20mg', '12 caixas', '2027-01-20', '0', 'OME20D25'),
-(5, 'Loratadina 10mg', '8 caixas', '2026-09-30', '1 caixa', 'LORA10E25'),
-(6, 'Neosaldina', '25 caixas', '2025-11-15', '3 caixas', 'NEOX25'),
-(7, 'Dorflex', '30 caixas', '2026-04-05', '2 caixas', 'DORFLEXF25'),
-(8, 'Buscopan Composto', '18 caixas', '2026-07-22', '1 caixa', 'BUSCOG25'),
-(9, 'Torsilax', '10 caixas', '2025-10-10', '0', 'TORSIH25'),
-(10, 'Cetoconazol Shampoo', '14 frascos', '2026-12-31', '2 frascos', 'CETOXSH25'),
-(11, 'Protetor Solar FPS 50', '40 unidades', '2027-02-28', '5 unidades', 'PROTSOL50J25'),
-(12, 'Sabonete Líquido Facial', '50 frascos', '2026-08-18', '4 frascos', 'SABLIQK25'),
-(13, 'Creme Cicatricure', '22 unidades', '2026-05-12', '2 unidades', 'CICATRICL25'),
-(14, 'Amoxicilina 500mg', '16 caixas', '2026-11-01', '1 caixa', 'AMOX500M25'),
-(15, 'Losartana 50mg', '19 caixas', '2027-03-10', '0', 'LOSA50N25'),
-(16, 'Metformina 850mg', '21 caixas', '2026-10-05', '2 caixas', 'METF850P25'),
-(17, 'Ranitidina 150mg', '13 caixas', '2025-12-20', '1 caixa', 'RANI150Q25'),
-(18, 'Azitromicina 500mg', '17 caixas', '2026-01-15', '0', 'AZIT500R25'),
-(19, 'Cetirizina 10mg', '11 caixas', '2026-09-01', '1 caixa', 'CETI10S25'),
-(20, 'Fluconazol 150mg', '9 caixas', '2026-06-30', '0', 'FLUC150T25'),
-(21, 'Pantoprazol 40mg', '14 caixas', '2027-04-01', '1 caixa', 'PANTO40U25'),
-(22, 'Cloridrato de Sertralina 50mg', '10 caixas', '2026-12-15', '0', 'SERT50V25'),
-(23, 'Ácido Acetilsalicílico 100mg', '18 caixas', '2026-11-30', '2 caixas', 'AAS100W25'),
-(24, 'Sinvastatina 20mg', '12 caixas', '2027-01-10', '1 caixa', 'SINVA20X25'),
-(25, 'Enalapril 10mg', '15 caixas', '2026-08-25', '0', 'ENALA10Y25'),
-(26, 'Hidroclorotiazida 25mg', '13 caixas', '2026-10-20', '1 caixa', 'HCTZ25Z25'),
-(27, 'Cetoconazol Creme', '20 bisnagas', '2026-07-15', '2 bisnagas', 'CETOCRM25'),
-(28, 'Protetor Labial FPS 30', '35 unidades', '2026-12-01', '3 unidades', 'PROTLAB30A26'),
-(29, 'Sabonete Íntimo Feminino', '40 frascos', '2027-03-05', '4 frascos', 'SABINTF26'),
-(30, 'Creme Hidratante Corporal', '50 unidades', '2026-09-10', '5 unidades', 'CREMHID26');
 
 INSERT INTO controle_estoque (
   id_controle_estoque,
@@ -189,34 +145,7 @@ INSERT INTO controle_estoque (
 ) VALUES
 (31, 'Clonazepam 2mg', '12 caixas', '2026-12-10', '1 caixa', 'CLONA2A26'),
 (32, 'Prednisona 20mg', '18 caixas', '2027-01-05', '2 caixas', 'PRED20B26'),
-(33, 'Dipirona 1g', '20 caixas', '2026-11-30', '0', 'DIP1G26'),
-(34, 'Paracetamol Infantil 200mg', '25 frascos', '2026-08-15', '3 frascos', 'PARAINF200C26'),
-(35, 'Ibuprofeno Suspensão 100mg', '30 frascos', '2027-02-20', '2 frascos', 'IBUSUSP100D26'),
-(36, 'Omeprazol 10mg', '10 caixas', '2026-09-01', '0', 'OME10E26'),
-(37, 'Loratadina Xarope', '15 frascos', '2026-10-10', '1 frasco', 'LORAXF26'),
-(38, 'Neosaldina Gotas', '20 frascos', '2026-12-25', '2 frascos', 'NEOGOTG26'),
-(39, 'Dorflex Comprimido', '35 caixas', '2027-03-01', '3 caixas', 'DORFCOMP26'),
-(40, 'Buscopan Gotas', '22 frascos', '2026-07-30', '1 frasco', 'BUSGOTG26'),
-(41, 'Torsilax Gel', '18 bisnagas', '2026-11-10', '2 bisnagas', 'TORSGELH26'),
-(42, 'Cetoconazol Sabonete', '25 unidades', '2026-09-20', '0', 'CETOSABSH26'),
-(43, 'Protetor Solar FPS 30', '45 unidades', '2027-04-15', '4 unidades', 'PROTSOL30J26'),
-(44, 'Sabonete Líquido Corporal', '50 frascos', '2026-10-05', '5 frascos', 'SABLIQCORPK26'),
-(45, 'Creme Cicatricure Noite', '20 unidades', '2026-12-01', '1 unidade', 'CICATNOITEL26'),
-(46, 'Amoxicilina Suspensão 250mg', '15 frascos', '2026-08-20', '2 frascos', 'AMOXSUSP250M26'),
-(47, 'Losartana Potássica 100mg', '17 caixas', '2027-01-25', '0', 'LOSAPOT100N26'),
-(48, 'Metformina XR 500mg', '20 caixas', '2026-09-30', '1 caixa', 'METFXR500P26'),
-(49, 'Ranitidina Xarope', '12 frascos', '2026-12-10', '1 frasco', 'RANIXQ26'),
-(50, 'Azitromicina Infantil 200mg', '14 frascos', '2026-07-01', '0', 'AZITINF200R26'),
-(51, 'Cetirizina Gotas', '16 frascos', '2026-10-20', '2 frascos', 'CETIGOTS26'),
-(52, 'Fluconazol Creme', '10 bisnagas', '2026-08-05', '1 bisnaga', 'FLUCCRM26'),
-(53, 'Pantoprazol 20mg', '13 caixas', '2027-02-10', '0', 'PANTO20U26'),
-(54, 'Sertralina 100mg', '11 caixas', '2026-11-15', '1 caixa', 'SERT100V26'),
-(55, 'AAS Infantil 100mg', '19 frascos', '2026-09-25', '2 frascos', 'AASINF100W26'),
-(56, 'Sinvastatina 40mg', '15 caixas', '2027-03-20', '0', 'SINVA40X26'),
-(57, 'Enalapril 20mg', '14 caixas', '2026-10-30', '1 caixa', 'ENALA20Y26'),
-(58, 'Hidroclorotiazida 50mg', '12 caixas', '2026-12-05', '0', 'HCTZ50Z26'),
-(59, 'Creme Anti-idade FPS 60', '30 unidades', '2027-01-01', '3 unidades', 'CREMANTIFPS60A27'),
-(60, 'Sabonete Esfoliante Facial', '40 unidades', '2026-09-15', '4 unidades', 'SABESFOLB27');
+
 
 
 -- Adicionando coluna na tabela controle_estoque:
@@ -309,22 +238,8 @@ INSERT INTO vendas (
 )
 VALUES
 ('Clonazepam 2mg', '2025-10-14', 'RX20251014N', 'CF000014', 114, 214),
-('Ácido Fólico 5mg', '2025-10-15', 'RX20251015O', 'CF000015', 115, 215),
-('Fluoxetina 20mg', '2025-10-16', 'RX20251016P', 'CF000016', 116, 216),
-('Ranitidina 150mg', '2025-10-17', 'RX20251017Q', 'CF000017', 117, 217),
-('Captopril 25mg', '2025-10-18', 'RX20251018R', 'CF000018', 118, 218),
-('Atenolol 50mg', '2025-10-19', 'RX20251019S', 'CF000019', 119, 219),
-('Nimesulida 100mg', '2025-10-20', 'RX20251020T', 'CF000020', 120, 220),
-('Azitromicina 500mg', '2025-10-21', 'RX20251021U', 'CF000021', 121, 221),
-('Cetoprofeno 100mg', '2025-10-22', 'RX20251022V', 'CF000022', 122, 222),
-('Hidroclorotiazida 25mg', '2025-10-23', 'RX20251023W', 'CF000023', 123, 223),
-('Levotiroxina 100mcg', '2025-10-24', 'RX20251024X', 'CF000024', 124, 224),
-('Carbamazepina 200mg', '2025-10-25', 'RX20251025Y', 'CF000025', 125, 225),
-('Diclofenaco Sódico 50mg', '2025-10-26', 'RX20251026Z', 'CF000026', 126, 226),
-('Bromoprida 10mg', '2025-10-27', 'RX20251027AA', 'CF000027', 127, 227),
-('Cloridrato de Propranolol 40mg', '2025-10-28', 'RX20251028AB', 'CF000028', 128, 228),
-('Furosemida 40mg', '2025-10-29', 'RX20251029AC', 'CF000029', 129, 229),
-('Gliclazida 30mg', '2025-10-30', 'RX20251030AD', 'CF000030', 130, 230);
+('Ácido Fólico 5mg', '2025-10-15', 'RX20251015O', 'CF000015', 115, 215);
+(
 
 
 -- Adicionando a coluna valor_venda na tabela vendas:
@@ -333,34 +248,7 @@ ALTER TABLE vendas ADD COLUMN vendas_medias DECIMAL(10, 2) DEFAULT 1.500;
 
 UPDATE vendas SET vendas_medias = 2.500 WHERE id_vendas = 1;
 UPDATE vendas SET vendas_medias = 1.200 WHERE id_vendas = 2;
-UPDATE vendas SET vendas_medias = 3.750 WHERE id_vendas = 3;
-UPDATE vendas SET vendas_medias = 1.000 WHERE id_vendas = 4;
-UPDATE vendas SET vendas_medias = 2.000 WHERE id_vendas = 5;
-UPDATE vendas SET vendas_medias = 1.800 WHERE id_vendas = 6;
-UPDATE vendas SET vendas_medias = 2.300 WHERE id_vendas = 7;
-UPDATE vendas SET vendas_medias = 1.600 WHERE id_vendas = 8;
-UPDATE vendas SET vendas_medias = 4.000 WHERE id_vendas = 9;
-UPDATE vendas SET vendas_medias = 1.100 WHERE id_vendas = 10;
-UPDATE vendas SET vendas_medias = 2.750 WHERE id_vendas = 11;
-UPDATE vendas SET vendas_medias = 1.950 WHERE id_vendas = 12;
-UPDATE vendas SET vendas_medias = 3.200 WHERE id_vendas = 13;
-UPDATE vendas SET vendas_medias = 1.300 WHERE id_vendas = 14;
-UPDATE vendas SET vendas_medias = 2.100 WHERE id_vendas = 15;
-UPDATE vendas SET vendas_medias = 1.700 WHERE id_vendas = 16;
-UPDATE vendas SET vendas_medias = 2.850 WHERE id_vendas = 17;
-UPDATE vendas SET vendas_medias = 1.400 WHERE id_vendas = 18;
-UPDATE vendas SET vendas_medias = 3.000 WHERE id_vendas = 19;
-UPDATE vendas SET vendas_medias = 1.250 WHERE id_vendas = 20;
-UPDATE vendas SET vendas_medias = 2.600 WHERE id_vendas = 21;
-UPDATE vendas SET vendas_medias = 1.900 WHERE id_vendas = 22;
-UPDATE vendas SET vendas_medias = 3.500 WHERE id_vendas = 23;
-UPDATE vendas SET vendas_medias = 1.050 WHERE id_vendas = 24;
-UPDATE vendas SET vendas_medias = 2.400 WHERE id_vendas = 25;
-UPDATE vendas SET vendas_medias = 1.800 WHERE id_vendas = 26;
-UPDATE vendas SET vendas_medias = 3.100 WHERE id_vendas = 27;
-UPDATE vendas SET vendas_medias = 1.600 WHERE id_vendas = 28;
-UPDATE vendas SET vendas_medias = 2.200 WHERE id_vendas = 29;
-UPDATE vendas SET vendas_medias = 1.500 WHERE id_vendas = 30;
+
 
 SELECT 
     COUNT(id_vendas) AS total_vendas, 
@@ -390,3 +278,21 @@ SELECT id_cliente FROM cadastro_clientes ORDER BY id_cliente DESC LIMIT 1;
 DELETE FROM vendas WHERE id_vendas = 31;
 
 ALTER TABLE vendas DROP COLUMN registro_receita_medica;
+
+INSERT INTO cadastro_fornecedores (
+  id_fornecedor, 
+  nome_fornecedor, 
+  cnpj, 
+  contato
+) VALUES
+(1, 'EMS S/A', '57.507.378/0001-94', '(19) 3867-7000'),
+(2, 'Eurofarma Laboratórios S/A', '61.190.096/0001-92', '(11) 5090-8700'),
+(3, 'Laboratório Farmacêutico do Estado de Pernambuco', '10.842.993/0001-00', '(81) 3183-4700');
+
+ALTER TABLE cadastro_fornecedores ADD COLUMN status VARCHAR(20);
+
+SELECT COUNT(id_fornecedor) AS total_fornecedores FROM cadastro_fornecedores;
+SELECT COUNT(status) AS total_fornecedores_ativos FROM cadastro_fornecedores WHERE status = "Ativo";
+SELECT COUNT(status) AS total_inativos FROM cadastro_fornecedores WHERE status = "Inativo";
+
+SELECT * FROM cadastro_fornecedores;
