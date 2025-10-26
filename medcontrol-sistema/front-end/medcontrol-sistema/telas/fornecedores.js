@@ -321,8 +321,172 @@ export function render() {
       })    
     }, 0);
 
+    // Script para editar a linha da tabela fornecedores------------------------------------:
+    setTimeout(() => {
+        const tbody = document.querySelector('tbody');
+
+        tbody.addEventListener("click", async (event) => {
+                const btn = event.target;
+                if(!btn.classList.contains("btn-fornecedores-editar")) return;
 
 
+                const row = btn.closest("tr");
+                const id_fornecedor = row.getAttribute("data-id_fornecedor");
+
+                const nome_fornecedor = row.querySelector("td:nth-child(1)").textContent;
+                const cnpj = row.querySelector("td:nth-child(2)").textContent;
+                const contato = row.querySelector("td:nth-child(3)").textContent;
+                const status = row.querySelector("td:nth-child(4)").textContent;
+
+                console.log("Dados do fornecedor: ", {nome_fornecedor, cnpj, contato, status, fornecedor_id: id_fornecedor});
+
+
+
+                const modal = document.createElement("div");
+                modal.classList.add("modal");
+                modal.innerHTML = `
+                    <div class="modal-content">
+                        <h3>Editar Fornecedor</h3>
+                        <form id="form-editar-fornecedor">
+                            <label for="nome_fornecedor">Nome do Fornecedor:</label>
+                            <input type="text" id="nome_fornecedor" value="${nome_fornecedor}" required>
+
+                            <label for="cnpj">CNPJ:</label>
+                            <input type="text" id="cnpj" value="${cnpj}" required>
+
+                            <label for="contato">Contato:</label>
+                            <input type="text" id="contato" value="${contato}" required>
+
+                            <label for="status">Status:</label>
+                            <select id="status" required>
+                                <option value="Ativo" ${status === "Ativo" ? "selected" : ""}>Ativo</option>
+                                <option value="Inativo" ${status === "Inativo" ? "selected" : ""}>Inativo</option>
+                            </select>
+
+
+                            <button type="submit" class="btn btn-primary">Salvar</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                        </form>
+                    </div>
+                `;
+                document.body.appendChild(modal);
+
+    // Fecha o modal ao clicar no botão "fechar" ou clicar "fora do modal": ---------------------
+            modal.addEventListener("click", (event) => {
+            if (
+                event.target.classList.contains("close-modal") || 
+                event.target.classList.contains("modal") || 
+                event.target.classList.contains("btn-secondary")) {
+                modal.remove();
+            }
+            });
+
+    // Script para salvar os dados editados:------------------------------------------------------ 
+                const form = document.querySelector("#form-editar-fornecedor");
+                form.addEventListener("submit", async (event) => {
+                    event.preventDefault();
+
+                    const nome_fornecedor = document.getElementById("nome_fornecedor").value;
+                    const cnpj = document.getElementById("cnpj").value;
+                    const contato = document.getElementById("contato").value;
+                    const status = document.getElementById("status").value;
+
+                    // ✅ Validações
+
+                    // Verifica se todos os campos foram preenchidos:
+                    if (!nome_fornecedor || !cnpj || !contato || !status) {
+                      alert("Por favor, preencha todos os campos.");
+                      return;
+                    }
+                    
+                    // Verifica se o CNPJ é válido:
+                    if (!/^\d{2}\.\d{3}\.\d{3}\/\d{4}-\d{2}$/.test(cnpj)) {
+                      alert("Por favor, insira um CNPJ válido. Modelo: XX.XXX.XXX/XXXX-XX");
+                      return;
+                    }
+
+                    // Verifica se o contato é um número de telefone fixo ou celular válido:
+                    if (!/^\(\d{2}\) \d{4,5}-\d{4}$/.test(contato)) {
+                      alert("Por favor, insira um contato válido. Modelos aceitos: (XX) XXXX-XXXX ou (XX) XXXXX-XXXX");
+                      return;
+                    }
+
+
+                    // Envia os dados para o back-end:
+                    try {
+                        console.log("Dados do fornecedor: ", {id_fornecedor, nome_fornecedor, cnpj, contato, status});
+                        const resposta = await fetch(`http://localhost:3001/editar_fornecedores/${id_fornecedor}`, {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({ nome_fornecedor, cnpj, contato, status, fornecedor_id: id_fornecedor })
+                        });
+
+                        if (!resposta.ok) {
+                            alert("❌ Erro ao editar o fornecedor.");
+                            throw new Error("Erro ao editar o fornecedor.");
+                        } else {
+                            const data = await resposta.json();
+
+                            console.log(`✅ Fornecedor editado com sucesso: ${data}`);
+                            row.querySelector("td:nth-child(2)").textContent = data.nome_fornecedor;
+                            row.querySelector("td:nth-child(3)").textContent = data.cnpj;
+                            row.querySelector("td:nth-child(4)").textContent = data.contato;
+                            row.querySelector("td:nth-child(5)").textContent = data.status;
+
+                            alert(`✅ ${data.mensagem} Fornecedor editado com sucesso!`);
+                            window.location.reload();
+                            return;
+                        }
+                    } catch (error) {
+                        console.error("❌ Erro ao editar o fornecedor:", error);
+                        alert(`❌ ${error.message}`)
+                    }
+                    modal.remove();
+            });
+        });
+
+    },0);
+
+    // Script para excluir a linha da tabela fornecedores-----------------------------------:
+    setTimeout(() => {
+    const table = document.querySelector('table');
+
+    table.addEventListener('click', async (event) => {
+        if (event.target.classList.contains('btn-fornecedores-excluir')) {
+          
+        const linha = event.target.closest('tr');
+        console.log('Linha para excluir seleciodanada:', linha);
+        const id_fornecedor = linha.getAttribute('data-id_fornecedor');
+
+            if (!id_fornecedor) {
+                alert('❌ ID do fornecedor não encontrado.');
+                return;
+            }
+
+            const confirmar = confirm('Tem certeza de que deseja excluir o fornecedor?');
+            if (!confirmar) return;
+
+            try {
+                const resposta = await fetch(`http://localhost:3001/deletar_fornecedor/${id_fornecedor}`, {
+                method: 'DELETE'
+                });
+
+                if (resposta.ok) {
+                alert('✅ Fornecedor excluído com sucesso!');
+                linha.remove();
+                } else {
+                throw new Error('Erro ao excluir o lote.');
+                }
+            } catch (error) {
+                console.error('❌ Erro ao excluir o fornecedor:', error.message);
+                alert(`❌ Erro ao excluir o fornecedor: ${error.message}`);
+
+            }
+        }
+    });
+    },0);
 
   return div;    
 }

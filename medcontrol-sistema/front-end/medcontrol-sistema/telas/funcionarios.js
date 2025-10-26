@@ -83,19 +83,9 @@ export function render() {
 
       </table>
     </section>
-
-
-
-
-
-
-
-
-
-
     `;
 
-
+    
 
     return div
 }

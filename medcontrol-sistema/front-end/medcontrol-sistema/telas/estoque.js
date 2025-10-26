@@ -271,7 +271,6 @@ export function render () {
         });
     },0);
 
-
     // Script relacionado ao modal do botão "+ Novo Produto":
     setTimeout(() => {
     const div = document; // usa document direto
@@ -366,7 +365,6 @@ export function render () {
     });
     }, 50);
 
-
     // Script para a tabela de estoque:
     setTimeout(() => {
             const tbody = document.querySelector('tbody');
@@ -400,7 +398,6 @@ export function render () {
                 });            
             });
     }, 10);
-
 
     // Script para editar a linha da tabela:
     setTimeout(() => {

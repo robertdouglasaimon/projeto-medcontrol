@@ -640,6 +640,41 @@ app.post('/cadastro_fornecedores', (req, res) => {
 });
 
 
+// Rota: relacionada a editar os itens da tabela fornecedores pelo front através do botão editar:
+app.post('/editar_fornecedores/:id_fornecedor', (req, res) => {
+  try {
+    const fornecedor_id = req.params.id_fornecedor;
+    const {nome_fornecedor, cnpj, contato, status} = req.body;
+    const stmt = db.prepare("UPDATE cadastro_fornecedores SET nome_fornecedor = ?, cnpj = ?, contato = ?, status = ? WHERE id_fornecedor = ?;");
+    const resultado = stmt.run(nome_fornecedor, cnpj, contato, status, fornecedor_id);
+    if (resultado.changes > 0) {
+      res.status(200).json({ mensagem: 'Fornecedor editado com sucesso!' });
+    } else {
+      res.status(404).json({ mensagem: 'Fornecedor nao editado.' });
+    }
+  } catch (err) {
+    res.status(500).json({ mensagem: 'A tentativa de editar um fornecedor nao funcionou corretamente.' });
+  };
+})
+
+// Rota: relacionada a excluisão de um registro da tabela de fornecedores pelo front-end:
+app.delete('/deletar_fornecedor/:id_fornecedor', (req, res) => {
+  try {
+    const id = req.params.id_fornecedor;
+    const stmt = db.prepare('DELETE FROM cadastro_fornecedores WHERE id_fornecedor = ?');
+    const resultado = stmt.run(id);
+    if (resultado.changes > 0) {
+      res.status(200).json({ mensagem: 'Fornecedor deletado com sucesso!' });
+    } else {
+      res.status(404).json({ mensagem: 'Fornecedor nao encontrado.' });
+    }
+  } catch (err) {
+    res.status(500).json({ mensagem: 'A tentativa de deletar um fornecedor nao funcionou corretamente.' });
+  };
+});
+//------------------------------------------------------------------------------------------------------------------//
+
+//------------------------------------------------------------------------------------------------------------------//
 
 
 

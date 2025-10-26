@@ -296,3 +296,4 @@ SELECT COUNT(status) AS total_fornecedores_ativos FROM cadastro_fornecedores WHE
 SELECT COUNT(status) AS total_inativos FROM cadastro_fornecedores WHERE status = "Inativo";
 
 SELECT * FROM cadastro_fornecedores;
+
