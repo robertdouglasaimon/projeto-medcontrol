@@ -675,10 +675,54 @@ app.delete('/deletar_fornecedor/:id_fornecedor', (req, res) => {
 //------------------------------------------------------------------------------------------------------------------//
 
 //------------------------------------------------------------------------------------------------------------------//
+// Rota: dashboard da tela de funcionarios:------------------------------------------------------------//
+// Rota: Obter o total de funcionarios:
+app.get('/dashboard_funcionarios', (req, res) => {
+  try {
+    const stmt = db.prepare("SELECT COUNT(id_funcionario) AS total_funcionario FROM funcionarios;");
+    const dashboard_funcionarios_total = stmt.get();
+    res.setHeader("Content-Type", "application/json");
+    res.json(dashboard_funcionarios_total);
+  } catch (err) {
+    res.status(500).json({ mensagem: "Erro ao buscar funcionarios."})
+  }
+})
 
+// Rota: Obter o total de funcionarios ativos:
+app.get('/dashboard_funcionarios_ativos', (req, res) => {
+  try {
+    const stmt = db.prepare("SELECT COUNT(status) AS total_funcionario_ativos FROM funcionarios WHERE status = 'Ativo';");
+    const dashboard_funcionarios_ativos = stmt.get();
+    res.setHeader("Content-Type", "application/json");
+    res.json(dashboard_funcionarios_ativos);
+  } catch (err) {
+    res.status(500).json({ mensagem: "Erro ao buscar funcionarios."})
+  }
+})
 
-
-
+// Rota: Obter o total de funcionarios inativos:
+app.get('/dashboard_funcionarios_inativos', (req, res) => {
+  try {
+    const stmt = db.prepare("SELECT COUNT(status) AS total_funcionario_inativos FROM funcionarios WHERE status = 'Inativo';");
+    const dashboard_funcionarios_inativos = stmt.get();
+    res.setHeader("Content-Type", "application/json");
+    res.json(dashboard_funcionarios_inativos);
+  } catch (err) {
+    res.status(500).json({ mensagem: "Erro ao buscar funcionarios."})
+  }
+});
+//-----------------------------------------------------------------------------------------------------//
+// Rota: relacionada aos dados da tabela de funcionarios:
+app.get('/tabela_funcionarios', (req, res) => {
+  try {
+    const stmt = db.prepare("SELECT * FROM funcionarios;");
+    const tabela_funcionarios = stmt.all();
+    res.setHeader("Content-Type", "application/json");
+    res.json(tabela_funcionarios);
+  } catch (err) {
+    res.status(500).json({ mensagem: "Erro ao buscar funcionarios."})
+  }
+})
 
 
 //-------------------------------------------------------------------------------------------------------------------//

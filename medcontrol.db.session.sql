@@ -297,3 +297,29 @@ SELECT COUNT(status) AS total_inativos FROM cadastro_fornecedores WHERE status =
 
 SELECT * FROM cadastro_fornecedores;
 
+
+ALTER TABLE funcionarios ADD COLUMN admissao DATE;
+ALTER TABLE funcionarios ADD COLUMN demissao DATE;
+ALTER TABLE funcionarios ADD COLUMN salario DECIMAL(10, 2) DEFAULT 1.500;
+ALTER TABLE funcionarios ADD COLUMN status VARCHAR(20);
+
+-- Inserindo novo usuario em funcionarios
+INSERT INTO funcionarios (
+  nome_funcionario,
+  cargo_funcionario,
+  salario_funcionario,
+  tel_funcionario,
+  email_funcionario,
+  login_funcionario,
+  senha_funcionario,
+  admissao,
+  demissao,
+  status
+) VALUES
+('Geovana', 'Q.A', 1500.00, '(61)98317618', 'geovana@medcontrol', 'geovana', '123456789', '2025-10-26', NULL, 'Inativo');
+
+-- Modificando o status das coluna status de funcionarios:
+UPDATE funcionarios SET demissao = "Funcionário Ativo" WHERE id_funcionario = 67;
+UPDATE funcionarios SET demissao = "Funcionário Ativo" WHERE id_funcionario = 70;
+UPDATE funcionarios SET demissao = "Funcionário Ativo" WHERE id_funcionario = 71;
+UPDATE funcionarios SET demissao = "Funcionário Ativo" WHERE id_funcionario = 72;
