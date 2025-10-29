@@ -411,7 +411,6 @@ export function render() {
                       return;
                     }
 
-
                     // Envia os dados para o back-end:
                     try {
                         console.log("Dados do fornecedor: ", {id_fornecedor, nome_fornecedor, cnpj, contato, status});

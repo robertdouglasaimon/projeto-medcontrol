@@ -725,6 +725,127 @@ app.get('/tabela_funcionarios', (req, res) => {
 })
 
 
+// Rota: relacionada ao cadastro de novos funcionarios pelo botão "+ Novo Funcionário":
+app.post('/cadastro_funcionarios', (req, res) => {
+  try {
+    const {
+      nome_funcionario,
+      cargo_funcionario,
+      salario_funcionario,
+      tel_funcionario,
+      email_funcionario,
+      login_funcionario,
+      senha_funcionario,
+      admissao,
+      demissao,
+      status
+    } = req.body;
+
+    const stmt = db.prepare("INSERT INTO funcionarios (nome_funcionario, cargo_funcionario, salario_funcionario, tel_funcionario, email_funcionario, login_funcionario, senha_funcionario, admissao, demissao, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
+
+    const resultado = stmt.run(
+      nome_funcionario,
+      cargo_funcionario,
+      salario_funcionario,
+      tel_funcionario,
+      email_funcionario,
+      login_funcionario,
+      senha_funcionario,
+      admissao,
+      demissao,
+      status
+    );
+
+    if (resultado.changes > 0) {
+      res.status(200).json({ mensagem: 'Funcionario cadastrado com sucesso!' });
+    } else {
+      res.status(404).json({ mensagem: 'Funcionario nao cadastrado.' });
+    }
+  } catch (err) {
+    console.error("❌ Erro no backend:", err);
+    res.status(500).json({ mensagem: 'A tentativa de cadastrar um funcionario nao funcionou corretamente.' });
+  }
+});
+
+
+// Rota: relacionada a editar os itens da tabela funcionarios pelo front através do botão editar:
+app.post('/editar_funcionario/:id_funcionario', (req, res) => {
+  try {
+    const funcionario_id = req.params.id_funcionario;
+    const {
+      nome_funcionario, 
+      cargo_funcionario, 
+      admissao, 
+      demissao, 
+      salario_funcionario,
+      status,
+      tel_funcionario, 
+      email_funcionario, 
+      login_funcionario, 
+      senha_funcionario
+    } = req.body;
+
+    const stmt = db.prepare(`
+      UPDATE funcionarios SET 
+        nome_funcionario = ?, 
+        cargo_funcionario = ?, 
+        admissao = ?, 
+        demissao = ?, 
+        salario_funcionario = ?, 
+        status = ?, 
+        tel_funcionario = ?, 
+        email_funcionario = ?, 
+        login_funcionario = ?, 
+        senha_funcionario = ?
+      WHERE id_funcionario = ?;
+    `);
+
+    const resultado = stmt.run(
+      nome_funcionario, 
+      cargo_funcionario, 
+      admissao, 
+      demissao, 
+      salario_funcionario, 
+      status,  
+      tel_funcionario, 
+      email_funcionario, 
+      login_funcionario, 
+      senha_funcionario, 
+      funcionario_id
+    );
+
+    if (resultado.changes > 0) {
+      res.status(200).json({ mensagem: 'Funcionário editado com sucesso!' });
+    } else {
+      res.status(404).json({ mensagem: 'Funcionário não editado.' });
+    }
+  } catch (err) {
+    console.error("❌ Erro no backend:", err);
+    res.status(500).json({ mensagem: 'Erro interno ao editar funcionário.' });
+  }
+});
+
+// Rota: excluir um funcionario pelo botão excluir:
+app.delete('/deletar_funcionario/:id_funcionario', (req, res) => {
+  try {  
+    const id = req.params.id_funcionario;
+    const stmt = db.prepare('DELETE FROM funcionarios WHERE id_funcionario = ?');
+    const resultado = stmt.run(id);
+
+    if (resultado.changes > 0) {
+      res.status(200).json({ mensagem: 'Funcionario excluido com sucesso!' });
+    } else {
+      res.status(404).json({ mensagem: 'Funcionario nao excluido.' });
+    }
+  } catch (err) {
+    console.error("❌ Erro no backend:", err);
+    res.status(500).json({ mensagem: 'A tentativa de excluir um funcionario nao funcionou corretamente.' });
+  }
+});
+
+
+
+
 //-------------------------------------------------------------------------------------------------------------------//
 // Servir arquivos estáticos do front-end
 app.use(express.static(path.join(__dirname, '../../front-end/medcontrol-login')));
