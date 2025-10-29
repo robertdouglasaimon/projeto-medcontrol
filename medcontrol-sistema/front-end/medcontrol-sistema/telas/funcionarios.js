@@ -157,6 +157,8 @@ export function render() {
         });
       })
 
+      
+
       // Script para inserir os dados do banco de dados na tabela de funcionários:------------------------------------------------------------------
       setTimeout(() => {
         const tbody = div.querySelector("tbody");
