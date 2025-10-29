@@ -444,35 +444,42 @@ main#app {
 }
 
 /* Botão Salvar */
-.cadastro-cliente-modal button[type="submit"] {
+#form-editar-cliente .btn-primary{
   background-color: #44bd32;
-  color: white;
+  color: var(--cor-branca);
   border: none;
+  border-radius: 7px;
   padding: 0.8rem;
-  border-radius: 8px;
-  font-weight: bold;
+  font-size: 1rem;
   cursor: pointer;
-  transition: background-color 0.3s;
+  font-weight: bold;
 }
 
-.cadastro-cliente-modal button[type="submit"]:hover {
+#form-editar-cliente .btn-primary:hover {
   background-color: #4cd137;
+  color: var(--cor-branca);
+  transform: scale(1.05);
+  transition: all 0.3s ease-in-out;
 }
 
 /* Botão Cancelar */
-.cadastro-cliente-modal .cancelar {
+#form-editar-cliente .btn-secondary{
   background-color: #e84118;
   color: white;
   border: none;
   padding: 0.8rem;
   border-radius: 8px;
+  font-size: 1rem;
   font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s;
 }
 
-.cadastro-cliente-modal .cancelar:hover {
-  background-color: #c23616;
+#form-editar-cliente .btn-secondary:hover {
+  background-color: #8d260c;
+  color: var(--cor-branca);
+  transition: all 0.3s ease-in-out;
+  transform: scale(1.05);
 }
 
 
@@ -793,12 +800,12 @@ table {
 
 /* Cores e hover para cada card produtos: */
 .total-produtos:hover {
-  background-color: #f1e96e;
+  background-color: #0077ff;
   transform: scale(1.05);
   transition: all 0.3s ease-in-out;
 
   /* listra azul na parte inferior do card */
-  border-bottom: 5px solid #11d8df;
+  border-bottom: 5px solid orange;
 }
 
 .valor-estoque:hover {
@@ -807,24 +814,25 @@ table {
   transition: all 0.3s ease-in-out;
   
 
-  border-bottom: 5px solid #11d8df;
+  border-bottom: 5px solid orange;;
 }
 
 .produto-mais-vendido:hover {
-  background-color: #0883d4;
+  background-color: #ffee00;
   transform: scale(1.05);
   transition: all 0.3s ease-in-out;
 
  
-  border-bottom: 5px solid #11d8df;
+  border-bottom: 5px solid orange;;
 }
 
 .produto-menos-vendido:hover {
-  background-color: #cf6646;
+  background-color: #fa3636;
   transform: scale(1.05);
   transition: all 0.3s ease-in-out;
   
-  border-bottom: 5px solid #11d8df;
+  /* listra azul na parte inferior do card */
+  border-bottom: 5px solid orange;
 }
 /*----------------------------------------*/
 
@@ -879,49 +887,40 @@ table {
   color: var(--amarelo-medcontrol);
 }
 
-/*Botões de editar e excluir de produtos: */
 
-.btn-editar-produto {
+/*Botões de editar e excluir de produtos: */
+.btn-editar-produto{
   background-color: var(--amarelo-medcontrol);
   color: var(--cor-branca);
   border: none;
   border-radius: 4px;
-  padding: 8px 14px;
+  padding: 8px 17px;
   font-size: 14px;
-  font-weight: bold;
   cursor: pointer;
-  margin-right: 5px;
-  transition: all 0.3s ease-in-out;
+  font-weight: bold;
+  margin-bottom: 0.3rem;
+
 }
 
-.btn-excluir-produto {
+.btn-excluir-produto{
   background-color: #e84118;
   color: var(--cor-branca);
   border: none;
-  /* border-radius: 4px; */
-  padding: 8px 12px;
+  border-radius: 4px;
+  padding: 8px 17px;
   font-size: 14px;
-  font-weight: bold;
   cursor: pointer;
-  margin-top: 5px;
-  margin-right: 5px;
-  transition: all 0.3s ease-in-out;
+  font-weight: bold;
+  margin-bottom: 0.3rem;
 }
 
 .btn-excluir-produto:hover {
   background-color: #c23616;
-  transform: scale(1.05);
-  transition: all 0.3s ease-in-out;
-  color: var(--cor-preta);
 }
 
 .btn-editar-produto:hover {
-  background-color: #7e771e;
-  transform: scale(1.05);
-  transition: all 0.3s ease-in-out;
-  color: var(--cor-preta);
+  background-color: rgb(190, 147, 29)
 }
-
 /*----------------------------------------*/
 
 /* Botão da barra de busca */
@@ -1300,7 +1299,7 @@ tr:hover {
   font-size: 1rem;
 }
 
-.cadastro-lote-modal button[type="submit"] {
+.cadastro-lote-modal button[type="submit"]{
   background-color: #4cd137;
   color: var(--cor-branca);
   border: none;
@@ -1318,7 +1317,7 @@ tr:hover {
   transform: scale(1.05);
 }
 
-.cadastro-lote-modal .cancelar {
+.cadastro-lote-modal button[type="button"]{
   background-color: #e84118;
   color: var(--cor-branca);
   border: none;
@@ -1329,8 +1328,44 @@ tr:hover {
   font-weight: bold;
 }
 
-.cadastro-lote-modal .cancelar:hover {
+.cadastro-lote-modal button[type="button"]:hover {
   background-color: #c82333;
+  color: var(--cor-branca);
+  transition: all 0.3s ease-in-out;
+  transform: scale(1.05);
+}
+/* Estilos relacionados ao modal de cadastro de editar lote ------------------*/
+#form-editar-lote .btn-primary{
+  background-color: #44bd32;
+  color: var(--cor-branca);
+  border: none;
+  border-radius: 7px;
+  padding: 0.8rem;
+  font-size: 1rem;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+#form-editar-lote .btn-primary:hover {
+  background-color: #28a315;
+  color: var(--cor-branca);
+  transition: all 0.3s ease-in-out;
+  transform: scale(1.05);
+}
+
+#form-editar-lote .btn-secondary{
+  background-color: #e84118;
+  color: white;
+  border: none;
+  padding: 0.8rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+#form-editar-lote .btn-secondary:hover {
+  background-color: #8d260c;
   color: var(--cor-branca);
   transition: all 0.3s ease-in-out;
   transform: scale(1.05);
@@ -1507,34 +1542,32 @@ tr:hover {
   background-color: var(--amarelo-medcontrol);
   color: var(--cor-branca);
   border: none;
-  border-radius: 5px;
-  padding: 8px 14.5px;
+  border-radius: 4px;
+  padding: 8px 17px;
   font-size: 14px;
-  font-weight: bold;
   cursor: pointer;
-  margin-right: 5px;
-  transition: all 0.3s ease-in-out;
+  font-weight: bold;
+  margin-bottom: 0.3rem;
 }
 
 .btn-editar-venda:hover {
-  background-color: #c23616;
-  transform: scale(1.05);
+  background-color: rgb(190, 147, 29)
 }
 
 .btn-excluir-venda {
-  background-color: #e84118;
+ background-color: #e84118;
   color: var(--cor-branca);
   border: none;
-  /* border-radius: 4px; */
-  padding: 8px 12px;
+  border-radius: 4px;
+  padding: 8px 17px;
   font-size: 14px;
-  font-weight: bold;
   cursor: pointer;
-  margin-top: 5px;
-  margin-right: 5px;
+  font-weight: bold;
+  margin-bottom: 0.3rem;
+}
 
-  transform: scale(1.0);
-  transition: all 0.3s ease-in-out;
+.btn-excluir-venda:hover {
+  background-color: #c23616;
 }
 /*----------------------------------------*/
 
@@ -1553,7 +1586,7 @@ tr:hover {
   border-radius: 5px;
 }
 
-.salvar-modal {
+.cadastro-venda-modal button[type="submit"]{
   background-color: #44bd32;
   color: white;
   border: none;
@@ -1981,7 +2014,7 @@ table {
 
 /*----------------------------------*/
 /* Botão Salvar */
-.cadastro-fornecedor-modal button[type="submit"] {
+.cadastro-fornecedor-modal button[type="submit"]{
   background-color: #44bd32;
   color: white;
   border: none;
@@ -1999,7 +2032,7 @@ table {
 }
 
 /* Botão Cancelar */
-.cadastro-fornecedor-modal .cancelar{
+.cadastro-fornecedor-modal button[type="button"]{
   background-color: #e84118;
   color: var(--cor-branca);
   border: none;
@@ -2010,7 +2043,7 @@ table {
   font-weight: bold;
 }
 
-.cadastro-fornecedor-modal .cancelar:hover {
+.cadastro-fornecedor-modal button[type="button"]:hover {
   background-color: #c82333;
   color: var(--cor-branca);
   transition: all 0.3s ease-in-out;
@@ -2023,9 +2056,43 @@ table {
   cursor: pointer;
   font-size: 20px;
 }
-/*----------------------------------*/
+/* Estilos relacionados ao modal de cadastro de editar lote ------------------*/
 
-/*----------------------------------------*/
+#form-editar-fornecedor .btn-primary{
+  background-color: #44bd32;
+  color: var(--cor-branca);
+  border: none;
+  border-radius: 7px;
+  padding: 0.8rem;
+  font-size: 1rem;
+  cursor: pointer;
+  font-weight: bold;
+}
+#form-editar-fornecedor .btn-primary:hover {
+  background-color: #4cd137;
+  color: var(--cor-branca);
+  transform: scale(1.05);
+  transition: all 0.3s ease-in-out;
+}
+
+#form-editar-fornecedor .btn-secondary{
+  background-color: #e84118;
+  color: var(--cor-branca);
+  border: none;
+  border-radius: 7px;
+  padding: 0.8rem;
+  font-size: 1rem;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+#form-editar-fornecedor .btn-secondary:hover {
+  background-color: #8d260c;
+  color: var(--cor-branca);
+  transition: all 0.3s ease-in-out;
+  transform: scale(1.05);
+}	
+
 
 /*-------------------------------------------------------------------------------------------------------------------------------------------*/
 
@@ -2088,35 +2155,36 @@ table {
 
 /* Hover para cada card */
 .total-funcionarios:hover {
-  background-color: #f9ca24;
+  background-color: #0077ff;
   transform: scale(1.05);
   transition: all 0.3s ease-in-out;
 
   /* listra azul na parte inferior do card */
-  border-bottom: 5px solid #0984e3;
+  border-bottom: 5px solid orange;
 }
 
 .funcionario-ativo:hover {
-  background-color: #0d6efd;
+  background-color: #59f01d;
   transform: scale(1.05);
   transition: all 0.3s ease-in-out;
 
   /* listra azul na parte inferior do card */
-  border-bottom: 5px solid #0984e3;
+  border-bottom: 5px solid orange;
 }
 
 .funcionario-desligado:hover {
-  background-color: #ff6b6b;
+  background-color: #fa3636;
   transform: scale(1.05);
   transition: all 0.3s ease-in-out;
-
+  
   /* listra azul na parte inferior do card */
-  border-bottom: 5px solid #0984e3;
+  border-bottom: 5px solid orange;
 }
 
 /* ----------------------------------------------------------- 
    SEÇÃO DE BUSCA - FUNCIONÁRIOS
-   ----------------------------------------------------------- */
+   -----------------------------------------------------------
+*/
 .funcionarios-header {
   margin-top: 1rem;
 }
@@ -2220,3 +2288,37 @@ table {
   background-color: var(--fundo-principal);
   color: var(--cor-branca);
 }
+
+/*Botões de editar e excluir de produtos: */
+.btn-funcionarios-editar{
+  background-color: var(--amarelo-medcontrol);
+  color: var(--cor-branca);
+  border: none;
+  border-radius: 4px;
+  padding: 8px 17px;
+  font-size: 14px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-bottom: 0.3rem;
+}
+
+.btn-funcionarios-excluir{
+  background-color: #e84118;
+  color: var(--cor-branca);
+  border: none;
+  border-radius: 4px;
+  padding: 8px 17px;
+  font-size: 14px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-bottom: 0.3rem;
+}
+
+.btn-funcionarios-excluir:hover {
+  background-color: #c23616;
+}
+
+.btn-funcionarios-editar:hover {
+  background-color: rgb(190, 147, 29)
+}
+/*-----------------------------------------------------------*/
