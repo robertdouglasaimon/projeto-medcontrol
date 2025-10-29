@@ -113,7 +113,7 @@ export function render () {
         } else {
             console.warn("⚠️ valorEstoque inválido:", valorSpan.textContent);
         }
-    }, 100); // pequeno delay pra garantir que DOM atualizou
+    }, 200); // pequeno delay pra garantir que DOM atualizou
 
     // Scripts relativos aos valores dos dashboards -------------------------------------------//
     // Total de Estoque:
