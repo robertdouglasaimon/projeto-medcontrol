@@ -323,3 +323,5 @@ UPDATE funcionarios SET demissao = "Funcionário Ativo" WHERE id_funcionario = 6
 UPDATE funcionarios SET demissao = "Funcionário Ativo" WHERE id_funcionario = 70;
 UPDATE funcionarios SET demissao = "Funcionário Ativo" WHERE id_funcionario = 71;
 UPDATE funcionarios SET demissao = "Funcionário Ativo" WHERE id_funcionario = 72;
+
+ALTER TABLE funcionarios DROP COLUMN salario;
