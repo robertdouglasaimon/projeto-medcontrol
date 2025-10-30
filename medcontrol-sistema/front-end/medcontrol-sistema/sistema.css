@@ -2321,6 +2321,46 @@ table {
 .btn-funcionarios-editar:hover {
   background-color: rgb(190, 147, 29)
 }
+/*Salvar e cancelar do modal de editar*/
+
+/* Botão Salvar */
+.cadastro-funcionario-modal .salvar{
+  background-color: #44bd32;
+  color: var(--cor-branca);
+  border: none;
+  border-radius: 7px;
+  padding: 0.8rem;
+  font-size: 1rem;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.cadastro-funcionario-modal .salvar:hover {
+  background-color: #4cd137;
+  color: var(--cor-branca);
+  transform: scale(1.05);
+  transition: all 0.3s ease-in-out;
+}
+
+/* Botão Cancelar */
+.cadastro-funcionario-modal .cancelar{
+  background-color: #e84118;
+  color: white;
+  border: none;
+  padding: 0.8rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.cadastro-funcionario-modal .cancelar:hover {
+  background-color: #8d260c;
+  color: var(--cor-branca);
+  transition: all 0.3s ease-in-out;
+  transform: scale(1.05);
+}	
 /*-----------------------------------------------------------*/
 /*----------------------------------------*/
 /*------------------------Estilizando relatorios.js---------------------------------------*/
