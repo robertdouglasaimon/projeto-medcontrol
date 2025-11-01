@@ -89,9 +89,6 @@ export function render () {
                  </tbody>
             </table>
         </section>
-
-
-
     `;
 
     // Alterador de estilo do dashboard de Nivel de Estoque de acordo com a criticidade do estoque (Se for menor que o 50.00 fica vermelho, se for maior ou igual fica verde):
@@ -178,8 +175,7 @@ export function render () {
         });
 
     }, 0);
-    //-----------------------------------------------------------------------------------------//
-    
+    //-----------------------------------------------------------------------------------------//  
     
     // Grafico de Estoque que está sendo atualizado em tempo real lá pelo back-end com a API do Flask (Python: app.py)
     setTimeout(() => {
