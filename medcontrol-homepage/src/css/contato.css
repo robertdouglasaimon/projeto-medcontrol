@@ -242,149 +242,168 @@ nav input {
     }
 }
 
-/* --------------Cards - Produtos ------------ 
-------------------------------------------*/
+/* --------------titulo ------------
+------------------------------------------ */
+.pagina-cabecalho {
+    text-align: center;
+    padding: 60px 20px;
+    background-color: #ffffff;
+}
 
-.container-produtos {
-    width: 90%;
+.pagina-titulo {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 3rem;
+    font-weight: 700;
+    color: #212529;
+    margin-bottom: 15px;
+}
+
+.pagina-subtitulo {
+    font-size: 1.2rem;
+    color: #6c757d;
+    max-width: 650px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+}
+
+/* --------------input contato ------------
+------------------------------------------ */
+.contato-principal-secao {
+    background-color: #f8f9fa;
+    padding: 60px 20px;
+}
+
+.contato-container {
     max-width: 1200px;
-    margin: 40px auto;
-    text-align: center;
+    margin: 0 auto;
 }
 
-.container-produtos h1 {
-    font-size: 2.5rem;
+.contato-card {
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.contato-grid {
+    display: flex;
+}
+
+.contato-coluna-form,
+.contato-coluna-info {
+    flex: 1;
+    padding: 40px;
+}
+
+.contato-coluna-info {
+    background-color: #f8f9fa;
+    display: flex;
+    flex-direction: column;
+}
+
+.contato-coluna-form h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+}
+
+.coluna-subtitulo {
+    color: #6c757d;
     margin-bottom: 30px;
-    color: #333;
 }
 
-.cards-wrapper {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
+.form-grupo {
+    margin-bottom: 20px;
 }
 
-.card {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    flex: 1 1 300px;
-    max-width: 300px;
-    display: flex;
-    flex-direction: column;
-}
-
-.card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-}
-
-.card-img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-}
-
-.card-conteudo {
-    padding: 20px;
-    text-align: left;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-}
-
-.card-conteudo h4 {
-    margin: 0 0 10px 0;
-    font-size: 1.2rem;
-    color: #2c3e50;
-}
-
-.card-descricao {
-    font-size: 0.9rem;
-    color: #555;
-    margin: 0 0 15px 0;
-    flex-grow: 1;
-    text-align: left;
-}
-
-.card-preco {
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: #27ae60;
-    margin: 0 0 20px 0;
-}
-
-.btn-explorar {
+.form-grupo label {
     display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #343a40;
+}
+
+.form-grupo input,
+.form-grupo textarea {
     width: 100%;
-    padding: 12px;
-    text-align: center;
-    text-decoration: none;
-    border: none;
-    border-radius: 5px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    margin-top: auto;
+    padding: 12px 15px;
+    border: 1px solid #ced4da;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: 'Roboto', sans-serif;
+    transition: border-color 0.3s, box-shadow 0.3s;
 }
 
-.btn-verde {
+.form-grupo input:focus,
+.form-grupo textarea:focus {
+    outline: none;
+    border-color: #28a745;
+    box-shadow: 0 0 0 4px rgba(40, 167, 69, 0.15);
+}
+
+.btn-enviar {
+    width: 100%;
+    padding: 15px;
     background-color: #28a745;
-    color: white;
-}
-
-.btn-verde:hover {
-    background-color: #218838;
-}
-
-/* ------------------------- Paginas----------------------------------------
----------------------------------------------------------------------
- */
-
-.paginas {
-    display: flex;
-    justify-content: center;
-    gap: 6px;
-    margin-top: 20px;
-}
-
-.paginas button {
-    background: #323238;
+    color: #ffffff;
     border: none;
-    color: white;
-    padding: 8px 12px;
-    border-radius: 4px;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: bold;
     cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
 }
 
-.paginas button.active {
-    background: #008000;
-    color: white;
+.btn-enviar:hover {
+    background-color: #218838;
+    transform: translateY(-2px);
 }
 
-.paginas button.green {
-    color: white;
-    background-color: transparent;
-    font-size: 1rem;
-    font-weight: bold;
+.info-logo-wrapper {
+    text-align: center;
+    margin-bottom: 30px;
 }
 
-.paginas button.escuro {
-    color: white;
-    text-decoration: none;
-    background-color: transparent;
-    font-size: 1rem;
-    font-weight: bold;
+.info-logo-wrapper img {
+    width: 500px;
+    max-width: 200px;
 }
 
+.info-lista {
+    list-style: none;
+    padding: 0;
+    font-size: 1.1rem;
+}
+
+.info-lista li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+    color: #495057;
+}
+
+.info-lista i {
+    color: #28a745;
+    font-size: 1.2rem;
+    margin-right: 15px;
+    width: 20px;
+    text-align: center;
+}
+
+.mapa-wrapper {
+    margin-top: auto;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 8px;
+}
+
+.mapa-wrapper iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
 
 /* --------------Footer ------------------
 ------------------------------------------ */
-
 footer {
     width: 100vw;
     background: #101829;
@@ -404,7 +423,6 @@ footer {
 
 .footer-section {
     text-align: left;
-
 }
 
 .footer-section h4 {
@@ -443,7 +461,6 @@ footer {
 .footer-section ul li {
     margin-bottom: 0.7rem;
     text-align: left;
-
 }
 
 .footer-section ul li a {
@@ -467,8 +484,22 @@ footer {
 
 /* --------------- Responsividade-----------------
 ------------------------------------------------ */
-@media (max-width: 600px) {
+@media (max-width: 992px) {
+    .contato-grid {
+        flex-direction: column;
+    }
 
+    .contato-titulo-container h1 {
+        font-size: 2.2rem;
+    }
+
+    .contato-coluna-form,
+    .contato-coluna-info {
+        padding: 30px;
+    }
+}
+
+@media (max-width: 600px) {
     header {
         flex-direction: column;
         align-items: center;

@@ -63,15 +63,7 @@ INSERT INTO cadastro_clientes (
   status_cliente
 ) VALUES
 ('João Silva', '123.456.789-00', '(61) 99999-1111', 'Rua das Palmeiras, 45', 'Ativo'),
-('Maria Oliveira', '987.654.321-00', '(61) 98888-2222', 'Av. Central, 120', 'Inativo'),
-('Carlos Souza', '456.789.123-00', '(61) 97777-3333', 'Rua do Comércio, 89', 'Ativo'),
-('Ana Paula Lima', '321.654.987-00', '(61) 96666-4444', 'Travessa das Flores, 12', 'Inativo'),
-('Fernanda Costa', '789.123.456-00', '(61) 95555-5555', 'Rua dos Cravos, 78', 'Ativo'),
-('Ricardo Mendes', '654.321.789-00', '(61) 94444-6666', 'Av. Brasil, 300', 'Inativo'),
-('Juliana Rocha', '159.753.486-00', '(61) 93333-7777', 'Rua do Sol, 10', 'Ativo'),
-('Eduardo Martins', '258.369.147-00', '(61) 92222-8888', 'Rua das Acácias, 56', 'Inativo'),
-('Patrícia Almeida', '369.258.147-00', '(61) 91111-9999', 'Rua dos Ipês, 101', 'Ativo'),
-('Bruno Ferreira', '741.852.963-00', '(61) 90000-0000', 'Av. Goiás, 200', 'Inativo');
+
 
 INSERT INTO cadastro_clientes (
   nome_cliente, 
@@ -81,15 +73,7 @@ INSERT INTO cadastro_clientes (
   status_cliente
 ) VALUES
 ('João Silva', '123.456.789-00', '(61) 99999-1111', 'Rua das Palmeiras, 45', 'Ativo'),
-('Maria Oliveira', '987.654.321-00', '(61) 98888-2222', 'Av. Central, 120', 'Inativo'),
-('Carlos Souza', '456.789.123-00', '(61) 97777-3333', 'Rua do Comércio, 89', 'Ativo'),
-('Ana Paula Lima', '321.654.987-00', '(61) 96666-4444', 'Travessa das Flores, 12', 'Inativo'),
-('Fernanda Costa', '789.123.456-00', '(61) 95555-5555', 'Rua dos Cravos, 78', 'Ativo'),
-('Ricardo Mendes', '654.321.789-00', '(61) 94444-6666', 'Av. Brasil, 300', 'Inativo'),
-('Juliana Rocha', '159.753.486-00', '(61) 93333-7777', 'Rua do Sol, 10', 'Ativo'),
-('Eduardo Martins', '258.369.147-00', '(61) 92222-8888', 'Rua das Acácias, 56', 'Inativo'),
-('Patrícia Almeida', '369.258.147-00', '(61) 91111-9999', 'Rua dos Ipês, 101', 'Ativo'),
-('Bruno Ferreira', '741.852.963-00', '(61) 90000-0000', 'Av. Goiás, 200', 'Inativo');
+
 
 -- Deletando os dados nulos da tabela cadastro_clientes:
 DELETE FROM cadastro_clientes WHERE status_cliente IS NULL;
@@ -116,71 +100,8 @@ SELECT COUNT(id_cliente) AS total_clientes_ativos FROM cadastro_clientes WHERE s
 INSERT INTO cadastro_produtos (
   id_produto, nome_produto, descricao, fabricante, lote, data_validade, preco_venda, qtd_estoque, classificacao
 ) VALUES
-(1, 'Dipirona 500mg', 'Analgésico e antitérmico em comprimido', 'EMS', 'DIP2025A', '2026-05-01', 5.99, 120, 'Medicamento'),
-(2, 'Paracetamol 750mg', 'Alívio de dores e febre', 'Medley', 'PARA750B', '2026-03-15', 7.49, 80, 'Medicamento'),
-(3, 'Ibuprofeno 400mg', 'Anti-inflamatório e analgésico', 'Neo Química', 'IBU400C', '2026-08-10', 9.99, 60, 'Medicamento'),
-(4, 'Omeprazol 20mg', 'Tratamento de refluxo e gastrite', 'Teuto', 'OME20D', '2027-01-20', 12.90, 50, 'Medicamento'),
-(5, 'Loratadina 10mg', 'Antialérgico em comprimido', 'EMS', 'LORA10E', '2026-11-30', 8.50, 70, 'Medicamento'),
-(6, 'Neosaldina', 'Alívio de dor de cabeça e enxaqueca', 'Takeda', 'NEO2025F', '2026-07-01', 14.99, 40, 'Medicamento'),
-(7, 'Dorflex', 'Relaxante muscular e analgésico', 'Sanofi', 'DORFLEXG', '2026-09-15', 11.90, 100, 'Medicamento'),
-(8, 'Buscopan Composto', 'Alívio de cólicas e dores abdominais', 'Boehringer', 'BUSCOH', '2026-12-01', 13.50, 90, 'Medicamento'),
-(9, 'Torsilax', 'Anti-inflamatório com relaxante muscular', 'Cristália', 'TORSI2025I', '2026-10-10', 16.90, 30, 'Medicamento'),
-(10, 'Cetoconazol Shampoo', 'Tratamento de caspa e dermatite', 'Medley', 'CETOJ2025J', '2027-02-01', 22.90, 25, 'Dermocosmético'),
-(11, 'Protetor Solar FPS 50', 'Proteção solar para pele sensível', 'La Roche-Posay', 'SOLAR50K', '2026-12-31', 89.90, 15, 'Dermocosmético'),
-(12, 'Sabonete Líquido Facial', 'Limpeza profunda para pele oleosa', 'Vichy', 'SABFAC2025L', '2026-08-01', 39.90, 20, 'Dermocosmético'),
-(13, 'Creme Cicatricure', 'Redução de marcas e cicatrizes', 'Genomma Lab', 'CICAT2025M', '2027-01-01', 49.90, 18, 'Dermocosmético'),
-(14, 'Shampoo Anticaspa Head & Shoulders', 'Controle da caspa e oleosidade', 'P&G', 'HEAD2025N', '2026-09-01', 19.90, 35, 'Higiene'),
-(15, 'Desodorante Rexona Aerosol', 'Proteção 48h contra suor', 'Unilever', 'REX2025O', '2026-06-01', 14.90, 50, 'Higiene'),
-(16, 'Creme Dental Colgate Total 12', 'Proteção completa para os dentes', 'Colgate-Palmolive', 'COLG2025P', '2027-03-01', 8.99, 60, 'Higiene'),
-(17, 'Fralda Pampers M', 'Fraldas para bebês até 9kg', 'P&G', 'PAMP2025Q', '2026-12-01', 59.90, 20, 'Infantil'),
-(18, 'Leite Ninho Fases 1+', 'Leite em pó para crianças acima de 1 ano', 'Nestlé', 'NINHO2025R', '2026-11-01', 39.90, 25, 'Infantil'),
-(19, 'Centrum Homem', 'Suplemento vitamínico para homens', 'Pfizer', 'CENTH2025S', '2027-04-01', 69.90, 15, 'Suplemento'),
-(20, 'Ômega 3 1000mg', 'Suplemento para saúde cardiovascular', 'Vitafor', 'OMEGA2025T', '2027-05-01', 49.90, 20, 'Suplemento'),
-(21, 'Vitamina C 500mg', 'Fortalecimento do sistema imunológico', 'Sanofi', 'VITC2025U', '2026-10-01', 24.90, 40, 'Suplemento'),
-(22, 'Glicopan Pet 30ml', 'Suplemento vitamínico para pets', 'Vetnil', 'GLICOPET2025V', '2027-01-01', 29.90, 10, 'Pet'),
-(23, 'Termômetro Digital', 'Medição de temperatura corporal', 'G-Tech', 'TERM2025W', '2028-01-01', 39.90, 12, 'Acessório'),
-(24, 'Máscara Cirúrgica c/ 50 unid.', 'Proteção facial descartável', 'Descarpack', 'MASK2025X', '2026-12-01', 19.90, 100, 'Acessório'),
-(25, 'Álcool em Gel 70%', 'Higienização das mãos', 'Asseptgel', 'ALC2025Y', '2026-09-01', 12.90, 80, 'Higiene');
+(1, 'Dipirona 500mg', 'Analgésico e antitérmico em comprimido', 'EMS', 'DIP2025A', '2026-05-01', 5.99, 120, 'Medicamento');
 
-INSERT INTO cadastro_produtos (
-  id_produto, nome_produto, descricao, fabricante, lote, data_validade, preco_venda, qtd_estoque, classificacao
-) VALUES
-(26, 'Amoxicilina 500mg', 'Antibiótico para infecções bacterianas', 'EMS', 'AMOX2025A', '2026-12-01', 18.90, 40, 'Medicamento'),
-(27, 'Azitromicina 500mg', 'Antibiótico de amplo espectro', 'Medley', 'AZIT2025B', '2026-11-01', 24.90, 30, 'Medicamento'),
-(28, 'Losartana 50mg', 'Controle da pressão arterial', 'Teuto', 'LOSAR2025C', '2027-01-01', 15.90, 50, 'Medicamento'),
-(29, 'Sinvastatina 20mg', 'Controle do colesterol', 'EMS', 'SINVA2025D', '2026-10-01', 19.90, 45, 'Medicamento'),
-(30, 'Metformina 850mg', 'Controle da glicemia em diabéticos', 'Medley', 'METF2025E', '2026-09-01', 12.90, 60, 'Medicamento'),
-(31, 'AirFlu Infantil', 'Descongestionante nasal infantil', 'Aché', 'AIRFLU2025F', '2026-08-01', 17.90, 20, 'Infantil'),
-(32, 'Tylenol Bebê', 'Alívio de febre e dor em crianças', 'J&J', 'TYLB2025G', '2026-07-01', 22.90, 25, 'Infantil'),
-(33, 'Xarope Vick 120ml', 'Alívio da tosse e congestão', 'P&G', 'VICK2025H', '2026-06-01', 19.90, 30, 'Medicamento'),
-(34, 'Creme Nivea Soft', 'Hidratação leve para rosto e corpo', 'Beiersdorf', 'NIVEA2025I', '2027-01-01', 16.90, 40, 'Dermocosmético'),
-(35, 'Sabonete Dove', 'Sabonete hidratante para pele sensível', 'Unilever', 'DOVE2025J', '2026-12-01', 7.90, 60, 'Higiene'),
-(36, 'Shampoo Pantene Liso Extremo', 'Controle de frizz e brilho', 'P&G', 'PANTENE2025K', '2026-11-01', 21.90, 35, 'Higiene'),
-(37, 'Creme Dental Sensodyne', 'Alívio da sensibilidade dental', 'GSK', 'SENSO2025L', '2027-02-01', 18.90, 30, 'Higiene'),
-(38, 'Sabonete Protex', 'Proteção antibacteriana para pele', 'Colgate-Palmolive', 'PROTEX2025M', '2026-10-01', 6.90, 50, 'Higiene'),
-(39, 'Repelente Off Spray', 'Proteção contra mosquitos', 'SC Johnson', 'OFF2025N', '2026-09-01', 23.90, 20, 'Acessório'),
-(40, 'Curativo Band-Aid', 'Curativos adesivos para ferimentos', 'J&J', 'BANDAID2025O', '2027-01-01', 12.90, 40, 'Acessório'),
-(41, 'Água Micelar L’Oréal', 'Limpeza facial sem enxágue', 'L’Oréal', 'MICELAR2025P', '2026-12-01', 29.90, 25, 'Dermocosmético'),
-(42, 'Creme Antissinais Renew', 'Redução de rugas e linhas finas', 'Avon', 'RENEW2025Q', '2027-03-01', 59.90, 15, 'Dermocosmético'),
-(43, 'Colágeno Hidrolisado 120 cáps.', 'Suplemento para pele e articulações', 'Sanavita', 'COLAG2025R', '2027-04-01', 79.90, 20, 'Suplemento'),
-(44, 'Multivitamínico Lavitan', 'Suplemento diário de vitaminas e minerais', 'Cimed', 'LAVITAN2025S', '2027-05-01', 34.90, 30, 'Suplemento'),
-(45, 'Pomada Nebacetin', 'Cicatrizante e antibiótico tópico', 'Takeda', 'NEBAC2025T', '2026-08-01', 14.90, 25, 'Medicamento'),
-(46, 'Pomada Bepantol Baby', 'Proteção contra assaduras', 'Bayer', 'BEPAN2025U', '2026-07-01', 22.90, 30, 'Infantil'),
-(47, 'Pomada Hipoglós', 'Tratamento de assaduras e irritações', 'GSK', 'HIPO2025V', '2026-06-01', 19.90, 20, 'Infantil'),
-(48, 'Antisséptico Bucal Listerine', 'Higiene bucal completa', 'J&J', 'LIST2025W', '2027-01-01', 17.90, 30, 'Higiene'),
-(49, 'Escova Dental Oral-B', 'Escova com cerdas macias', 'P&G', 'ORALB2025X', '2026-12-01', 9.90, 40, 'Higiene'),
-(50, 'Lenço Umedecido Huggies', 'Higiene infantil com aloe vera', 'Kimberly-Clark', 'HUGG2025Y', '2026-11-01', 15.90, 25, 'Infantil'),
-(51, 'Antisséptico Spray Asseptgel', 'Desinfecção de superfícies e mãos', 'Asseptgel', 'ASEPT2025Z', '2026-10-01', 18.90, 30, 'Higiene'),
-(52, 'Glicose 50% 10ml', 'Uso hospitalar para hipoglicemia', 'Cristália', 'GLIC2025AA', '2026-09-01', 6.90, 10, 'Medicamento'),
-(53, 'Soro Fisiológico 500ml', 'Hidratação e limpeza nasal', 'JP Farma', 'SORO2025AB', '2026-08-01', 9.90, 20, 'Medicamento'),
-(54, 'Esparadrapo 10m', 'Fixação de curativos e sondas', 'Cremer', 'ESP2025AC', '2027-01-01', 7.90, 15, 'Acessório'),
-(55, 'Gaze Estéril 7,5x7,5cm', 'Curativos e procedimentos', 'Cremer', 'GAZE2025AD', '2026-12-01', 5.90, 50, 'Acessório'),
-(56, 'Seringa 5ml sem agulha', 'Aplicação de medicamentos', 'BD', 'SERINGA2025AE', '2027-02-01', 2.90, 100, 'Acessório'),
-(57, 'Lanceta para Glicemia', 'Coleta de sangue para teste', 'Accu-Chek', 'LANCETA2025AF', '2026-11-01', 0.90, 200, 'Acessório'),
-(58, 'Aparelho de Pressão Digital', 'Monitoramento da pressão arterial', 'G-Tech', 'PRESS2025AG', '2028-01-01', 129.90, 10, 'Acessório'),
-(59, 'Inalador Nebulizador Compact', 'Tratamento de doenças respiratórias', 'Omron', 'NEBU2025AH', '2028-01-01', 199.90, 5, 'Acessório'),
-(60, 'Teste de Gravidez Clearblue', 'Detecção rápida de gravidez', 'Clearblue', 'TEST2025AI', '2027-01-01', 24.90, 15, 'Acessório'),
-(61, 'Creme para Pés Baruel', 'Hidratação e controle de odores', 'Baruel', 'PES2025AJ', '2026-12-01', 13.90, 20, 'Dermocosmético');
 
 -- Produto mais vendido
 SELECT (SELECT nome_produto FROM cadastro_produtos ORDER BY preco_venda DESC LIMIT 1) AS produtos_mais_vendido;
@@ -197,3 +118,243 @@ UPDATE cadastro_produtos SET quantidade_vendida = 90 WHERE id_produto = 61;
 SELECT nome_produto, SUM(quantidade_vendida) AS total_vendido FROM cadastro_produtos GROUP BY nome_produto ORDER BY total_vendido DESC LIMIT 1;
 
 SELECT CONCAT('R$', FORMAT((SELECT SUM(preco_venda) AS total_estoque FROM cadastro_produtos), 'f2')) AS total_estoque;
+
+
+-- Adicionando a coluna "lote_estoque" na tabela "controle_estoque":
+ALTER TABLE controle_estoque ADD COLUMN lote_estoque VARCHAR(100) NOT NULL;
+
+-- Inserindo dados de lote na tabela controle_estoque:
+INSERT INTO controle_estoque (
+  id_controle_estoque,
+  entrada_produto,
+  saida_produto,
+  produto_validade,
+  perdas_descarte,
+  lote_estoque
+) VALUES
+(1, 'Dipirona 500mg', '10 caixas', '2026-03-15', '1 caixa', 'DIP500A25'),
+(2, 'Paracetamol 750mg', '15 caixas', '2025-12-01', '0', 'PARA750B25'),
+
+INSERT INTO controle_estoque (
+  id_controle_estoque,
+  entrada_produto,
+  saida_produto,
+  produto_validade,
+  perdas_descarte,
+  lote_estoque
+) VALUES
+(31, 'Clonazepam 2mg', '12 caixas', '2026-12-10', '1 caixa', 'CLONA2A26'),
+(32, 'Prednisona 20mg', '18 caixas', '2027-01-05', '2 caixas', 'PRED20B26'),
+
+
+
+-- Adicionando coluna na tabela controle_estoque:
+ALTER TABLE controle_estoque ADD COLUMN ;
+
+
+-- Querry que faz a contagem dos produtos que sairam (saida_produto), os produtos perdidos (perdas_descarte), e a quantidade total do estoque (id_controle_estoque):
+SELECT 
+  COUNT(entrada_produto) AS produtos_entrados,
+  SUM(CASE WHEN saida_produto IS NOT NULL THEN 1 ELSE 0 END) AS produtos_saidos, 
+  SUM(CASE WHEN perdas_descarte IS NOT NULL THEN 1 ELSE 0 END) AS produtos_perdidos, 
+  SUM (CASE WHEN qtd_estoque IS NOT NULL THEN qtd_estoque ELSE 0 END) AS total_estoque
+  
+FROM controle_estoque;
+
+
+-- Adicionando coluna na tabela controle_estoque:
+ALTER TABLE controle_estoque ADD COLUMN qtd_estoque VARCHAR(100);
+
+ALTER TABLE controle_estoque DROP COLUMN qtd_estoque;
+
+-- Gerando 60 itens para coluna qtd_estoque (valores aleatórios):
+UPDATE controle_estoque SET qtd_estoque = 500 WHERE id_controle_estoque = 1;
+
+
+-- Preciso de uma consulta que converta um valor de uma soma em uma porcentagem.
+-- Preciso que esse total seja convertido em porcetagem para virar um gráfico:
+SELECT SUM(qtd_estoque) AS total_estoque FROM cadastro_produtos;
+
+SELECT 
+  SUM(qtd_estoque) AS total_estoque,
+  ROUND((SUM(qtd_estoque) * 100.0) / 100, 2) AS nivel_estoque
+FROM cadastro_produtos;
+
+SELECT SUM(qtd_estoque) AS total_estoque FROM cadastro_produtos;
+
+
+
+-- Explicando a consulta abaixo porque ela é complexa e vou precisar dela para extrair e calcular os valores da coluna lá de perdas_descarte:
+
+SELECT 
+  SUM(CAST(SUBSTR(perdas_descarte, 1, INSTR(perdas_descarte, ' ') - 1) AS INTEGER)) AS total_perdido
+FROM controle_estoque
+WHERE perdas_descarte IS NOT NULL;
+
+-- 🧠 Explicação passo a passo:
+-- INSTR(perdas_descarte, ' '): encontra a posição do primeiro espaço na string.
+-- SUBSTR(perdas_descarte, 1, ...): pega tudo antes do espaço → ou seja, o número.
+-- CAST(... AS INTEGER): converte o trecho extraído em número.
+-- SUM(...): soma todos os valores extraídos.
+-- AS total_perdido: apelido da coluna com o total somado.
+
+SELECT  
+  SUM(CAST(SUBSTR(saida_produto, 1, INSTR(saida_produto, ' ') - 1) AS INTEGER)) AS total_saida_produto
+FROM controle_estoque
+WHERE saida_produto IS NOT NULL;
+
+
+SELECT SUM(saida_produto) AS total_saida_produto FROM controle_estoque;
+SELECT SUM(qtd_estoque) AS total_estoque FROM cadastro_produtos;
+
+DELETE FROM controle_estoque WHERE id_controle_estoque = 61;DELETE FROM controle_estoque WHERE id_controle_estoque = 61;
+
+SELECT * FROM controle_estoque;
+
+SELECT SUM(perdas_descarte) AS total_perdas_descarte FROM controle_estoque;
+
+SELECT * FROM vendas;
+
+CREATE TABLE vendas (
+    id_vendas INTEGER PRIMARY KEY AUTOINCREMENT,
+    produtos_vendidos VARCHAR(100) NOT NULL,
+    data_venda DATE NOT NULL,
+    registro_receita_medica VARCHAR(100) NOT NULL,
+    cupom_fiscal VARCHAR(100) NOT NULL,
+    id_cliente INTEGER NOT NULL,
+    id_controle_estoque INTEGER NOT NULL,
+    
+    FOREIGN KEY (id_cliente) REFERENCES cadastro_clientes(id_cliente),
+    FOREIGN KEY (id_controle_estoque) REFERENCES controle_estoque(id_controle_estoque)
+);
+
+INSERT INTO vendas (
+    produtos_vendidos,
+    data_venda,
+    registro_receita_medica,
+    cupom_fiscal,
+    id_cliente,
+    id_controle_estoque
+)
+VALUES
+('Clonazepam 2mg', '2025-10-14', 'RX20251014N', 'CF000014', 114, 214),
+('Ácido Fólico 5mg', '2025-10-15', 'RX20251015O', 'CF000015', 115, 215);
+(
+
+
+-- Adicionando a coluna valor_venda na tabela vendas:
+ALTER TABLE vendas ADD COLUMN vendas_medias DECIMAL(10, 2) DEFAULT 1.500;
+
+
+UPDATE vendas SET vendas_medias = 2.500 WHERE id_vendas = 1;
+UPDATE vendas SET vendas_medias = 1.200 WHERE id_vendas = 2;
+
+
+SELECT 
+    COUNT(id_vendas) AS total_vendas, 
+    SUM(valor_venda) AS vendas_realizadas, 
+    ROUND(AVG(valor_venda), 2) AS vendas_medias 
+FROM vendas;
+
+INSERT INTO vendas (
+    id_vendas, 
+    produtos_vendidos, 
+    vendas_medias, 
+    data_venda, 
+    registro_receita_medica, 
+    valor_venda, 
+    cupom_fiscal,
+
+    id_cliente,
+    id_controle_estoque
+)
+VALUES
+(31, 'Paracetamol 500mg', '2025-10-31', 'RX20251031AE', 'CF000031', 131, 231, 1, 1);
+
+
+SELECT id_controle_estoque FROM controle_estoque ORDER BY id_controle_estoque DESC LIMIT 1;
+SELECT id_cliente FROM cadastro_clientes ORDER BY id_cliente DESC LIMIT 1;
+
+DELETE FROM vendas WHERE id_vendas = 31;
+
+ALTER TABLE vendas DROP COLUMN registro_receita_medica;
+
+INSERT INTO cadastro_fornecedores (
+  id_fornecedor, 
+  nome_fornecedor, 
+  cnpj, 
+  contato
+) VALUES
+(1, 'EMS S/A', '57.507.378/0001-94', '(19) 3867-7000'),
+(2, 'Eurofarma Laboratórios S/A', '61.190.096/0001-92', '(11) 5090-8700'),
+(3, 'Laboratório Farmacêutico do Estado de Pernambuco', '10.842.993/0001-00', '(81) 3183-4700');
+
+ALTER TABLE cadastro_fornecedores ADD COLUMN status VARCHAR(20);
+
+SELECT COUNT(id_fornecedor) AS total_fornecedores FROM cadastro_fornecedores;
+SELECT COUNT(status) AS total_fornecedores_ativos FROM cadastro_fornecedores WHERE status = "Ativo";
+SELECT COUNT(status) AS total_inativos FROM cadastro_fornecedores WHERE status = "Inativo";
+
+SELECT * FROM cadastro_fornecedores;
+
+
+ALTER TABLE funcionarios ADD COLUMN admissao DATE;
+ALTER TABLE funcionarios ADD COLUMN demissao DATE;
+ALTER TABLE funcionarios ADD COLUMN salario DECIMAL(10, 2) DEFAULT 1.500;
+ALTER TABLE funcionarios ADD COLUMN status VARCHAR(20);
+
+-- Inserindo novo usuario em funcionarios
+INSERT INTO funcionarios (
+  nome_funcionario,
+  cargo_funcionario,
+  salario_funcionario,
+  tel_funcionario,
+  email_funcionario,
+  login_funcionario,
+  senha_funcionario,
+  admissao,
+  demissao,
+  status
+) VALUES
+('Geovana', 'Q.A', 1500.00, '(61)98317618', 'geovana@medcontrol', 'geovana', '123456789', '2025-10-26', NULL, 'Inativo');
+
+-- Modificando o status das coluna status de funcionarios:
+UPDATE funcionarios SET demissao = "Funcionário Ativo" WHERE id_funcionario = 67;
+UPDATE funcionarios SET demissao = "Funcionário Ativo" WHERE id_funcionario = 70;
+UPDATE funcionarios SET demissao = "Funcionário Ativo" WHERE id_funcionario = 71;
+UPDATE funcionarios SET demissao = "Funcionário Ativo" WHERE id_funcionario = 72;
+
+ALTER TABLE funcionarios DROP COLUMN salario;
+
+SELECT lote, data_validade, nome_produto FROM cadastro_produtos
+WHERE JULIANDAY(data_validade) - JULIANDAY('now') <= 30
+ORDER BY data_validade ASC;
+
+INSERT INTO cadastro_produtos (
+  id_produto,
+  descricao,
+  fabricante,
+  lote,
+  data_validade,
+  preco_venda,
+  qtd_estoque,
+  classificacao,
+  nome_produto,
+  quantidade_vendida
+) VALUES (
+  101, -- id_produto
+  'Analgésico para dor leve', -- descricao
+  'Farmacêutica XYZ', -- fabricante
+  'L123', -- lote
+  '2025-11-15', -- data_validade
+  19.90, -- preco_venda
+  50, -- qtd_estoque
+  'Medicamento', -- classificacao
+  'Dipirona 500mg', -- nome_produto
+  0 -- quantidade_vendida
+);
+
+
+
+
+

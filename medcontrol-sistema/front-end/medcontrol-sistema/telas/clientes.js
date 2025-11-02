@@ -65,6 +65,7 @@ export function render() {
       <div class="modal-content">
         <span class="fechar-modal" id="fecharModal">&times;</span>
         <h3>Cadastrar Novo Cliente</h3>
+        
         <!-- Formulário de cadastro aqui -->
         <form class="cadastro-cliente-modal">
           <input type="text" name="nome_cliente" placeholder="Nome do cliente" required />
@@ -78,10 +79,6 @@ export function render() {
           <button type="submit">Salvar</button>
           <button type="button" class="cancelar">Cancelar</button>
         </form>
-        
-        <script>
-          alert("Atenção: Atualize sempre todos os campos antes de salvar.  Mesmo que nenhuma alteração seja feita.");
-        </script>
       </div>
     </div>
 
@@ -173,8 +170,8 @@ export function render() {
     }
 
     // Verifica se o telefone possui 14 dígitos:
-    if (telefone.length !== 11) {
-      alert("O telefone deve conter 11 caracteres.");
+    if (telefone.length !== 14) {
+      alert("O telefone deve conter 14 caracteres.");
       return;
     }
 

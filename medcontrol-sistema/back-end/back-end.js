@@ -206,7 +206,7 @@ app.post('/login_funcionario', (req, res) => {
 /*-----------------------------------------------------------------------------------------*/
 
 /*-----------------------------------------------------------------------------------------*/
-// Rota: dashboard da tela de produtos (total de produtos, produtos mais vendidosm produtos menos vendidos e valor do estoque)
+// Rota: dashboard da tela de produtos (total de produtos, produtos mais vendidos produtos menos vendidos e valor do estoque)
 
 // Total de produtos
 app.get('/dashboard_produtos', (req, res) => {
@@ -343,12 +343,576 @@ app.put('/editar_produto/:id_produto', (req, res) => {
   }
 });
 
-/*-----------------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------------------------*/
+
+/*--------------------------------------------------------------------------------------------*/
+// Rota:dashboard da tela de estoque (total de estoque, perdas e descarte, nivel de estoque)
+
+// Rota: Obter o valor total do estoque:
+app.get('/dashboard_estoque', (req, res) => {
+  try {
+    const stmt = db.prepare("SELECT SUM(qtd_estoque) AS total_estoque FROM controle_estoque;");
+    const totalEstoque = stmt.get();
+    res.setHeader("Content-Type", "application/json");
+    res.json(totalEstoque);
+  } catch (err) {
+    res.status(500).json({ mensagem: "Erro ao buscar produtos."})
+  }
+})
+
+// Rota: Obter o valor de perdas e descarte:
+app.get('/dashboard_perdas_descarte', (req, res) => {
+  try {
+    const stmt = db.prepare("SELECT SUM(perdas_descarte) AS total_perdas_descarte FROM controle_estoque");
+    const totalPerdasDescarte = stmt.get(); 
+    res.setHeader("Content-Type", "application/json");
+    res.json(totalPerdasDescarte);
+  } catch (err) {
+    res.status(500).json({ mensagem: "Erro ao buscar produtos."})
+}})
+
+// Rota: Obter o nivel de estoque:
+app.get("/nivel_estoque", (req, res) => {
+  try {
+    const stmt = db.prepare(`
+      SELECT 
+        ROUND((SUM(p.qtd_estoque) * 100.0) / (
+          SELECT SUM(qtd_estoque) FROM controle_estoque
+        ), 2) AS nivel_estoque
+      FROM cadastro_produtos AS p;
+    `);
+
+    const resultado = stmt.get();
+    console.log("📦 Resultado da consulta:", resultado);
+
+    res.json({ nivel_estoque: resultado.nivel_estoque });
+  } catch (error) {
+    console.error("❌ Erro ao consultar nível de estoque:", error.message);
+    res.status(500).json({ erro: "Erro ao consultar nível de estoque." });
+  }
+});
+
+// Rota: Obter os valores da tabela controle_estoque (lote_estoque, qtd_entrada, saida_produto, qtd_estoque, produto_validade, perdas_descarte, id_controle_estoque[Não vou usar o id, mas precisa chamar]) para criar a tabela de estoque:
+app.get('/tabela_estoque', (req, res) => {
+  try {
+    const stmt = db.prepare("SELECT id_controle_estoque, lote_estoque, qtd_entrada, saida_produto, qtd_estoque, produto_validade, perdas_descarte FROM controle_estoque;");
+    const tabelaEstoque = stmt.all();
+    res.setHeader("Content-Type", "application/json");
+    res.json(tabelaEstoque);
+  } catch (err) {
+    res.status(500).json({ mensagem: "Erro ao buscar produtos."})
+  }
+})
+
+// Rota: para cadastro de novo registro de Lote:
+app.post('/cadastro_lote', (req, res) => {
+  const { lote_estoque, qtd_entrada, saida_produto, qtd_estoque, produto_validade, perdas_descarte } = req.body;
+
+  const stmt = db.prepare(`
+    INSERT INTO controle_estoque (lote_estoque, qtd_entrada, saida_produto, qtd_estoque, produto_validade, perdas_descarte)
+    VALUES (?, ?, ?, ?, ?, ?)
+  `);
+
+  stmt.run(lote_estoque, qtd_entrada, saida_produto, qtd_estoque, produto_validade, perdas_descarte);
+  res.status(201).json({ mensagem: 'Cadastro efetuado com sucesso!' });
+});
+
+// Rota: para editar um registro do banco de dados e da tabela controle_estoque:
+app.put('/editar_lote/:id_controle_estoque', (req, res) => {
+  const id = req.params.id_controle_estoque;
+  const {
+    lote_estoque,
+    qtd_entrada,
+    saida_produto,
+    qtd_estoque,
+    produto_validade,
+    perdas_descarte
+  } = req.body;
+
+  const stmt = db.prepare(`
+    UPDATE controle_estoque
+    SET lote_estoque = ?, qtd_entrada = ?, saida_produto = ?, qtd_estoque = ?, produto_validade = ?, perdas_descarte = ?
+    WHERE id_controle_estoque = ?
+  `);
+
+  const result = stmt.run(lote_estoque, qtd_entrada, saida_produto, qtd_estoque, produto_validade, perdas_descarte, id);
+  if (result.changes > 0) {
+    res.status(200).json({ mensagem: 'Registro editado com sucesso!' });
+  } else {
+    res.status(404).json({ mensagem: 'Registro nao encontrado.' });
+  }
+});
+
+// Rota: para deletar um registro do banco de dados e da tabela controle_estoque:
+app.delete('/deletar_lote/:id_controle_estoque', (req, res) => {
+  const id = req.params.id_controle_estoque;
+  const stmt = db.prepare('DELETE FROM controle_estoque WHERE id_controle_estoque = ?');
+  const result = stmt.run(id);
+
+  if (result.changes > 0) {
+    res.status(200).json({ mensagem: 'Registro deletado com sucesso!' });
+  } else {
+    res.status(404).json({ mensagem: 'Registro nao encontrado.' });
+  }
+});
+//------------------------------------------------------------------------------------------------------------------------------------------//
+
+//------------------------------------------------------------------------------------------------------------------------------------------//
+// Rota: dashboard da tela de vendas (total de vendas, vendas realizadas, médias por vendas)
+app.get('/dashboard_vendas', (req, res) => {
+  try {
+    const stmt = db.prepare("SELECT COUNT(id_vendas) AS total_vendas, SUM(valor_venda) AS vendas_realizadas, ROUND(AVG(valor_venda), 2) AS vendas_medias FROM vendas;");
+    const dashboardVendas = stmt.get();
+    res.setHeader("Content-Type", "application/json");
+    res.json(dashboardVendas);
+  } catch (err) {
+    res.status(500).json({ mensagem: "Erro ao buscar vendas."})
+  }
+})
+
+
+// Rota: relacionada aos dados da tabela de vendas:
+app.get('/tabela_vendas', (req, res) => {
+  try {
+    const stmt = db.prepare("SELECT * FROM vendas;");
+    const tabelaVendas = stmt.all();
+    res.setHeader("Content-Type", "application/json");
+    res.json(tabelaVendas);
+  } catch (err) {
+    res.status(500).json({ mensagem: "Erro ao buscar vendas."})
+  }
+})
+
+
+// Rota: para cadastro de novo registro de vendas:
+app.post('/cadastrar_venda', (req, res) => {
+  try {
+    const { id_vendas, produtos_vendidos, vendas_medias, data_venda, valor_venda, cupom_fiscal, id_cliente,
+    id_controle_estoque } = req.body;
+
+    const stmt = db.prepare(`
+      INSERT INTO vendas (id_vendas, produtos_vendidos, vendas_medias, data_venda, valor_venda, cupom_fiscal, id_cliente,
+    id_controle_estoque)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+    `);
+
+    stmt.run(id_vendas, produtos_vendidos, vendas_medias, data_venda, valor_venda, cupom_fiscal, id_cliente,
+    id_controle_estoque);
+    res.status(201).json({ mensagem: 'Cadastro efetuado com sucesso!' });
+  } catch (err) {
+    res.status(500).json({ mensagem: "Erro ao cadastrar venda."})
+  }
+});
+
+// Rota para pegar o id do cliente para a tabela de vendas:
+app.get('/cliente-ultimo', (req, res) => {
+  try {
+    const row = db.prepare("SELECT id_cliente FROM cadastro_clientes ORDER BY id_cliente DESC LIMIT 1").get();
+    res.json({ id_cliente: row?.id_cliente || null });
+  } catch (err) {
+    res.status(500).json({ mensagem: "Erro ao buscar cliente." });
+  }
+});
+
+// Rota para pegar o id do estoque para a tabela de vendas:
+app.get('/estoque-ultimo', (req, res) => {
+  try {
+    const row = db.prepare("SELECT id_controle_estoque FROM controle_estoque ORDER BY id_controle_estoque DESC LIMIT 1").get();
+    res.json({ id_controle_estoque: row?.id_controle_estoque || null });
+  } catch (err) {
+    res.status(500).json({ mensagem: "Erro ao buscar estoque." });
+  }
+});
+//------------------------------------------------------------------------------------------------------------------------------------------//
+
+// Rota para apagar um registro da tabela através do botão excluir:
+app.delete('/deletar_venda/:id_vendas', (req, res) => {
+  try {  
+    const id = req.params.id_vendas;
+    const stmt = db.prepare('DELETE FROM vendas WHERE id_vendas = ?');
+    const resultado = stmt.run(id);
+
+    if (resultado.changes > 0) {
+      res.status(200).json({ mensagem: 'Registro deletado com sucesso!' });
+    } else {
+      res.status(404).json({ mensagem: 'Registro nao encontrado.' });
+    }
+  } catch (err) {
+    res.status(500).json({ mensagem: 'A tentativa de deletar um registro não funcionou corretamente.' });
+  };
+
+});
+
+// Rota para atualizar um registro da tabela de vendas:
+app.put('/editar_venda/:id_vendas', (req, res) => {
+  try {
+    const id = req.params.id_vendas;
+    const { id_vendas, produtos_vendidos, vendas_medias, data_venda, valor_venda, cupom_fiscal, id_cliente,
+    id_controle_estoque } = req.body;
+
+    const stmt = db.prepare(`
+      UPDATE vendas
+      SET id_vendas = ?, produtos_vendidos = ?, vendas_medias = ?, data_venda = ?, valor_venda = ?, cupom_fiscal = ?, id_cliente = ?,
+      id_controle_estoque = ?
+      WHERE id_vendas = ?
+    `);
+
+    const resultado = stmt.run(id_vendas, produtos_vendidos, vendas_medias, data_venda, valor_venda, cupom_fiscal, id_cliente,
+    id_controle_estoque, id);
+    if (resultado.changes > 0) {
+      res.status(200).json({ mensagem: 'Registro atualizado com sucesso!' });
+    } else {
+      res.status(404).json({ mensagem: 'Registro não encontrado.' });
+    }
+  } catch (err) {
+    res.status(500).json({ mensagem: 'A tentativa de editar um registro não funcionou corretamente.' });
+  };
+});
+//------------------------------------------------------------------------------------------------------------------//
+
+
+//------------------------------------------------------------------------------------------------------------------//
+// Rota: dashboard da tela de fornecedores-------------------------------------------------------------------//
+// Rota: Obter o total de fornecedores:
+app.get('/dashboard_fornecedores_total', (req, res) => {
+  try {
+    const stmt = db.prepare("SELECT COUNT(id_fornecedor) AS total_fornecedores FROM cadastro_fornecedores;");
+    const dashboard_fornecedores_total = stmt.get();
+    res.setHeader("Content-Type", "application/json");
+    res.json(dashboard_fornecedores_total);
+  } catch (err) {
+    res.status(500).json({ mensagem: "Erro ao buscar fornecedores."})
+  }
+});
+
+// Rota: Obert o total de fornecedores ativos:
+app.get('/dashboard_fornecedores_ativos', (req, res) => {
+  try {
+    const stmt = db.prepare("SELECT COUNT(status) AS total_fornecedores_ativos FROM cadastro_fornecedores WHERE status = 'Ativo';");
+    const dashboard_fornecedores_ativos = stmt.get();
+    res.setHeader("Content-Type", "application/json");
+    res.json(dashboard_fornecedores_ativos);
+  } catch (err) {
+    res.status(500).json({ mensagem: "Erro ao buscar fornecedores."})
+  }
+});
+
+// Rota: Obert o total de fornecedores inativos:
+app.get('/dashboard_fornecedores_inativos', (req, res) => {
+  try {
+    const stmt = db.prepare("SELECT COUNT(status) AS total_fornecedores_inativos FROM cadastro_fornecedores WHERE status = 'Inativo';");
+    const dashboard_fornecedores_inativos = stmt.get();
+    res.setHeader("Content-Type", "application/json");
+    res.json(dashboard_fornecedores_inativos);
+  } catch (err) {
+    res.status(500).json({ mensagem: "Erro ao buscar fornecedores."})
+  }
+});
+//-------------------------------------------------------------------------------------------------------//
+
+// Rota: relacionada aos dados da tabela de fornecedores:
+app.get('/tabela_fornecedores', (req, res) => {
+  try {
+    const stmt = db.prepare("SELECT * FROM cadastro_fornecedores;");
+    const fornecedores = stmt.all();
+    res.setHeader("Content-Type", "application/json");
+    res.json(fornecedores);
+  } catch (err) {
+    res.status(500).json({ mensagem: "Erro ao buscar fornecedores."})
+  }
+});
+
+// Rota: relacionada ao cadastro de novos fornecedores pelo botão "+ Novo fornecedor":
+app.post('/cadastro_fornecedores', (req, res) => {
+  try {
+    const idFornecedor = req.params.id_fornecedor;
+    const {nome_fornecedor, cnpj, contato, status} = req.body;
+    const stmt = db.prepare("INSERT INTO cadastro_fornecedores (nome_fornecedor, cnpj, contato, status) VALUES (?, ?, ?, ?);");
+    const resultado = stmt.run(nome_fornecedor, cnpj, contato, status);
+    if (resultado.changes > 0) {
+      res.status(200).json({ mensagem: 'Fornecedor cadastrado com sucesso!' });
+    } else {
+      res.status(404).json({ mensagem: 'Fornecedor nao cadastrado.' });
+    }
+  } catch (err) {
+    res.status(500).json({ mensagem: 'A tentativa de cadastrar um fornecedor nao funcionou corretamente.' });
+  };
+});
+
+
+// Rota: relacionada a editar os itens da tabela fornecedores pelo front através do botão editar:
+app.post('/editar_fornecedores/:id_fornecedor', (req, res) => {
+  try {
+    const fornecedor_id = req.params.id_fornecedor;
+    const {nome_fornecedor, cnpj, contato, status} = req.body;
+    const stmt = db.prepare("UPDATE cadastro_fornecedores SET nome_fornecedor = ?, cnpj = ?, contato = ?, status = ? WHERE id_fornecedor = ?;");
+    const resultado = stmt.run(nome_fornecedor, cnpj, contato, status, fornecedor_id);
+    if (resultado.changes > 0) {
+      res.status(200).json({ mensagem: 'Fornecedor editado com sucesso!' });
+    } else {
+      res.status(404).json({ mensagem: 'Fornecedor nao editado.' });
+    }
+  } catch (err) {
+    res.status(500).json({ mensagem: 'A tentativa de editar um fornecedor nao funcionou corretamente.' });
+  };
+})
+
+// Rota: relacionada a excluisão de um registro da tabela de fornecedores pelo front-end:
+app.delete('/deletar_fornecedor/:id_fornecedor', (req, res) => {
+  try {
+    const id = req.params.id_fornecedor;
+    const stmt = db.prepare('DELETE FROM cadastro_fornecedores WHERE id_fornecedor = ?');
+    const resultado = stmt.run(id);
+    if (resultado.changes > 0) {
+      res.status(200).json({ mensagem: 'Fornecedor deletado com sucesso!' });
+    } else {
+      res.status(404).json({ mensagem: 'Fornecedor nao encontrado.' });
+    }
+  } catch (err) {
+    res.status(500).json({ mensagem: 'A tentativa de deletar um fornecedor nao funcionou corretamente.' });
+  };
+});
+//------------------------------------------------------------------------------------------------------------------//
+
+//------------------------------------------------------------------------------------------------------------------//
+// Rota: dashboard da tela de funcionarios:------------------------------------------------------------//
+// Rota: Obter o total de funcionarios:
+app.get('/dashboard_funcionarios', (req, res) => {
+  try {
+    const stmt = db.prepare("SELECT COUNT(id_funcionario) AS total_funcionario FROM funcionarios;");
+    const dashboard_funcionarios_total = stmt.get();
+    res.setHeader("Content-Type", "application/json");
+    res.json(dashboard_funcionarios_total);
+  } catch (err) {
+    res.status(500).json({ mensagem: "Erro ao buscar funcionarios."})
+  }
+})
+
+// Rota: Obter o total de funcionarios ativos:
+app.get('/dashboard_funcionarios_ativos', (req, res) => {
+  try {
+    const stmt = db.prepare("SELECT COUNT(status) AS total_funcionario_ativos FROM funcionarios WHERE status = 'Ativo';");
+    const dashboard_funcionarios_ativos = stmt.get();
+    res.setHeader("Content-Type", "application/json");
+    res.json(dashboard_funcionarios_ativos);
+  } catch (err) {
+    res.status(500).json({ mensagem: "Erro ao buscar funcionarios."})
+  }
+})
+
+// Rota: Obter o total de funcionarios inativos:
+app.get('/dashboard_funcionarios_inativos', (req, res) => {
+  try {
+    const stmt = db.prepare("SELECT COUNT(status) AS total_funcionario_inativos FROM funcionarios WHERE status = 'Inativo';");
+    const dashboard_funcionarios_inativos = stmt.get();
+    res.setHeader("Content-Type", "application/json");
+    res.json(dashboard_funcionarios_inativos);
+  } catch (err) {
+    res.status(500).json({ mensagem: "Erro ao buscar funcionarios."})
+  }
+});
+//-----------------------------------------------------------------------------------------------------//
+// Rota: relacionada aos dados da tabela de funcionarios:
+app.get('/tabela_funcionarios', (req, res) => {
+  try {
+    const stmt = db.prepare("SELECT * FROM funcionarios;");
+    const tabela_funcionarios = stmt.all();
+    res.setHeader("Content-Type", "application/json");
+    res.json(tabela_funcionarios);
+  } catch (err) {
+    res.status(500).json({ mensagem: "Erro ao buscar funcionarios."})
+  }
+})
+
+
+// Rota: relacionada ao cadastro de novos funcionarios pelo botão "+ Novo Funcionário":
+app.post('/cadastro_funcionarios', (req, res) => {
+  try {
+    const {
+      nome_funcionario,
+      cargo_funcionario,
+      salario_funcionario,
+      tel_funcionario,
+      email_funcionario,
+      login_funcionario,
+      senha_funcionario,
+      admissao,
+      demissao,
+      status
+    } = req.body;
+
+    const stmt = db.prepare("INSERT INTO funcionarios (nome_funcionario, cargo_funcionario, salario_funcionario, tel_funcionario, email_funcionario, login_funcionario, senha_funcionario, admissao, demissao, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
+
+    const resultado = stmt.run(
+      nome_funcionario,
+      cargo_funcionario,
+      salario_funcionario,
+      tel_funcionario,
+      email_funcionario,
+      login_funcionario,
+      senha_funcionario,
+      admissao,
+      demissao,
+      status
+    );
+
+    if (resultado.changes > 0) {
+      res.status(200).json({ mensagem: 'Funcionario cadastrado com sucesso!' });
+    } else {
+      res.status(404).json({ mensagem: 'Funcionario nao cadastrado.' });
+    }
+  } catch (err) {
+    console.error("❌ Erro no backend:", err);
+    res.status(500).json({ mensagem: 'A tentativa de cadastrar um funcionario nao funcionou corretamente.' });
+  }
+});
+
+
+// Rota: relacionada a editar os itens da tabela funcionarios pelo front através do botão editar:
+app.post('/editar_funcionario/:id_funcionario', (req, res) => {
+  try {
+    const funcionario_id = req.params.id_funcionario;
+    const {
+      nome_funcionario, 
+      cargo_funcionario, 
+      admissao, 
+      demissao, 
+      salario_funcionario,
+      status,
+      tel_funcionario, 
+      email_funcionario, 
+      login_funcionario, 
+      senha_funcionario
+    } = req.body;
+
+    const stmt = db.prepare(`
+      UPDATE funcionarios SET 
+        nome_funcionario = ?, 
+        cargo_funcionario = ?, 
+        admissao = ?, 
+        demissao = ?, 
+        salario_funcionario = ?, 
+        status = ?, 
+        tel_funcionario = ?, 
+        email_funcionario = ?, 
+        login_funcionario = ?, 
+        senha_funcionario = ?
+      WHERE id_funcionario = ?;
+    `);
+
+    const resultado = stmt.run(
+      nome_funcionario, 
+      cargo_funcionario, 
+      admissao, 
+      demissao, 
+      salario_funcionario, 
+      status,  
+      tel_funcionario, 
+      email_funcionario, 
+      login_funcionario, 
+      senha_funcionario, 
+      funcionario_id
+    );
+
+    if (resultado.changes > 0) {
+      res.status(200).json({ mensagem: 'Funcionário editado com sucesso!' });
+    } else {
+      res.status(404).json({ mensagem: 'Funcionário não editado.' });
+    }
+  } catch (err) {
+    console.error("❌ Erro no backend:", err);
+    res.status(500).json({ mensagem: 'Erro interno ao editar funcionário.' });
+  }
+});
+
+// Rota: excluir um funcionario pelo botão excluir:
+app.delete('/deletar_funcionario/:id_funcionario', (req, res) => {
+  try {  
+    const id = req.params.id_funcionario;
+    const stmt = db.prepare('DELETE FROM funcionarios WHERE id_funcionario = ?');
+    const resultado = stmt.run(id);
+
+    if (resultado.changes > 0) {
+      res.status(200).json({ mensagem: 'Funcionario excluido com sucesso!' });
+    } else {
+      res.status(404).json({ mensagem: 'Funcionario nao excluido.' });
+    }
+  } catch (err) {
+    console.error("❌ Erro no backend:", err);
+    res.status(500).json({ mensagem: 'A tentativa de excluir um funcionario nao funcionou corretamente.' });
+  }
+});
+//-------------------------------------------------------------------------------------------------------------------------------------------//
+
+//------------------------------------------------------------------------------------------------------------------------------------------//
+// Rota: Tabela da tela de relatório (total de clientes, total de produtos, total de vendas, total de fornecedores, receita total):
+app.get('/tabela_relatorio', (req, res) => {
+  try {
+    const stmt = db.prepare('SELECT * FROM relatorio');
+    const resultado = stmt.all();
+    res.status(200).json({ relatorio: resultado });
+  } catch (err) {
+    console.error("❌ Erro no backend:", err);
+    res.status(500).json({ mensagem: 'A tentativa de obter os dados do relatorio nao funcionou corretamente.' });
+  }
+})
+
+// Rota: Consulta especifica do total de todas as rotas para gerar um arquivo PDF de relatório:
+app.get("/relatorio-geral", (req, res) => {
+  try {
+    const stmt = db.prepare(`
+      SELECT
+        -- CLIENTES
+        (SELECT COUNT(*) FROM cadastro_clientes) AS total_clientes,
+        (SELECT COUNT(*) FROM cadastro_clientes WHERE status_cliente = 'Ativo') AS clientes_ativos,
+
+        -- FORNECEDORES
+        (SELECT COUNT(*) FROM cadastro_fornecedores) AS total_fornecedores,
+        (SELECT COUNT(*) FROM cadastro_fornecedores WHERE status = 'Ativo') AS fornecedores_ativos,
+
+        -- FUNCIONÁRIOS
+        (SELECT COUNT(*) FROM funcionarios) AS total_funcionarios,
+        (SELECT COUNT(*) FROM funcionarios WHERE cargo_funcionario LIKE '%Gerente%') AS total_gerentes,
+        (SELECT AVG(salario_funcionario) FROM funcionarios) AS salario_medio,
+
+        -- PRODUTOS
+        (SELECT COUNT(*) FROM cadastro_produtos) AS total_produtos,
+        (SELECT SUM(qtd_estoque) FROM cadastro_produtos) AS estoque_total,
+        (SELECT COUNT(*) FROM cadastro_produtos WHERE data_validade <= DATE('now', '+30 days')) AS produtos_vencendo,
+        (SELECT COUNT(DISTINCT fabricante) FROM cadastro_produtos) AS fabricantes_ativos,
+
+        -- ESTOQUE
+        (SELECT SUM(qtd_entrada) FROM controle_estoque) AS entradas_estoque,
+        (SELECT SUM(saida_produto) FROM controle_estoque) AS saidas_estoque,
+        (SELECT SUM(CAST(REPLACE(perdas_descarte, ' caixas', '') AS INTEGER)) FROM controle_estoque) AS perdas_total,
+
+        -- VENDAS
+        (SELECT COUNT(*) FROM vendas) AS total_vendas,
+        (SELECT SUM(valor_venda) FROM vendas) AS receita_total,
+        (SELECT AVG(valor_venda) FROM vendas) AS ticket_medio,
+
+        -- HISTÓRICO DE FORNECIMENTO
+        (SELECT COUNT(*) FROM historico_fornecimento) AS fornecimentos_registrados,
+        (SELECT SUM(quantidade) FROM historico_fornecimento) AS total_fornecido
+      ;
+    `);
+
+    const resultado = stmt.get();
+    res.status(200).json({ relatorio: resultado });
+  } catch (err) {
+    console.error("❌ Erro no backend:", err);
+    res.status(500).json({ mensagem: 'A tentativa de obter os dados do relatorio nao funcionou corretamente.' });
+  }
+})
 
 
 
 
-//------------------------------------------------------------------------------------------//
+
+
+
+
+//-------------------------------------------------------------------------------------------------------------------//
 // Servir arquivos estáticos do front-end
 app.use(express.static(path.join(__dirname, '../../front-end/medcontrol-login')));
 
