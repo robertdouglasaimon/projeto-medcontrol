@@ -379,7 +379,59 @@ export function render () {
         });
     }, 100);
 
-    
+    // Script para converter os dados do banco em PDF
+    setTimeout(() => {
+
+    // Aguarda até que a biblioteca jsPDF esteja disponível
+    const aguardarJsPDF = setInterval(() => {
+        if (window.jspdf && window.jspdf.jsPDF) {
+        clearInterval(aguardarJsPDF); // Para o loop
+
+        const { jsPDF } = window.jspdf;
+
+        const botao = document.querySelector(".btn-emitir-relatorio");
+        if (!botao) return;
+
+        botao.addEventListener("click", async () => {
+            try {
+            const resposta = await fetch("http://localhost:3001/relatorio-geral");
+            const { relatorio } = await resposta.json();
+            const dados = relatorio;
+
+            const doc = new jsPDF();
+
+            // Cabeçalho
+            doc.setFontSize(18);
+            doc.text("Relatório Geral do Sistema MedControl", 20, 20);
+            doc.setFontSize(12);
+            doc.text(`Gerado em: ${new Date().toLocaleString()}`, 20, 30);
+
+            // Dados
+            let y = 40;
+            for (const [chave, valor] of Object.entries(dados)) {
+                doc.text(`${formatarLabel(chave)}: ${valor}`, 20, y);
+                y += 8;
+                if (y > 280) {
+                doc.addPage();
+                y = 20;
+                }
+            }
+
+            doc.save("relatorio_executivo.pdf");
+            } catch (error) {
+            console.error("❌ Erro ao gerar PDF:", error);
+            }
+        });
+
+        function formatarLabel(label) {
+            return label
+            .replace(/_/g, " ")
+            .replace(/\b\w/g, (l) => l.toUpperCase());
+        }
+        }
+    }, 100); // Checa a cada 100ms se jsPDF já está disponível
+    }, 100);
+
 
 
     return div

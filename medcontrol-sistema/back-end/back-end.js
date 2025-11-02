@@ -858,17 +858,52 @@ app.get('/tabela_relatorio', (req, res) => {
 })
 
 // Rota: Consulta especifica do total de todas as rotas para gerar um arquivo PDF de relatório:
-app.get("/relatorio-geral", async (req, res) => {
+app.get("/relatorio-geral", (req, res) => {
   try {
-    const resultado = await db.all(`
-      -- SELECT colossal aqui
+    const stmt = db.prepare(`
+      SELECT
+        -- CLIENTES
+        (SELECT COUNT(*) FROM cadastro_clientes) AS total_clientes,
+        (SELECT COUNT(*) FROM cadastro_clientes WHERE status_cliente = 'Ativo') AS clientes_ativos,
+
+        -- FORNECEDORES
+        (SELECT COUNT(*) FROM cadastro_fornecedores) AS total_fornecedores,
+        (SELECT COUNT(*) FROM cadastro_fornecedores WHERE status = 'Ativo') AS fornecedores_ativos,
+
+        -- FUNCIONÁRIOS
+        (SELECT COUNT(*) FROM funcionarios) AS total_funcionarios,
+        (SELECT COUNT(*) FROM funcionarios WHERE cargo_funcionario LIKE '%Gerente%') AS total_gerentes,
+        (SELECT AVG(salario_funcionario) FROM funcionarios) AS salario_medio,
+
+        -- PRODUTOS
+        (SELECT COUNT(*) FROM cadastro_produtos) AS total_produtos,
+        (SELECT SUM(qtd_estoque) FROM cadastro_produtos) AS estoque_total,
+        (SELECT COUNT(*) FROM cadastro_produtos WHERE data_validade <= DATE('now', '+30 days')) AS produtos_vencendo,
+        (SELECT COUNT(DISTINCT fabricante) FROM cadastro_produtos) AS fabricantes_ativos,
+
+        -- ESTOQUE
+        (SELECT SUM(qtd_entrada) FROM controle_estoque) AS entradas_estoque,
+        (SELECT SUM(saida_produto) FROM controle_estoque) AS saidas_estoque,
+        (SELECT SUM(CAST(REPLACE(perdas_descarte, ' caixas', '') AS INTEGER)) FROM controle_estoque) AS perdas_total,
+
+        -- VENDAS
+        (SELECT COUNT(*) FROM vendas) AS total_vendas,
+        (SELECT SUM(valor_venda) FROM vendas) AS receita_total,
+        (SELECT AVG(valor_venda) FROM vendas) AS ticket_medio,
+
+        -- HISTÓRICO DE FORNECIMENTO
+        (SELECT COUNT(*) FROM historico_fornecimento) AS fornecimentos_registrados,
+        (SELECT SUM(quantidade) FROM historico_fornecimento) AS total_fornecido
+      ;
     `);
-    res.json({ relatorio: resultado });
-  } catch (error) {
-    console.error("Erro ao gerar relatório:", error);
-    res.status(500).json({ erro: "Erro ao gerar relatório" });
+
+    const resultado = stmt.get();
+    res.status(200).json({ relatorio: resultado });
+  } catch (err) {
+    console.error("❌ Erro no backend:", err);
+    res.status(500).json({ mensagem: 'A tentativa de obter os dados do relatorio nao funcionou corretamente.' });
   }
-});
+})
 
 
 
