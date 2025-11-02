@@ -9,10 +9,9 @@ CORS(app)
 @app.route('/grafico-estoque')
 def grafico_estoque():
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-    db_path = os.path.join(BASE_DIR, 'C:/Users/Windows Lite BR/Documents/GitHub/projeto-medcontrol/medcontrol-sistema/banco-dados/farmacia.db') 
+    db_path = os.path.join(BASE_DIR, '../../medcontrol-sistema/banco-dados/farmacia.db') 
     
     print("E:\PROJETO DO GITHUB DESKTOP - NUNCA APAGAR\projeto-medcontrol\medcontrol-sistema\banco-dados\farmacia.db", db_path)
-
 
 
     try:
@@ -81,16 +80,88 @@ def grafico_estoque():
             'total_unidades_saidas': row3[0] if row3 and row3[0] is not None else 0
         }   
         
-        
-        
-        
+        # -------------------------------
+        # 📊 Consulta 4 — total de Estoque — Soma dos valores da coluna qtd_estoque 
+        # -------------------------------
+        cursor4 = db.execute("""
+            SELECT 
+                SUM(qtd_estoque) AS total_estoque
+            FROM controle_estoque;
+        """)
+        row4 = cursor4.fetchone()
+
+        dados_estoque_grafico4 = {
+            'total_estoque': row4[0] if row4 else 0
+        }
+
+        # -------------------------------
+        # 📊 Consulta 5 — #  5 mais vendidos
+        # -------------------------------
+        cursor5 = db.execute("""
+            SELECT nome_produto, SUM(quantidade_vendida) AS total_vendido 
+                FROM cadastro_produtos 
+                GROUP BY nome_produto 
+                ORDER BY total_vendido DESC 
+            LIMIT 5
+        """)
+        row5 = cursor5.fetchall()
+
+        dados_estoque_grafico5 = {
+            'labels': [row[0] for row in row5],
+            'valores': [row[1] for row in row5]
+        }
+
+        # -------------------------------
+        # 📊 Consulta 6 —  5 menos vendidos
+        # -------------------------------
+        cursor6 = db.execute("""
+            SELECT nome_produto, SUM(quantidade_vendida) AS total_vendido 
+                FROM cadastro_produtos 
+                GROUP BY nome_produto 
+                ORDER BY total_vendido ASC 
+            LIMIT 5
+        """)
+        row6 = cursor6.fetchall()
+
+        dados_estoque_grafico6 = {
+            'labels': [row[0] for row in row6],
+            'valores': [row[1] for row in row6]
+        }
+
+
+        # -------------------------------
+        # 📊 Consulta 7 —  Lista de lote e validade dos produtos mais próximos de vencer:
+        # -------------------------------
+        cursor7 = db.execute("""
+            SELECT lote, data_validade, nome_produto FROM cadastro_produtos
+            WHERE JULIANDAY(data_validade) - JULIANDAY('now') <= 30
+            ORDER BY data_validade ASC;
+        """)
+        row7 = cursor7.fetchall()
+
+        dados_estoque_grafico7 = {
+            'lote': [row[0] for row in row7],
+            'validade': [row[1] for row in row7],
+            'nome_produto': [row[2] for row in row7]
+        }
+
+
+
+
         # -------------------------------
         # 🔗 Chamando as consultas na resposta final (É obrigatoria essa chamada, sem ela não roda as consultas)
         # -------------------------------
         resposta_final = {
+            # Relacionados a tela de controle de estoque:
             'grafico_geral': dados_estoque_grafico1,
             'grafico_perdas_detalhado': dados_estoque_grafico2,
-            'grafico_saidas_detalhado': dados_estoque_grafico3
+            'grafico_saidas_detalhado': dados_estoque_grafico3,
+            'grafico_nivel_estoque': dados_estoque_grafico4,
+            
+            # Relacionados a tela de relatórios:
+            'produto_mais_vendido': dados_estoque_grafico5,
+            'produto_menos_vendido': dados_estoque_grafico6,
+            'lote_validade': dados_estoque_grafico7
         }
 
         return jsonify(resposta_final)

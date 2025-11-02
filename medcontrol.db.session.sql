@@ -325,3 +325,89 @@ UPDATE funcionarios SET demissao = "Funcionário Ativo" WHERE id_funcionario = 7
 UPDATE funcionarios SET demissao = "Funcionário Ativo" WHERE id_funcionario = 72;
 
 ALTER TABLE funcionarios DROP COLUMN salario;
+
+SELECT lote, data_validade, nome_produto FROM cadastro_produtos
+WHERE JULIANDAY(data_validade) - JULIANDAY('now') <= 30
+ORDER BY data_validade ASC;
+
+INSERT INTO cadastro_produtos (
+  id_produto,
+  descricao,
+  fabricante,
+  lote,
+  data_validade,
+  preco_venda,
+  qtd_estoque,
+  classificacao,
+  nome_produto,
+  quantidade_vendida
+) VALUES (
+  101, -- id_produto
+  'Analgésico para dor leve', -- descricao
+  'Farmacêutica XYZ', -- fabricante
+  'L123', -- lote
+  '2025-11-15', -- data_validade
+  19.90, -- preco_venda
+  50, -- qtd_estoque
+  'Medicamento', -- classificacao
+  'Dipirona 500mg', -- nome_produto
+  0 -- quantidade_vendida
+);
+
+-- VIEW SQL que contenha: Total de clientes, total de produtos, total de vendas, total de produtos, total de fornecedores e a receita total:
+
+CREATE VIEW relatorio AS
+SELECT
+  (SELECT COUNT(id_cliente) FROM cadastro_clientes) AS total_clientes,
+  (SELECT COUNT(id_produto) FROM cadastro_produtos) AS total_produtos,
+  (SELECT COUNT(id_vendas) FROM vendas) AS total_vendas,
+  (SELECT COUNT(id_fornecedor) FROM cadastro_fornecedores) AS total_fornecedores,
+  (SELECT SUM(valor_venda) FROM vendas) AS total_receita;
+
+
+SELECT * FROM relatorio;
+
+-- DROPANDO A VIEW:
+DROP VIEW relatorio;
+
+
+SELECT
+  -- CLIENTES
+  (SELECT COUNT(*) FROM cadastro_clientes) AS total_clientes,
+  (SELECT COUNT(*) FROM cadastro_clientes WHERE status_cliente = 'Ativo') AS clientes_ativos,
+
+  -- FORNECEDORES
+  (SELECT COUNT(*) FROM cadastro_fornecedores) AS total_fornecedores,
+  (SELECT COUNT(*) FROM cadastro_fornecedores WHERE status = 'Ativo') AS fornecedores_ativos,
+
+  -- FUNCIONÁRIOS
+  (SELECT COUNT(*) FROM funcionarios) AS total_funcionarios,
+  (SELECT COUNT(*) FROM funcionarios WHERE cargo_funcionario LIKE '%Gerente%') AS total_gerentes,
+  (SELECT AVG(salario_funcionario) FROM funcionarios) AS salario_medio,
+
+  -- PRODUTOS
+  (SELECT COUNT(*) FROM cadastro_produtos) AS total_produtos,
+  (SELECT SUM(qtd_estoque) FROM cadastro_produtos) AS estoque_total,
+  (SELECT COUNT(*) FROM cadastro_produtos WHERE data_validade <= DATE('now', '+30 days')) AS produtos_vencendo,
+  (SELECT COUNT(DISTINCT fabricante) FROM cadastro_produtos) AS fabricantes_ativos,
+
+  -- ESTOQUE
+  (SELECT SUM(qtd_entrada_com) FROM controle_estoque) AS entradas_estoque,
+  (SELECT SUM(qtd_saida_com) FROM controle_estoque) AS saidas_estoque,
+  (SELECT SUM(CAST(REPLACE(perdas_descarte, ' caixas', '') AS INTEGER)) FROM controle_estoque) AS perdas_total,
+
+  -- VENDAS
+  (SELECT COUNT(*) FROM vendas) AS total_vendas,
+  (SELECT SUM(valor_venda) FROM vendas) AS receita_total,
+  (SELECT AVG(valor_venda) FROM vendas) AS ticket_medio,
+
+  -- PRODUTOS VENDIDOS
+  (SELECT COUNT(*) FROM produtos_vendidos) AS itens_vendidos,
+  (SELECT SUM(valor_total) FROM produtos_vendidos) AS faturamento_bruto,
+  (SELECT nome_produto FROM produtos_vendidos GROUP BY nome_produto ORDER BY COUNT(*) DESC LIMIT 1) AS produto_mais_vendido,
+
+  -- HISTÓRICO DE FORNECIMENTO
+  (SELECT COUNT(*) FROM historico_fornecimento) AS fornecimentos_registrados,
+  (SELECT SUM(quantidade) FROM historico_fornecimento) AS total_fornecido
+;
+

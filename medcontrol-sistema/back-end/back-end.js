@@ -206,7 +206,7 @@ app.post('/login_funcionario', (req, res) => {
 /*-----------------------------------------------------------------------------------------*/
 
 /*-----------------------------------------------------------------------------------------*/
-// Rota: dashboard da tela de produtos (total de produtos, produtos mais vendidosm produtos menos vendidos e valor do estoque)
+// Rota: dashboard da tela de produtos (total de produtos, produtos mais vendidos produtos menos vendidos e valor do estoque)
 
 // Total de produtos
 app.get('/dashboard_produtos', (req, res) => {
@@ -842,12 +842,33 @@ app.delete('/deletar_funcionario/:id_funcionario', (req, res) => {
     res.status(500).json({ mensagem: 'A tentativa de excluir um funcionario nao funcionou corretamente.' });
   }
 });
-//-------------------------------------------------------------------------------------------------------------------//
+//-------------------------------------------------------------------------------------------------------------------------------------------//
 
-//-------------------------------------------------------------------------------------------------------------------//
+//------------------------------------------------------------------------------------------------------------------------------------------//
+// Rota: Tabela da tela de relatório (total de clientes, total de produtos, total de vendas, total de fornecedores, receita total):
+app.get('/tabela_relatorio', (req, res) => {
+  try {
+    const stmt = db.prepare('SELECT * FROM relatorio');
+    const resultado = stmt.all();
+    res.status(200).json({ relatorio: resultado });
+  } catch (err) {
+    console.error("❌ Erro no backend:", err);
+    res.status(500).json({ mensagem: 'A tentativa de obter os dados do relatorio nao funcionou corretamente.' });
+  }
+})
 
-
-
+// Rota: Consulta especifica do total de todas as rotas para gerar um arquivo PDF de relatório:
+app.get("/relatorio-geral", async (req, res) => {
+  try {
+    const resultado = await db.all(`
+      -- SELECT colossal aqui
+    `);
+    res.json({ relatorio: resultado });
+  } catch (error) {
+    console.error("Erro ao gerar relatório:", error);
+    res.status(500).json({ erro: "Erro ao gerar relatório" });
+  }
+});
 
 
 
