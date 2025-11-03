@@ -70,8 +70,7 @@ export function render () {
                 <div class="titulo-calendario">
                     <p>
                         <i class="fas fa-calendar"></i>
-                        Acompanhamento da válidade dos <br>
-                        lotes
+                        Produtos proximos a vencer
                     </p>
                 </div>
                 <!---- Calendario ---->
