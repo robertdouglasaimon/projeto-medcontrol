@@ -54,13 +54,13 @@ export function render () {
                 <div class="titulo-grafico">
                     <p>
                         <i class="fas fa-line-chart"></i>
-                        'Comparativo de Produtos Vendidos'
+                        Top 5 Produtos Mais e Menos Vendidos
                     </p>
                 </div>
 
                 <!---- Grafico ---->
                 <div id="estatisticas">
-                    <canvas id="graficoDeLinhas" width="120" height="50"></canvas>
+                    <canvas id="graficoDeLinhas" width="100" height="100" style="margin: 0 1rem 0 0; padding: 0 1.5rem 0 0";></canvas>
                 </div>
             </div>
 
