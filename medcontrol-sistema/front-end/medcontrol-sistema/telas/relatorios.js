@@ -54,13 +54,13 @@ export function render () {
                 <div class="titulo-grafico">
                     <p>
                         <i class="fas fa-line-chart"></i>
-                        'Comparativo de Produtos Vendidos'
+                        Top 5 Produtos Mais e Menos Vendidos
                     </p>
                 </div>
 
                 <!---- Grafico ---->
                 <div id="estatisticas">
-                    <canvas id="graficoDeLinhas" width="120" height="50"></canvas>
+                    <canvas id="graficoDeLinhas" width="100" height="100" style="margin: 0 1rem 0 0; padding: 0 1.5rem 0 0";></canvas>
                 </div>
             </div>
 
@@ -70,8 +70,7 @@ export function render () {
                 <div class="titulo-calendario">
                     <p>
                         <i class="fas fa-calendar"></i>
-                        Acompanhamento da válidade dos <br>
-                        lotes
+                        Produtos proximos a vencer
                     </p>
                 </div>
                 <!---- Calendario ---->
@@ -105,7 +104,7 @@ export function render () {
                         <th>Total de produtos</th>
                         <th>Total de vendas</th>
                         <th>Total de fornecedores</th>
-                        <th>Receita total</th>
+                        <th>Receita total de vendas</th>
                         <th>Gerar relatorio</th>
                     </tr>
                 </thead>
@@ -328,6 +327,7 @@ export function render () {
                     Lote: <span>${lotes[i]}</span><br>
                     Validade: <span>${validades[i]}</span>
                     <hr>
+                    
                 `;
                 ul.appendChild(li);
                 }

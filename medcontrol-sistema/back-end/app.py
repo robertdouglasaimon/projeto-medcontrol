@@ -133,17 +133,25 @@ def grafico_estoque():
         # 📊 Consulta 7 —  Lista de lote e validade dos produtos mais próximos de vencer:
         # -------------------------------
         cursor7 = db.execute("""
-            SELECT lote, data_validade, nome_produto FROM cadastro_produtos
+            SELECT 
+            lote, 
+            nome_produto, 
+            data_validade,
+            ROUND(JULIANDAY(data_validade) - JULIANDAY('now')) AS dias_para_vencer
+            FROM cadastro_produtos
             WHERE JULIANDAY(data_validade) - JULIANDAY('now') <= 30
-            ORDER BY data_validade ASC;
+            AND JULIANDAY(data_validade) - JULIANDAY('now') >= 0
+            ORDER BY dias_para_vencer ASC;
+
         """)
         row7 = cursor7.fetchall()
-
+        
         dados_estoque_grafico7 = {
             'lote': [row[0] for row in row7],
-            'validade': [row[1] for row in row7],
-            'nome_produto': [row[2] for row in row7]
+            'nome_produto': [row[1] for row in row7],
+            'validade': [row[2] for row in row7]
         }
+
 
 
 
