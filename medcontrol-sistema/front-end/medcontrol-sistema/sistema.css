@@ -2469,19 +2469,19 @@ table {
 .container-relatorios {
   display: flex;
   flex-wrap: wrap;
-  gap: 30px;
+  gap: 20px;
   margin-top: 40px; 
   margin-bottom: 40px;
 }
 /*-------------------------------------------------------------------------------------------*/
 /*Estilos relaciona ao grafico relatorio*/
 .grafico-relatorio {
-  width: 40%;
+  width: 35%;
   background-color: #fff;
   border-radius: 8px;
   padding: 1.5rem;
   font-weight: bold;
-  height: 300px;
+  height: 425px;
   box-shadow: 1px 1px 5px orange;
 }
 
@@ -2495,10 +2495,11 @@ table {
 /*-----------------------------------------------------------------------------------------*/
 /*Estilos relaciona ao calendario*/
 .calendario-pagamento {
-  width: 33%;
+  width: 20%;
   background-color: #fff;
   border-radius: 8px;
   padding: 1.5rem;
+  height: 425px;
   box-shadow: 1px 1px 5px orange;
 }
 
@@ -2510,13 +2511,14 @@ table {
   border-bottom: solid 2px orange;
 }
 /*-----------------------------------------------------------------------------------------*/
-/*Estilos relaciona ao calendario*/
+/*Estilos relaciona ao nivel de estoque*/
 .nivel-do-estoque{
-  width: 22%;
+  width: 25%;
   background-color: #fff;
   border-radius: 8px;
   padding: 1.5rem;
   position: relative;
+  height: 425px;
   box-shadow: 1px 1px 5px orange;
 }
 
