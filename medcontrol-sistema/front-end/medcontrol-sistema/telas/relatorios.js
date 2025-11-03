@@ -328,6 +328,7 @@ export function render () {
                     Lote: <span>${lotes[i]}</span><br>
                     Validade: <span>${validades[i]}</span>
                     <hr>
+                    
                 `;
                 ul.appendChild(li);
                 }

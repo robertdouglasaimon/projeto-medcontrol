@@ -354,6 +354,13 @@ INSERT INTO cadastro_produtos (
   0 -- quantidade_vendida
 );
 
+SELECT 
+  lote, nome_produto, data_validade,
+  ROUND(JULIANDAY(data_validade) - JULIANDAY('now')) AS dias_para_vencer
+FROM cadastro_produtos
+WHERE JULIANDAY(data_validade) - JULIANDAY('now') <= 30
+  AND JULIANDAY(data_validade) - JULIANDAY('now') >= 0
+ORDER BY dias_para_vencer ASC;
 
 
 
