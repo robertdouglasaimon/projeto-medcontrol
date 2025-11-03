@@ -104,7 +104,7 @@ export function render () {
                         <th>Total de produtos</th>
                         <th>Total de vendas</th>
                         <th>Total de fornecedores</th>
-                        <th>Receita total</th>
+                        <th>Receita total de vendas</th>
                         <th>Gerar relatorio</th>
                     </tr>
                 </thead>
