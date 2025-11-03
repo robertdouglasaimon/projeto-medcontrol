@@ -362,6 +362,6 @@ WHERE JULIANDAY(data_validade) - JULIANDAY('now') <= 30
   AND JULIANDAY(data_validade) - JULIANDAY('now') >= 0
 ORDER BY dias_para_vencer ASC;
 
-
+SELECT SUM(valor_venda) FROM vendas;
 
 
