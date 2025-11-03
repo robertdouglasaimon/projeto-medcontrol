@@ -2498,7 +2498,7 @@ table {
   width: 30%;
   background-color: #fff;
   border-radius: 8px;
-  padding: 1.5rem;
+  padding: 0.5rem;
   height: 370px;
   box-shadow: 1px 1px 5px orange;
 }
@@ -2561,6 +2561,8 @@ table {
   background-color: var(--fundo-principal);
   color: var(--cor-branca);
 }
+
+
 
 
 /*-------------------------------------------------------------------------------------------*/
