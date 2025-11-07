@@ -5,7 +5,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import Database from 'better-sqlite3';
 import bcrypt from 'bcrypt'; // Biblioteca para criptografia da senha.
-
+import session from 'express-session'; // Configurando as sessões via express
 
 // Configuração básica
 const app = express();
@@ -904,6 +904,19 @@ app.get("/relatorio-geral", (req, res) => {
     res.status(500).json({ mensagem: 'A tentativa de obter os dados do relatorio nao funcionou corretamente.' });
   }
 })
+//-------------------------------------------------------------------------------------------------------------------//
+
+//-------------------------------------------------------------------------------------------------------------------//
+// Configuração do express-session para gerenciar sessões de login:
+app.use(session({
+  secret: 'medcontrol-super-secreto',
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    secure: false, // true se for HTTPS, como é local (HTTP), é false.
+    sameSite: 'lax'
+  }
+}));
 
 
 
