@@ -1,5 +1,4 @@
 // Função para verificar se o usuário está logado. Isso evita retomar sessão apertando em "voltar" no navegador. Vai exigir sempre autenticação para acessar o sistema.
-
 export function verificarLogin() {
   const token = localStorage.getItem("authToken");
   if (!token) {
@@ -95,21 +94,8 @@ if (usuario) { // Verifique se o usuário foi encontrado no localStorage.
 
 //------------------------------------------------------------------------------------------//
 // Destruindo a sessão quando o usuário fechar a aba ou fechar o navegador (sair):
-document.getElementById("sair").addEventListener("click", () => {
-  // 🔥 Apaga a sessão
-  localStorage.removeItem("usuarioLogado");
+document.getElementById("btn-sair").addEventListener("click", window.logoutUsuario);
+document.getElementById("sair").addEventListener("click", window.logoutUsuario);
 
-  // 🔁 Redireciona pro login
-  window.location.href = "/medcontrol-sistema/front-end/medcontrol-login/index.html";
-});
-
-// Destruindo a sessão quando o usuário fechar a aba ou fechar o navegador (btn-sair):
-document.getElementById("btn-sair").addEventListener("click", () => {
-  // 🔥 Apaga a sessão
-  localStorage.removeItem("usuarioLogado");
-
-  // 🔁 Redireciona pro login
-  window.location.href = "/medcontrol-sistema/front-end/medcontrol-login/index.html";
-});
 //------------------------------------------------------------------------------------------//
 
