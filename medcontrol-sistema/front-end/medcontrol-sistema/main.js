@@ -41,7 +41,7 @@ function carregarTela() {
   app.innerHTML = '';
 
   // 6. Importa dinamicamente o módulo da tela correspondente:
-  import(`./telas/${hash}.js`)
+  import(`./telas/componentes/${hash}.js`)
     .then((modulo) => {
       const conteudo = modulo.render();
       app.appendChild(conteudo);
