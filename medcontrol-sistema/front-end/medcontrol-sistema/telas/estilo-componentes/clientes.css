@@ -6,3 +6,463 @@
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
 }
+
+/*Estilizando o "clientes.js"----------------------------------------------------------------------------------------------------------------*/
+.container {
+  max-width: 100% !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  width: 100% !important;
+}
+
+
+.card-clientes {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 10px;
+  color: var(--cor-branca);
+}
+
+.card-clientes p {
+  font-size: 1.5rem;
+  margin-top: 1rem;
+  color: var(--cor-preta);
+}
+
+.valores-clientes {
+  position: relative;
+  top: -26px;
+  font-size: 2.5rem !important;
+  font-weight: bold;
+  color: var(--cor-preta);
+}
+
+.total-clientes {
+  width: 300px;
+  height: 100px;
+  background-color: var(--cor-branca);
+  border-radius: 15px;
+  text-align: center;
+}
+
+.cliente-ativo {
+  width: 300px;
+  height: 100px;
+  background-color: var(--cor-branca);
+  border-radius: 15px;
+  text-align: center;
+}
+
+.cliente-inativo {
+  width: 300px;
+  height: 100px;
+  background-color: var(--cor-branca);
+  border-radius: 15px;
+  text-align: center;
+}
+
+.cliente-receita {
+  width: 300px;
+  height: 100px;
+  background-color: var(--cor-branca);
+  border-radius: 15px;
+  text-align: center;
+}
+
+/* Hover para cada card */
+.total-clientes:hover {
+  background-color: #0077ff;
+  transform: scale(1.05);
+  transition: all 0.3s ease-in-out;
+
+  /* listra azul na parte inferior do card */
+  border-bottom: 5px solid orange;
+}
+
+.cliente-ativo:hover {
+  background-color: #59f01d;
+  transform: scale(1.05);
+  transition: all 0.3s ease-in-out;
+
+  /* listra azul na parte inferior do card */
+  border-bottom: 5px solid orange;
+}
+
+.cliente-inativo:hover {
+  background-color: #fa3636;
+  transform: scale(1.05);
+  transition: all 0.3s ease-in-out;
+  
+  /* listra azul na parte inferior do card */
+  border-bottom: 5px solid orange;
+}
+
+.cliente-receita:hover {
+  background-color: #4cd137;
+  transform: scale(1.05);
+  transition: all 0.3s ease-in-out;
+
+  /* listra azul na parte inferior do card */
+  border-bottom: 5px solid orange;
+}
+
+/* Estilo referente a barra de pesquisa -------------------------------------------------*/
+.clientes-header {
+  margin-top: 1rem;
+}
+
+.clientes-header h2 {
+  background-color: var(--fundo-principal);
+  padding: 10px;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  margin-top: 2rem;
+  color: var(--cor-branca);
+  border-radius: 5px;
+}
+
+.clientes-pesquisa {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.search-container {
+  display: flex;
+  gap: 10px;
+}
+
+.buscar-input {
+  flex: 1;
+  padding: 15px;
+  border-radius: 5px 0 0 5px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  min-width: 0;
+}
+
+.input-wrapper {
+  position: relative;
+  display: flex;
+  width: 100%;
+  max-width: 100%;
+}
+
+.btn-novo-cliente {
+  background-color: orange;
+  color: white;
+  border: none;
+  border-radius: 0 5px 5px 0;
+  padding: 15px 20px;
+  cursor: pointer;
+  font-weight: bold;
+  white-space: nowrap;
+}
+/* Estilo referente ao modal-------------------------------------------------*/
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 2rem;
+  width: 100%;
+  max-width: 500px;
+  margin: auto;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  position: relative;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.modal-content h3 {
+  text-align: center;
+  font-size: 1.6rem;
+  margin-bottom: 1.5rem;
+  color: #2f3640;
+}
+
+.fechar-modal {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #e84118;
+  transition: transform 0.2s;
+}
+
+.fechar-modal:hover {
+  transform: scale(1.2);
+}
+
+.cadastro-cliente-modal {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.cadastro-cliente-modal input,
+.cadastro-cliente-modal select {
+  padding: 0.8rem 1rem;
+  border: 1px solid #dcdde1;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+}
+
+.cadastro-cliente-modal input:focus,
+.cadastro-cliente-modal select:focus {
+  border-color: #00a8ff;
+  outline: none;
+}
+
+/* Botão Salvar */
+#form-editar-cliente .btn-primary{
+  background-color: #44bd32;
+  color: var(--cor-branca);
+  border: none;
+  border-radius: 7px;
+  padding: 0.8rem;
+  font-size: 1rem;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+#form-editar-cliente .btn-primary:hover {
+  background-color: #4cd137;
+  color: var(--cor-branca);
+  transform: scale(1.05);
+  transition: all 0.3s ease-in-out;
+}
+
+/* Botão Cancelar */
+#form-editar-cliente .btn-secondary{
+  background-color: #e84118;
+  color: white;
+  border: none;
+  padding: 0.8rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#form-editar-cliente .btn-secondary:hover {
+  background-color: #8d260c;
+  color: var(--cor-branca);
+  transition: all 0.3s ease-in-out;
+  transform: scale(1.05);
+}
+
+
+.modal.hidden {
+  display: none;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 300px;
+}
+
+.fechar-modal {
+  float: right;
+  cursor: pointer;
+  font-size: 20px;
+}
+/*-------------------------------------------------------*/
+
+/* Estilo relacionado a tabela de clientes --------------*/
+.clientes-tabela h2 {
+  background-color: var(--fundo-principal);
+  padding: 10px;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  margin-top: 2rem;
+  color: var(--cor-branca);
+  border-radius: 5px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background-color: var(--cor-branca);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.clientes-tabela th {
+  height: 50px;
+  text-align: left;
+  padding-left: 20px;
+  background-color: var(--fundo-principal);
+  color: var(--cor-branca);
+}
+
+.clientes-tabela tr:hover {
+  background-color: var(--amarelo-medcontrol);
+}
+
+.clientes td i {
+  color: var(--amarelo-medcontrol);
+}
+/*Botões de editar e excluir de produtos: */
+.editar-cliente {
+  background-color: var(--amarelo-medcontrol);
+  color: var(--cor-branca);
+  border: none;
+  border-radius: 4px;
+  padding: 8px 17px;
+  font-size: 14px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-bottom: 0.3rem;
+}
+
+.excluir-cliente {
+  background-color: #e84118;
+  color: var(--cor-branca);
+  border: none;
+  border-radius: 4px;
+  padding: 8px 17px;
+  font-size: 14px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-bottom: 0.3rem;
+}
+
+.excluir-cliente:hover {
+  background-color: #c23616;
+}
+
+.editar-cliente:hover {
+  background-color: rgb(190, 147, 29)
+}
+/* Estilo do modal de editar cliente --------------------------------------------------------*/
+.modal-content {
+  background-color: var(--cor-branca);
+  padding: 20px;
+  border-radius: 8px;
+  width: 400px;
+  max-width: 100%;
+}
+
+.modal-content h3 {
+  text-align: center;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: var(--fundo-principal);
+}
+
+.modal-content form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Estilo dos inputs do modal de editar cliente: */
+.modal-content input,
+.modal-content select {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+/* Deixando os inputs um abaixo do outro: */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+/*----------------------------------*/
+/* Botão Salvar */
+.cadastro-cliente-modal button[type="submit"] {
+  background-color: #44bd32;
+  color: white;
+  border: none;
+  padding: 0.5rem;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.cadastro-cliente-modal button[type="submit"]:hover {
+  background-color: #28a315;
+  color: var(--cor-branca);
+  transition: all 0.3s ease-in-out;
+  transform: scale(1.05);
+}
+/* Botão  Cancelar */
+.cadastro-cliente-modal .cancelar {
+  background-color: #e84118;
+  color: var(--cor-branca);
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.cadastro-cliente-modal .cancelar:hover {
+  background-color: #c82333;
+  color: var(--cor-branca);
+  transition: all 0.3s ease-in-out;
+  transform: scale(1.05);
+}
+/*----------------------------------*/
+
+/*----------------------------------*/
+/* Botão Fechar */
+.btn-secondary {
+  background-color: #e84118;
+  color: var(--cor-branca);
+  font-weight: bold;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 12px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.btn-secondary:hover {
+  background-color: #c23616;
+  color: var(--cor-branca);
+  transform: scale(1.05);
+  transition: all 0.3s ease-in-out;
+}
+
+/* Icone de "x" de fechar no modal: */
+.fechar-modal {
+  float: right;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+
+/*-------------------------------------------------------------------------------------------*/

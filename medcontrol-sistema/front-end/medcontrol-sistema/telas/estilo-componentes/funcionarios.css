@@ -6,3 +6,271 @@
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
 }
+
+
+/*Estilizando o "funcionarios.js"----------------------------------------------------------------------------------------------------------------*/
+
+.container {
+  max-width: 100% !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  width: 100% !important;
+}
+
+.card-funcionarios {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 10px;
+  color: var(--cor-branca);
+}
+
+.card-funcionarios p {
+  font-size: 1.5rem;
+  margin-top: 1rem;
+  color: var(--cor-preta);
+}
+
+.valores-funcionarios {
+  position: relative;
+  top: -26px;
+  font-size: 2.5rem !important;
+  font-weight: bold;
+  color: var(--cor-preta);
+}
+
+.total-funcionarios {
+  width: 300px;
+  height: 100px;
+  background-color: var(--cor-branca);
+  border-radius: 15px;
+  text-align: center;
+}
+
+.funcionario-ativo {
+  width: 300px;
+  height: 100px;
+  background-color: var(--cor-branca);
+  border-radius: 15px;
+  text-align: center;
+}
+
+.funcionario-desligado {
+  width: 300px;
+  height: 100px;
+  background-color: var(--cor-branca);
+  border-radius: 15px;
+  text-align: center;
+}
+
+/* Hover para cada card */
+.total-funcionarios:hover {
+  background-color: #0077ff;
+  transform: scale(1.05);
+  transition: all 0.3s ease-in-out;
+
+  /* listra azul na parte inferior do card */
+  border-bottom: 5px solid orange;
+}
+
+.funcionario-ativo:hover {
+  background-color: #59f01d;
+  transform: scale(1.05);
+  transition: all 0.3s ease-in-out;
+
+  /* listra azul na parte inferior do card */
+  border-bottom: 5px solid orange;
+}
+
+.funcionario-desligado:hover {
+  background-color: #fa3636;
+  transform: scale(1.05);
+  transition: all 0.3s ease-in-out;
+  
+  /* listra azul na parte inferior do card */
+  border-bottom: 5px solid orange;
+}
+
+/* ----------------------------------------------------------- 
+   SEÇÃO DE BUSCA - FUNCIONÁRIOS
+   -----------------------------------------------------------
+*/
+.funcionarios-header {
+  margin-top: 1rem;
+}
+
+.funcionarios-header h2 {
+  background-color: var(--fundo-principal);
+  padding: 10px;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  margin-top: 2rem;
+  color: var(--cor-branca);
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.funcionarios-pesquisa {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.input-wrapper {
+  position: relative;
+  display: flex;
+  width: 100%;
+  max-width: 100%;
+}
+
+/* ------- Input de busca ------ */
+.buscar-input-funcionario {
+  flex: 1;
+  padding: 15px;
+  border-radius: 5px 0 0 5px;
+  border: 1px solid #ccc;
+  background-color: var(--cor-branca);
+  color: var(--cor-preta);
+  font-size: 1rem;
+  min-width: 0;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.buscar-input-funcionario::placeholder {
+  color: #888;
+}
+
+/* ---- INPUT  ------ */
+.buscar-input-funcionario:focus {
+  border-color: var(--amarelo-medcontrol);
+  outline: none;
+  background-color: var(--cor-branca);
+
+}
+
+/* ------- Botão de novo funcionário ------- */
+.btn-novo-funcionario {
+  background-color: #FFA500;
+  color: var(--cor-branca);
+  border: none;
+  border-radius: 0 5px 5px 0;
+  padding: 15px 20px;
+  cursor: pointer;
+  font-weight: bold;
+  white-space: nowrap;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* ----------------------------------------------------------- 
+   Tabela de Funcionários
+   ----------------------------------------------------------- */
+
+.funcionarios-tabela h2 {
+  background-color: var(--fundo-principal);
+  padding: 10px;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  margin-top: 2rem;
+  color: var(--cor-branca);
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background-color: var(--cor-branca);
+  border-radius: 8px;
+  overflow: hidden;
+  color: var(--cor-preta);
+}
+
+.funcionarios-tabela th {
+  height: 50px;
+  text-align: left;
+  padding-left: 20px;
+  background-color: var(--fundo-principal);
+  color: var(--cor-branca);
+}
+
+/*Botões de editar e excluir de produtos: */
+.btn-funcionarios-editar{
+  background-color: var(--amarelo-medcontrol);
+  color: var(--cor-branca);
+  border: none;
+  border-radius: 4px;
+  padding: 8px 17px;
+  font-size: 14px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-bottom: 0.3rem;
+}
+
+.btn-funcionarios-excluir{
+  background-color: #e84118;
+  color: var(--cor-branca);
+  border: none;
+  border-radius: 4px;
+  padding: 8px 17px;
+  font-size: 14px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-bottom: 0.3rem;
+}
+
+.btn-funcionarios-excluir:hover {
+  background-color: #c23616;
+}
+
+.btn-funcionarios-editar:hover {
+  background-color: rgb(190, 147, 29)
+}
+/*Salvar e cancelar do modal de editar*/
+
+/* Botão Salvar */
+.cadastro-funcionario-modal .salvar{
+  background-color: #44bd32;
+  color: var(--cor-branca);
+  border: none;
+  border-radius: 7px;
+  padding: 0.8rem;
+  font-size: 1rem;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.cadastro-funcionario-modal .salvar:hover {
+  background-color: #4cd137;
+  color: var(--cor-branca);
+  transform: scale(1.05);
+  transition: all 0.3s ease-in-out;
+}
+
+/* Botão Cancelar */
+.cadastro-funcionario-modal .cancelar{
+  background-color: #e84118;
+  color: white;
+  border: none;
+  padding: 0.8rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.cadastro-funcionario-modal .cancelar:hover {
+  background-color: #8d260c;
+  color: var(--cor-branca);
+  transition: all 0.3s ease-in-out;
+  transform: scale(1.05);
+}	
+/*-----------------------------------------------------------*/

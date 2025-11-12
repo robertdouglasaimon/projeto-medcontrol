@@ -6,3 +6,303 @@
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
 }
+
+/*---------------------------------------------------------------------------------------------------------------*/
+/*Estilizando o "vendas.js*/
+.vendas-cards {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.card-vendas p {
+  font-size: 1.5rem;
+  margin-top: 1rem;
+  color: var(--cor-preta);
+}
+
+.receita-total-dia {
+  width: 300px;
+  height: 100px;
+  background-color: var(--cor-branca);
+  border-radius: 15px;
+  text-align: center;
+  font-size: 1.5rem;
+  color: var(--cor-preta);
+}
+
+.valor-total-dia {
+  font-size: 2.5rem !important;
+  font-weight: bold;
+  color: var(--cor-preta);
+  position: relative;
+  top: -26px;
+}
+
+.vendas-realizadas {
+  width: 300px;
+  height: 100px;
+  background-color: var(--cor-branca);
+  border-radius: 15px;
+  color: var(--cor-preta);
+  text-align: center;
+}
+
+.vendas-realizadas p {
+  font-size: 1.5rem;
+  margin-top: 1rem;
+  color: var(--cor-preta);
+}
+
+.valor-vendas-realizadas {
+  font-size: 2.5rem !important;
+  font-weight: bold;
+  color: var(--cor-preta);
+  position: relative;
+  top: -26px;
+}
+
+.vendas-medias {
+  width: 300px;
+  height: 100px;
+  background-color: var(--cor-branca);
+  border-radius: 15px;
+  color: var(--cor-preta);
+  text-align: center;
+}
+
+.valor-vendas-medias {
+  font-size: 2.5rem !important;
+  font-weight: bold;
+  color: var(--cor-preta);
+  position: relative;
+  top: -26px;
+}
+
+/* Hover dos cards de vendas ----------------*/
+.receita-total-dia:hover {
+  transform: scale(1.05);
+  transition: all 0.3s ease-in-out;
+  background-color: #3ce8ff;
+  color: var(--cor-branca);
+
+  /* Listra na parte inferior do card */
+  border-bottom: 5px solid #0023c0 !important;
+}
+
+.vendas-realizadas:hover {
+  transform: scale(1.05);
+  transition: all 0.3s ease-in-out;
+  background-color: #20dd5f;
+  color: var(--cor-branca);
+
+  border-bottom: 5px solid #0023c0 !important;
+}
+
+.vendas-medias:hover {
+  transform: scale(1.05);
+  transition: all 0.3s ease-in-out;
+  background-color: #72dafa;
+  color: var(--cor-branca);
+
+  border-bottom: 5px solid #0023c0 !important;
+}
+/*------------------------------------------*/
+/*Estilos da barra de busca da tela de vendas*/
+
+.vendas-header h2 {
+  background-color: var(--fundo-principal);
+  padding: 10px;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  margin-top: 2rem;
+  color: var(--cor-branca);
+  border-radius: 5px;
+}
+
+.vendas-pesquisa {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.buscar-input-vendas {
+  flex: 1;
+  padding: 15px;
+  border-radius: 5px 0 0 5px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  min-width: 0;
+}
+
+.btn-novo-venda {
+  background-color: orange;
+  color: white;
+  border: none;
+  border-radius: 0 5px 5px 0;
+  padding: 15px 20px;
+  cursor: pointer;
+  font-weight: bold;
+  white-space: nowrap;
+
+}
+/*----------------------------------------*/
+
+/* Estilos da tabela de vendas -----------*/
+.vendas-lista h2 {
+  background-color: var(--fundo-principal);
+  padding: 10px;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  margin-top: 2rem;
+  color: var(--cor-branca);
+  border-radius: 5px;
+}
+
+.vendas-tabela {
+  background-color: var(--fundo-principal);
+  padding: 10px;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  margin-top: 2rem;
+  color: var(--cor-branca);
+  border-radius: 5px;
+}
+
+.btn-editar-venda {
+  background-color: var(--amarelo-medcontrol);
+  color: var(--cor-branca);
+  border: none;
+  border-radius: 4px;
+  padding: 8px 17px;
+  font-size: 14px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-bottom: 0.3rem;
+}
+
+.btn-editar-venda:hover {
+  background-color: rgb(190, 147, 29)
+}
+
+.btn-excluir-venda {
+ background-color: #e84118;
+  color: var(--cor-branca);
+  border: none;
+  border-radius: 4px;
+  padding: 8px 17px;
+  font-size: 14px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-bottom: 0.3rem;
+}
+
+.btn-excluir-venda:hover {
+  background-color: #c23616;
+}
+/*----------------------------------------*/
+
+/*Estilos do modal de vendas -------------*/
+.cadastro-venda-modal {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.cadastro-venda-modal input {
+  padding: 10px;
+  font-family: var(--font-padrao);
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.cadastro-venda-modal button[type="submit"]{
+  background-color: #44bd32;
+  color: white;
+  border: none;
+  padding: 0.8rem;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.cancelar-modal {
+  background-color: #e84118;
+  color: white;
+  border: none;
+  padding: 0.8rem;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.cadastro-venda-modal button[type="submit"]:hover {
+  background-color: #4cd137;
+  color: var(--cor-branca);
+  transform: scale(1.05);
+  transition: all 0.3s ease-in-out
+}
+
+.cadastro-venda-modal button[type="button"]:hover {
+  background-color: #e84118;
+  color: var(--cor-branca);
+  transform: scale(1.05);
+  transition: all 0.3s ease-in-out;
+  font-weight: bold;
+}
+
+/* Estilizando o modal de editar venda----------*/
+.cadastro-venda-modal-editar {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.cadastro-venda-modal-editar input {
+  padding: 10px;
+  font-family: var(--font-padrao);
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.salvar-modal {
+  background-color: #4cd137;
+  color: var(--cor-branca);
+  border: none;
+  padding: 0.8rem;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.salvar-modal:hover {
+  background-color: #237217;
+  color: var(--cor-branca);
+  transform: scale(1.05);
+  transition: all 0.3s ease-in-out
+}
+
+.close-modal {
+  background-color: #e84118;
+  color: white;
+  border: none;
+  padding: 0.8rem;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.close-modal:hover {
+  background-color: #8d260c;
+  color: var(--cor-branca);
+  transform: scale(1.05);
+  transition: all 0.3s ease-in-out
+}

@@ -6,3 +6,225 @@
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
 }
+
+
+
+/*----------------------------------------*/
+/*------------------------Estilizando relatorios.js---------------------------------------*/
+
+/*Estilos relaciona ao dashboard-cards*/
+.container {
+  max-width: 100% !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  width: 100% !important;
+}
+
+.dashboard-cards {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 10px;
+  color: var(--cor-branca);
+}
+
+.card-relatorio p {
+  font-size: 1.5rem;
+  margin-top: 1rem;
+  color: var(--cor-preta);
+}
+
+.valores-relatorio {
+  position: relative;
+  top: -26px;
+  font-size: 2.5rem !important;
+  font-weight: bold;
+  color: var(--cor-preta);
+}
+
+.receita-total {
+  width: 300px;
+  height: 100px;
+  background-color: var(--cor-branca);
+  border-radius: 15px;
+  text-align: center;
+}
+
+.usuarios-ativos {
+  width: 300px;
+  height: 100px;
+  background-color: var(--cor-branca);
+  border-radius: 15px;
+  text-align: center;
+}
+.total-clientes-relatorio {
+  width: 300px;
+  height: 100px;
+  background-color: var(--cor-branca);
+  border-radius: 15px;
+  text-align: center;
+}
+
+.relatorio-vendas-total {
+  width: 300px;
+  height: 100px;
+  background-color: var(--cor-branca);
+  border-radius: 15px;
+  text-align: center;
+}
+
+/*Estilos relaciona ao hover do dashboard-cards*/
+/* Hover para cada card */
+.receita-total:hover {
+  background-color: #04f066;
+  transform: scale(1.05);
+  transition: all 0.3s ease-in-out;
+
+  /* listra azul na parte inferior do card */
+  border-bottom: 5px solid orange;
+}
+
+.total-clientes-relatorio:hover {
+  background-color: #ffde4c;
+  transform: scale(1.05);
+  transition: all 0.3s ease-in-out;
+
+  /* listra azul na parte inferior do card */
+  border-bottom: 5px solid orange;
+}
+
+.usuarios-ativos:hover{
+  background-color: #ffde4c;
+  transform: scale(1.05);
+  transition: all 0.3s ease-in-out;
+
+  /* listra azul na parte inferior do card */
+  border-bottom: 5px solid orange;
+}
+
+.relatorio-vendas-total:hover {
+  background-color: #0077ff;
+  transform: scale(1.05);
+  transition: all 0.3s ease-in-out;
+
+  /* listra azul na parte inferior do card */
+  border-bottom: 5px solid orange;
+}
+/*-------------------------------------------------------------------------------------------*/
+/*Estilos relaciona ao geral relatorios*/
+.container-relatorios {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  margin-top: 40px; 
+  margin-bottom: 40px;
+}
+/*-------------------------------------------------------------------------------------------*/
+/*Estilos relaciona ao grafico relatorio*/
+.grafico-relatorio {
+  width: 35%;
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 1.5rem;
+  font-weight: bold;
+  height: 400px;
+  box-shadow: 1px 1px 5px orange;
+}
+
+.titulo-grafico p {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  color: #000000;
+  border-bottom: solid 2px orange;
+}
+
+/*-----------------------------------------------------------------------------------------*/
+/*Estilos relaciona ao calendario*/
+.calendario-pagamento {
+  width: 30%;
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 0.5rem;
+  height: 370px;
+  box-shadow: 1px 1px 5px orange;
+}
+
+.titulo-calendario p {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: #000000;
+  border-bottom: solid 2px orange;
+}
+/*-----------------------------------------------------------------------------------------*/
+/*Estilos relaciona ao nivel de estoque*/
+.nivel-do-estoque{
+  width: 27%;
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 1.5rem;
+  position: relative;
+  height: 370px;
+  box-shadow: 1px 1px 5px orange;
+}
+
+.titulo-nivel-estoque p {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: #000000;
+  border-bottom: solid 2px orange;
+}
+
+/*-------------------------------------------------------------------------------------------*/
+.tabela-geral h2 {
+  background-color: var(--fundo-principal);
+  padding: 10px;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  margin-top: 2rem;
+  color: var(--cor-branca);
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background-color: var(--cor-branca);
+  border-radius: 8px;
+  overflow: hidden;
+  color: var(--cor-preta);
+}
+
+.tabela-geral th {
+  height: 50px;
+  text-align: left;
+  padding-left: 20px;
+  background-color: var(--fundo-principal);
+  color: var(--cor-branca);
+}
+
+
+/*-------------------------------------------------------------------------------------------*/
+/*botao emitir relatorio*/
+.btn-emitir-relatorio{
+  background-color: var(--amarelo-medcontrol);
+  color: var(--cor-branca);
+  border: none;
+  border-radius: 4px;
+  padding: 8px 17px;
+  font-size: 14px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-bottom: 0.3rem;
+}
+.btn-emitir-relatorio:hover {
+  background-color: rgb(190, 147, 29);
+}
+
