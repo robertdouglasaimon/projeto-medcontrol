@@ -1,0 +1,20 @@
+@charset "UTF-8";
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+:root {
+    --font-padrao: Arial, Helvetica, sans-serif;
+    --cor-branca: #fff;
+    --cor-preta: #000;
+    --amarelo-medcontrol: #fbc531;
+    --fundo-principal: #0F1720;
+    --fundo-secundario: #161C27;
+
+    --fonte-principal: 'Roboto', sans-serif;
+}
+

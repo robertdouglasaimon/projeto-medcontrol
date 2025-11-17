@@ -99,3 +99,14 @@ document.getElementById("sair").addEventListener("click", window.logoutUsuario);
 
 //------------------------------------------------------------------------------------------//
 
+// Função para alternar a visibilidade do menu lateral ao clicar no botão (Tem que começar oculto o botão):
+document.addEventListener("DOMContentLoaded", () => {
+  const toggleBtn = document.getElementById("btn-toggle-menu");
+  const menu = document.querySelector(".menu-lateral");
+
+  toggleBtn.addEventListener("click", () => {
+    menu.classList.toggle("inativo");
+  });
+
+});
+//------------------------------------------------------------------------------------------//

@@ -1,6 +1,7 @@
 @charset "UTF-8";
 
 /* Importações CSS da pasta "estilo-componentes" */
+@import url("../medcontrol-sistema/telas/estilo-componentes/home.css");
 @import url("../medcontrol-sistema/telas/estilo-componentes/clientes.css");
 @import url("../medcontrol-sistema/telas/estilo-componentes/produtos.css");
 @import url("../medcontrol-sistema/telas/estilo-componentes/estoque.css");
@@ -22,6 +23,8 @@
     --amarelo-medcontrol: #fbc531;
     --fundo-principal: #0F1720;
     --fundo-secundario: #161C27;
+
+    --fonte-principal: 'Roboto', sans-serif;
 }
 
 body {
@@ -81,7 +84,7 @@ footer a:hover {
 .logo {
     width: 240px;
     display: flex;
-    padding-right: 2rem;
+    padding-right: 1rem;
     justify-content: center;
     background-color: var(--fundo-principal);
     align-items: center;
@@ -104,6 +107,15 @@ footer a:hover {
       position: relative;
       left: -2rem;
       top: 3px;
+}
+
+.guia-atual {
+  text-align: left;
+  margin-top: 0.6rem;
+}
+
+.usuario-logado {
+  margin-top: 0.6rem;
 }
 
 #cargo-usuario {
@@ -191,6 +203,35 @@ aside nav ul li a.active {
   box-shadow: inset 4px 0 0 var(--fundo-principal); /* opcional: destaque lateral */
 }
 
+/* Estilo para esconder para a esquerda com um slide suave o menu nav com os itens: */
+.menu-lateral {
+  width: 250px;
+  transition: transform 0.3s ease-in-out;
+  transform: translateX(0);
+  background-color: var(--fundo-principal);
+  position: relative;
+  z-index: 100;
+}
+
+.menu-lateral.inativo {
+  transform: translateX(-100%);
+}
+
+/* Estilo do botão de toggle do menu lateral */
+.botao-nulo { 
+  background-color: var(--fundo-principal);
+  border: none;
+  padding: 0.6rem 0rem;
+  margin-bottom: 10px;
+  font-weight: bold;
+  color: var(--cor-branca);
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  gap: 0px;
+}
+
+
 
 #btn-sair:hover {
   background-color: var(--amarelo-medcontrol);
@@ -219,5 +260,7 @@ main#app {
   flex-grow: 1;
   padding: 2rem;
   overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
-/*-------------------------------------------------------------------------------------------------------------------------------------------*/
