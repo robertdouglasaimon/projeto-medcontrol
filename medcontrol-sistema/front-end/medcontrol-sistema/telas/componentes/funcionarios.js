@@ -29,7 +29,7 @@ export function render() {
         <div class="funcionario-desligado">
           <p>
             <i class="fas fa-user-times"></i>
-            Funcionários Desligados
+            Funcionários Deslig
           </p>
           <span class="valores-funcionarios funcionario-desligado-valor">
             <!-- Inserir aqui o total de funcionários desligados -->

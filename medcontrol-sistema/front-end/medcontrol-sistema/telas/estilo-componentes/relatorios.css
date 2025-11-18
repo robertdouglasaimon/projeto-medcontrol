@@ -1,5 +1,8 @@
 @charset "UTF-8";
 
+/* Importando o sistema.css pra poder usar o :root dele para aplicar nos titulos e icones :D */
+@import url("../../medcontrol-sistema/telas/estilo-componentes/sistema.css");
+
 * {
     margin: 0;
     padding: 0;
@@ -11,6 +14,15 @@
 
 /*----------------------------------------*/
 /*------------------------Estilizando relatorios.js---------------------------------------*/
+.tela-relatorio {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  padding: 0.5rem;
+  background: linear-gradient(180deg, var(--fundo-principal), #0b1626 60%) !important;
+  border-radius: 13px;
+}
 
 /*Estilos relaciona ao dashboard-cards*/
 .container {

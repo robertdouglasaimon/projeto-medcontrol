@@ -76,28 +76,30 @@ export function render() {
 
 
     <section class="produtos-lista">
-      <table>
-        <thead>
-          <tr>
-            <th>Nome</th>
-            <th>Descrição</th>
-            <th>Fabricante</th>
-            <th>Quantidade</th>
-            <th>Lote</th>
-            <th>Validade</th>
-            <th>Valor</th>
-            <th>Quantidade Vendida</th>
-            <th>Ações</th>
-          </tr>
-        </thead>
-        <tbody>
-        <!-- Inserir aqui os produtos pelo banco de dados -->
-        <td>
-          <button class="btn btn-primary btn-editar-produto">Editar</button>
-          <button class="btn btn-danger btn-excluir-produto">Excluir</button>
-        </td>
-        </tbody>
-      </table>
+      <div class="tabela-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Descrição</th>
+              <th>Fabricante</th>
+              <th>Quantidade</th>
+              <th>Lote</th>
+              <th>Validade</th>
+              <th>Valor</th>
+              <th>Quantidade Vendida</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+          <!-- Inserir aqui os produtos pelo banco de dados -->
+          <td>
+            <button class="btn btn-primary btn-editar-produto">Editar</button>
+            <button class="btn btn-danger btn-excluir-produto">Excluir</button>
+          </td>
+          </tbody>
+        </table>
+      </div>
     </section>
     
   `;

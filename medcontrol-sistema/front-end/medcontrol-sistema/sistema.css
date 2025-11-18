@@ -17,15 +17,27 @@
 }
 
 :root {
+    /* Cores */
     --font-padrao: Arial, Helvetica, sans-serif;
     --cor-branca: #fff;
     --cor-preta: #000;
     --amarelo-medcontrol: #fbc531;
     --fundo-principal: #0F1720;
     --fundo-secundario: #161C27;
-
-    --fonte-principal: 'Roboto', sans-serif;
+    --fundo-card: #0f2036;           /* navy para cards */
+    --borda-card: rgba(255,255,255,0.06);
+    --texto-suave: #c9d4e3;          /* texto secundário */
+    --amarelo-medcontrol: #f0a500;   /* destaque */
+    --laranja: #ff7a00;              /* botão/menu */
+    --azul-ativo: #2d8cff;           /* links ativos */
+    --rosa: #ff4fa3; 
+    --verde: #4cd137;
+    --vermelho: #e84118;  
+    
+    /* Fontes */
+    --fonte-principal: 'Roboto', sans-serif;/* ícones alternativos */
 }
+
 
 body {
   margin: 0;
@@ -76,10 +88,22 @@ footer a:hover {
   text-decoration: none;
 }
 
+
 .container {
   display: flex;
+  transition: all 0.3s ease-in-out;
   height: calc(100vh - 70px);
 }
+
+.menu-lateral.inativo + main#app {
+  width: 100%;
+  padding-left: 2rem;
+  padding-right: 9rem;
+  margin-left: auto;
+  margin-right: auto;
+  transition: all 0.3s ease-in-out;
+}
+
 
 .logo {
     width: 240px;

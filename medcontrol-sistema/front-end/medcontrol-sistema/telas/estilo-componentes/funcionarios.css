@@ -1,5 +1,8 @@
 @charset "UTF-8";
 
+/* Importando o sistema.css pra poder usar o :root dele para aplicar nos titulos e icones :D */
+@import url("../../medcontrol-sistema/telas/estilo-componentes/sistema.css");
+
 * {
     margin: 0;
     padding: 0;
@@ -9,6 +12,15 @@
 
 
 /*Estilizando o "funcionarios.js"----------------------------------------------------------------------------------------------------------------*/
+.tela-funcionarios {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  padding: 1rem;
+  background: linear-gradient(180deg, var(--fundo-principal), #0b1626 60%);
+  border-radius: 13px;
+}
 
 .container {
   max-width: 100% !important;
@@ -207,7 +219,7 @@ table {
   color: var(--cor-branca);
   border: none;
   border-radius: 4px;
-  padding: 8px 17px;
+  padding: 8px 20px;
   font-size: 14px;
   cursor: pointer;
   font-weight: bold;
