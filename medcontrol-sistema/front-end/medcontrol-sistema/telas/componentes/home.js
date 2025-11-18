@@ -50,10 +50,12 @@ export function render() {
         </a>
 
         <!-- FALTA IMPLEMENTAR O ALERTA - sem link -->
-        <div class="card-dashboard">
-          <i class="fas fa-exclamation-triangle fa-2x"></i>
-          <p>Alertas</p>
-        </div>
+        <a href="#">
+          <div class="card-dashboard">
+            <i class="fas fa-exclamation-triangle fa-2x"></i>
+            <p>Alertas</p>
+          </div>
+        </a>
         
       </div>
     </section>
