@@ -6,7 +6,6 @@ import os
 app = Flask(__name__)
 CORS(app)
 
-
 # /* GRÁFICOS DO SISTEMA ----------------------------------------------------------------------------------------- */
 @app.route('/grafico-estoque')
 def grafico_estoque():

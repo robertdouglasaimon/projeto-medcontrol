@@ -108,5 +108,6 @@ document.addEventListener("DOMContentLoaded", () => {
     menu.classList.toggle("inativo");
   });
 
+  
 });
 //------------------------------------------------------------------------------------------//

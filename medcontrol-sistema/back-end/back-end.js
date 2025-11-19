@@ -10,7 +10,7 @@ import bcrypt from 'bcrypt';
 const app = express(); // ✅ DECLARADO ANTES DE USAR
 app.use(express.json()); // ✅ ESSENCIAL para req.body funcionar
 
-<reload>const allowedOrigin = "http://127.0.0.1:5500"; // ou localhost:5500</reload>
+const allowedOrigin = "http://127.0.0.1:5500"; // ou localhost:5500
 
 app.use(cors({
   origin: allowedOrigin,
