@@ -129,7 +129,7 @@
 .container-relatorios {
   display: flex;
   flex-wrap: wrap;
-  gap: 40px;
+  gap: 35px;
   margin-top: 40px; 
   margin-bottom: 40px;
 }

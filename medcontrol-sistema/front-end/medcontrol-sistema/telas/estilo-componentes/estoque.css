@@ -34,7 +34,7 @@
 }
 
 .card-estoque {
-  width: 300px;
+  width: 284px;
   height: 100px;
   background-color: var(--cor-branca);
   border-radius: 15px;
@@ -99,7 +99,7 @@
   font-weight: bold;
   position: relative;
   top: -1.5rem;
-  left: 8.3rem;
+  left: 7.5rem;
 }
 
 .nivel-estoque p {
@@ -119,8 +119,8 @@
   color: var(--cor-preta);
   font-weight: bold;
   position: relative;
-  top: -1.5rem;
-  left: 8rem;
+  top: -1.6rem;
+  left: 7rem;
 }
 
 
