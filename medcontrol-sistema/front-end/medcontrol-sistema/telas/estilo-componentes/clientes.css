@@ -70,26 +70,38 @@
 
 .total-clientes {
   width: 300px;
-  height: 100px;
+  height: 160px;
   background-color: var(--cor-branca);
   border-radius: 15px;
   text-align: center;
 }
 
+.total-clientes p {
+  margin-top: 0px;
+}
+
 .cliente-ativo {
-  width: 252px;
-  height: 100px;
+  width: 300px;
+  height: 160px;
   background-color: var(--cor-branca);
   border-radius: 15px;
   text-align: center;
+}
+
+.cliente-ativo p {
+  margin-top: 0px;
 }
 
 .cliente-inativo {
   width: 300px;
-  height: 100px;
+  height: 160px;
   background-color: var(--cor-branca);
   border-radius: 15px;
   text-align: center;
+}
+
+.cliente-inativo p {
+  margin-top: 0px;
 }
 
 .cliente-receita {
@@ -137,6 +149,10 @@
   border-bottom: 5px solid orange;
 }
 
+.bi{
+  font-size: 45px;
+
+}
 /* Estilo referente a barra de pesquisa -------------------------------------------------*/
 .clientes-header {
   margin-top: 1rem;

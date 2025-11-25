@@ -5,9 +5,9 @@ export function render() {
     <section class="clientes-cards">
       <div class="card-clientes">
 
-        <div class="total-clientes">
+        <div class="total-clientes  ">
+          <i class="bi bi-people text-dark"></i>
           <p>
-              <i class="fas fa-users"></i>
               Total de Clientes
           </p>
           <span class="valores-clientes total-clientes-valor">
@@ -16,8 +16,8 @@ export function render() {
         </div>
 
         <div class="cliente-ativo">
+          <i class="bi bi-person-circle text-dark"></i>
           <p>
-              <i class="fas fa-thumbs-up"></i>
               Clientes Ativos
           </p>
           <span class="valores-clientes cliente-ativo-valor">
@@ -26,8 +26,8 @@ export function render() {
         </div>
 
         <div class="cliente-inativo">
+          <i class="bi bi-person-fill-x text-dark"></i>
           <p>
-              <i class="fas fa-thumbs-down"></i>
               Clientes Inativos
           </p>
           <span class="valores-clientes cliente-inativo-valor">
