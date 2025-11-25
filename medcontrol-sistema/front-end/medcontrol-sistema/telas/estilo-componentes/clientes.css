@@ -57,7 +57,7 @@
 .card-clientes p {
   font-size: 1.5rem;
   margin-top: 1rem;
-  color: var(--cor-preta);
+  color: var(--cor-branca);
 }
 
 .valores-clientes {
@@ -65,7 +65,7 @@
   top: -26px;
   font-size: 2.5rem !important;
   font-weight: bold;
-  color: var(--cor-preta);
+  color: var(--cor-branca);
 }
 
 .total-clientes {
@@ -74,105 +74,82 @@
   background-color: var(--cor-branca);
   border-radius: 15px;
   text-align: center;
+  background-color: var(--fundo-card);
+  border: solid 1px #0077ff;
 }
 
 .total-clientes p {
-  margin-top: 0px;
+  margin-top: 10px;
 }
 
 .cliente-ativo {
   width: 300px;
   height: 160px;
-  background-color: var(--cor-branca);
+  background-color: var(--fundo-card);
+  border: solid 1px #59f01d;
   border-radius: 15px;
   text-align: center;
 }
 
 .cliente-ativo p {
-  margin-top: 0px;
+  margin-top: 10px;
 }
 
 .cliente-inativo {
   width: 300px;
   height: 160px;
-  background-color: var(--cor-branca);
+  background-color: var(--fundo-card);
+  border: solid 1px #fa3636;
   border-radius: 15px;
   text-align: center;
 }
 
 .cliente-inativo p {
-  margin-top: 0px;
+  margin-top: 10px;
 }
 
-.cliente-receita {
-  width: 300px;
-  height: 100px;
-  background-color: var(--cor-branca);
-  border-radius: 15px;
-  text-align: center;
+
+/* icones dos cards */
+.card-clientes i {
+  margin-top: 15px;
+  font-size: 40px;
+  color: orange;
 }
+
 
 /* Hover para cada card */
 .total-clientes:hover {
   background-color: #0077ff;
   transform: scale(1.05);
   transition: all 0.3s ease-in-out;
-
-  /* listra azul na parte inferior do card */
-  border-bottom: 5px solid orange;
 }
 
 .cliente-ativo:hover {
   background-color: #59f01d;
   transform: scale(1.05);
   transition: all 0.3s ease-in-out;
-
-  /* listra azul na parte inferior do card */
-  border-bottom: 5px solid orange;
 }
 
 .cliente-inativo:hover {
   background-color: #fa3636;
   transform: scale(1.05);
   transition: all 0.3s ease-in-out;
-  
-  /* listra azul na parte inferior do card */
-  border-bottom: 5px solid orange;
 }
 
 .cliente-receita:hover {
   background-color: #4cd137;
   transform: scale(1.05);
   transition: all 0.3s ease-in-out;
-
-  /* listra azul na parte inferior do card */
-  border-bottom: 5px solid orange;
 }
 
-.bi{
-  font-size: 45px;
-
-}
 /* Estilo referente a barra de pesquisa -------------------------------------------------*/
-.clientes-header {
-  margin-top: 1rem;
-}
-
-.clientes-header h2 {
-  background-color: var(--fundo-principal);
-  padding: 10px;
-  font-size: 1.5rem;
-  margin-bottom: 10px;
-  margin-top: 2rem;
-  color: var(--cor-branca);
-  border-radius: 5px;
-}
 
 .clientes-pesquisa {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  margin-top: 60px;
+  margin-bottom: 50px;
 }
 
 .search-container {
@@ -187,6 +164,8 @@
   border: 1px solid #ccc;
   font-size: 1rem;
   min-width: 0;
+  background-color: var(--fundo-card);
+  color: white;
 }
 
 .input-wrapper {
@@ -195,6 +174,11 @@
   width: 100%;
   max-width: 100%;
 }
+
+.buscar-input::placeholder {
+  color: #ffffffee;
+}
+
 
 .btn-novo-cliente {
   background-color: orange;
@@ -361,7 +345,7 @@ table {
   height: 50px;
   text-align: left;
   padding-left: 20px;
-  background-color: var(--fundo-principal);
+  background-color: var(--fundo-card);
   color: var(--cor-branca);
 }
 
@@ -372,6 +356,12 @@ table {
 .clientes td i {
   color: var(--amarelo-medcontrol);
 }
+
+.clientes-tabela td {
+  background-color: var(--fundo-card);
+  color: var(--cor-branca);
+}
+
 /*Botões de editar e excluir de produtos: */
 .editar-cliente {
   background-color: var(--amarelo-medcontrol);

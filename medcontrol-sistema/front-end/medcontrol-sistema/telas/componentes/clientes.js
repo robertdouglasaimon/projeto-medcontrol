@@ -5,8 +5,8 @@ export function render() {
     <section class="clientes-cards">
       <div class="card-clientes">
 
-        <div class="total-clientes  ">
-          <i class="bi bi-people text-dark"></i>
+        <div class="total-clientes">
+          <i class="fa-solid fa-users"></i>
           <p>
               Total de Clientes
           </p>
@@ -16,7 +16,7 @@ export function render() {
         </div>
 
         <div class="cliente-ativo">
-          <i class="bi bi-person-circle text-dark"></i>
+          <i class="fa-solid fa-user"></i>
           <p>
               Clientes Ativos
           </p>
@@ -26,7 +26,7 @@ export function render() {
         </div>
 
         <div class="cliente-inativo">
-          <i class="bi bi-person-fill-x text-dark"></i>
+          <i class="fa-solid fa-user-xmark"></i>
           <p>
               Clientes Inativos
           </p>
@@ -43,17 +43,15 @@ export function render() {
           <span class="valores-clientes cliente-receita-valor">
             <!-- Inserir aqui o total de clientes pelo banco de dados -->
           </span>
-        </div> -->
+        </div>
     
       </div>
     </section>
 
     <section class="clientes-header">
-      <h2> <i class="fas fa-star"></i> Buscar cliente </h2>
-    
       <div class="clientes-pesquisa">
         <div class="input-wrapper">
-          <input type="text" placeholder="Buscar por nome" class="buscar-input" />
+          <input type="text" placeholder="Buscar por nome" class="buscar-input"/>
           <button class="btn-novo-cliente" id="btnNovoCliente">+ Novo Cliente</button>
         </div>
       </div>
@@ -83,7 +81,6 @@ export function render() {
     </div>
 
     <section class="clientes-tabela">
-      <h2> <i class="fas fa-table"></i> Tabela de Clientes </h2>
       <table>
         <thead>
           <tr>
@@ -101,7 +98,7 @@ export function render() {
         </tbody>
       </table>
     </section>
-
+    
   `;
 
   // Script para barra de busca por nome de cliente:

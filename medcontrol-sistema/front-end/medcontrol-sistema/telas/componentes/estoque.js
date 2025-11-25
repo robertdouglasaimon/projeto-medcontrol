@@ -3,7 +3,6 @@ export function render () {
     div.classList.add("tela-estoque");
     div.innerHTML = `
         <section class="estoque-cards">
-
             <div class="card-estoque total-estoque">
                 <p>
                     <i class="fas fa-warehouse"></i>
