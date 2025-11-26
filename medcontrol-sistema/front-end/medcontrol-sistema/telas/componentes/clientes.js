@@ -427,7 +427,7 @@ export function render() {
               <label for="cpf">CPF:</label>
               <input type="text" id="cpf" value="${cpf}" required>
             </div>
-
+            
             <label for="status">Status:</label>
             <select name="Status" id="status-cliente">
               <option value="Ativo">Ativo</option>
