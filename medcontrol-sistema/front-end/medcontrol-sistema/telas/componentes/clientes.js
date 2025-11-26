@@ -408,7 +408,7 @@ export function render() {
       const modal = document.createElement("div");
       modal.classList.add("modal");
       modal.innerHTML = `
-        <div class="modal-content">
+        <div class="modal-editar-content">
           <h3>Editar Cliente</h3>
           <form id="form-editar-cliente">
             <div class="form-group">
