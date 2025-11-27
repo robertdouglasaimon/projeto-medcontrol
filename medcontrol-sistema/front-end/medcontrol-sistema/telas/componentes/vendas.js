@@ -4,24 +4,25 @@ export function render () {
     div.innerHTML = `
         <section class="vendas-cards">
             <div class="card-vendas  receita-total-dia">
+                <i class="fas fa-box"></i>
                 <p>
-                    <i class="fas fa-box"></i>
                     Total de Vendas
                 </p>
                 <span class="total-receita-dia  valor-total-dia"></span>
             </div>
 
             <div class="card-vendas vendas-realizadas">
+                 <i class="fas fa-box"></i>
                 <p>
-                    <i class="fas fa-box"></i>
                     Total Vendas Realizadas
                 </p>
                 <span class="total-vendas-realizadas  valor-vendas-realizadas"></span>
             </div>
 
             <div class="card-vendas vendas-medias">
+                <i class="fas fa-box"></i>
                 <p>
-                    <i class="fas fa-box"></i>
+
                     Médias por Vendas 
                 </p>
                 <span class="total-vendas-medias  valor-vendas-medias"></span>
@@ -29,8 +30,6 @@ export function render () {
         </section>
 
         <section class="vendas-header">
-            <h2> <i class="fas fa-money-check"></i> Vendas Realizadas </h2>
-
             <div class="vendas-pesquisa">
                 <div class="input-wrapper">
                     <input type="text" id="busca-vendas" placeholder="Buscar Vendas" class="buscar-input-vendas">
@@ -41,7 +40,7 @@ export function render () {
                 </div>
         </section>
 
-        <!-- Modal do botão 'Novo Registro' -->>
+        <!-- Modal do botão 'Novo Registro' -->
         <div id="modalNovoVenda" class="modal hidden">
             <div class="modal-content">
                 <span class="fechar-modal" id="fecharModal">&times;</span>
@@ -65,7 +64,6 @@ export function render () {
 
 
         <section class="vendas-lista">
-            <h2> <i class="fas fa-table"></i> Tabela de Vendas</h2>
             <table>
                 <thead>
                     <tr>

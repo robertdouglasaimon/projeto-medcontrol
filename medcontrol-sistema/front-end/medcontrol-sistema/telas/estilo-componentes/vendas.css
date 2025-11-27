@@ -22,105 +22,115 @@
   border-radius: 13px;
 }
 
+.card-vendas p {
+  font-size: 1.5rem;
+  margin-top: 1rem;
+  color: var(--cor-branca);
+}
+
+
 .vendas-cards {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
   gap: 10px;
+  color: var(--cor-branca);
 }
 
-.card-vendas p {
+.vendas-cards p{
   font-size: 1.5rem;
   margin-top: 1rem;
-  color: var(--cor-preta);
+  color: var(--cor-branca)
 }
 
+/* Estilos dos cards de vendas ----------------*/
 .receita-total-dia {
-  width: 252px;
-  height: 100px;
+  width: 300px;
+  height: 160px;
   background-color: var(--cor-branca);
   border-radius: 15px;
   text-align: center;
-  font-size: 1.5rem;
-  color: var(--cor-preta);
+  background-color: var(--fundo-card);
+  border: solid 1px #0077ff;
 }
-
 .valor-total-dia {
-  font-size: 2.5rem !important;
-  font-weight: bold;
-  color: var(--cor-preta);
   position: relative;
   top: -26px;
+  font-size: 2.5rem !important;
+  font-weight: bold;
+  color: var(--cor-branca);
 }
+.valor-total-dia p {
+  margin-top: 10px ;
+}
+
 
 .vendas-realizadas {
   width: 300px;
-  height: 100px;
+  height: 160px;
   background-color: var(--cor-branca);
   border-radius: 15px;
-  color: var(--cor-preta);
   text-align: center;
+  background-color: var(--fundo-card);
+   border: solid 1px #59f01d;
 }
-
-.vendas-realizadas p {
-  font-size: 1.5rem;
-  margin-top: 1rem;
-  color: var(--cor-preta);
-}
-
 .valor-vendas-realizadas {
-  font-size: 2.5rem !important;
-  font-weight: bold;
-  color: var(--cor-preta);
   position: relative;
   top: -26px;
+  font-size: 2.5rem !important;
+  font-weight: bold;
+  color: var(--cor-branca);
 }
+.vendas-realizadas p {
+  margin-top: 10px;
+}
+
 
 .vendas-medias {
   width: 300px;
-  height: 100px;
+  height: 160px;
   background-color: var(--cor-branca);
   border-radius: 15px;
-  color: var(--cor-preta);
   text-align: center;
+  background-color: var(--fundo-card);
+  border: solid 1px #fa3636;
 }
-
 .valor-vendas-medias {
-  font-size: 2.5rem !important;
-  font-weight: bold;
-  color: var(--cor-preta);
   position: relative;
   top: -26px;
+  font-size: 2.5rem !important;
+  font-weight: bold;
+  color: var(--cor-branca);
+}
+.valor-vendas-medias{
+  margin-top: 10px;
+}
+
+/* icones dos cards */
+.card-vendas i {
+  margin-top: 15px;
+  font-size: 40px;
+  color: orange;
 }
 
 /* Hover dos cards de vendas ----------------*/
 .receita-total-dia:hover {
+  background-color: #0077ff;
   transform: scale(1.05);
   transition: all 0.3s ease-in-out;
-  background-color: #3ce8ff;
-  color: var(--cor-branca);
-
-  /* Listra na parte inferior do card */
-  border-bottom: 5px solid #0023c0 !important;
 }
 
 .vendas-realizadas:hover {
+  background-color: #59f01d;
   transform: scale(1.05);
   transition: all 0.3s ease-in-out;
-  background-color: #20dd5f;
-  color: var(--cor-branca);
-
-  border-bottom: 5px solid #0023c0 !important;
 }
 
 .vendas-medias:hover {
+  background-color: #fa3636;
   transform: scale(1.05);
   transition: all 0.3s ease-in-out;
-  background-color: #72dafa;
-  color: var(--cor-branca);
-
-  border-bottom: 5px solid #0023c0 !important;
 }
 /*------------------------------------------*/
 /*Estilos da barra de busca da tela de vendas*/
@@ -139,7 +149,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  margin-top: 60px;
+  margin-bottom: 50px;
 }
 
 .buscar-input-vendas {
@@ -149,6 +160,11 @@
   border: 1px solid #ccc;
   font-size: 1rem;
   min-width: 0;
+  background-color: var(--fundo-card);
+  color: #ffffffee;
+}
+.buscar-input-vendas::placeholder {
+  color: #ffffffee;
 }
 
 .btn-novo-venda {
@@ -183,6 +199,24 @@
   margin-top: 2rem;
   color: var(--cor-branca);
   border-radius: 5px;
+}
+
+
+/* Estilo das linhas da tabela ====================*/
+.vendas-lista tr:nth-child(odd),
+.vendas-lista tr:nth-child(even){
+  background-color: var(--fundo-card);
+  color: var(--cor-branca);
+}
+
+.vendas-tabela tr:hover {
+  background-color: var(--amarelo-medcontrol);
+  color: var(--cor-preta);
+}
+/*=================================================*/
+
+.vendas-lista td i {
+  color: var(--amarelo-medcontrol);
 }
 
 .btn-editar-venda {
