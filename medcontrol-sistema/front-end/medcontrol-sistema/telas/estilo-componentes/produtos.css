@@ -1,118 +1,285 @@
+@charset "UTF-8";
+/* Importando o sistema.css pra poder usar o :root dele para aplicar nos titulos e icones :D */
+@import url("../../medcontrol-sistema/telas/estilo-componentes/sistema.css");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+/*------------------------------------------------------/*Estilizando o "produtos.js"----------------------------------------------------------------------------------------------------------------*/
 
 .tela-produtos {
   display: flex;
   flex-direction: column;
   gap: 10px;
+
   padding: 1rem;
   background: linear-gradient(180deg, var(--fundo-principal), #0b1626 60%);
   border-radius: 13px;
 }
 
-/* ----------Cards------------- */
-
-.produtos-cards {
+.estoque-cars {
   display: flex;
+  flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
   gap: 10px;
-  color: var(--cor-branca);
 }
 
-
-.card-produtos {
-  width: 300px;
-  height: 160px;
-  background-color: var(--fundo-card);
-  border-radius: 15px;
-  text-align: center;
-  border: solid 1px #0077ff;
-  transition: all 0.3s ease-in-out;
-}
-
-.card-produtos:hover {
-  transform: scale(1.05);
-}
-
-
-.card-produtos i {
-  margin-top: 12px;
-  font-size: 40px;
-  color: orange;
+/*Mantendo os cards lado a lado na horizontal*/
+.produtos-cards {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 10px;
 }
 
 .card-produtos p {
-  font-size: 1.4rem;
-  margin-top: 10px;
-  color: var(--cor-branca);
+  font-size: 1.5rem;
+  margin-top: 1rem;
+  color: var(--cor-preta);
 }
-
-.card-produtos span {
-  font-size: 2.5rem !important;
-  font-weight: bold;
-  position: relative;
-  top: -5px;
-  color: var(--cor-branca);
-}
-
 
 .total-produtos {
-  border-color: #0077ff;
+  width: 300px;
+  height: 100px;
+  background-color: var(--cor-branca);
+  border-radius: 15px;
+  text-align: center;
+}
+.total-produtos p {
+  font-size: 1.5rem;
+  margin-top: -0rem;
+  padding-top: 10px;
+  color: var(--cor-preta);
 }
 
-.produto-mais-vendido {
-  border-color: #ffee00;
-}
-
-.produto-menos-vendido {
-  border-color: #fa3636;
+.produtos-total {
+  position: relative;
+  top: -26px;
+  font-size: 2.5rem !important;
+  font-weight: bold;
+  color: var(--cor-preta);
 }
 
 .valor-estoque {
-  border-color: #04f066;
+  width: 300px;
+  height: 100px;
+  background-color: var(--cor-branca);
+  border-radius: 15px;
+  text-align: center;
 }
 
+.valor-estoque p {
+  font-size: 1.5rem;
+  position: relative;
+  top: -0.4rem;
+  color: var(--cor-preta);
+}
+
+.valores-produtos-estoque {
+  font-size: 2.5rem !important;
+  color: var(--cor-preta);
+  font-weight: bold;
+  position: relative;
+  top: -1.7rem;
+}
+
+.produto-mais-vendido {
+  width: 300px;
+  height: 100px;
+  background-color: var(--cor-branca);
+  border-radius: 15px;
+  text-align: center;
+}
+
+.produto-mais-vendido p {
+  font-size: 1.5rem;
+  position: relative;
+  top: -0.3rem;
+  color: var(--cor-preta);
+}
+
+.valores-produtos-mais-vendidos {
+  font-size: 1.8rem !important;
+  color: var(--cor-preta);
+  font-weight: bold;
+  position: relative;
+  top: -1.2rem;
+}
+
+.produto-menos-vendido {
+  width: 300px;
+  height: 100px;
+  background-color: var(--cor-branca);
+  border-radius: 15px;
+  text-align: center;
+  font-size: 1.8rem !important;
+}
+
+.produto-menos-vendido p {
+  font-size: 1.5rem;
+  position: relative;
+  top: -0.3rem;
+  color: var(--cor-preta);
+}
+
+.valores-produtos-menos-vendidos {
+  font-size: 2.5rem !important;
+  color: var(--cor-preta);
+  font-weight: bold;
+  position: relative;
+  top: -1.7rem;
+}
+
+
+/* Hover no card: -------------------------*/
+.card-produtos:hover {
+  transform: scale(1.05);
+  transition: all 0.3s ease-in-out;
+}
+
+/* Cores e hover para cada card produtos: */
 .total-produtos:hover {
-   background-color: #0077ff;
+  background-color: #0077ff;
   transform: scale(1.05);
   transition: all 0.3s ease-in-out;
+
+  /* listra azul na parte inferior do card */
+  border-bottom: 5px solid orange;
 }
+
+.valor-estoque:hover {
+  background-color: #04f066;
+  transform: scale(1.05);
+  transition: all 0.3s ease-in-out;
+  
+
+  border-bottom: 5px solid orange;;
+}
+
 .produto-mais-vendido:hover {
-   background-color: #ffee00;
+  background-color: #ffee00;
   transform: scale(1.05);
   transition: all 0.3s ease-in-out;
+
+ 
+  border-bottom: 5px solid orange;;
 }
+
 .produto-menos-vendido:hover {
   background-color: #fa3636;
   transform: scale(1.05);
   transition: all 0.3s ease-in-out;
+  
+  /* listra azul na parte inferior do card */
+  border-bottom: 5px solid orange;
 }
-.valor-estoque:hover {
-    background-color: #04f066;
-  transform: scale(1.05);
-  transition: all 0.3s ease-in-out;
-}
+/*----------------------------------------*/
 
-/* ----------Pesquisas------------- */
+/*----------------------------------------*/
+/* Barra de pesquisa */
 .produtos-header {
   margin-top: 1rem;
 }
 
 .produtos-header h2 {
-  color: #fff;
+  background-color: var(--fundo-principal);
+  padding: 10px;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  margin-top: 2rem;
+  color: var(--cor-branca);
+  border-radius: 5px;
+}
+/*----------------------------------------*/
+
+/*----------------------------------------*/
+/* Estilo referente a tabela de produtos: */
+.tabela-container {
+  width: 100%;
+  overflow-x: auto;
+  border-radius: 8px;
 }
 
-
-.input-wrapper {
-  display: flex;
+.produtos-lista {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.buscar-input {
+.produtos-lista tr, th, td {
+  text-align: center !important;
+}
+
+.produtos-lista th, .produtos-lista td {
   padding: 12px;
-  border-radius: 5px 0 0 5px;
-  border: none;
-  width: 250px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
 }
 
+.produtos-lista th {
+  background-color: var(--fundo-principal);
+  color: var(--cor-branca);
+}
+
+.produtos-lista tr:hover {
+  background-color: var(--amarelo-medcontrol);
+}
+
+.produtos-lista td {
+  white-space: nowrap;
+}
+
+.produtos-lista td i {
+  color: var(--amarelo-medcontrol);
+}
+
+
+/*Botões de editar e excluir de produtos: */
+
+.btn-editar-produto{
+  background-color: var(--amarelo-medcontrol);
+  color: var(--cor-branca);
+  border: none;
+  border-radius: 4px;
+  padding: 8px 17px;
+  font-size: 14px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-bottom: 0.3rem;
+
+}
+
+.btn-excluir-produto{
+  background-color: #e84118;
+  color: var(--cor-branca);
+  border: none;
+  border-radius: 4px;
+  padding: 8px 17px;
+  font-size: 14px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-bottom: 0.3rem;
+}
+
+.btn-excluir-produto:hover {
+  background-color: #c23616;
+}
+
+.btn-editar-produto:hover {
+  background-color: rgb(190, 147, 29)
+}
+/*----------------------------------------*/
+
+/* Botão da barra de busca */
 .btn-novo-produto {
   background-color: orange;
   color: white;
@@ -121,105 +288,51 @@
   padding: 15px 20px;
   cursor: pointer;
   font-weight: bold;
+  white-space: nowrap;
 }
 
-/* ----------Tabela------------- */
-
-.tabela-container {
-  width: 100%;
-  overflow-x: auto;
-}
-
-.produtos-lista table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
-  border-radius: 8px;
-  overflow: hidden;
-  background-color: var(--cor-branca);
-}
-
-.produtos-lista th {
-  background-color: var(--fundo-card);
-  color: var(--cor-branca);
-  padding: 12px;
-  text-align: center;
-}
-
-.produtos-lista td {
-  padding: 12px;
-  color: var(--cor-preta);
-  text-align: center;
-}
-
-.produtos-lista tr:hover {
-  background-color: var(--hover-tabela);
-}
-
-/* ----------Botoes------------- */
-
-.btn-editar-produto {
-  background-color: var(--amarelo-medcontrol);
-  color: var(--cor-preta);
-  border: none;
-  border-radius: 4px;
-  padding: 8px 17px;
-  font-weight: bold;
-}
-
-.btn-editar-produto:hover {
-  background-color: rgb(190,147,29);
-}
-
-.btn-excluir-produto {
-  background-color: #e84118;
-  color: var(--cor-branca);
-  border: none;
-  border-radius: 4px;
-  padding: 8px 17px;
-  font-weight: bold;
-}
-
-.btn-excluir-produto:hover {
-  background-color: #c23616;
-}
-
-/* ----------Modal Cadastro Produto------------- */
-
+/* Configurações do modal cadastro de produtos:  -----------*/
+/* Modal container */
 .modal {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.5); /* fundo escuro */
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 999;
 }
 
+/* Esconde o modal */
 .modal.hidden {
   display: none;
 }
 
+/* Conteúdo do modal */
 .modal-content {
   background-color: var(--cor-branca);
   padding: 30px;
   border-radius: 10px;
   width: 500px;
   max-width: 90%;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
   position: relative;
 }
 
+/* Botão de fechar (X) */
 .fechar-modal {
   position: absolute;
-  right: 15px;
   top: 10px;
-  cursor: pointer;
+  right: 15px;
   font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--cor-preta);
 }
 
+/* Formulário */
 .cadastro-produto-modal {
   display: flex;
   flex-direction: column;
@@ -228,24 +341,44 @@
 
 .cadastro-produto-modal input {
   padding: 10px;
-  border-radius: 6px;
+  font-size: 1rem;
   border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
 .cadastro-produto-modal button {
   padding: 10px;
-  border-radius: 6px;
+  font-size: 1rem;
   border: none;
-  font-weight: bold;
+  border-radius: 5px;
   cursor: pointer;
 }
 
 .cadastro-produto-modal button[type="submit"] {
   background-color: #44bd32;
   color: var(--cor-branca);
+  font-weight: bold;
+  transition: background-color 0.3s;
 }
 
-.cadastro-produto-modal button.cancelar {
-  background-color: #e84118;
+.cadastro-produto-modal button[type="submit"]:hover {
+  background-color: #4cd137;
   color: var(--cor-branca);
+  transform: scale(1.05);
+  transition: all 0.3s ease-in-out
 }
+
+.cadastro-produto-modal .cancelar {
+  background-color:#e84118;
+  color: var(--cor-branca);
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.cadastro-produto-modal .cancelar:hover {
+  background-color: #c23616;
+  color: var(--cor-branca);
+  transform: scale(1.05);
+  transition: all 0.3s ease-in-out
+}
+/*-------------------------------------------------------------------------------------------*/

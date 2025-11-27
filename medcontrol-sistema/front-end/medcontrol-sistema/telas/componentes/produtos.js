@@ -2,34 +2,41 @@ export function render() {
   const div = document.createElement("div");
   div.classList.add("tela-produtos");
   div.innerHTML = `
-   <section class="produtos-cards"> 
+    <section class="produtos-cards"> 
 
       <div class="card-produtos total-produtos">
-        <i class="fas fa-box"></i>
-        <p>Total de Produtos</p>
+        <p>
+          <i class="fas fa-box"></i>
+          Total de Produtos
+        </p>
         <span class="produtos-total total-produtos-valor"></span>
       </div>
 
       <div class="card-produtos produto-mais-vendido">
-        <i class="fas fa-chart-line"></i>
-        <p>Produto ➕ Vendido</p>
-        <span class="valores-produtos-mais-vendidos valor-mais-vendido"></span>
+        <p>
+          <i class="fas fa-chart-line"></i>
+          Produto ➕ Vendido
+        </p>
+        <span class="valores-produtos-mais-vendidos  valor-mais-vendido"></span>
       </div>
 
       <div class="card-produtos produto-menos-vendido">
-        <i class="fas fa-chart-line"></i>
-        <p>Produto ➖ Vendido</p>
+        <p>
+          <i class="fas fa-chart-line"></i>
+          Produto ➖ Vendido
+        </p>
         <span class="valores-produtos-menos-vendidos valor-menos-vendido"></span>
       </div>
 
       <div class="card-produtos valor-estoque">
-        <i class="fas fa-money-bill"></i>
-        <p>Valor do Estoque</p>
+        <p>
+          <i class="fas fa-money-bill"></i>
+          Valor do Estoque
+        </p>
         <span class="valores-produtos-estoque valor-estoque-valor"></span>
       </div>
 
-</section>
-
+    </section>
 
     <section class="produtos-header">
       <h2> <i class="fas fa-box"></i> Buscar produto </h2>
