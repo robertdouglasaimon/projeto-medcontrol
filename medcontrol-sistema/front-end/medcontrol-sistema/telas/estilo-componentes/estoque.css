@@ -10,357 +10,244 @@
     font-family: 'Roboto', sans-serif;
 }
 
-
-/*------------------------------------------------------------------------------------------*/
-/*Estilizando o "estoque.js*/
-
+/* Estilizando o "estoque.js" --------------------------------------------------------*/
 .tela-estoque {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 
-  padding: 1rem;
-  background: linear-gradient(180deg, var(--fundo-principal), #0b1626 60%);
-  border-radius: 13px;
+    padding: 1rem;
+    background: linear-gradient(180deg, var(--fundo-principal), #0b1626 60%);
+    border-radius: 13px;
 }
 
-/* Estilos relaciopados aos cards do dashboard do estoque */
+/* Cards do estoque ------------------------------------------------------------------*/
 .estoque-cards {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 10px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 10px;
+    color: var(--cor-branca);
 }
 
 .card-estoque {
-  width: 284px;
-  height: 100px;
-  background-color: var(--cor-branca);
-  border-radius: 15px;
-} 
+    width: 300px;
+    height: 160px;
+    background-color: var(--fundo-card);
+    border-radius: 15px;
+    text-align: center;
+    border: solid 1px var(--amarelo-medcontrol);
+    transition: all 0.3s ease-in-out;
+}
 
 .card-estoque p {
-  font-size: 1.5rem;
-  margin-top: 1rem;
-  color: var(--cor-preta);
-
-}
-
-.total-estoque {
-  text-align: center;
-
-}
-
-.total-estoque p {
-  font-size: 1.5rem;
-  margin-top: -0rem;
-  padding-top: 10px;
-  color: var(--verde);
-  text-align: center;
-}
-
-
-.estoque-total {
-  position: relative;
-  top: -26px;
-  font-size: 2.5rem !important;
-  font-weight: bold;
-  color: var(--cor-preta);
-}
-
-.total-estoque-valor{
-  width: 300px;
-  height: 100px;
-  border-radius: 15px;
-  font-size: 1.8rem !important;
-  color: var(--cor-preta);
-  font-weight: bold;
-  position: relative;
-  top: -1.2rem;
-}
-
-.perdas-descarte p {
-  font-size: 1.5rem;
-  color: var(--laranja);
-  text-align: center;
-  position: relative;
-  top: -0.3rem;
-  margin-bottom: 15px;
-}
-
-.perdas-descarte-valor {
-  width: 300px;
-  height: 100px;
-  border-radius: 15px;
-  text-align: center;
-  font-size: 1.8rem !important;
-  color: var(--cor-preta);
-  font-weight: bold;
-  position: relative;
-  top: -1.5rem;
-  left: 7.5rem;
-}
-
-.nivel-estoque p {
-    text-align: center;
     font-size: 1.5rem;
-    color: var(--azul-ativo);
+    margin-top: 1rem;
+    color: var(--cor-branca);
+}
+
+.card-estoque span {
     position: relative;
-    top: -0.2rem;
-    margin-bottom: 15px;
+    top: -26px;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--cor-branca);
 }
 
-.nivel-estoque-valor {
-  width: 300px;
-  height: 100px;
-  border-radius: 15px;
-  font-size: 1.8rem !important;
-  color: var(--cor-preta);
-  font-weight: bold;
-  position: relative;
-  top: -1.6rem;
-  left: 7rem;
+.card-estoque i {
+    margin-top: 15px;
+    font-size: 30px;
+    color: orange;
 }
 
+.total-estoque { border-color: #0077ff; }
+.perdas-descarte { border-color: #fa3636; }
+.nivel-estoque { border-color: #59f01d; }
 
-/* Hover dos cards do estoque ----------------*/
+/* --------------Hover ------------*/
 .total-estoque:hover {
-  transform: scale(1.05);
-  transition: all 0.3s ease-in-out;
-  background-color: #0e7eb3;
-
-  /*Listra verde na parte inferior do card*/
-  border-bottom: 5px solid orange !important;
+    background-color: #0077ff;
+    transform: scale(1.05);
 }
 
 .perdas-descarte:hover {
-  transform: scale(1.05);
-  transition: all 0.3s ease-in-out;
-  background-color: #e40202;
-
-  border-bottom: 5px solid orange !important;
+    background-color: #fa3636;
+    transform: scale(1.05);
 }
-
 
 .nivel-estoque:hover {
-  transform: scale(1.05);
-  transition: all 0.3s ease-in-out;
+    background-color: #59f01d;
+    transform: scale(1.05);
 }
 
-.nivel-estoque.seguro:hover {
-  background-color: #0eb345;
-  border-bottom: 5px solid #60e737 !important; /* verde */  
-}
 
-.nivel-estoque.critico:hover {
-  background-color: #b30e0e;
-  border-bottom: 5px solid #e84118 !important; /* vermelho */
-}
-/*---------------------------------------------------------------*/
-/* Estilo relacionado ao titulo da sessão do gráfico de estoque*/
 .estoque-header h2 {
-  background-color: var(--fundo-principal);
-  padding: 10px;
-  font-size: 1.5rem;
-  margin-bottom: 10px;
-  margin-top: 2rem;
-  color: var(--cor-branca);
-  border-radius: 5px;
+    background-color: var(--fundo-principal);
+    padding: 10px;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    margin-top: 1rem;
+    color: var(--cor-branca);
+    border-radius: 5px;
 }
-/*---------------------------------------------------------*/
-/*Estilo relacionado a barra de busca da tela de estoque: */
 
+/* -----------------Pesquisa---------------- */
 .lote-header h2 {
-  background-color: var(--fundo-principal);
-  padding: 10px;
-  font-size: 1.5rem;
-  margin-bottom: 10px;
-  margin-top: 2rem;
-  color: var(--cor-branca);
-  border-radius: 5px;
+    background-color: var(--fundo-principal);
+    padding: 10px;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: var(--cor-branca);
+    border-radius: 5px;
 }
 
-.lote-pesquisa {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
+.lote-pesquisa .input-wrapper {
+    display: flex;
+    width: 100%;
+    margin-top: 10px;
 }
 
 .buscar-input-lote {
-  flex: 1;
-  padding: 15px;
-  border-radius: 5px 0 0 5px;
-  border: 1px solid #ccc;
-  font-size: 1rem;
-  min-width: 0;
+    flex: 1;
+    padding: 15px;
+    border-radius: 5px 0 0 5px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    background-color: var(--fundo-card);
+    color: var(--cor-branca);
+}
+
+.buscar-input-lote::placeholder {
+    color: #ffffffee;
 }
 
 .btn-novo-lote {
-  background-color: orange;
-  color: white;
-  border: none;
-  border-radius: 0 5px 5px 0;
-  padding: 15px 20px;
-  cursor: pointer;
-  font-weight: bold;
-  white-space: nowrap;
-}
-/*----------------------------------------------------------*/
-/* Estilos relacionados a tabela de estoque --------------*/
-.lote-tabela h2 {
-  background-color: var(--fundo-principal);
-  padding: 10px;
-  font-size: 1.5rem;
-  margin-bottom: 10px;
-  margin-top: 2rem;
-  color: var(--cor-branca);
-  border-radius: 5px;
+    background-color: orange;
+    color: white;
+    border: none;
+    border-radius: 0 5px 5px 0;
+    padding: 15px 20px;
+    cursor: pointer;
+    font-weight: bold;
+    white-space: nowrap;
 }
 
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
-  background-color: var(--cor-branca);
-  border-radius: 8px;
-  overflow: hidden;
+/* ------------------Modal------------------- */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-th, td {
-  padding: 12px 15px;
-  text-align: left;
-  border-bottom: 1px solid #ddd;
+.modal.hidden {
+    display: none;
 }
 
-th {
-  background-color: var(--fundo-principal);
-  color: var(--cor-branca);
-  font-weight: bold;
+.modal-content {
+    background-color: var(--fundo-card);
+    padding: 20px;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 500px;
+    color: var(--cor-branca);
+    position: relative;
 }
 
-tr:nth-child(even) {
-  background-color: #f2f2f2;
+.modal-content h3 {
+    margin-top: 10px;
+    text-align: center;
+    font-size: 1.6rem;
+    margin-bottom: 1.5rem;
+    color: var(--amarelo-medcontrol);
 }
 
-tr:hover {
-  background-color: var(--amarelo-medcontrol);
+.fechar-modal {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #e84118;
+    transition: transform 0.2s;
 }
 
-.btn-estoque-editar {
-  background-color: var(--amarelo-medcontrol);
-  color: var(--cor-branca);
-  border: none;
-  border-radius: 4px;
-  padding: 8px 17px;
-  font-size: 14px;
-  font-weight: bold;
-  cursor: pointer;
-  margin-bottom: 0.3rem;
+.fechar-modal:hover {
+    transform: scale(1.2);
 }
 
-.btn-estoque-editar:hover {
-  background-color: rgb(190, 147, 29);
-}
-
-.btn-estoque-excluir {
-  background-color: #e84118;
-  color: var(--cor-branca);
-  border: none;
-  border-radius: 4px;
-  padding: 8px 15px;
-  font-size: 14px;
-  font-weight: bold;
-  cursor: pointer;
-}
-.btn-estoque-excluir:hover {
-  background-color: #c23616;
-}
-/*---------------------------------------------------------*/
-/* Estilos relacionados ao modal de cadastro de novo registro de lote ------------------*/
 .cadastro-lote-modal {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
 }
 
 .cadastro-lote-modal input {
-  padding: 0.5rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 1rem;
+    padding: 1rem;
+    border: 1px solid #dcdde1;
+    border-radius: 8px;
+    font-size: 1rem;
+    background-color: var(--fundo-card);
+    color: var(--cor-branca);
 }
 
-.cadastro-lote-modal button[type="submit"]{
-  background-color: #4cd137;
-  color: var(--cor-branca);
-  border: none;
-  border-radius: 4px;
-  padding: 0.5rem;
-  font-size: 1rem;
-  cursor: pointer;
-  font-weight: bold;
+.cadastro-lote-modal button[type="submit"] {
+    background-color: #44bd32;
+    color: white;
+    border: none;
+    padding: 0.8rem;
+    border-radius: 7px;
+    font-size: 1rem;
+    cursor: pointer;
+    font-weight: bold;
 }
 
-.cadastro-lote-modal button[type="submit"]:hover {
-  background-color: #28a315;
-  color: var(--cor-branca);
-  transition: all 0.3s ease-in-out;
-  transform: scale(1.05);
+.cadastro-lote-modal button.cancelar {
+    background-color: #e84118;
+    color: var(--cor-branca);
+    border: none;
+    padding: 0.8rem;
+    border-radius: 7px;
+    font-size: 1rem;
+    cursor: pointer;
+    font-weight: bold;
 }
 
-.cadastro-lote-modal button[type="button"]{
-  background-color: #e84118;
-  color: var(--cor-branca);
-  border: none;
-  border-radius: 4px;
-  padding: 0.5rem;
-  font-size: 1rem;
-  cursor: pointer;
-  font-weight: bold;
+/* -----------------Tabela---------------- */
+.lote-tabela h2 {
+    background-color: var(--fundo-principal);
+    padding: 10px;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: var(--cor-branca);
+    border-radius: 5px;
 }
 
-.cadastro-lote-modal button[type="button"]:hover {
-  background-color: #c82333;
-  color: var(--cor-branca);
-  transition: all 0.3s ease-in-out;
-  transform: scale(1.05);
-}
-/* Estilos relacionados ao modal de cadastro de editar lote ------------------*/
-#form-editar-lote .btn-primary{
-  background-color: #44bd32;
-  color: var(--cor-branca);
-  border: none;
-  border-radius: 7px;
-  padding: 0.8rem;
-  font-size: 1rem;
-  cursor: pointer;
-  font-weight: bold;
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: var(--fundo-card);
+    border-radius: 8px;
+    overflow: hidden;
+    color: var(--cor-branca);
 }
 
-#form-editar-lote .btn-primary:hover {
-  background-color: #28a315;
-  color: var(--cor-branca);
-  transition: all 0.3s ease-in-out;
-  transform: scale(1.05);
+.lote-tabela th {
+    height: 50px;
+    text-align: left;
+    padding-left: 20px;
+    background-color: var(--fundo-card);
+    color: var(--cor-branca);
 }
 
-#form-editar-lote .btn-secondary{
-  background-color: #e84118;
-  color: white;
-  border: none;
-  padding: 0.8rem;
-  border-radius: 8px;
-  font-size: 1rem;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.3s;
+.lote-tabela tr:hover {
+    background-color: var(--amarelo-medcontrol);
+    color: var(--cor-preta);
 }
-#form-editar-lote .btn-secondary:hover {
-  background-color: #8d260c;
-  color: var(--cor-branca);
-  transition: all 0.3s ease-in-out;
-  transform: scale(1.05);
-}
-/*-----------------------------------------------------------------------------------------*/
