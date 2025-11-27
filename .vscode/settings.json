@@ -9,5 +9,5 @@
             "database": "medcontrol-sistema\\banco-dados\\farmacia.db"
         }
     ],
-    "liveServer.settings.port": 5501
+    "liveServer.settings.port": 5502
 }
