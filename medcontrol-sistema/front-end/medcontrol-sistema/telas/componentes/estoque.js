@@ -4,27 +4,27 @@ export function render() {
     div.innerHTML = `
         <section class="estoque-cards">
 
-    <div class="card-estoque total-estoque">
-        <i class="fas fa-warehouse"></i>
-        <p>Total de Estoque</p>
-        <span class="estoque-total total-estoque-valor"></span>
-    </div>
+            <div class="card-estoque total-estoque">
+                <i class="fas fa-warehouse"></i>
+                <p>Total de Estoque</p>
+                <span class="estoque-total total-estoque-valor"></span>
+            </div>
 
-    <div class="card-estoque perdas-descarte">
-        <i class="fas fa-box-open"></i>
-        <p>Perdas e Descarte</p>
-        <span class="descarte-perdas perdas-descarte-valor"></span>
-    </div>
+            <div class="card-estoque perdas-descarte">
+                <i class="fas fa-box-open"></i>
+                <p>Perdas e Descarte</p>
+                <span class="descarte-perdas perdas-descarte-valor"></span>
+            </div>
 
 
-    <div class="card-estoque nivel-estoque">
-        <i class="fas fa-boxes"></i>
-        <p>Nível de Estoque</p>
-        <span class="estoque-nivel nivel-estoque-valor"></span>
-    </div>
+            <div class="card-estoque nivel-estoque">
+                <i class="fas fa-boxes"></i>
+                <p>Nível de Estoque</p>
+                <span class="estoque-nivel nivel-estoque-valor"></span>
+            </div>
 
-</section>
-
+        </section>
+        
 
         <section class="estoque-header">
             <h2> <i class="fas fa-chart-line"></i> Gráfico de Estoque </h2>
