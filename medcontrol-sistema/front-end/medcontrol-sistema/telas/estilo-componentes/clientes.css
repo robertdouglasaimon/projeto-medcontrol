@@ -339,17 +339,22 @@
 /*-------------------------------------------------------*/
 
 /* Estilo relacionado a tabela de clientes --------------*/
-.clientes-tabela h2 {
-  background-color: var(--fundo-principal);
-  padding: 10px;
-  font-size: 1.5rem;
-  margin-bottom: 10px;
-  margin-top: 2rem;
-  color: var(--cor-branca);
-  border-radius: 5px;
+table tbody td {
+  padding: 14px;
+  font-size: 16px;
 }
 
-table {
+table tbody tr {
+  background-color: var(--cor-branca);
+  border-bottom: 1px solid #e5e5e5;
+}
+
+table th {
+  padding: 20px;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.clientes-tabela table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
@@ -366,7 +371,7 @@ table {
   color: var(--cor-branca);
 }
 
-/* Estilo das linhas da tabela ====================*/
+/* Estilo dos hover da tabela ====================*/
 .clientes-tabela tr:nth-child(odd),
 .clientes-tabela tr:nth-child(even){
   background-color: var(--fundo-card);

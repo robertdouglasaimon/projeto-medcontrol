@@ -306,6 +306,7 @@ table {
   flex-direction: column;
   gap: 10px;
 }
+
 /*Botões de editar e excluir de produtos: */
 .btn-fornecedores-editar {
   background-color: var(--amarelo-medcontrol);
