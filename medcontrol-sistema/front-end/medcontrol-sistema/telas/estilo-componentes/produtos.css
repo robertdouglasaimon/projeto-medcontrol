@@ -10,7 +10,7 @@
 }
 
 /*------------------------------------------------------/*Estilizando o "produtos.js"----------------------------------------------------------------------------------------------------------------*/
-
+/* estilo geral da tela de produtos */
 .tela-produtos {
   display: flex;
   flex-direction: column;
@@ -21,41 +21,34 @@
   border-radius: 13px;
 }
 
-.estoque-cars {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 10px;
-}
-
-/*Mantendo os cards lado a lado na horizontal*/
 .produtos-cards {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
   gap: 10px;
+  color: var(--cor-branca);
 }
 
 .card-produtos p {
   font-size: 1.5rem;
   margin-top: 1rem;
-  color: var(--cor-preta);
+  color: var(--cor-branca);
 }
 
+/* ------------------------------------------- */
 .total-produtos {
   width: 300px;
-  height: 100px;
+  height: 160px;
   background-color: var(--cor-branca);
   border-radius: 15px;
   text-align: center;
+  background-color: var(--fundo-card);
+  border: solid 1px #0077ff;
 }
+
 .total-produtos p {
-  font-size: 1.5rem;
-  margin-top: -0rem;
-  padding-top: 10px;
-  color: var(--cor-preta);
+  margin-top: 10px;
 }
 
 .produtos-total {
@@ -63,123 +56,112 @@
   top: -26px;
   font-size: 2.5rem !important;
   font-weight: bold;
-  color: var(--cor-preta);
+  color: var(--cor-branca);
 }
+
+/* ------------------------------------------- */
 
 .valor-estoque {
   width: 300px;
-  height: 100px;
+  height: 160px;
   background-color: var(--cor-branca);
   border-radius: 15px;
   text-align: center;
+  background-color: var(--fundo-card);
+  border: solid 1px #59f01d
 }
 
 .valor-estoque p {
-  font-size: 1.5rem;
-  position: relative;
-  top: -0.4rem;
-  color: var(--cor-preta);
+  margin-top: 10px;
 }
 
 .valores-produtos-estoque {
-  font-size: 2.5rem !important;
-  color: var(--cor-preta);
-  font-weight: bold;
   position: relative;
-  top: -1.7rem;
+  top: -26px;
+  font-size: 2.5rem !important;
+  font-weight: bold;
+  color: var(--cor-branca);
 }
+/* -------------------------------------------- */
 
 .produto-mais-vendido {
   width: 300px;
-  height: 100px;
+  height: 160px;
   background-color: var(--cor-branca);
   border-radius: 15px;
   text-align: center;
+  background-color: var(--fundo-card);
+  border: solid 1px #ffee00;
 }
 
 .produto-mais-vendido p {
-  font-size: 1.5rem;
-  position: relative;
-  top: -0.3rem;
-  color: var(--cor-preta);
+  margin-top: 10px;
 }
 
-.valores-produtos-mais-vendidos {
-  font-size: 1.8rem !important;
-  color: var(--cor-preta);
-  font-weight: bold;
+.valores-produtos-mais-vendidos { 
   position: relative;
-  top: -1.2rem;
+  top: -17px;
+  font-size: 1.7rem !important;
+  font-weight: bold;
+  color: var(--cor-branca);
 }
+/* -------------------------------------------- */
 
 .produto-menos-vendido {
   width: 300px;
-  height: 100px;
+  height: 160px;
   background-color: var(--cor-branca);
   border-radius: 15px;
   text-align: center;
-  font-size: 1.8rem !important;
+  background-color: var(--fundo-card);
+  border: solid 1px #fa3636;
 }
 
 .produto-menos-vendido p {
-  font-size: 1.5rem;
-  position: relative;
-  top: -0.3rem;
-  color: var(--cor-preta);
+  margin-top: 10px;
 }
 
 .valores-produtos-menos-vendidos {
-  font-size: 2.5rem !important;
-  color: var(--cor-preta);
-  font-weight: bold;
   position: relative;
-  top: -1.7rem;
+  top: -24px;
+  font-size: 2.2rem !important;
+  font-weight: bold;
+  color: var(--cor-branca);
 }
 
 
-/* Hover no card: -------------------------*/
-.card-produtos:hover {
-  transform: scale(1.05);
-  transition: all 0.3s ease-in-out;
+/* icones dos cards */
+.produtos-cards i {
+  margin-top: 15px;
+  font-size: 40px;
+  color: orange;
 }
+
 
 /* Cores e hover para cada card produtos: */
 .total-produtos:hover {
   background-color: #0077ff;
   transform: scale(1.05);
   transition: all 0.3s ease-in-out;
-
-  /* listra azul na parte inferior do card */
-  border-bottom: 5px solid orange;
-}
-
-.valor-estoque:hover {
-  background-color: #04f066;
-  transform: scale(1.05);
-  transition: all 0.3s ease-in-out;
-  
-
-  border-bottom: 5px solid orange;;
 }
 
 .produto-mais-vendido:hover {
   background-color: #ffee00;
   transform: scale(1.05);
   transition: all 0.3s ease-in-out;
+}
 
- 
-  border-bottom: 5px solid orange;;
+.valor-estoque:hover {
+  background-color: #59f01d;
+  transform: scale(1.05);
+  transition: all 0.3s ease-in-out;
 }
 
 .produto-menos-vendido:hover {
   background-color: #fa3636;
   transform: scale(1.05);
   transition: all 0.3s ease-in-out;
-  
-  /* listra azul na parte inferior do card */
-  border-bottom: 5px solid orange;
 }
-/*----------------------------------------*/
 
 /*----------------------------------------*/
 /* Barra de pesquisa */
@@ -187,62 +169,97 @@
   margin-top: 1rem;
 }
 
-.produtos-header h2 {
-  background-color: var(--fundo-principal);
-  padding: 10px;
-  font-size: 1.5rem;
-  margin-bottom: 10px;
-  margin-top: 2rem;
-  color: var(--cor-branca);
-  border-radius: 5px;
+.produto-pesquisa {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 60px;
+  margin-bottom: 50px;
 }
-/*----------------------------------------*/
 
-/*----------------------------------------*/
-/* Estilo referente a tabela de produtos: */
-.tabela-container {
+.buscar-input {
+  flex: 1;
+  padding: 15px;
+  border-radius: 5px 0 0 5px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  min-width: 0;
+  background-color: var(--fundo-card);
+  color: white;
+}
+
+.input-wrapper {
+  position: relative;
+  display: flex;
   width: 100%;
-  overflow-x: auto;
-  border-radius: 8px;
+  max-width: 100%;
 }
 
-.produtos-lista {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+.buscar-input::placeholder {
+  color: #ffffffee;
 }
 
-.produtos-lista tr, th, td {
-  text-align: center !important;
-}
-
-.produtos-lista th, .produtos-lista td {
-  padding: 12px;
-  text-align: left;
-  border-bottom: 1px solid #ddd;
-}
-
-.produtos-lista th {
-  background-color: var(--fundo-principal);
-  color: var(--cor-branca);
-}
-
-.produtos-lista tr:hover {
-  background-color: var(--amarelo-medcontrol);
-}
-
-.produtos-lista td {
+.btn-novo-produto{
+  background-color: orange;
+  color: white;
+  border: none;
+  border-radius: 0 5px 5px 0;
+  padding: 15px 20px;
+  cursor: pointer;
+  font-weight: bold;
   white-space: nowrap;
 }
 
-.produtos-lista td i {
-  color: var(--amarelo-medcontrol);
+/*----------------------------------------*/
+/* Estilo referente a tabela de produtos: */
+table tbody td {
+  padding: 12px;
+  font-size: 16px;
 }
 
+table tbody tr {
+  background-color: var(--cor-branca);
+  border-bottom: 1px solid #e5e5e5;
+}
 
+table th {
+  padding: 20px;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.tabela-container table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background-color: var(--cor-branca);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.tabela-container th {
+  height: 50px;
+  text-align: left;
+  padding-left: 20px;
+  background-color: var(--fundo-card);
+  color: var(--cor-branca);
+}
+
+/* Estilo dos hover da tabela ====================*/
+.tabela-container tr:nth-child(odd),
+.tabela-container tr:nth-child(even){
+  background-color: var(--fundo-card);
+  color: var(--cor-branca);
+}
+
+.tabela-container tr:hover {
+  background-color: var(--amarelo-medcontrol);
+  color: var(--cor-preta);
+}
+/*=================================================*/
+
+.tabela-container td i {
+  color: var(--amarelo-medcontrol);
+}
 /*Botões de editar e excluir de produtos: */
 
 .btn-editar-produto{

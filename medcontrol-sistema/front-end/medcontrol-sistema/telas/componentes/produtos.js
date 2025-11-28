@@ -5,32 +5,32 @@ export function render() {
     <section class="produtos-cards"> 
 
       <div class="card-produtos total-produtos">
+        <i class="fas fa-box"></i>
         <p>
-          <i class="fas fa-box"></i>
           Total de Produtos
         </p>
         <span class="produtos-total total-produtos-valor"></span>
       </div>
 
       <div class="card-produtos produto-mais-vendido">
+        <i class="fas fa-chart-line"></i>
         <p>
-          <i class="fas fa-chart-line"></i>
-          Produto ➕ Vendido
+          Mais Vendido
         </p>
         <span class="valores-produtos-mais-vendidos  valor-mais-vendido"></span>
       </div>
 
       <div class="card-produtos produto-menos-vendido">
+        <i class="fas fa-chart-line"></i>
         <p>
-          <i class="fas fa-chart-line"></i>
-          Produto ➖ Vendido
+          Menos Vendido
         </p>
         <span class="valores-produtos-menos-vendidos valor-menos-vendido"></span>
       </div>
 
       <div class="card-produtos valor-estoque">
+        <i class="fas fa-money-bill"></i>
         <p>
-          <i class="fas fa-money-bill"></i>
           Valor do Estoque
         </p>
         <span class="valores-produtos-estoque valor-estoque-valor"></span>
@@ -39,8 +39,6 @@ export function render() {
     </section>
 
     <section class="produtos-header">
-      <h2> <i class="fas fa-box"></i> Buscar produto </h2>
-
       <div class="produto-pesquisa">
         <div class="input-wrapper">
           <input type="text" placeholder="Buscar por produto" class="buscar-input" />
@@ -53,7 +51,6 @@ export function render() {
     <div id="modalNovoProduto" class="modal hidden">  
       <div class="modal-content">
         <span class="fechar-modal" id="fecharModal">&times;</span>
-        <h3>Cadastrar Novo Produto</h3>
 
         <!-- Formulário de cadastro aqui -->
         <form class="cadastro-produto-modal">
@@ -71,9 +68,6 @@ export function render() {
         </form>
       </div>
     </div>
-
-
-
 
     <section class="produtos-lista">
       <div class="tabela-container">
@@ -101,7 +95,6 @@ export function render() {
         </table>
       </div>
     </section>
-    
   `;
 
   // Scrip para inserir os dados especificos puxados do banco de dados nos dashboards:
