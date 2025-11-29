@@ -129,7 +129,6 @@ export function render() {
       });
     });
   }, 0);
-
   
   // Script para cadastrar um novo cliente pelo botão e modal "+ Novo Cliente":
   setTimeout(() => {
@@ -222,7 +221,6 @@ export function render() {
 
   }, 0);
 
-
   // Script para abrir e fechar o modal:
   setTimeout(() => {
     const btn = div.querySelector("#btnNovoCliente");
@@ -249,7 +247,6 @@ export function render() {
       }
     });
   }, 0);
-
 
   // Scrip para inserir os dados especificos puxados do banco de dados nos dashboards:
   setTimeout(() => {
@@ -314,7 +311,6 @@ export function render() {
 
   }, 0);
 
-
   // Script para inserir os dados do banco de dados na tabela:
   setTimeout(() => {
     // Inserindo os dados do banco na tabela de clientes:
@@ -347,7 +343,6 @@ export function render() {
     })
     })
   }, 0);
-
 
   // Editando os itens da tabela pelo front através do botão editar e excluindo pelo botão excluir:
   setTimeout(() => {
