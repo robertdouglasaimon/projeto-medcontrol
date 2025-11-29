@@ -50,6 +50,7 @@ export function render() {
     <!-- Modal do botão 'Novo Produto' -->
     <div id="modalNovoProduto" class="modal hidden">  
       <div class="modal-content">
+        <h3>Cadastro Novo Produto</h3>
         <span class="fechar-modal" id="fecharModal">&times;</span>
 
         <!-- Formulário de cadastro aqui -->
@@ -439,7 +440,7 @@ export function render() {
       const modal = document.createElement("div");
       modal.classList.add("modal");
       modal.innerHTML = `
-        <div class="modal-content">
+        <div class="modal-editar-content">
           <h3>Editar Produto</h3>
           <form class="cadastro-produto-modal" id="cadastro-produto-modal">
             <label for="nome_produto">Nome do Produto:</label>
