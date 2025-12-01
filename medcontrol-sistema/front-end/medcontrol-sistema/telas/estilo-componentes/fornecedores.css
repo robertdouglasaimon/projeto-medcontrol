@@ -274,7 +274,6 @@
   overflow: hidden;
 }
 
-/* Cabeçalho */
 .fornecedores-tabela th {
   height: 50px;
   text-align: left;
@@ -284,7 +283,7 @@
   border-bottom: 1px solid #e5e5e5;
 }
 
-/* Descolando os nomes do canto da tabela: */
+
 .fornecedores-tabela td {
   padding: 14px;
   font-size: 16px;
