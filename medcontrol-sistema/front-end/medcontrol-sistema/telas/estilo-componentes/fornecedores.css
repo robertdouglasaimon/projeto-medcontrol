@@ -102,22 +102,13 @@
     margin-top: 1rem;
 }
 
-.fornecedores-header h2 {
-    background-color: var(--fundo-principal);
-    padding: 10px;
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-    margin-top: 2rem;
-    color: var(--cor-branca);
-    border-radius: 5px;
-}
 
 /*----------------Barra de Pesquisa e Botão Novo----------------------------------------------*/
 .fornecedor-pesquisa {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 50px;
     margin-top: 60px;
 }
 
