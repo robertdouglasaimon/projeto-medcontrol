@@ -3,41 +3,29 @@ export function render() {
   div.classList.add("tela-fornecedores");
   div.innerHTML = `
       <section class="fornecedores-cards">
+    <div class="card-fornecedores">
 
-        <div class="card-fornecedores">
-
-          <div class="total-de-fornecedores">
-            <p>
-              <i class="fa fa-building"></i>
-              Total de Fornecedores
-            <p>
-            <span class="valores-fornecedores fornecedores-total-valor">
-              <!-- Inserir aqui o total de clientes pelo banco de dados -->
-            </span>
-          </div>
-
-          <div class="fornecedores-ativos">
-            <p>
-              <i class="fa fa-handshake"></i>
-              Ativos
-            </p>
-            <span class="valores-fornecedores  fornecedores-ativos-valor">
-              <!-- Inserir aqui o total de clientes pelo banco de dados -->
-            </span>
-          </div>
-
-          <div class="fornecedores-inativos">
-            <p>
-              <i class="fa fa-times-circle"></i>
-              Inativos
-            </p>
-            <span class="valores-fornecedores  fornecedores-inativos-valor">
-              <!-- Inserir aqui o total de clientes pelo banco de dados -->
-            </span>
-          </div>
-
+        <div class="total-de-fornecedores">
+            <i class="fa fa-building"></i>
+            <p>Total de Fornecedores</p>
+            <span class="valores-fornecedores fornecedores-total-valor"></span>
         </div>
-      </section>
+
+        <div class="fornecedores-ativos">
+            <i class="fa fa-handshake"></i>
+            <p>Ativos</p>
+            <span class="valores-fornecedores fornecedores-ativos-valor"></span>
+        </div>
+
+        <div class="fornecedores-inativos">
+            <i class="fa fa-times-circle"></i>
+            <p>Inativos</p>
+            <span class="valores-fornecedores fornecedores-inativos-valor"></span>
+        </div>
+
+    </div>
+</section>
+
 
       <section class="fornecedores-header">
         <h2> <i class="fas fa-star"></i> Buscar fornecedor</h2>

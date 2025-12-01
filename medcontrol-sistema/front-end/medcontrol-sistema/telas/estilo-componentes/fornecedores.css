@@ -9,30 +9,29 @@
     font-family: 'Roboto', sans-serif;
 }
 
-/*----------------Estilizando "fornecedores.js"-------------------------------------------------------------------*/
+/*----------------Estilizando "fornecedores.js"-----------------------------------------------*/
 .tela-fornecedores {
   display: flex;
   flex-direction: column;
   gap: 10px;
-
   padding: 1rem;
   background: linear-gradient(180deg, var(--fundo-principal), #0b1626 60%);
   border-radius: 13px;
 }
 
-.card-fornecedores{
-  display: flex;
-  flex-direction: row;
-  /* flex-wrap: wrap; */
-  justify-content: space-between;
-  gap: 10px;
-  color: var(--cor-branca);
-}
-
 .card-fornecedores p {
   font-size: 1.5rem;
   margin-top: 1rem;
-  color: var(--cor-preta);
+  color: var(--cor-branca);
+}
+
+.card-fornecedores{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 10px;
+  color: var(--cor-branca);
 }
 
 .valores-fornecedores{
@@ -40,64 +39,66 @@
   top: -26px;
   font-size: 2.5rem !important;
   font-weight: bold;
-  color: var(--cor-preta);
+  color: var(--cor-branca);
 }
 
+/* Estilos dos cards de fornecedores ----------------*/
 .total-de-fornecedores{
   width: 300px;
-  height: 100px;
-  background-color: var(--cor-branca);
+  height: 160px;
+  background-color: var(--fundo-card);
   border-radius: 15px;
   text-align: center;
+  border: solid 1px #0077ff;
 }
 
 .fornecedores-ativos{
   width: 300px;
-  height: 100px;
-  background-color: var(--cor-branca);
+  height: 160px;
+  background-color: var(--fundo-card);
   border-radius: 15px;
   text-align: center;
+  border: solid 1px #59f01d;
 }
 
 .fornecedores-inativos{
   width: 300px;
-  height: 100px;
-  background-color: var(--cor-branca);
+  height: 160px;
+  background-color: var(--fundo-card);
   border-radius: 15px;
   text-align: center;
+  border: solid 1px #fa3636;
 }
 
+/* icones dos cards */
+.card-fornecedores i {
+  margin-top: 15px;
+  font-size: 40px;
+  color: orange;
+}
 
-/* Hover para cada card */
+/* Hover dos cards de fornecedores ----------------*/
 .total-de-fornecedores:hover {
   background-color: #0077ff;
   transform: scale(1.05);
   transition: all 0.3s ease-in-out;
-
-  /* listra azul na parte inferior do card */
-  border-bottom: 5px solid orange;
 }
 
 .fornecedores-ativos:hover {
   background-color: #59f01d;
   transform: scale(1.05);
   transition: all 0.3s ease-in-out;
-
-  /* listra azul na parte inferior do card */
-  border-bottom: 5px solid orange;
 }
 
 .fornecedores-inativos:hover {
   background-color: #fa3636;
   transform: scale(1.05);
   transition: all 0.3s ease-in-out;
-  
-  /* listra azul na parte inferior do card */
-  border-bottom: 5px solid orange;
 }
 
+
 /* Estilo da barra de pesquisa -------------------------------------------------*/
-.fornecedores-header{
+.fornecedores-header {
   margin-top: 1rem;
 }
 
@@ -111,17 +112,26 @@
   border-radius: 5px;
 }
 
+/*----------------Barra de Pesquisa e Botão Novo----------------------------------------------*/
 .fornecedor-pesquisa {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
+   margin-top: 60px;
 }
 
-.search-container {
+/* .search-container {
   display: flex;
   gap: 10px;
-}
+} */
+
+/* .input-wrapper {
+  position: relative;
+  display: flex;
+  width: 100%;
+  max-width: 100%;
+} */
 
 .buscar-input {
   flex: 1;
@@ -130,16 +140,15 @@
   border: 1px solid #ccc;
   font-size: 1rem;
   min-width: 0;
+  background-color: var(--fundo-card);
+  color: #ffffffee;
 }
 
-.input-wrapper {
-  position: relative;
-  display: flex;
-  width: 100%;
-  max-width: 100%;
+.buscar-input::placeholder {
+  color: #ffffffee;
 }
 
-.btn-novo-fornecedor{
+.btn-novo-fornecedor {
   background-color: orange;
   color: white;
   border: none;
@@ -255,7 +264,8 @@
   border-radius: 5px;
 }
 
-table {
+/* Tabela ------------------------------*/
+.fornecedores-tabela table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
@@ -264,28 +274,74 @@ table {
   overflow: hidden;
 }
 
+/* Cabeçalho */
 .fornecedores-tabela th {
   height: 50px;
   text-align: left;
   padding-left: 20px;
-  background-color: var(--fundo-principal);
+  background-color: var(--fundo-card);
+  color: var(--cor-branca);
+  border-bottom: 1px solid #e5e5e5;
+}
+
+/* Descolando os nomes do canto da tabela: */
+.fornecedores-tabela td {
+  padding: 14px;
+  font-size: 16px;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+/* Estilo das linhas da tabela ====================*/
+.fornecedores-tabela tr:nth-child(odd),
+.fornecedores-tabela tr:nth-child(even) {
+  background-color: var(--fundo-card);
   color: var(--cor-branca);
 }
 
 .fornecedores-tabela tr:hover {
   background-color: var(--amarelo-medcontrol);
+  color: var(--cor-preta);
 }
+/*=================================================*/
 
 .fornecedores td i {
   color: var(--amarelo-medcontrol);
 }
 
-/* Descolando os nomes do canto da tabela: */
-.fornecedores-tabela td {
-  padding: 8px;
-  border-bottom: 1px solid #ddd;
+/*Botões de editar e excluir ----------------------*/
+.btn-fornecedores-editar {
+  background-color: var(--amarelo-medcontrol);
+  color: var(--cor-branca);
+  border: none;
+  border-radius: 4px;
+  padding: 8px 17px;
+  font-size: 14px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-bottom: 0.3rem;
 }
 
+.btn-fornecedores-excluir {
+  background-color: #e84118;
+  color: var(--cor-branca);
+  border: none;
+  border-radius: 4px;
+  padding: 8px 17px;
+  font-size: 14px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-bottom: 0.3rem;
+}
+
+.btn-fornecedores-excluir:hover {
+  background-color: #c23616;
+}
+
+.btn-fornecedores-editar:hover {
+  background-color: rgb(190, 147, 29);
+}
+
+/* Estilo dos inputs do modal de editar cliente: */
 .modal-content {
   background-color: var(--cor-branca);
   padding: 20px;
@@ -307,40 +363,7 @@ table {
   gap: 10px;
 }
 
-/*Botões de editar e excluir de produtos: */
-.btn-fornecedores-editar {
-  background-color: var(--amarelo-medcontrol);
-  color: var(--cor-branca);
-  border: none;
-  border-radius: 4px;
-  padding: 8px 17px;
-  font-size: 14px;
-  cursor: pointer;
-  font-weight: bold;
-  margin-bottom: 0.3rem;
-}
 
-.btn-fornecedores-excluir{
-  background-color: #e84118;
-  color: var(--cor-branca);
-  border: none;
-  border-radius: 4px;
-  padding: 8px 17px;
-  font-size: 14px;
-  cursor: pointer;
-  font-weight: bold;
-  margin-bottom: 0.3rem;
-}
-
-.btn-fornecedores-excluir:hover {
-  background-color: #c23616;
-}
-
-.btn-fornecedores-editar:hover {
-  background-color: rgb(190, 147, 29)
-}
-
-/* Estilo dos inputs do modal de editar cliente: */
 .modal-content input,
 .modal-content select {
   padding: 8px;
