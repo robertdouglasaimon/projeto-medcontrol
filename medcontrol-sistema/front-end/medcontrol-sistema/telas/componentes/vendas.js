@@ -33,7 +33,6 @@ export function render () {
             <div class="vendas-pesquisa">
                 <div class="input-wrapper">
                     <input type="text" id="busca-vendas" placeholder="Buscar Vendas" class="buscar-input-vendas">
-                    
                     <button class="btn-novo-venda" id="btnNovaVenda">
                         + Novo Registro
                     </button>
@@ -58,10 +57,8 @@ export function render () {
                     <button type="submit" class="salvar-modal">Salvar</button>
                     <button type="button" class="cancelar-modal">Cancelar</button>
                 </form>
-
             </div>
         </div>
-
 
         <section class="vendas-lista">
             <table>
@@ -369,7 +366,7 @@ export function render () {
             const modal = document.createElement("div");
             modal.classList.add("modal");
             modal.innerHTML = `
-              <div class="modal-content">
+              <div class="modal-editar-content">
                     <h2>Editar Venda</h2>
                     <form class="cadastro-venda-modal-editar">
                         <label for="produtos_vendidos">Produtos Vendidos:</label>
