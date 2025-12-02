@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 from flask_cors import CORS 
 import sqlite3
 import os
@@ -6,6 +6,7 @@ import os
 app = Flask(__name__)
 CORS(app)
 
+# /* GRÁFICOS DO SISTEMA ----------------------------------------------------------------------------------------- */
 @app.route('/grafico-estoque')
 def grafico_estoque():
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))

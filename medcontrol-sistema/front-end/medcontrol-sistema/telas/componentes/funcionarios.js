@@ -3,34 +3,28 @@ export function render() {
     div.classList.add("tela-funcionarios");
     div.innerHTML = `
     <!-- Seção de Cards - Funcionários -->
-    <section class="funcionarios-cards">
-      <div class="card-funcionarios">
-
+      <section class="funcionarios-cards">
+        <div class="card-funcionarios">
+        
         <div class="total-funcionarios">
-          <p>
-            <i class="fas fa-users"></i>
-            Total de Funcionários
-          </p>
+          <i class="fas fa-users"></i>
+          <p>Total de Funcionários</p>
           <span class="valores-funcionarios total-funcionarios-valor">
             <!-- Inserir aqui o total de funcionários pelo banco de dados -->
           </span>
         </div>
 
         <div class="funcionario-ativo">
-          <p>
-            <i class="fas fa-user-check"></i>
-            Funcionários Ativos
-          </p>
+          <i class="fas fa-user-check"></i>
+          <p>Funcionários Ativos</p>
           <span class="valores-funcionarios funcionario-ativo-valor">
             <!-- Inserir aqui o total de funcionários ativos -->
           </span>
         </div>
 
         <div class="funcionario-desligado">
-          <p>
-            <i class="fas fa-user-times"></i>
-            Funcionários Desligados
-          </p>
+          <i class="fas fa-user-times"></i>
+          <p>Funcionários Desligado</p>
           <span class="valores-funcionarios funcionario-desligado-valor">
             <!-- Inserir aqui o total de funcionários desligados -->
           </span>
@@ -38,10 +32,6 @@ export function render() {
         </section>
 
         <section class="funcionarios-header">
-          <h2>
-            <i class="fas fa-user-tie"></i> Buscar funcionário
-          </h2>
-
           <div class="funcionarios-pesquisa">
             <div class="input-wrapper">
               <input type="text" placeholder="Buscar por nome" class="buscar-input-funcionario"/>
@@ -61,31 +51,31 @@ export function render() {
             
             <!-- Formulário de cadastro aqui -->
             <form class="cadastro-funcionario-modal">
-              <label for="nome_funcionario">Nome do Funcionário</label>
+              <label for="nome_funcionario">Nome do Funcionário:</label>
               <input type="text" name="nome_funcionario" placeholder="Insira o nome do funcionário" required />
 
-              <label for="cargo_funcionario">Cargo do Funcionário</label>
+              <label for="cargo_funcionario">Cargo do Funcionário:</label>
               <input type="text" name="cargo_funcionario" placeholder="Insira o cargo do funcionário" required />
 
-              <label for="salario_funcionario">Salário do Funcionário</label>
+              <label for="salario_funcionario">Salário do Funcionário:</label>
               <input type="number" name="salario_funcionario" placeholder="Insira o salário do funcionário" required />
 
-              <label for="tel_funcionario">Telefone do Funcionário</label>
+              <label for="tel_funcionario">Telefone do Funcionário:</label>
               <input type="tel" name="tel_funcionario" placeholder="Insira o telefone do funcionário, ex: (99) 99999-9999" required />
 
-              <label for="email_funcionario">E-mail do Funcionário</label>
+              <label for="email_funcionario">E-mail do Funcionário:</label>
               <input type="email" name="email_funcionario" placeholder="Insira o e-mail do funcionário, ex: ZB0k9@example.com" required />
 
-              <label for="login_funcionario">Login do Funcionário</label>
+              <label for="login_funcionario">Login do Funcionário:</label>
               <input type="text" name="login_funcionario" placeholder="Insira o login do funcionário" required />
 
-              <label for="senha_funcionario">Senha do Funcionário</label>
+              <label for="senha_funcionario">Senha do Funcionário:</label>
               <input type="text" name="senha_funcionario" placeholder="Insira a senha do funcionário" required />
 
-              <label for="admissao">Data de Admissão</label>
+              <label for="admissao">Data de Admissão:</label>
               <input type="date" name="admissao" placeholder=" Insira a data de admissão" required />
 
-              <label for="admissao">Data da Demissão</label>
+              <label for="admissao">Data da Demissão:</label>
               <input type="date" name="demissao" placeholder=" Insira a data de admissão" required />
   
               <label for="status">Status</label>
@@ -101,30 +91,26 @@ export function render() {
         </div>
 
 
-        <section class="funcionarios-tabela">
-              <h2> <i class="fas fa-table"></i> Quadro de Funcionários </h2>
-              <table>
-
-                <thead>
-                  <tr>
-                    <th>Nome</th>
-                    <th>Cargo</th>
-                    <th>Admissão</th>
-                    <th>Desligamento</th>
-                    <th>Salário</th>
-                    <th>Status</th>
-                    <th>Ações</th>
-                  </tr>
-                </thead>
-
-                <tbody> 
-            
+          <section class="funcionarios-tabela">
+            <table>
+              <thead>
+                <tr>
+                  <th>Nome</th>
+                  <th>Cargo</th>
+                  <th>Admissão</th>
+                  <th>Desligamento</th>
+                  <th>Salário</th>
+                  <th>Status</th>
+                  <th>Ações</th>
+                </tr>
+              </thead>
+              <tbody> 
                 <!-- Dados da tabela do banco de dados serão inseridos aqui -->
                 <td>Carregando...</td>
                 </tbody>
 
               </table>
-            </section>
+          </section>
     `;
 
       // Script relacionado aos valores dos dashboard de funcionários:------------------------------------------------------
@@ -406,7 +392,7 @@ export function render() {
           const modal = document.createElement("div");
           modal.classList.add("modal");
           modal.innerHTML = `
-            <div class="modal-content">
+            <div class="modal-editar-content">
               <h3>Editar Funcionário</h3>
               <form id="form-editar-funcionario">
                 <label>Nome:</label>

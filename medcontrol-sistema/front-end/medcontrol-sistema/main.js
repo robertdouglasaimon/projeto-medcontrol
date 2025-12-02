@@ -1,5 +1,4 @@
 // Função para verificar se o usuário está logado. Isso evita retomar sessão apertando em "voltar" no navegador. Vai exigir sempre autenticação para acessar o sistema.
-
 export function verificarLogin() {
   const token = localStorage.getItem("authToken");
   if (!token) {
@@ -42,7 +41,7 @@ function carregarTela() {
   app.innerHTML = '';
 
   // 6. Importa dinamicamente o módulo da tela correspondente:
-  import(`./telas/${hash}.js`)
+  import(`./telas/componentes/${hash}.js`)
     .then((modulo) => {
       const conteudo = modulo.render();
       app.appendChild(conteudo);
@@ -95,21 +94,20 @@ if (usuario) { // Verifique se o usuário foi encontrado no localStorage.
 
 //------------------------------------------------------------------------------------------//
 // Destruindo a sessão quando o usuário fechar a aba ou fechar o navegador (sair):
-document.getElementById("sair").addEventListener("click", () => {
-  // 🔥 Apaga a sessão
-  localStorage.removeItem("usuarioLogado");
+document.getElementById("btn-sair").addEventListener("click", window.logoutUsuario);
+document.getElementById("sair").addEventListener("click", window.logoutUsuario);
 
-  // 🔁 Redireciona pro login
-  window.location.href = "/medcontrol-sistema/front-end/medcontrol-login/index.html";
-});
-
-// Destruindo a sessão quando o usuário fechar a aba ou fechar o navegador (btn-sair):
-document.getElementById("btn-sair").addEventListener("click", () => {
-  // 🔥 Apaga a sessão
-  localStorage.removeItem("usuarioLogado");
-
-  // 🔁 Redireciona pro login
-  window.location.href = "/medcontrol-sistema/front-end/medcontrol-login/index.html";
-});
 //------------------------------------------------------------------------------------------//
 
+// Função para alternar a visibilidade do menu lateral ao clicar no botão (Tem que começar oculto o botão):
+document.addEventListener("DOMContentLoaded", () => {
+  const toggleBtn = document.getElementById("btn-toggle-menu");
+  const menu = document.querySelector(".menu-lateral");
+
+  toggleBtn.addEventListener("click", () => {
+    menu.classList.toggle("inativo");
+  });
+
+  
+});
+//------------------------------------------------------------------------------------------//

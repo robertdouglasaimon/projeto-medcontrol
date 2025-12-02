@@ -4,24 +4,25 @@ export function render () {
     div.innerHTML = `
         <section class="vendas-cards">
             <div class="card-vendas  receita-total-dia">
+                <i class="fas fa-box"></i>
                 <p>
-                    <i class="fas fa-box"></i>
                     Total de Vendas
                 </p>
                 <span class="total-receita-dia  valor-total-dia"></span>
             </div>
 
             <div class="card-vendas vendas-realizadas">
+                 <i class="fas fa-box"></i>
                 <p>
-                    <i class="fas fa-box"></i>
                     Total Vendas Realizadas
                 </p>
                 <span class="total-vendas-realizadas  valor-vendas-realizadas"></span>
             </div>
 
             <div class="card-vendas vendas-medias">
+                <i class="fas fa-box"></i>
                 <p>
-                    <i class="fas fa-box"></i>
+
                     Médias por Vendas 
                 </p>
                 <span class="total-vendas-medias  valor-vendas-medias"></span>
@@ -29,19 +30,16 @@ export function render () {
         </section>
 
         <section class="vendas-header">
-            <h2> <i class="fas fa-money-check"></i> Vendas Realizadas </h2>
-
             <div class="vendas-pesquisa">
                 <div class="input-wrapper">
                     <input type="text" id="busca-vendas" placeholder="Buscar Vendas" class="buscar-input-vendas">
-                    
                     <button class="btn-novo-venda" id="btnNovaVenda">
                         + Novo Registro
                     </button>
                 </div>
         </section>
 
-        <!-- Modal do botão 'Novo Registro' -->>
+        <!-- Modal do botão 'Novo Registro' -->
         <div id="modalNovoVenda" class="modal hidden">
             <div class="modal-content">
                 <span class="fechar-modal" id="fecharModal">&times;</span>
@@ -59,13 +57,10 @@ export function render () {
                     <button type="submit" class="salvar-modal">Salvar</button>
                     <button type="button" class="cancelar-modal">Cancelar</button>
                 </form>
-
             </div>
         </div>
 
-
         <section class="vendas-lista">
-            <h2> <i class="fas fa-table"></i> Tabela de Vendas</h2>
             <table>
                 <thead>
                     <tr>
@@ -371,7 +366,7 @@ export function render () {
             const modal = document.createElement("div");
             modal.classList.add("modal");
             modal.innerHTML = `
-              <div class="modal-content">
+              <div class="modal-editar-content">
                     <h2>Editar Venda</h2>
                     <form class="cadastro-venda-modal-editar">
                         <label for="produtos_vendidos">Produtos Vendidos:</label>

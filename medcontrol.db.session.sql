@@ -365,3 +365,17 @@ ORDER BY dias_para_vencer ASC;
 SELECT SUM(valor_venda) FROM vendas;
 
 
+-- Criando um novo usuário:
+INSERT INTO funcionarios (
+  nome_funcionario,
+  cargo_funcionario,
+  salario_funcionario,
+  tel_funcionario,
+  email_funcionario,
+  login_funcionario,
+  senha_funcionario,
+  admissao,
+  demissao,
+  status
+) VALUES
+('Pablo', 'Q.A', 1500.00, '(61)98317618', 'pablo@medcontrol', 'pablo', '123456789', '2025-10-26', NULL, 'Ativo');

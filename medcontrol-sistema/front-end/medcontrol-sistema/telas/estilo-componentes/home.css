@@ -1,0 +1,136 @@
+@charset "UTF-8";
+
+/* Importando o sistema.css pra poder usar o :root dele para aplicar nos titulos e icones :D */
+@import url("../../medcontrol-sistema/telas/estilo-componentes/sistema.css");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Container principal da home */
+.tela-home {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 2rem;
+  align-items: center;
+  background: linear-gradient(180deg, var(--fundo-principal), #0b1626 60%);
+  min-height: calc(100vh - 140px); /* ajusta com header/footer */
+  border-radius: 13px;
+}
+
+.home-cards a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.home-recursos a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Cabeçalho de boas-vindas */
+.home-boas-vindas {
+  max-width: 880px;
+  text-align: center;
+}
+
+.home-boas-vindas h1 {
+  font-size: 2.2rem;
+  color: var(--cor-branca);
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.3px;
+}
+
+.home-boas-vindas p {
+  font-size: 1.05rem;
+  color: var(--texto-suave);
+}
+
+/* Faixas de navegação e contexto (opcional) */
+.home-topbar {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  color: var(--texto-suave);
+}
+
+/* Grupos de cards */
+.home-cards, .recursos-botoes {
+  display: flex;
+  gap: 1.25rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.home-recursos h2 {
+  font-size: 1.5rem;
+  color: var(--fundo-principal);
+  margin-bottom: 1rem;
+}
+
+/* Card base reaproveitando o padrão e ajustando para o tema escuro */
+.card-dashboard {
+  width: 260px;
+  min-height: 120px;
+  background-color: var(--fundo-card);
+  border: 1px solid var(--borda-card);
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  padding: 1.2rem 1rem;
+  color: var(--cor-branca);
+}
+
+.card-dashboard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.35);
+  border-color: rgba(240,165,0,0.4);
+}
+
+/* Ícones grandes nos cards */
+.card-dashboard i {
+  display: block;
+  margin-top: 1rem;
+  margin-bottom: 0.6rem;
+  color: var(--amarelo-medcontrol);
+}
+
+/* Título em cada card */
+.card-dashboard p {
+  margin: 0;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+/* Título da seção de recursos */
+.home-recursos {
+  width: 100%;
+  max-width: 980px;
+}
+
+.home-recursos h2 {
+  font-size: 1.5rem;
+  color: var(--cor-branca);
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+/* Variações de cor por tipo de recurso (igual ao visual da imagem) */
+.card-produtos i { color: #ffd34d; }
+.card-vendas i   { color: #ff9b4a; }
+.card-clientes i { color: #ff6fa8; }
+
+.card-graficos i    { color: #2d8cff; }
+.card-relatorios i  { color: #ffba49; }
+.card-alertas i     { color: #ff5c5c; }
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .card-dashboard { width: 100%; max-width: 560px; }
+  .home-boas-vindas { padding: 0 1rem; }
+}

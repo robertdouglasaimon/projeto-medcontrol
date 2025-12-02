@@ -1,30 +1,58 @@
 // Importando ferramentas necessárias
 import express from 'express';
 import cors from 'cors';
+import session from 'express-session';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import Database from 'better-sqlite3';
-import bcrypt from 'bcrypt'; // Biblioteca para criptografia da senha.
+import bcrypt from 'bcrypt';
 
+const app = express(); // ✅ DECLARADO ANTES DE USAR
+app.use(express.json()); // ✅ ESSENCIAL para req.body funcionar
 
-// Configuração básica
-const app = express();
-app.use(cors());
-app.use(express.json());
+const allowedOrigin = "http://127.0.0.1:5500"; // ou localhost:5500
 
-// CORS manual para garantir acesso entre origens
+app.use(cors({
+  origin: allowedOrigin,
+  credentials: true
+}));
+
 app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Origin", allowedOrigin);
   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
   res.header("Access-Control-Allow-Headers", "Content-Type");
+  res.header("Access-Control-Allow-Credentials", "true");
   next();
 });
+
+app.use(express.json());
+
+app.use(session({
+  secret: 'medcontrol-super-secreto',
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    secure: false,
+    sameSite: 'lax'
+  }
+}));
+
+
 
 // Caminho do banco
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const dbPath = path.resolve(__dirname, '../banco-dados/farmacia.db');
+const dbPath = path.resolve(__dirname, '../../medcontrol-sistema/banco-dados/farmacia.db');
 const db = new Database(dbPath);
+
+// // Configuração da sessão:
+// function verificarSessao(req, res, next) {
+//   if (req.session.usuario) {
+//     next();
+//   } else {
+//     res.status(401).json({ erro: "Acesso negado. Faça login." });
+//   }
+// }
 
 /*-----------------------------------------------------------------------------------------*/
 // Rota: listar clientes
@@ -181,23 +209,28 @@ app.post('/login_funcionario', (req, res) => {
   try {
     const stmt = db.prepare(`SELECT * FROM funcionarios WHERE login_funcionario = ?`);
     const funcionario = stmt.get(login_funcionario);
+    console.log("📥 Dados recebidos:", login_funcionario, senha_funcionario);
+    console.log("🔐 Hash no banco:", funcionario?.senha_funcionario);
 
     res.setHeader("Content-Type", "application/json");
 
-    if (funcionario && bcrypt.compareSync(senha_funcionario, funcionario.senha_funcionario)) {
-      // Monta resposta segura com flag de login e dados essenciais
-      res.status(200).json({
-        autenticado: true,
-        funcionario: {
+      if (funcionario && bcrypt.compareSync(senha_funcionario, funcionario.senha_funcionario)) {
+        req.session.usuario = {
           id: funcionario.id,
           nome: funcionario.nome_funcionario,
           cargo: funcionario.cargo_funcionario,
           email: funcionario.email_funcionario
-        }
+        };
+
+        res.status(200).json({
+        autenticado: true,
+        funcionario: req.session.usuario
       });
+
     } else {
-      res.status(401).json({ autenticado: false, mensagem: "Login ou senha inválidos" });
+      res.status(401).json({ erro: "Login ou senha inválidos" });
     }
+
   } catch (err) {
     console.error("❌ Erro ao verificar login:", err.message);
     res.status(500).json({ autenticado: false, mensagem: "Erro interno no servidor" });
@@ -904,12 +937,30 @@ app.get("/relatorio-geral", (req, res) => {
     res.status(500).json({ mensagem: 'A tentativa de obter os dados do relatorio nao funcionou corretamente.' });
   }
 })
+//-------------------------------------------------------------------------------------------------------------------//
 
 
+//-------------------------------------------------------------------------------------------------------------------//
+// Configuração do express-session para gerenciar sessões de login
 
+// Rota: Cria uma rota para o front verificar se o usuário está autenticado:
+app.get('/session', (req, res) => {
+  if (req.session.usuario) {
+    res.json(req.session.usuario);
+  } else {
+    res.status(401).json({ erro: "Não autenticado" });
+  }
+});
 
-
-
+// Rota: para logout do usuário, destruindo a sessão:
+app.get('/logout', (req, res) => {
+  req.session.destroy(err => {
+    if (err) {
+      return res.status(500).json({ erro: "Erro ao encerrar sessão" });
+    }
+    res.json({ mensagem: "Logout realizado com sucesso" });
+  });
+});
 
 
 //-------------------------------------------------------------------------------------------------------------------//
@@ -923,4 +974,3 @@ app.listen(PORT, () => {
   console.log(`🚀 Servidor rodando na porta ${PORT}`);
   console.log(`🌐 Acesse http://localhost:${PORT}`);
 });
-
