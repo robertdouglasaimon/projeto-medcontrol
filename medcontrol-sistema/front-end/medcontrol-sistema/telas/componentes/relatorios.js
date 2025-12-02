@@ -200,7 +200,7 @@ export function render () {
     
     // Grafico de Relatório que está sendo atualizado em tempo real lá pelo back-end com a API do Flask (Python: app.py)
     setTimeout(() => {
-    fetch("https://medcontrol-backend.onrender.com/grafico-estoque")
+    fetch("https://medcontrol-graficos.onrender.com/grafico-estoque")
         .then(response => response.json())
         .then(data => {
         const ctx = document.getElementById('graficoPizzaNivelEstoque').getContext('2d');
@@ -250,7 +250,7 @@ export function render () {
 
     // Gráfico de Linhas da tela de relatório que mostra o comparativo dos produtos 5 mais vendidos e os 5 menos vendidos:
     setTimeout(() => {
-    fetch("https://medcontrol-backend.onrender.com/grafico-estoque")
+    fetch("https://medcontrol-graficos.onrender.com/grafico-estoque")
         .then(response => response.json())
         .then(data => {
         const ctx = document.getElementById('graficoDeLinhas').getContext('2d');
@@ -305,7 +305,7 @@ export function render () {
     // Calendário de lote e validade dos produtos mais próximos de vencer:
     setTimeout(() => {
         const listaLoteEValidade = document.getElementById("calendarioDeValidadeDosLotes");
-        fetch("https://medcontrol-backend.onrender.com/grafico-estoque")
+        fetch("https://medcontrol-graficos.onrender.com/grafico-estoque")
             .then(response => response.json())
             .then(data => {
             const lotes = data.lote_validade.lote;
