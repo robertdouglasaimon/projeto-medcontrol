@@ -113,7 +113,7 @@ export function render() {
     setTimeout(() => {
         const totalEstoqueSpan = div.querySelector('.total-estoque-valor');
 
-        fetch('http://localhost:3001/dashboard_estoque')
+        fetch('https://medcontrol-backend.onrender.com/dashboard_estoque')
             .then((response) => {
                 if (response.ok) {
                     return response.json();
@@ -134,7 +134,7 @@ export function render() {
     setTimeout(() => {
         const perdasDescarteSpan = div.querySelector('.perdas-descarte-valor');
 
-        fetch('http://localhost:3001/dashboard_perdas_descarte')
+        fetch('https://medcontrol-backend.onrender.com/dashboard_perdas_descarte')
             .then((response) => {
                 if (response.ok) {
                     return response.json();
@@ -155,7 +155,7 @@ export function render() {
     setTimeout(() => {
         const nivelEstoqueSpan = div.querySelector('.nivel-estoque-valor');
 
-        fetch('http://localhost:3001/nivel_estoque')
+        fetch('https://medcontrol-backend.onrender.com/nivel_estoque')
             .then((response) => {
                 if (response.ok) {
                     return response.json();
@@ -312,7 +312,7 @@ export function render() {
             }
 
             try {
-                const response = await fetch('http://localhost:3001/cadastro_lote', {
+                const response = await fetch('https://medcontrol-backend.onrender.com/cadastro_lote', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
@@ -362,7 +362,7 @@ export function render() {
         const tbody = document.querySelector('tbody');
         tbody.innerHTML = "";
 
-        fetch('http://localhost:3001/tabela_estoque')
+        fetch('https://medcontrol-backend.onrender.com/tabela_estoque')
             .then((response) => {
                 if (response.ok) {
                     return response.json();
@@ -474,7 +474,7 @@ export function render() {
                 // Envia os dados para o back-end:
                 try {
                     console.log("Dados do lote: ", { id_controle_estoque, lote_estoque, qtd_entrada, saida_produto, qtd_estoque, produto_validade, perdas_descarte });
-                    const response = await fetch(`http://localhost:3001/editar_lote/${id_controle_estoque}`, {
+                    const response = await fetch(`https://medcontrol-backend.onrender.com/editar_lote/${id_controle_estoque}`, {
                         method: "PUT",
                         headers: {
                             "Content-Type": "application/json"
@@ -529,7 +529,7 @@ export function render() {
                 if (!confirmar) return;
 
                 try {
-                    const response = await fetch(`http://localhost:3001/deletar_lote/${id}`, {
+                    const response = await fetch(`https://medcontrol-backend.onrender.com/deletar_lote/${id}`, {
                         method: 'DELETE'
                     });
 

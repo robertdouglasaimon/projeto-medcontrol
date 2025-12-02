@@ -103,7 +103,7 @@ export function render() {
 
     // Total de produtos:  -------------------------------------------------------//
     const totalProdutos = div.querySelector(".total-produtos-valor");
-    fetch("http://localhost:3001/dashboard_produtos")
+    fetch("https://medcontrol-backend.onrender.com/dashboard_produtos")
     .then((response) => {
       if(response.ok) {
         console.log("Dados puxados com sucesso!")
@@ -124,7 +124,7 @@ export function render() {
     
     // Total de produtos vendidos:  ------------------------------------------------//
     const totalProdutosVendidos = div.querySelector(".valor-mais-vendido");
-    fetch("http://localhost:3001/dashboard_produtos_mais_vendidos")
+    fetch("https://medcontrol-backend.onrender.com/dashboard_produtos_mais_vendidos")
     .then((response) => {
       if(response.ok) {
         console.log("Dados puxados com sucesso!")
@@ -147,7 +147,7 @@ export function render() {
     //------------------------------------------------------------------------------//
     // Total de produtos menos vendidos:  -------------------------------------------//
     const totalProdutosMenosVendidos = div.querySelector(".valor-menos-vendido");
-    fetch("http://localhost:3001/dashboard_produtos_menos_vendidos")
+    fetch("https://medcontrol-backend.onrender.com/dashboard_produtos_menos_vendidos")
     .then((response) => {
       if(response.ok) {
         console.log("Dados puxados com sucesso!")
@@ -169,7 +169,7 @@ export function render() {
     //------------------------------------------------------------------------------//
     // Total do Estoque de produtos ------------------------------------------------//
     const totalEstoque = div.querySelector(".valor-estoque-valor");
-    fetch("http://localhost:3001/dashboard_total_estoque")
+    fetch("https://medcontrol-backend.onrender.com/dashboard_total_estoque")
     .then((response) => {
       if(response.ok) {
         console.log("Dados puxados com sucesso!")
@@ -216,7 +216,7 @@ export function render() {
   },0);
 
   // Script para cadastrar um novo cliente pelo botão e modal "+ Novo Produto":
-    setTimeout(() => {
+  setTimeout(() => {
       const form = div.querySelector(".cadastro-produto-modal");
       const table = div.querySelector(".produtos-lista table tbody");
       const modal = div.querySelector("#modalNovoProduto");
@@ -282,7 +282,7 @@ export function render() {
 
 
         try {
-          const response = await fetch('http://localhost:3001/novo_produto', {
+          const response = await fetch('https://medcontrol-backend.onrender.com/novo_produto', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
@@ -334,14 +334,14 @@ export function render() {
           alert(`❌ ${error.message}`);
         }
       });
-    }, 0);
+  }, 0);
 
   // Puxando os produtos do banco de dados e inserindo na tabela de produtos:
   setTimeout(() => {
     const tbody = div.querySelector("tbody");
     tbody.innerHTML = "";
 
-    fetch("http://localhost:3001/cadastro_produtos")
+    fetch("https://medcontrol-backend.onrender.com/cadastro_produtos")
     .then(response => {
       if(response.ok) {
         return response.json();
@@ -373,7 +373,6 @@ export function render() {
 
   },0);
 
-
   // Excluindo os itens da tabela pelo front através do botão excluir (modificando no banco de dados as informações do produto):
   setTimeout(() => {
       const tbody = div.querySelector("tbody");
@@ -391,7 +390,7 @@ export function render() {
       if (!confirmar) return;
 
       try {
-        const res = await fetch(`http://localhost:3001/deletar_produto/${nome_produto}`, {
+        const res = await fetch(`https://medcontrol-backend.onrender.com/deletar_produto/${nome_produto}`, {
           method: "DELETE"
         });
         console.log("Status da resposta:", res.status);
@@ -495,7 +494,7 @@ export function render() {
         }
 
         try {
-          const res = await fetch(`http://localhost:3001/editar_produto/${id_produto}`, {
+          const res = await fetch(`https://medcontrol-backend.onrender.com/editar_produto/${id_produto}`, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ nome_produto, descricao, fabricante, qtd_estoque, lote, data_validade, preco_venda, quantidade_vendida })

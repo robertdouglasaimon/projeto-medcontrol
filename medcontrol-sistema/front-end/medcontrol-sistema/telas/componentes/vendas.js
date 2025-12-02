@@ -85,7 +85,7 @@ export function render () {
 
         // Total de vendas realizadas:
         const totalReceitaDia = document.querySelector(".valor-total-dia");
-        fetch("http://localhost:3001/dashboard_vendas")
+        fetch("https://medcontrol-backend.onrender.com/dashboard_vendas")
         .then((response) => {
             if (response.ok) {
                 return response.json();
@@ -103,7 +103,7 @@ export function render () {
 
         // Total de vendas realizadas:
         const totalVendasRealizadas = document.querySelector(".valor-vendas-realizadas");
-        fetch("http://localhost:3001/dashboard_vendas")
+        fetch("https://medcontrol-backend.onrender.com/dashboard_vendas")
         .then((response) => {
             if (response.ok) {
                 return response.json();
@@ -161,7 +161,7 @@ export function render () {
 
     // Script para inserir os dados do banco de dados na tabela de vendas :
     setTimeout(() => {
-        fetch("http://localhost:3001/tabela_vendas")
+        fetch("https://medcontrol-backend.onrender.com/tabela_vendas")
             .then((response) => {
                 if (response.ok) {
                     return response.json();
@@ -249,11 +249,11 @@ export function render () {
 
         // Busca os IDs automaticamente
             try {
-                const clienteRes = await fetch("http://localhost:3001/cliente-ultimo");
+                const clienteRes = await fetch("https://medcontrol-backend.onrender.com/cliente-ultimo");
                 const clienteData = await clienteRes.json();
                 id_cliente = clienteData.id_cliente;
 
-                const estoqueRes = await fetch("http://localhost:3001/estoque-ultimo");
+                const estoqueRes = await fetch("https://medcontrol-backend.onrender.com/estoque-ultimo");
                 const estoqueData = await estoqueRes.json();
                 id_controle_estoque = estoqueData.id_controle_estoque;
             } catch (err) {
@@ -285,7 +285,7 @@ export function render () {
             }
 
             try {
-                const resposta = await fetch("http://localhost:3001/cadastrar_venda", {
+                const resposta = await fetch("https://medcontrol-backend.onrender.com/cadastrar_venda", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({
@@ -354,7 +354,7 @@ export function render () {
             const row = btn.closest("tr");
             const id_vendas = row.getAttribute("data-id-venda");
             console.log("ID da venda a editar:", id_vendas);
-            console.log("🔗 URL da edição:", `http://localhost:3001/editar_venda/${id_vendas}`);
+            console.log("🔗 URL da edição:", `https://medcontrol-backend.onrender.com/editar_venda/${id_vendas}`);
 
 
             const produtos_vendidos = row.querySelector("td:nth-child(1)").textContent;
@@ -417,19 +417,19 @@ export function render () {
                     // Fazendo um malabarismo aqui para inserir os ids dos clientes e do estoque na venda sem ser feito um cadastro novo
                     // e sem ser feito pelo front-end, para evitar o erro de chave estrangeira na tabela venda:
                     // 🔥 Busca o último cliente
-                    const clienteRes = await fetch("http://localhost:3001/cliente-ultimo");
+                    const clienteRes = await fetch("https://medcontrol-backend.onrender.com/cliente-ultimo");
                     const clienteData = await clienteRes.json();
                     const id_cliente = clienteData.id_cliente;
 
                     // 🔥 Busca o último estoque
-                    const estoqueRes = await fetch("http://localhost:3001/estoque-ultimo");
+                    const estoqueRes = await fetch("https://medcontrol-backend.onrender.com/estoque-ultimo");
                     const estoqueData = await estoqueRes.json();
                     const id_controle_estoque = estoqueData.id_controle_estoque;
 
 
 
                     // Continuando com o código normalmente e editando a venda:
-                    const resposta = await fetch(`http://localhost:3001/editar_venda/${id_vendas}`, {
+                    const resposta = await fetch(`https://medcontrol-backend.onrender.com/editar_venda/${id_vendas}`, {
                         method: "PUT",
                         headers: {
                             "Content-Type": "application/json",
@@ -496,7 +496,7 @@ export function render () {
             if (!confirmacao) return;
 
             try {
-                const resposta = await fetch(`http://localhost:3001/deletar_venda/${id_vendas}`, {
+                const resposta = await fetch(`https://medcontrol-backend.onrender.com/deletar_venda/${id_vendas}`, {
                     method: "DELETE"
                 });
 

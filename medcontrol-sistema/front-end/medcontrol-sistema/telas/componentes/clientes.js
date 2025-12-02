@@ -173,7 +173,7 @@ export function render() {
     }
 
     try {
-      const response = await fetch('http://localhost:3001/novo_cliente', {
+      const response = await fetch('https://medcontrol-backend.onrender.com/novo_cliente', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -253,7 +253,7 @@ export function render() {
 
     // Inserindo o total de clientes no dashboard
     const totalClientes = div.querySelector(".total-clientes-valor");
-    fetch("http://localhost:3001/total_clientes")
+    fetch("https://medcontrol-backend.onrender.com/total_clientes")
     .then((response) => {
       if (response.ok) {
         return response.json();
@@ -271,7 +271,7 @@ export function render() {
 
     // Inserindo o total de clientes ativos no dashboard
     const totalClientesAtivos = div.querySelector(".cliente-ativo-valor");
-    fetch("http://localhost:3001/total_clientes_ativos")
+    fetch("https://medcontrol-backend.onrender.com/total_clientes_ativos")
     .then((response) => {
       if (response.ok) {
         return response.json();
@@ -291,7 +291,7 @@ export function render() {
 
     // Inserindo o total de clientes inativos no dashboard
     const totalClientesInativos = div.querySelector(".cliente-inativo-valor");
-    fetch("http://localhost:3001/total_clientes_inativos")
+    fetch("https://medcontrol-backend.onrender.com/total_clientes_inativos")
     .then((response) => {
       if (response.ok) {
         return response.json();
@@ -318,7 +318,7 @@ export function render() {
     tbody.innerHTML = ""; // Limpa o conteúdo anterior
 
     // Criando a função para receber os dados do banco de dados via fetch no na tabela
-    fetch("http://localhost:3001/tabela_clientes") 
+    fetch("https://medcontrol-backend.onrender.com/tabela_clientes") 
     .then((response) => {
       if (response.ok) {
         return response.json();
@@ -361,7 +361,7 @@ export function render() {
       if (!confirmar) return;
 
       try {
-        const res = await fetch(`http://localhost:3001/deletar_cliente/${id_cliente}`, {
+        const res = await fetch(`https://medcontrol-backend.onrender.com/deletar_cliente/${id_cliente}`, {
           method: "DELETE"
         });
         console.log("Status da resposta:", res.status);
@@ -476,7 +476,7 @@ export function render() {
  
         try {
           console.log("Dados enviados:", { nome, telefone, endereco, cpf, status });
-          const res = await fetch(`http://localhost:3001/editar_cliente/${id_cliente}`, {
+          const res = await fetch(`https://medcontrol-backend.onrender.com/editar_cliente/${id_cliente}`, {
             method: "PUT",
             headers: {
               "Content-Type": "application/json"
