@@ -144,7 +144,7 @@ export function render () {
 
     // Total de fornecedores -------------------------------------------------------//
        const funcionariosTotal = document.querySelector(".valor-usuarios-ativos");
-       fetch('http://localhost:3001/dashboard_funcionarios')
+       fetch('https://medcontrol-backend.onrender.com/dashboard_funcionarios')
        .then((resposta) => {
         if (resposta.ok) {
         return resposta.json();
@@ -163,7 +163,7 @@ export function render () {
 
     // Inserindo o total de clientes no dashboard ------------------------------------//
         const totalClientes = div.querySelector(".valor-clientes-relatorio");
-        fetch("http://localhost:3001/total_clientes")
+        fetch("https://medcontrol-backend.onrender.com/total_clientes")
         .then((response) => {
         if (response.ok) {
             return response.json();
@@ -180,7 +180,7 @@ export function render () {
 
     // Total de vendas realizadas ---------------------------------------------------//
         const totalReceitaDia = document.querySelector(".valor-relatorio-vendas-total");
-        fetch("http://localhost:3001/dashboard_vendas")
+        fetch("https://medcontrol-backend.onrender.com/dashboard_vendas")
         .then((response) => {
             if (response.ok) {
                 return response.json();
@@ -508,10 +508,6 @@ export function render () {
         }
     }, 100);
     }, 100);
-
-
-
-
 
     return div
 }
