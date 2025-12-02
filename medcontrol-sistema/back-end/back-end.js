@@ -11,6 +11,7 @@ const app = express(); // ✅ DECLARADO ANTES DE USAR
 app.use(express.json()); // ✅ ESSENCIAL para req.body funcionar
 
 const allowedOrigin = process.env.ALLOWED_ORIGIN ?? "http://localhost:5500";
+
 console.log("🌐 Origin permitido:", allowedOrigin);
 
 
