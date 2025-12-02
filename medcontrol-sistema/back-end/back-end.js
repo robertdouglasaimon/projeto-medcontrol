@@ -10,7 +10,9 @@ import bcrypt from 'bcrypt';
 const app = express(); // ✅ DECLARADO ANTES DE USAR
 app.use(express.json()); // ✅ ESSENCIAL para req.body funcionar
 
-const allowedOrigin = process.env.ALLOWED_ORIGIN || "http://localhost:5500" || "http://127.0.0.1:5500";
+const allowedOrigin = process.env.ALLOWED_ORIGIN ?? "http://localhost:5500";
+console.log("🌐 Origin permitido:", allowedOrigin);
+
 
 app.use(cors({
   origin: allowedOrigin,

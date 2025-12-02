@@ -15,6 +15,7 @@ document.getElementById("form-cadastro").addEventListener("submit", async (e) =>
       body: JSON.stringify(dados)
     });
 
+
     const raw = await res.text();
     const data = JSON.parse(raw);
 
