@@ -190,7 +190,7 @@ export function render() {
         - Pode vir mais blocos de dados, vai dependendo da API Flask e de como ela retorna os dados de lá, só seguir as etapas no comentário abaixo e no back-end: app.py que dá bom.
         ===============================================================
         */
-        fetch('http://localhost:5000/grafico-estoque')
+        fetch('https://medcontrol-graficos.onrender.com/grafico-estoque')
             .then(res => res.json()) // Converte a resposta em JSON
             .then(data => {
                 /*
