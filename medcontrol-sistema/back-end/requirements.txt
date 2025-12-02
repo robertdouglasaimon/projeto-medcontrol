@@ -1,0 +1,8 @@
+express
+express-sesion
+better-sqlite3
+sqlite3
+bcrypt
+flask_cors
+better-sqlite3
+chart.js  # se estiver usando via CDN, não precisa incluir aqui

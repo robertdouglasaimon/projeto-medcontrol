@@ -10,7 +10,7 @@ CORS(app)
 @app.route('/grafico-estoque')
 def grafico_estoque():
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-    db_path = os.path.join(BASE_DIR, '../../medcontrol-sistema/banco-dados/farmacia.db') 
+    db_path = os.environ.get("DB_PATH", os.path.join(BASE_DIR, "farmacia.db"))
     
     print("E:\PROJETO DO GITHUB DESKTOP - NUNCA APAGAR\projeto-medcontrol\medcontrol-sistema\banco-dados\farmacia.db", db_path)
 
@@ -179,6 +179,7 @@ def grafico_estoque():
         print("❌ Erro ao acessar o banco:", e)
         return jsonify({"erro": str(e)})
 
-if __name__ == '__main__':
-    app.run(debug=True)
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
+
 
