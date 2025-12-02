@@ -11,453 +11,461 @@
 
 /*----------------Estilizando "fornecedores.js"-----------------------------------------------*/
 .tela-fornecedores {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  padding: 1rem;
-  background: linear-gradient(180deg, var(--fundo-principal), #0b1626 60%);
-  border-radius: 13px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 1rem;
+    background: linear-gradient(180deg, var(--fundo-principal), #0b1626 60%);
+    border-radius: 13px;
 }
 
 .card-fornecedores p {
-  font-size: 1.5rem;
-  margin-top: 1rem;
-  color: var(--cor-branca);
+    font-size: 1.5rem;
+    margin-top: 1rem;
+    color: var(--cor-branca);
 }
 
 .card-fornecedores{
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 10px;
-  color: var(--cor-branca);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 10px;
+    color: var(--cor-branca);
 }
 
 .valores-fornecedores{
-  position: relative;
-  top: -26px;
-  font-size: 2.5rem !important;
-  font-weight: bold;
-  color: var(--cor-branca);
+    position: relative;
+    top: -26px;
+    font-size: 2.5rem !important;
+    font-weight: bold;
+    color: var(--cor-branca);
 }
 
 /* Estilos dos cards de fornecedores ----------------*/
 .total-de-fornecedores{
-  width: 300px;
-  height: 160px;
-  background-color: var(--fundo-card);
-  border-radius: 15px;
-  text-align: center;
-  border: solid 1px #0077ff;
+    width: 300px;
+    height: 160px;
+    background-color: var(--fundo-card);
+    border-radius: 15px;
+    text-align: center;
+    border: solid 1px #0077ff;
 }
 
 .fornecedores-ativos{
-  width: 300px;
-  height: 160px;
-  background-color: var(--fundo-card);
-  border-radius: 15px;
-  text-align: center;
-  border: solid 1px #59f01d;
+    width: 300px;
+    height: 160px;
+    background-color: var(--fundo-card);
+    border-radius: 15px;
+    text-align: center;
+    border: solid 1px #59f01d;
 }
 
 .fornecedores-inativos{
-  width: 300px;
-  height: 160px;
-  background-color: var(--fundo-card);
-  border-radius: 15px;
-  text-align: center;
-  border: solid 1px #fa3636;
+    width: 300px;
+    height: 160px;
+    background-color: var(--fundo-card);
+    border-radius: 15px;
+    text-align: center;
+    border: solid 1px #fa3636;
 }
 
 /* icones dos cards */
 .card-fornecedores i {
-  margin-top: 15px;
-  font-size: 40px;
-  color: orange;
+    margin-top: 15px;
+    font-size: 40px;
+    color: orange;
 }
 
 /* Hover dos cards de fornecedores ----------------*/
 .total-de-fornecedores:hover {
-  background-color: #0077ff;
-  transform: scale(1.05);
-  transition: all 0.3s ease-in-out;
+    background-color: #0077ff;
+    transform: scale(1.05);
+    transition: all 0.3s ease-in-out;
 }
 
 .fornecedores-ativos:hover {
-  background-color: #59f01d;
-  transform: scale(1.05);
-  transition: all 0.3s ease-in-out;
+    background-color: #59f01d;
+    transform: scale(1.05);
+    transition: all 0.3s ease-in-out;
 }
 
 .fornecedores-inativos:hover {
-  background-color: #fa3636;
-  transform: scale(1.05);
-  transition: all 0.3s ease-in-out;
+    background-color: #fa3636;
+    transform: scale(1.05);
+    transition: all 0.3s ease-in-out;
 }
 
 
 /* Estilo da barra de pesquisa -------------------------------------------------*/
 .fornecedores-header {
-  margin-top: 1rem;
+    margin-top: 1rem;
 }
 
-.fornecedores-header h2 {
-  background-color: var(--fundo-principal);
-  padding: 10px;
-  font-size: 1.5rem;
-  margin-bottom: 10px;
-  margin-top: 2rem;
-  color: var(--cor-branca);
-  border-radius: 5px;
-}
 
 /*----------------Barra de Pesquisa e Botão Novo----------------------------------------------*/
 .fornecedor-pesquisa {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-   margin-top: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 50px;
+    margin-top: 60px;
 }
 
 /* .search-container {
-  display: flex;
-  gap: 10px;
+    display: flex;
+    gap: 10px;
 } */
 
 /* .input-wrapper {
-  position: relative;
-  display: flex;
-  width: 100%;
-  max-width: 100%;
+    position: relative;
+    display: flex;
+    width: 100%;
+    max-width: 100%;
 } */
 
 .buscar-input {
-  flex: 1;
-  padding: 15px;
-  border-radius: 5px 0 0 5px;
-  border: 1px solid #ccc;
-  font-size: 1rem;
-  min-width: 0;
-  background-color: var(--fundo-card);
-  color: #ffffffee;
+    flex: 1;
+    padding: 15px;
+    border-radius: 5px 0 0 5px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    min-width: 0;
+    background-color: var(--fundo-card);
+    color: #ffffffee;
 }
 
 .buscar-input::placeholder {
-  color: #ffffffee;
+    color: #ffffffee;
 }
 
 .btn-novo-fornecedor {
-  background-color: orange;
-  color: white;
-  border: none;
-  border-radius: 0 5px 5px 0;
-  padding: 15px 20px;
-  cursor: pointer;
-  font-weight: bold;
-  white-space: nowrap;
+    background-color: orange;
+    color: white;
+    border: none;
+    border-radius: 0 5px 5px 0;
+    padding: 15px 20px;
+    cursor: pointer;
+    font-weight: bold;
+    white-space: nowrap;
 }
 /* Modal -------------------------------------------------*/
 .modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0,0,0,0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .modal-content {
-  background-color: #ffffff;
-  border-radius: 12px;
-  padding: 2rem;
-  width: 100%;
-  max-width: 500px;
-  margin: auto;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-  position: relative;
-  animation: fadeIn 0.3s ease-in-out;
+    background-color: var(--fundo-card); /* <-- ALTERADO: Dark Mode */
+    border-radius: 12px;
+    padding: 2rem;
+    width: 100%;
+    max-width: 500px;
+    margin: auto;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    position: relative;
+    animation: fadeIn 0.3s ease-in-out;
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-10px); }
-  to { opacity: 1; transform: translateY(0); }
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 .modal-content h3 {
-  text-align: center;
-  font-size: 1.6rem;
-  margin-bottom: 1.5rem;
-  color: #2f3640;
+    text-align: center;
+    font-size: 1.6rem;
+    margin-bottom: 1.5rem;
+    color: var(--amarelo-medcontrol); 
 }
 
 .fechar-modal {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  font-size: 1.5rem;
-  cursor: pointer;
-  color: #e84118;
-  transition: transform 0.2s;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #e84118;
+    transition: transform 0.2s;
 }
 
 .fechar-modal:hover {
-  transform: scale(1.2);
+    transform: scale(1.2);
 }
 
 .cadastro-fornecedor-modal{
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    background-color: var(--fundo-card); 
 }
 
 .cadastro-fornecedor-modal input,
 .cadastro-fornecedor-modal select {
-  padding: 0.8rem 1rem;
-  border: 1px solid #dcdde1;
-  border-radius: 8px;
-  font-size: 1rem;
-  transition: border-color 0.3s;
+    padding: 0.8rem 1rem;
+    border: 1px solid #dcdde1;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+    background-color: var(--fundo-card); 
+    color: var(--cor-branca); 
 }
 
 .cadastro-fornecedor-modal input:focus,
 .cadastro-fornecedor-modal select:focus {
-  border-color: #00a8ff;
-  outline: none;
+    border-color: #00a8ff;
+    outline: none;
 }
 
 .cadastro-fornecedor-modal .cancelar:hover {
-  background-color: #c23616;
+    background-color: #c23616;
 }
 
 
 .modal.hidden {
-  display: none;
+    display: none;
 }
 
-.modal-content {
-  background-color: white;
-  padding: 20px;
-  border-radius: 8px;
-  width: 300px;
+.modal-content { 
+    background-color: var(--fundo-card); 
+    padding: 20px;
+    border-radius: 8px;
+    width: 300px;
 }
 
 .fechar-modal {
-  float: right;
-  cursor: pointer;
-  font-size: 20px;
+    float: right;
+    cursor: pointer;
+    font-size: 20px;
 }
 /*-------------------------------------------------------*/
 
 /* Estilo da tabela de fornecedores --------------*/
 .fornecedores-tabela h2 {
-  background-color: var(--fundo-principal);
-  padding: 10px;
-  font-size: 1.5rem;
-  margin-bottom: 10px;
-  margin-top: 2rem;
-  color: var(--cor-branca);
-  border-radius: 5px;
+    background-color: var(--fundo-principal);
+    padding: 10px;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    margin-top: 2rem;
+    color: var(--cor-branca);
+    border-radius: 5px;
 }
 
 /* Tabela ------------------------------*/
 .fornecedores-tabela table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
-  background-color: var(--cor-branca);
-  border-radius: 8px;
-  overflow: hidden;
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: var(--cor-branca);
+    border-radius: 8px;
+    overflow: hidden;
 }
 
 .fornecedores-tabela th {
-  height: 50px;
-  text-align: left;
-  padding-left: 20px;
-  background-color: var(--fundo-card);
-  color: var(--cor-branca);
-  border-bottom: 1px solid #e5e5e5;
+    height: 50px;
+    text-align: left;
+    padding-left: 20px;
+    background-color: var(--fundo-card);
+    color: var(--cor-branca);
+    border-bottom: 1px solid #e5e5e5;
 }
 
 
 .fornecedores-tabela td {
-  padding: 14px;
-  font-size: 16px;
-  border-bottom: 1px solid #e5e5e5;
+    padding: 14px;
+    font-size: 16px;
+    border-bottom: 1px solid #e5e5e5;
 }
 
 /* Estilo das linhas da tabela ====================*/
 .fornecedores-tabela tr:nth-child(odd),
 .fornecedores-tabela tr:nth-child(even) {
-  background-color: var(--fundo-card);
-  color: var(--cor-branca);
+    background-color: var(--fundo-card);
+    color: var(--cor-branca);
 }
 
 .fornecedores-tabela tr:hover {
-  background-color: var(--amarelo-medcontrol);
-  color: var(--cor-preta);
+    background-color: var(--amarelo-medcontrol);
+    color: var(--cor-preta);
 }
-/*=================================================*/
+
 
 .fornecedores td i {
-  color: var(--amarelo-medcontrol);
+    color: var(--amarelo-medcontrol);
 }
 
 /*Botões de editar e excluir ----------------------*/
 .btn-fornecedores-editar {
-  background-color: var(--amarelo-medcontrol);
-  color: var(--cor-branca);
-  border: none;
-  border-radius: 4px;
-  padding: 8px 17px;
-  font-size: 14px;
-  cursor: pointer;
-  font-weight: bold;
-  margin-bottom: 0.3rem;
+    background-color: var(--amarelo-medcontrol);
+    color: var(--cor-branca);
+    border: none;
+    border-radius: 4px;
+    padding: 8px 17px;
+    font-size: 14px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-bottom: 0.3rem;
 }
 
 .btn-fornecedores-excluir {
-  background-color: #e84118;
-  color: var(--cor-branca);
-  border: none;
-  border-radius: 4px;
-  padding: 8px 17px;
-  font-size: 14px;
-  cursor: pointer;
-  font-weight: bold;
-  margin-bottom: 0.3rem;
+    background-color: #e84118;
+    color: var(--cor-branca);
+    border: none;
+    border-radius: 4px;
+    padding: 8px 17px;
+    font-size: 14px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-bottom: 0.3rem;
 }
 
 .btn-fornecedores-excluir:hover {
-  background-color: #c23616;
+    background-color: #c23616;
 }
 
 .btn-fornecedores-editar:hover {
-  background-color: rgb(190, 147, 29);
+    background-color: rgb(190, 147, 29);
 }
 
-/* Estilo dos inputs do modal de editar cliente: */
+/* modal de editar cliente: */
 .modal-content {
-  background-color: var(--cor-branca);
-  padding: 20px;
-  border-radius: 8px;
-  width: 400px;
-  max-width: 100%;
+    background-color: var(--fundo-card); 
+    padding: 20px;
+    border-radius: 8px;
+    width: 400px;
+    max-width: 100%;
 }
 
 .modal-content h3 {
-  text-align: center;
-  font-size: 1.5rem;
-  margin-bottom: 10px;
-  color: var(--fundo-principal);
+    text-align: center;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: var(--amarelo-medcontrol); 
 }
 
 .modal-content form {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 
 .modal-content input,
 .modal-content select {
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 14px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
 }
 
-/* Deixando os inputs um abaixo do outro: */
+
 .form-group {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
 }
 
+#form-editar-fornecedor {
+    background-color: var(--fundo-card);
+    color: var(--cor-branca);
+}
+
+#form-editar-fornecedor label {
+    color: var(--amarelo-medcontrol);
+}
+
+#form-editar-fornecedor input,
+#form-editar-fornecedor select {
+    background-color: var(--fundo-card);
+    color: var(--cor-branca);
+}
 /*----------------------------------*/
-/* Botão Salvar */
+/* Botão Salvar (Novo Cadastro) */
 .cadastro-fornecedor-modal button[type="submit"]{
-  background-color: #44bd32;
-  color: white;
-  border: none;
-  padding: 0.5rem;
-  border-radius: 4px;
-  font-weight: bold;
-  cursor: pointer;
+    background-color: #44bd32;
+    color: white;
+    border: none;
+    padding: 0.5rem;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
 }
 
 .cadastro-fornecedor-modal button[type="submit"]:hover {
-  background-color: #28a315;
-  color: var(--cor-branca);
-  transition: all 0.3s ease-in-out;
-  transform: scale(1.05);
+    background-color: #28a315;
+    color: var(--cor-branca);
+    transition: all 0.3s ease-in-out;
+    transform: scale(1.05);
 }
 
-/* Botão Cancelar */
+/* Botão Cancelar (Novo Cadastro) */
 .cadastro-fornecedor-modal button[type="button"]{
-  background-color: #e84118;
-  color: var(--cor-branca);
-  border: none;
-  border-radius: 4px;
-  padding: 0.5rem;
-  font-size: 1rem;
-  cursor: pointer;
-  font-weight: bold;
+    background-color: #e84118;
+    color: var(--cor-branca);
+    border: none;
+    border-radius: 4px;
+    padding: 0.5rem;
+    font-size: 1rem;
+    cursor: pointer;
+    font-weight: bold;
 }
 
 .cadastro-fornecedor-modal button[type="button"]:hover {
-  background-color: #c82333;
-  color: var(--cor-branca);
-  transition: all 0.3s ease-in-out;
-  transform: scale(1.05);
+    background-color: #c82333;
+    color: var(--cor-branca);
+    transition: all 0.3s ease-in-out;
+    transform: scale(1.05);
 }
 
 /* Icone de "x" de fechar no modal: */
 .fechar-modal {
-  float: right;
-  cursor: pointer;
-  font-size: 20px;
+    float: right;
+    cursor: pointer;
+    font-size: 20px;
 }
 /* Estilos relacionados ao modal de cadastro de editar lote ------------------*/
 
 #form-editar-fornecedor .btn-primary{
-  background-color: #44bd32;
-  color: var(--cor-branca);
-  border: none;
-  border-radius: 7px;
-  padding: 0.8rem;
-  font-size: 1rem;
-  cursor: pointer;
-  font-weight: bold;
+    background-color: #44bd32;
+    color: var(--cor-branca);
+    border: none;
+    border-radius: 7px;
+    padding: 0.8rem;
+    font-size: 1rem;
+    cursor: pointer;
+    font-weight: bold;
 }
 #form-editar-fornecedor .btn-primary:hover {
-  background-color: #4cd137;
-  color: var(--cor-branca);
-  transform: scale(1.05);
-  transition: all 0.3s ease-in-out;
+    background-color: #4cd137;
+    color: var(--cor-branca);
+    transform: scale(1.05);
+    transition: all 0.3s ease-in-out;
 }
 
 #form-editar-fornecedor .btn-secondary{
-  background-color: #e84118;
-  color: var(--cor-branca);
-  border: none;
-  border-radius: 7px;
-  padding: 0.8rem;
-  font-size: 1rem;
-  cursor: pointer;
-  font-weight: bold;
+    background-color: #e84118;
+    color: var(--cor-branca);
+    border: none;
+    border-radius: 7px;
+    padding: 0.8rem;
+    font-size: 1rem;
+    cursor: pointer;
+    font-weight: bold;
 }
 
 #form-editar-fornecedor .btn-secondary:hover {
-  background-color: #8d260c;
-  color: var(--cor-branca);
-  transition: all 0.3s ease-in-out;
-  transform: scale(1.05);
-}	
+    background-color: #8d260c;
+    color: var(--cor-branca);
+    transition: all 0.3s ease-in-out;
+    transform: scale(1.05);
+} 
 
 
 /*-------------------------------------------------------------------------------------------------------------------------------------------*/

@@ -28,7 +28,6 @@ export function render() {
 
 
       <section class="fornecedores-header">
-        <h2> <i class="fas fa-star"></i> Buscar fornecedor</h2>
       
         <div class="fornecedor-pesquisa">
           <div class="input-wrapper">
@@ -64,8 +63,7 @@ export function render() {
       </div>
     
       <section class="fornecedores-tabela">
-        <h2> <i class="fas fa-table"></i> Tabela de Fornecedores</h2>
-
+        
         <table>
           <thead>
             <tr>
