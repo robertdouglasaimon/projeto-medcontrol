@@ -34,6 +34,7 @@
 .card-funcionarios {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   justify-content: space-between;
   gap: 10px;
   color: var(--cor-branca);
@@ -42,7 +43,7 @@
 .card-funcionarios p {
   font-size: 1.5rem;
   margin-top: 1rem;
-  color: var(--cor-preta);
+  color: var(--cor-branca);
 }
 
 .valores-funcionarios {
@@ -50,31 +51,54 @@
   top: -26px;
   font-size: 2.5rem !important;
   font-weight: bold;
-  color: var(--cor-preta);
+  color: var(--cor-branca);
 }
 
 .total-funcionarios {
   width: 300px;
-  height: 100px;
+  height: 160px;
   background-color: var(--cor-branca);
   border-radius: 15px;
   text-align: center;
+  background-color: var(--fundo-card);
+  border: solid 1px #0077ff;
+}
+
+.total-funcionarios p {
+  margin-top: 10px;
 }
 
 .funcionario-ativo {
   width: 300px;
-  height: 100px;
-  background-color: var(--cor-branca);
+  height: 160px;
+  background-color: var(--fundo-card);
+  border: solid 1px #59f01d;
   border-radius: 15px;
   text-align: center;
 }
 
+.funcionario-ativo p {
+  margin-top: 10px;
+}
+
 .funcionario-desligado {
   width: 300px;
-  height: 100px;
-  background-color: var(--cor-branca);
+  height: 160px;
+  background-color: var(--fundo-card);
+  border: solid 1px #fa3636;
   border-radius: 15px;
   text-align: center;
+}
+
+.funcionario-desligado p {
+  margin-top: 10px;
+}
+
+/* icones dos cards */
+.card-funcionarios i {
+  margin-top: 15px;
+  font-size: 40px;
+  color: orange;
 }
 
 /* Hover para cada card */
@@ -82,55 +106,43 @@
   background-color: #0077ff;
   transform: scale(1.05);
   transition: all 0.3s ease-in-out;
-
-  /* listra azul na parte inferior do card */
-  border-bottom: 5px solid orange;
 }
 
 .funcionario-ativo:hover {
   background-color: #59f01d;
   transform: scale(1.05);
   transition: all 0.3s ease-in-out;
-
-  /* listra azul na parte inferior do card */
-  border-bottom: 5px solid orange;
 }
 
 .funcionario-desligado:hover {
   background-color: #fa3636;
   transform: scale(1.05);
   transition: all 0.3s ease-in-out;
-  
-  /* listra azul na parte inferior do card */
-  border-bottom: 5px solid orange;
 }
 
-/* ----------------------------------------------------------- 
-   SEÇÃO DE BUSCA - FUNCIONÁRIOS
-   -----------------------------------------------------------
-*/
-.funcionarios-header {
-  margin-top: 1rem;
-}
-
-.funcionarios-header h2 {
-  background-color: var(--fundo-principal);
-  padding: 10px;
-  font-size: 1.5rem;
-  margin-bottom: 10px;
-  margin-top: 2rem;
-  color: var(--cor-branca);
-  border-radius: 5px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
+/*  Barra de pesquisa - FUNCIONÁRIOS --------------------------------------------------------- */
 .funcionarios-pesquisa {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  margin-top: 60px;
+  margin-bottom: 50px;
+}
+
+.search-container {
+  display: flex;
+  gap: 10px;
+}
+
+.buscar-input-funcionario  {
+  flex: 1;
+  padding: 15px;
+  border-radius: 5px 0 0 5px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  min-width: 0;
+  background-color: var(--fundo-card);
+  color: white;
 }
 
 .input-wrapper {
@@ -140,29 +152,8 @@
   max-width: 100%;
 }
 
-/* ------- Input de busca ------ */
-.buscar-input-funcionario {
-  flex: 1;
-  padding: 15px;
-  border-radius: 5px 0 0 5px;
-  border: 1px solid #ccc;
-  background-color: var(--cor-branca);
-  color: var(--cor-preta);
-  font-size: 1rem;
-  min-width: 0;
-  transition: border-color 0.3s ease, background-color 0.3s ease;
-}
-
 .buscar-input-funcionario::placeholder {
-  color: #888;
-}
-
-/* ---- INPUT  ------ */
-.buscar-input-funcionario:focus {
-  border-color: var(--amarelo-medcontrol);
-  outline: none;
-  background-color: var(--cor-branca);
-
+  color: #ffffffee;
 }
 
 /* ------- Botão de novo funcionário ------- */
@@ -178,39 +169,55 @@
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-/* ----------------------------------------------------------- 
-   Tabela de Funcionários
-   ----------------------------------------------------------- */
+/* Tabela de Funcionários -----------------------------------------------------------*/
 
-.funcionarios-tabela h2 {
-  background-color: var(--fundo-principal);
-  padding: 10px;
-  font-size: 1.5rem;
-  margin-bottom: 10px;
-  margin-top: 2rem;
-  color: var(--cor-branca);
-  border-radius: 5px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
+table tbody td {
+  padding: 14px;
+  font-size: 16px;
 }
 
-table {
+table tbody tr {
+  background-color: var(--cor-branca);
+  border-bottom: 1px solid #e5e5e5;
+}
+
+table th {
+  padding: 20px;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.funcionarios-tabela table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
   background-color: var(--cor-branca);
   border-radius: 8px;
   overflow: hidden;
-  color: var(--cor-preta);
 }
 
 .funcionarios-tabela th {
   height: 50px;
   text-align: left;
   padding-left: 20px;
-  background-color: var(--fundo-principal);
+  background-color: var(--fundo-card);
   color: var(--cor-branca);
+}
+
+/* Estilo dos hover da tabela ---------------------*/
+.funcionarios-tabela tr:nth-child(odd),
+.funcionarios-tabela tr:nth-child(even){
+  background-color: var(--fundo-card);
+  color: var(--cor-branca);
+}
+
+.funcionarios-tabela tr:hover {
+  background-color: var(--amarelo-medcontrol);
+  color: var(--cor-preta);
+}
+/*---------------------------------------------------------*/
+
+.funcionarios-tabela td i {
+  color: var(--amarelo-medcontrol);
 }
 
 /*Botões de editar e excluir de produtos: */
@@ -245,6 +252,78 @@ table {
 .btn-funcionarios-editar:hover {
   background-color: rgb(190, 147, 29)
 }
+/*----------------------- modal de novo funcionario----------------------------------*/
+.hidden{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  border-radius: 12px;
+  padding: 2rem;
+  width: 100%;
+  max-width: 450px;
+  margin: auto;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fechar-modal {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #e84118;
+  transition: transform 0.2s;
+}
+
+.fechar-modal:hover {
+  transform: scale(1.2);
+}
+
+.cadastro-funcionario-modal {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background-color: var(--fundo-card);
+  padding: 1rem;
+  color: var(--amarelo-medcontrol);
+}
+
+.cadastro-funcionario-modal input,
+.cadastro-funcionario-modal select {
+  height: 40px;
+  border: 1px solid #dcdde1;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+  background-color: var(--fundo-card);
+  color: var(--cor-branca);
+}
+
+/* Título do modal de novo cliente e modal mudança de cor */
+#NovoFuncionario .modal-content h3 {
+  color: var(--amarelo-medcontrol);
+  margin-bottom: 12px;
+}
+
+#NovoFuncionario .modal-content{
+  background-color: var(--fundo-card);
+}
+/*-------------------------------------*/
+
+#NovoFuncionario{
+  padding: 20px;
+} 
+
 /*Salvar e cancelar do modal de editar*/
 
 /* Botão Salvar */
@@ -286,3 +365,106 @@ table {
   transform: scale(1.05);
 }	
 /*-----------------------------------------------------------*/
+/* Estilo do modal de editar funcionarios --------------------------------------------------------*/
+.modal-editar-content #form-editar-funcionario{
+  background-color: var(--fundo-card);
+  padding: 20px;
+  border-radius: 8px;
+  width: 400px;
+  max-width: 100%;
+}
+
+.modal-editar-content{
+  margin-top: 400px;
+  margin-bottom: 50px;
+  background-color: var(--fundo-card);
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.modal-editar-content h3 {
+  margin-top: 15px;
+  text-align: center;
+  font-size: 1.5rem;
+  color: var(--amarelo-medcontrol);
+}
+
+.modal-editar-content form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Estilo dos inputs do modal de editar cliente: */
+.modal-editar-content input,
+.modal-editar-content select {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+#form-editar-funcionario{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+/*a cor dos inputs e selects do modal de editar cliente */
+#form-editar-funcionario input,
+#form-editar-funcionario select{
+  background-color: var(--fundo-card);
+  color: var(--cor-branca);
+}
+
+#form-editar-funcionario{
+  background-color: var(--fundo-card);
+  color: var(--cor-branca);
+}
+
+.modal-content h3{
+  color: var(--amarelo-medcontrol);
+}
+
+#form-editar-funcionario label{
+  color: var(--amarelo-medcontrol);
+}
+
+/* Botão Salvar */
+#form-editar-funcionario .btn-primary {
+  background-color: #44bd32;
+  color: var(--cor-branca);
+  border: none;
+  border-radius: 7px;
+  padding: 0.8rem;
+  font-size: 1rem;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+#form-editar-funcionario .btn-primary:hover {
+  background-color: #4cd137;
+  color: var(--cor-branca);
+  transform: scale(1.05);
+  transition: all 0.3s ease-in-out;
+}
+/*----------------------------------*/
+/* Botão Fechar */
+#form-editar-funcionario .btn-secondary{
+  background-color: #e84118;
+  color: white;
+  border: none;
+  padding: 0.8rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#form-editar-funcionario .btn-secondary:hover {
+  background-color: #8d260c;
+  color: var(--cor-branca);
+  transition: all 0.3s ease-in-out;
+  transform: scale(1.05);
+}
+

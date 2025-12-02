@@ -225,6 +225,7 @@
   font-size: 1.6rem;
   margin-bottom: 1.5rem;
   color: orange;
+  animation: fadeIn 1.1s ease-in-out;
 }
 
 .fechar-modal {
@@ -371,7 +372,7 @@ table th {
   color: var(--cor-branca);
 }
 
-/* Estilo dos hover da tabela ====================*/
+/* Estilo dos hover da tabela -------------------*/
 .clientes-tabela tr:nth-child(odd),
 .clientes-tabela tr:nth-child(even){
   background-color: var(--fundo-card);
@@ -382,7 +383,7 @@ table th {
   background-color: var(--amarelo-medcontrol);
   color: var(--cor-preta);
 }
-/*=================================================*/
+/*----------------------------------------------------*/
 
 .clientes td i {
   color: var(--amarelo-medcontrol);
@@ -440,6 +441,7 @@ table th {
   text-align: center;
   font-size: 1.5rem;
   color: var(--amarelo-medcontrol);
+  animation: fadeIn 1.1s ease-in-out;
 }
 
 .modal-editar-content form {
