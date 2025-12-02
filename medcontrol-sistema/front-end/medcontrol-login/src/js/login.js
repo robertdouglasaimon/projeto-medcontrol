@@ -8,9 +8,10 @@ document.getElementById("form-cadastro").addEventListener("submit", async (e) =>
   };
 
   try {
-    const res = await fetch("http://localhost:3001/login_funcionario", {
+    const res = await fetch("https://medcontrol-backend.onrender.com/login_funcionario", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
+      credentials: "include",
       body: JSON.stringify(dados)
     });
 
@@ -30,7 +31,7 @@ document.getElementById("form-cadastro").addEventListener("submit", async (e) =>
     console.log("🔐 Dados do funcionário:", data.funcionario);
 
     // Redireciona para o sistema
-    window.location.href = "/medcontrol-sistema/front-end/medcontrol-sistema/sistema.html#home";
+    window.location.href = "/medcontrol-sistema/sistema.html#home";
 
   } catch (error) {
     console.error("🔥 Erro no login:", error);
