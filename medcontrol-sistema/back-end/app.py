@@ -154,9 +154,6 @@ def grafico_estoque():
         }
 
 
-
-
-
         # -------------------------------
         # 🔗 Chamando as consultas na resposta final (É obrigatoria essa chamada, sem ela não roda as consultas)
         # -------------------------------

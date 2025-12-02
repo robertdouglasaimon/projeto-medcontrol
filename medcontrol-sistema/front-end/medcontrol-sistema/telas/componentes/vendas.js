@@ -121,7 +121,7 @@ export function render () {
 
         // Médias por vendas:
         const totalVendasMedias = document.querySelector(".valor-vendas-medias");
-        fetch("http://localhost:3001/dashboard_vendas")
+        fetch("https://medcontrol-backend.onrender.com/dashboard_vendas")
         .then((response) => {
             if (response.ok) {
                 return response.json();
