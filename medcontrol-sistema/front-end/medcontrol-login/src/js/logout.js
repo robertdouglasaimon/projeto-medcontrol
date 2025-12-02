@@ -2,7 +2,7 @@
 export async function logoutUsuario() {
   try {
     // Chama o back-end para destruir a sessão
-    const res = await fetch("http://localhost:3001/logout", {
+    const res = await fetch("https://medcontrol-backend.onrender.com/logout", {
       method: "GET",
       credentials: "include"
     });
@@ -16,7 +16,7 @@ export async function logoutUsuario() {
     localStorage.removeItem("usuarioLogado");
 
     // Redireciona para a tela de login
-    window.location.href = "/medcontrol-sistema/front-end/medcontrol-login/index.html";
+    window.location.href = "https://projeto-medcontrol.vercel.app";
 
   } catch (error) {
     console.error("🔥 Erro no logout:", error);
