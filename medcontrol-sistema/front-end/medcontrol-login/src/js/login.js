@@ -32,7 +32,7 @@ document.getElementById("form-cadastro").addEventListener("submit", async (e) =>
     console.log("🔐 Dados do funcionário:", data.funcionario);
 
     // Redireciona para o sistema
-    window.location.href = "/medcontrol-sistema/front-end/medcontrol-sistema/sistema.html#home";
+    window.location.href = "/front-end/medcontrol-sistema/sistema.html#home";
     
   } catch (error) {
     console.error("🔥 Erro no login:", error);
