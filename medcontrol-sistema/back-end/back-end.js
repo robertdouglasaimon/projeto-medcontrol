@@ -10,7 +10,7 @@ import bcrypt from 'bcrypt';
 const app = express(); // ✅ DECLARADO ANTES DE USAR
 app.use(express.json()); // ✅ ESSENCIAL para req.body funcionar
 
-const allowedOrigin = "http://127.0.0.1:5500"; // ou localhost:5500
+const allowedOrigin = process.env.ALLOWED_ORIGIN || "http://localhost:5500" || "http://127.0.0.1:5500";
 
 app.use(cors({
   origin: allowedOrigin,
@@ -42,7 +42,7 @@ app.use(session({
 // Caminho do banco
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const dbPath = path.resolve(__dirname, '../../medcontrol-sistema/banco-dados/farmacia.db');
+const dbPath = path.resolve(__dirname, '../banco-dados/farmacia.db');
 const db = new Database(dbPath);
 
 // // Configuração da sessão:
@@ -964,11 +964,14 @@ app.get('/logout', (req, res) => {
 
 
 //-------------------------------------------------------------------------------------------------------------------//
-// Servir arquivos estáticos do front-end
-app.use(express.static(path.join(__dirname, '../../front-end/medcontrol-login')));
+// Servir arquivos estáticos do front-end (Precisei modificar para não dar conflito com o VERCEL e com o RENDER)
+if (process.env.NODE_ENV !== "production") {
+  app.use(express.static(path.join(__dirname, '../../front-end/medcontrol-login')));
+}
 
-// Iniciar servidor
-const PORT = 3001;
+
+// Iniciar servidor (Colocando também a porta online no render)
+const PORT = process.env.PORT || 3001;
 
 app.listen(PORT, () => {
   console.log(`🚀 Servidor rodando na porta ${PORT}`);
