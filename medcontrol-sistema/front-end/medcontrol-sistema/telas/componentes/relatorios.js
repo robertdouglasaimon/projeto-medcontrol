@@ -506,8 +506,8 @@ export function render () {
             return String(valor);
         }
         }
-    }, 100);
-    }, 100);
+    }, 50);
+    }, 50);
 
     return div
 }
