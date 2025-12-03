@@ -112,7 +112,7 @@ export function render () {
                 <tbody class="corpo-tabela-relatorio">
                 <!-- Inserir aqui os produtos pelo banco de dados -->
                     <td>
-                        <button class="btn btn-primary btn-emitir-relatorio">Emitir relatorio</button>
+                        <button class="btn btn-primary btn-emitir-relatorio" id="emitir-relatorio">Emitir relatorio</button>
                     </td>
                 </tbody>
             </table>
@@ -386,7 +386,7 @@ export function render () {
         clearInterval(aguardarJsPDF);
 
         const { jsPDF } = window.jspdf;
-        const botao = document.querySelector(".btn-emitir-relatorio");
+        const botao = document.querySelector("#emitir-relatorio");
         if (!botao) return;
 
         botao.addEventListener("click", async () => {
