@@ -101,99 +101,135 @@ export function render() {
   // Scrip para inserir os dados especificos puxados do banco de dados nos dashboards:
   setTimeout(() => {
 
+    // Lista de possíveis endpoints (online primeiro, depois local)
+    const endpoints = [
+      "https://medcontrol-backend.onrender.com",
+      "http://localhost:3001"
+    ];
+
     // Total de produtos:  -------------------------------------------------------//
     const totalProdutos = div.querySelector(".total-produtos-valor");
-    fetch("https://medcontrol-backend.onrender.com/dashboard_produtos")
-    .then((response) => {
-      if(response.ok) {
-        console.log("Dados puxados com sucesso!")
-        return response.json();
-        
-      } else {
-        res.status(500).json({ mensagem: "Erro ao buscar o total de produtos." });
+    let sucessoTotal = false;
+    for (const base of endpoints) {
+      try {
+        fetch(`${base}/dashboard_produtos`)
+          .then((response) => {
+            if (response.ok) {
+              console.log("Dados puxados com sucesso!");
+              return response.json();
+            } else {
+              console.warn(`⚠️ Falha em ${base}/dashboard_produtos`);
+            }
+          })
+          .then((totalProduto) => {
+            if (totalProduto) {
+              totalProdutos.textContent = totalProduto.total_produtos;
+              sucessoTotal = true;
+            }
+          })
+          .catch((err) => {
+            console.error(`❌ Erro em ${base}/dashboard_produtos:`, err.message);
+          });
+        if (sucessoTotal) break;
+      } catch (error) {
+        console.error("❌ Erro ao buscar o total de produtos:", error.message);
       }
-    })
-    .then((totalProduto) => {
-      totalProdutos.textContent = totalProduto.total_produtos;
-    }) 
-    .catch ((err) => {
-      console.error("❌ Erro ao buscar o total de produtos:", err.message);
-      res.status(500).json({ mensagem: "Erro ao buscar o total de produtos." });
-    });
+    }
     //------------------------------------------------------------------------------//
     
     // Total de produtos vendidos:  ------------------------------------------------//
     const totalProdutosVendidos = div.querySelector(".valor-mais-vendido");
-    fetch("https://medcontrol-backend.onrender.com/dashboard_produtos_mais_vendidos")
-    .then((response) => {
-      if(response.ok) {
-        console.log("Dados puxados com sucesso!")
-        return response.json();
-        
-      } else {
-        res.status(500).json({ mensagem: "Erro ao buscar o total de produtos vendidos." });
+    let sucessoVendidos = false;
+    for (const base of endpoints) {
+      try {
+        fetch(`${base}/dashboard_produtos_mais_vendidos`)
+          .then((response) => {
+            if (response.ok) {
+              console.log("Dados puxados com sucesso!");
+              return response.json();
+            } else {
+              console.warn(`⚠️ Falha em ${base}/dashboard_produtos_mais_vendidos`);
+            }
+          })
+          .then((totalVendido) => {
+            if (totalVendido) {
+              // totalProdutosVendidos.textContent = totalVendido.total_vendido;
+              totalProdutosVendidos.textContent = totalVendido.nome_produto;
+              sucessoVendidos = true;
+            }
+          })
+          .catch((err) => {
+            console.error(`❌ Erro em ${base}/dashboard_produtos_mais_vendidos:`, err.message);
+          });
+        if (sucessoVendidos) break;
+      } catch (error) {
+        console.error("❌ Erro ao buscar o total de produtos vendidos:", error.message);
       }
-    })
-    .then((totalVendido) => {
-      // totalProdutosVendidos.textContent = totalVendido.total_vendido;
-      totalProdutosVendidos.textContent = totalVendido.nome_produto;
-    }) 
-    .catch ((err) => {
-      console.error("❌ Erro ao buscar o total de produtos vendidos:", err.message);
-      res.status(500).json({ mensagem: "Erro ao buscar o total de produtos vendidos." });
-    });
+    }
     //------------------------------------------------------------------------------//
 
-    //------------------------------------------------------------------------------//
     // Total de produtos menos vendidos:  -------------------------------------------//
     const totalProdutosMenosVendidos = div.querySelector(".valor-menos-vendido");
-    fetch("https://medcontrol-backend.onrender.com/dashboard_produtos_menos_vendidos")
-    .then((response) => {
-      if(response.ok) {
-        console.log("Dados puxados com sucesso!")
-        return response.json();
-        
-      } else {
-        res.status(500).json({ mensagem: "Erro ao buscar o total de produtos menos vendidos." });
+    let sucessoMenos = false;
+    for (const base of endpoints) {
+      try {
+        fetch(`${base}/dashboard_produtos_menos_vendidos`)
+          .then((response) => {
+            if (response.ok) {
+              console.log("Dados puxados com sucesso!");
+              return response.json();
+            } else {
+              console.warn(`⚠️ Falha em ${base}/dashboard_produtos_menos_vendidos`);
+            }
+          })
+          .then((menosVendido) => {
+            if (menosVendido) {
+              totalProdutosMenosVendidos.textContent = menosVendido.nome_produto;
+              sucessoMenos = true;
+            }
+          })
+          .catch((err) => {
+            console.error(`❌ Erro em ${base}/dashboard_produtos_menos_vendidos:`, err.message);
+          });
+        if (sucessoMenos) break;
+      } catch (error) {
+        console.error("❌ Erro ao buscar o total de produtos menos vendidos:", error.message);
       }
-    })
-    .then((MenosVendido) => {
-      totalProdutosMenosVendidos.textContent = MenosVendido.nome_produto;
-    }) 
-    .catch ((err) => {
-      console.error("❌ Erro ao buscar o total de produtos menos vendidos:", err.message);
-      res.status(500).json({ mensagem: "Erro ao buscar o total de produtos menos vendidos." });
-    });
+    }
     //------------------------------------------------------------------------------//
    
-    //------------------------------------------------------------------------------//
     // Total do Estoque de produtos ------------------------------------------------//
     const totalEstoque = div.querySelector(".valor-estoque-valor");
-    fetch("https://medcontrol-backend.onrender.com/dashboard_total_estoque")
-    .then((response) => {
-      if(response.ok) {
-        console.log("Dados puxados com sucesso!")
-        return response.json();
-        
-      } else {
-        res.status(500).json({ mensagem: "Erro ao buscar o total do estoque." });
+    let sucessoEstoque = false;
+    for (const base of endpoints) {
+      try {
+        fetch(`${base}/dashboard_total_estoque`)
+          .then((response) => {
+            if (response.ok) {
+              console.log("Dados puxados com sucesso!");
+              return response.json();
+            } else {
+              console.warn(`⚠️ Falha em ${base}/dashboard_total_estoque`);
+            }
+          })
+          .then((totalValor) => {
+            if (totalValor) {
+              totalEstoque.textContent = totalValor.total_estoque;
+              sucessoEstoque = true;
+            }
+          })
+          .catch((err) => {
+            console.error(`❌ Erro em ${base}/dashboard_total_estoque:`, err.message);
+          });
+        if (sucessoEstoque) break;
+      } catch (error) {
+        console.error("❌ Erro ao buscar o total do estoque:", error.message);
       }
-    })
-    .then((totalValor) => {
-      totalEstoque.textContent = totalValor.total_estoque;
-    }) 
-    .catch ((err) => {
-      console.error("❌ Erro ao buscar o total do estoque:", err.message);
-      res.status(500).json({ mensagem: "Erro ao buscar o total do estoque." });
-    });
+    }
     //------------------------------------------------------------------------------//
 
-
-
-
-
-
   },0);
+
 
   // Scrip relacionado a barra de buscar produtos (Por nome, fabricante ou lote):
   setTimeout(() => {
@@ -341,36 +377,61 @@ export function render() {
     const tbody = div.querySelector("tbody");
     tbody.innerHTML = "";
 
-    fetch("https://medcontrol-backend.onrender.com/cadastro_produtos")
-    .then(response => {
-      if(response.ok) {
-        return response.json();
-      }
-    })
-    .then(produtos => {
-      produtos.forEach((item) => {
-        const row = document.createElement("tr");
-        row.setAttribute("nome_produto", item.nome_produto);
-        row.setAttribute("data-id_produto", item.id_produto); // ✅ necessário para editar e excluir.
-        row.innerHTML = `
-          <td>${item.nome_produto}</td>
-          <td>${item.descricao}</td>
-          <td>${item.fabricante}</td>
-          <td>${item.qtd_estoque}</td>
-          <td>${item.lote}</td>
-          <td>${item.data_validade}</td>
-          <td>${item.preco_venda}</td>
-          <td>${item.quantidade_vendida}</td>
-          <td>
-            <button class="btn btn-primary btn-editar-produto">Editar</button>
-            <button class="btn btn-danger btn-excluir-produto">Excluir</button>
-          </td>
-        `;
-         tbody.appendChild(row);
-     
-      })
-    })
+    // Lista de possíveis endpoints (online primeiro, depois local)
+    const endpoints = [
+      "https://medcontrol-backend.onrender.com/cadastro_produtos", // online
+      "http://localhost:3001/cadastro_produtos"                    // local
+    ];
 
+    let sucesso = false;
+
+    for (const url of endpoints) {
+      try {
+        fetch(url)
+          .then(response => {
+            if (response.ok) {
+              return response.json();
+            } else {
+              console.warn(`⚠️ Falha em ${url}`);
+            }
+          })
+          .then(produtos => {
+            if (produtos) {
+              produtos.forEach((item) => {
+                const row = document.createElement("tr");
+                row.setAttribute("nome_produto", item.nome_produto);
+                row.setAttribute("data-id_produto", item.id_produto); // ✅ necessário para editar e excluir.
+                row.innerHTML = `
+                  <td>${item.nome_produto}</td>
+                  <td>${item.descricao}</td>
+                  <td>${item.fabricante}</td>
+                  <td>${item.qtd_estoque}</td>
+                  <td>${item.lote}</td>
+                  <td>${item.data_validade}</td>
+                  <td>${item.preco_venda}</td>
+                  <td>${item.quantidade_vendida}</td>
+                  <td>
+                    <button class="btn btn-primary btn-editar-produto">Editar</button>
+                    <button class="btn btn-danger btn-excluir-produto">Excluir</button>
+                  </td>
+                `;
+                tbody.appendChild(row);
+              });
+              sucesso = true;
+            }
+          })
+          .catch((error) => {
+            console.error(`❌ Erro em ${url}:`, error.message);
+          });
+        if (sucesso) break; // não precisa tentar os outros
+      } catch (error) {
+        console.error("❌ Erro ao buscar produtos:", error.message);
+      }
+    }
+
+    if (!sucesso) {
+      console.error("❌ Nenhum servidor respondeu para cadastro_produtos.");
+    }
   },0);
 
   // Excluindo os itens da tabela pelo front através do botão excluir (modificando no banco de dados as informações do produto):
@@ -389,27 +450,43 @@ export function render() {
       const confirmar = confirm("Tem certeza que deseja excluir esse produto?");
       if (!confirmar) return;
 
-      try {
-        const res = await fetch(`https://medcontrol-backend.onrender.com/deletar_produto/${nome_produto}`, {
-          method: "DELETE"
-        });
-        console.log("Status da resposta:", res.status);
+      // Lista de possíveis endpoints (online primeiro, depois local)
+      const endpoints = [
+        `https://medcontrol-backend.onrender.com/deletar_produto/${nome_produto}`, // online
+        `http://localhost:3001/deletar_produto/${nome_produto}`                    // local
+      ];
 
-        if (!res.ok) {
-          throw new Error("Erro ao excluir o produto!");
+      let sucesso = false;
+
+      for (const url of endpoints) {
+        try {
+          const res = await fetch(url, { method: "DELETE" });
+          console.log("Status da resposta:", res.status);
+
+          if (!res.ok) {
+            console.warn(`⚠️ Falha em ${url}`);
+            continue; // tenta o próximo endpoint
+          }
+
+          const data = await res.json();
+          console.log("Resposta do servidor:", data);
+
+          row.remove();
+          alert(`✅ ${data.mensagem}`);
+
+          sucesso = true;
+          break; // não precisa tentar os outros
+        } catch (error) {
+          console.error(`❌ Erro ao excluir produto em ${url}:`, error.message);
         }
+      }
 
-        const data = await res.json();
-        console.log("Resposta do servidor:", data);
-
-        row.remove();
-        alert(`✅ ${data.mensagem}`);
-      } catch (error) {
-        console.error("❌ Erro ao excluir cliente:", error.message);
-        alert(`❌ ${error.message}`);
+      if (!sucesso) {
+        alert("❌ Erro ao excluir produto (nenhum servidor respondeu).");
       }
     });
   },0);
+
 
   // Editando os itens da tabela pelo front através do botão editar (modificando no banco de dados as informações do produto):
   setTimeout(() => {
@@ -493,34 +570,53 @@ export function render() {
           return;
         }
 
-        try {
-          const res = await fetch(`https://medcontrol-backend.onrender.com/editar_produto/${id_produto}`, {
-            method: "PUT",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ nome_produto, descricao, fabricante, qtd_estoque, lote, data_validade, preco_venda, quantidade_vendida })
-          });
+        // Lista de possíveis endpoints (online primeiro, depois local)
+        const endpoints = [
+          `https://medcontrol-backend.onrender.com/editar_produto/${id_produto}`, // online
+          `http://localhost:3001/editar_produto/${id_produto}`                    // local
+        ];
 
-          if (!res.ok) throw new Error("Erro ao editar o produto!");
+        let sucesso = false;
 
-          const data = await res.json();
-          row.querySelector("td:nth-child(1)").textContent = nome_produto;
-          row.querySelector("td:nth-child(2)").textContent = descricao;
-          row.querySelector("td:nth-child(3)").textContent = fabricante;
-          row.querySelector("td:nth-child(4)").textContent = qtd_estoque;
-          row.querySelector("td:nth-child(5)").textContent = lote;
-          row.querySelector("td:nth-child(6)").textContent = data_validade;
-          row.querySelector("td:nth-child(7)").textContent = preco_venda;
-          row.querySelector("td:nth-child(8)").textContent = quantidade_vendida;
+        for (const url of endpoints) {
+          try {
+            const res = await fetch(url, {
+              method: "PUT",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ nome_produto, descricao, fabricante, qtd_estoque, lote, data_validade, preco_venda, quantidade_vendida })
+            });
 
-          alert(`✅ ${data.mensagem}`);
-          modal.remove();
-        } catch (error) {
-          console.error("❌ Erro ao editar o produto:", error.message);
-          alert(`❌ ${error.message}`);
+            if (!res.ok) {
+              console.warn(`⚠️ Falha em ${url}`);
+              continue; // tenta o próximo
+            }
+
+            const data = await res.json();
+            row.querySelector("td:nth-child(1)").textContent = nome_produto;
+            row.querySelector("td:nth-child(2)").textContent = descricao;
+            row.querySelector("td:nth-child(3)").textContent = fabricante;
+            row.querySelector("td:nth-child(4)").textContent = qtd_estoque;
+            row.querySelector("td:nth-child(5)").textContent = lote;
+            row.querySelector("td:nth-child(6)").textContent = data_validade;
+            row.querySelector("td:nth-child(7)").textContent = preco_venda;
+            row.querySelector("td:nth-child(8)").textContent = quantidade_vendida;
+
+            alert(`✅ ${data.mensagem}`);
+            sucesso = true;
+            modal.remove();
+            break; // não precisa tentar os outros
+          } catch (error) {
+            console.error(`❌ Erro ao editar produto em ${url}:`, error.message);
+          }
+        }
+
+        if (!sucesso) {
+          alert("❌ Erro ao editar produto (nenhum servidor respondeu).");
         }
       });
     });
   }, 0);
+
 
   return div;
 }

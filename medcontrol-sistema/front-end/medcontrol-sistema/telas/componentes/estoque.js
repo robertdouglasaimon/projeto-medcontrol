@@ -113,20 +113,42 @@ export function render() {
     setTimeout(() => {
         const totalEstoqueSpan = div.querySelector('.total-estoque-valor');
 
-        fetch('https://medcontrol-backend.onrender.com/dashboard_estoque')
-            .then((response) => {
-                if (response.ok) {
-                    return response.json();
-                } else {
-                    throw new Error('Erro ao obter o total de estoque.');
-                }
-            })
-            .then((data) => {
-                totalEstoqueSpan.textContent = data.total_estoque;
-            })
-            .catch((error) => {
-                console.error(error, "❌ Erro ao obter o total de estoque.");
-            });
+        // Lista de possíveis endpoints (online primeiro, depois local)
+        const endpoints = [
+            "https://medcontrol-backend.onrender.com/dashboard_estoque", // online
+            "http://127.0.0.1:3001/dashboard_estoque"                    // local
+        ];
+
+        let sucesso = false;
+
+        for (const url of endpoints) {
+            try {
+                fetch(url)
+                    .then((response) => {
+                        if (response.ok) {
+                            return response.json();
+                        } else {
+                            console.warn(`⚠️ Falha em ${url}`);
+                        }
+                    })
+                    .then((data) => {
+                        if (data) {
+                            totalEstoqueSpan.textContent = data.total_estoque;
+                            sucesso = true;
+                        }
+                    })
+                    .catch((error) => {
+                        console.error(`❌ Erro em ${url}:`, error.message);
+                    });
+                if (sucesso) break; // não precisa tentar os outros
+            } catch (error) {
+                console.error("❌ Erro ao obter o total de estoque:", error.message);
+            }
+        }
+
+        if (!sucesso) {
+            console.error("❌ Nenhum servidor respondeu para dashboard_estoque.");
+        }
 
     }, 0);
 
@@ -134,43 +156,89 @@ export function render() {
     setTimeout(() => {
         const perdasDescarteSpan = div.querySelector('.perdas-descarte-valor');
 
-        fetch('https://medcontrol-backend.onrender.com/dashboard_perdas_descarte')
-            .then((response) => {
-                if (response.ok) {
-                    return response.json();
-                } else {
-                    throw new Error('Erro ao obter o total de perdas e descarte.');
-                }
-            })
-            .then((data) => {
-                perdasDescarteSpan.textContent = data.total_perdas_descarte;
-            })
-            .catch((error) => {
-                console.error(error, "❌ Erro ao obter o total de perdas e descarte.");
-            });
+        // Lista de possíveis endpoints (online primeiro, depois local)
+        const endpoints = [
+            "https://medcontrol-backend.onrender.com/dashboard_perdas_descarte", // online
+            "http://localhost:3001/dashboard_perdas_descarte"                    // local
+        ];
+
+        let sucesso = false;
+
+        for (const url of endpoints) {
+            try {
+                fetch(url)
+                    .then((response) => {
+                        if (response.ok) {
+                            return response.json();
+                        } else {
+                            console.warn(`⚠️ Falha em ${url}`);
+                        }
+                    })
+                    .then((data) => {
+                        if (data) {
+                            perdasDescarteSpan.textContent = data.total_perdas_descarte;
+                            sucesso = true;
+                        }
+                    })
+                    .catch((error) => {
+                        console.error(`❌ Erro em ${url}:`, error.message);
+                    });
+                if (sucesso) break; // não precisa tentar os outros
+            } catch (error) {
+                console.error("❌ Erro ao obter o total de perdas e descarte:", error.message);
+            }
+        }
+
+        if (!sucesso) {
+            console.error("❌ Nenhum servidor respondeu para dashboard_perdas_descarte.");
+        }
 
     }, 0);
+
 
     // Nivel de Estoque:
     setTimeout(() => {
         const nivelEstoqueSpan = div.querySelector('.nivel-estoque-valor');
 
-        fetch('https://medcontrol-backend.onrender.com/nivel_estoque')
-            .then((response) => {
-                if (response.ok) {
-                    return response.json();
-                } else {
-                    throw new Error('Erro ao obter o nivel de estoque.');
-                }
-            })
-            .then((data) => {
-                nivelEstoqueSpan.textContent = data.nivel_estoque + " %";
-            })
-            .catch((error) => {
-                console.error(error, "❌ Erro ao obter o nivel de estoque.");
-            });
+        // Lista de possíveis endpoints (online primeiro, depois local)
+        const endpoints = [
+            "https://medcontrol-backend.onrender.com/nivel_estoque", // online
+            "http://localhost:3001/nivel_estoque"                    // local
+        ];
+
+        let sucesso = false;
+
+        for (const url of endpoints) {
+            try {
+                fetch(url)
+                    .then((response) => {
+                        if (response.ok) {
+                            return response.json();
+                        } else {
+                            console.warn(`⚠️ Falha em ${url}`);
+                        }
+                    })
+                    .then((data) => {
+                        if (data) {
+                            nivelEstoqueSpan.textContent = data.nivel_estoque + " %";
+                            sucesso = true;
+                        }
+                    })
+                    .catch((error) => {
+                        console.error(`❌ Erro em ${url}:`, error.message);
+                    });
+                if (sucesso) break; // não precisa tentar os outros
+            } catch (error) {
+                console.error("❌ Erro ao obter o nivel de estoque:", error.message);
+            }
+        }
+
+        if (!sucesso) {
+            console.error("❌ Nenhum servidor respondeu para nivel_estoque.");
+        }
 
     }, 0);
+
     //-----------------------------------------------------------------------------------------//  
 
     // Grafico de Estoque que está sendo atualizado em tempo real lá pelo back-end com a API do Flask (Python: app.py)
@@ -190,57 +258,91 @@ export function render() {
         - Pode vir mais blocos de dados, vai dependendo da API Flask e de como ela retorna os dados de lá, só seguir as etapas no comentário abaixo e no back-end: app.py que dá bom.
         ===============================================================
         */
-        fetch('https://medcontrol-graficos.onrender.com/grafico-estoque')
-            .then(res => res.json()) // Converte a resposta em JSON
-            .then(data => {
-                /*
-                ===============================================================
-                🎯 Seleção do elemento <canvas> onde o gráfico vai ser desenhado:
-                ---------------------------------------------------------------
-                ctx: contexto 2D do canvas com id "graficoEstoque"
-                Esse elemento deve existir no HTML:
-                <canvas id="graficoEstoque"></canvas>
-                ===============================================================
-                */
-                const ctx = document.getElementById('graficoEstoque').getContext('2d');
 
-                /*
-                ===============================================================
-                📊 Criação do gráfico com Chart.js
-                ---------------------------------------------------------------
-                type: 'bar' → gráfico de barras verticais
-                labels: categorias que aparecem no eixo X
-                data: valores numéricos para cada categoria, extraídos de data.grafico_geral
-                backgroundColor: cores das barras
-                ===============================================================
-                */
-                new Chart(ctx, {
-                    type: 'bar',
-                    data: {
-                        labels: ['Entradas', 'Saídas', 'Perdas', 'Total'],
-                        datasets: [{
-                            label: 'Estoque',
-                            data: [
-                                data.grafico_geral.produtos_entrada,
-                                data.grafico_saidas_detalhado.total_unidades_saidas,
-                                data.grafico_perdas_detalhado.total_unidades_perdidas,
-                                data.grafico_geral.total_estoque
-                            ],
-                            backgroundColor: ['#3498db', '#f39c12', '#e74c3c', '#2ecc71']
-                        }]
-                    },
-                    options: {
-                        responsive: true, // adapta o gráfico ao tamanho da tela
-                        scales: {
-                            y: {
-                                beginAtZero: true,
-                                max: 5000 // 👈 Limita o eixo Y até 100 para que valores menores fiquem visíveis
-                            }
+        // Lista de possíveis endpoints (online primeiro, depois local Flask)
+        const endpoints = [
+            "https://medcontrol-graficos.onrender.com/grafico-estoque", // online
+            "http://127.0.0.1:5000/grafico-estoque"                     // local Flask
+        ];
+
+        let sucesso = false;
+
+        for (const url of endpoints) {
+            try {
+                fetch(url)
+                    .then(res => {
+                        if (res.ok) {
+                            return res.json();
+                        } else {
+                            console.warn(`⚠️ Falha em ${url}`);
                         }
-                    }
-                });
-            });
+                    })
+                    .then(data => {
+                        if (data) {
+                            /*
+                            ===============================================================
+                            🎯 Seleção do elemento <canvas> onde o gráfico vai ser desenhado:
+                            ---------------------------------------------------------------
+                            ctx: contexto 2D do canvas com id "graficoEstoque"
+                            Esse elemento deve existir no HTML:
+                            <canvas id="graficoEstoque"></canvas>
+                            ===============================================================
+                            */
+                            const ctx = document.getElementById('graficoEstoque').getContext('2d');
+
+                            /*
+                            ===============================================================
+                            📊 Criação do gráfico com Chart.js
+                            ---------------------------------------------------------------
+                            type: 'bar' → gráfico de barras verticais
+                            labels: categorias que aparecem no eixo X
+                            data: valores numéricos para cada categoria, extraídos de data.grafico_geral
+                            backgroundColor: cores das barras
+                            ===============================================================
+                            */
+                            new Chart(ctx, {
+                                type: 'bar',
+                                data: {
+                                    labels: ['Entradas', 'Saídas', 'Perdas', 'Total'],
+                                    datasets: [{
+                                        label: 'Estoque',
+                                        data: [
+                                            data.grafico_geral.produtos_entrada,
+                                            data.grafico_saidas_detalhado.total_unidades_saidas,
+                                            data.grafico_perdas_detalhado.total_unidades_perdidas,
+                                            data.grafico_geral.total_estoque
+                                        ],
+                                        backgroundColor: ['#3498db', '#f39c12', '#e74c3c', '#2ecc71']
+                                    }]
+                                },
+                                options: {
+                                    responsive: true, // adapta o gráfico ao tamanho da tela
+                                    scales: {
+                                        y: {
+                                            beginAtZero: true,
+                                            max: 5000 // 👈 Limita o eixo Y até 5000 para que valores menores fiquem visíveis
+                                        }
+                                    }
+                                }
+                            });
+                            sucesso = true;
+                        }
+                    })
+                    .catch(error => {
+                        console.error(`❌ Erro em ${url}:`, error.message);
+                    });
+                if (sucesso) break; // não precisa tentar os outros
+            } catch (error) {
+                console.error("❌ Erro ao obter gráfico de estoque:", error.message);
+            }
+        }
+
+        if (!sucesso) {
+            console.error("❌ Nenhum servidor respondeu para grafico-estoque.");
+        }
+
     }, 0);
+
     //-----------------------------------------------------------------------------------------//
 
     // Script relacionado a barra de busca da tela de estoque:
@@ -311,85 +413,128 @@ export function render() {
                 return;
             }
 
-            try {
-                const response = await fetch('https://medcontrol-backend.onrender.com/cadastro_lote', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        lote_estoque,
-                        qtd_entrada,
-                        saida_produto,
-                        qtd_estoque,
-                        produto_validade,
-                        perdas_descarte
-                    })
-                });
+            // Lista de possíveis endpoints (online primeiro, depois local)
+            const endpoints = [
+                "https://medcontrol-backend.onrender.com/cadastro_lote", // online
+                "http://localhost:3001/cadastro_lote"                    // local
+            ];
 
-                if (!response.ok) {
-                    const errorText = await response.text();
-                    throw new Error(errorText || 'Erro ao cadastrar lote.');
+            let sucesso = false;
+
+            for (const url of endpoints) {
+                try {
+                    const response = await fetch(url, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            lote_estoque,
+                            qtd_entrada,
+                            saida_produto,
+                            qtd_estoque,
+                            produto_validade,
+                            perdas_descarte
+                        })
+                    });
+
+                    if (!response.ok) {
+                        const errorText = await response.text();
+                        console.warn(`⚠️ Falha em ${url}:`, errorText);
+                        continue; // tenta o próximo endpoint
+                    }
+
+                    const data = await response.json();
+                    alert(`✅ ${data.mensagem}`);
+                    form.reset();
+                    modal.classList.add('hidden');
+
+                    const novaLinha = document.createElement('tr');
+                    novaLinha.innerHTML = `
+                        <td>${lote_estoque}</td>
+                        <td>${qtd_entrada}</td>
+                        <td>${saida_produto}</td>
+                        <td>${qtd_estoque}</td>
+                        <td>${produto_validade}</td>
+                        <td>${perdas_descarte}</td>
+                        <td>
+                            <button class="btn-editar-lote editar-lote">Editar</button>
+                            <button class="btn-excluir-lote excluir-lote">Excluir</button>
+                        </td>
+                    `;
+                    table.appendChild(novaLinha);
+
+                    sucesso = true;
+                    break; // não precisa tentar os outros
+                } catch (error) {
+                    console.error(`❌ Erro ao cadastrar lote em ${url}:`, error.message);
                 }
+            }
 
-                const data = await response.json();
-                alert(`✅ ${data.mensagem}`);
-                form.reset();
-                modal.classList.add('hidden');
-
-                const novaLinha = document.createElement('tr');
-                novaLinha.innerHTML = `
-        <td>${lote_estoque}</td>
-        <td>${qtd_entrada}</td>
-        <td>${saida_produto}</td>
-        <td>${qtd_estoque}</td>
-        <td>${produto_validade}</td>
-        <td>${perdas_descarte}</td>
-        <td>
-        <button class="btn-editar-lote editar-lote">Editar</button>
-        <button class="btn-excluir-lote excluir-lote">Excluir</button>
-        </td>
-    `;
-                table.appendChild(novaLinha);
-
-            } catch (error) {
-                console.error('❌ Erro ao cadastrar lote:', error.message);
-                alert(`❌ Erro ao cadastrar lote: ${error.message}`);
+            if (!sucesso) {
+                alert("❌ Erro ao cadastrar lote (nenhum servidor respondeu).");
             }
         });
     }, 50);
+
 
     // Script para a tabela de estoque:
     setTimeout(() => {
         const tbody = document.querySelector('tbody');
         tbody.innerHTML = "";
 
-        fetch('https://medcontrol-backend.onrender.com/tabela_estoque')
-            .then((response) => {
-                if (response.ok) {
-                    return response.json();
-                } else {
-                    throw new Error('Erro ao obter os dados da tabela de estoque.');
-                }
-            })
-            .then((data) => {
-                data.forEach(item => {
-                    const row = document.createElement('tr');
-                    row.setAttribute("data-id_controle_estoque", item.id_controle_estoque);
-                    row.innerHTML = `
-                    <td>${item.lote_estoque}</td>
-                    <td>${item.qtd_entrada}</td>
-                    <td>${item.saida_produto}</td>
-                    <td>${item.qtd_estoque}</td>
-                    <td>${item.produto_validade}</td>
-                    <td>${item.perdas_descarte}</td>
-                    <td>
-                        <button class="btn btn-warning editar-lote btn-estoque-editar">Editar</button>
-                        <button class="btn btn-danger  excluir-lote  btn-estoque-excluir">Excluir</button>
-                    </td>
-                `;
-                    tbody.appendChild(row);
-                });
-            });
+        // Lista de possíveis endpoints (online primeiro, depois local)
+        const endpoints = [
+            "https://medcontrol-backend.onrender.com/tabela_estoque", // online
+            "http://localhost:3001/tabela_estoque"                    // local
+        ];
+
+        let sucesso = false;
+
+        for (const url of endpoints) {
+            try {
+                fetch(url)
+                    .then((response) => {
+                        if (response.ok) {
+                            return response.json();
+                        } else {
+                            console.warn(`⚠️ Falha em ${url}`);
+                        }
+                    })
+                    .then((data) => {
+                        if (data) {
+                            data.forEach(item => {
+                                const row = document.createElement('tr');
+                                row.setAttribute("data-id_controle_estoque", item.id_controle_estoque);
+                                row.innerHTML = `
+                                    <td>${item.lote_estoque}</td>
+                                    <td>${item.qtd_entrada}</td>
+                                    <td>${item.saida_produto}</td>
+                                    <td>${item.qtd_estoque}</td>
+                                    <td>${item.produto_validade}</td>
+                                    <td>${item.perdas_descarte}</td>
+                                    <td>
+                                        <button class="btn btn-warning editar-lote btn-estoque-editar">Editar</button>
+                                        <button class="btn btn-danger excluir-lote btn-estoque-excluir">Excluir</button>
+                                    </td>
+                                `;
+                                tbody.appendChild(row);
+                            });
+                            sucesso = true;
+                        }
+                    })
+                    .catch((error) => {
+                        console.error(`❌ Erro em ${url}:`, error.message);
+                    });
+                if (sucesso) break; // não precisa tentar os outros
+            } catch (error) {
+                console.error("❌ Erro ao obter os dados da tabela de estoque:", error.message);
+            }
+        }
+
+        if (!sucesso) {
+            console.error("❌ Nenhum servidor respondeu para tabela_estoque.");
+        }
     }, 10);
+
 
     // Script para editar a linha da tabela:
     setTimeout(() => {
@@ -398,7 +543,6 @@ export function render() {
         tbody.addEventListener("click", async (event) => {
             const btn = event.target;
             if (!btn.classList.contains("editar-lote")) return;
-
 
             const row = btn.closest("tr");
             const id_controle_estoque = row.getAttribute("data-id_controle_estoque");
@@ -415,32 +559,32 @@ export function render() {
             const modal = document.createElement("div");
             modal.classList.add("modal");
             modal.innerHTML = `
-                    <div class="modal-content">
-                        <h3>Editar Lote</h3>
-                        <form id="form-editar-lote">
-                            <label for="lote_estoque">Lote:</label>
-                            <input type="text" id="lote_estoque" value="${lote_estoque}" required>
+                <div class="modal-content">
+                    <h3>Editar Lote</h3>
+                    <form id="form-editar-lote">
+                        <label for="lote_estoque">Lote:</label>
+                        <input type="text" id="lote_estoque" value="${lote_estoque}" required>
 
-                            <label for="qtd_entrada">Quantidade de Entrada:</label>
-                            <input type="number" id="qtd_entrada" value="${qtd_entrada}" required>
+                        <label for="qtd_entrada">Quantidade de Entrada:</label>
+                        <input type="number" id="qtd_entrada" value="${qtd_entrada}" required>
 
-                            <label for="saida_produto">Saida de Produto:</label>
-                            <input type="text" id="saida_produto" value="${saida_produto}" required>
+                        <label for="saida_produto">Saida de Produto:</label>
+                        <input type="text" id="saida_produto" value="${saida_produto}" required>
 
-                            <label for="qtd_estoque">Quantidade no Estoque:</label>
-                            <input type="number" id="qtd_estoque" value="${qtd_estoque}" required>
+                        <label for="qtd_estoque">Quantidade no Estoque:</label>
+                        <input type="number" id="qtd_estoque" value="${qtd_estoque}" required>
 
-                            <label for="produto_validade">Validade do Produto:</label>
-                            <input type="date" id="produto_validade" value="${produto_validade}" required>
+                        <label for="produto_validade">Validade do Produto:</label>
+                        <input type="date" id="produto_validade" value="${produto_validade}" required>
 
-                            <label for="perdas_descarte">Perdas e Descarte:</label>
-                            <input type="text" id="perdas_descarte" value="${perdas_descarte}" required>
+                        <label for="perdas_descarte">Perdas e Descarte:</label>
+                        <input type="text" id="perdas_descarte" value="${perdas_descarte}" required>
 
-                            <button type="submit" class="btn btn-primary">Salvar</button>
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                        </form>
-                    </div>
-                `;
+                        <button type="submit" class="btn btn-primary">Salvar</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                    </form>
+                </div>
+            `;
             document.body.appendChild(modal);
 
             // Fecha o modal ao clicar no botão "fechar" ou clicar "fora do modal": ---------------------
@@ -448,7 +592,8 @@ export function render() {
                 if (
                     event.target.classList.contains("close-modal") ||
                     event.target.classList.contains("modal") ||
-                    event.target.classList.contains("btn-secondary")) {
+                    event.target.classList.contains("btn-secondary")
+                ) {
                     modal.remove();
                 }
             });
@@ -471,46 +616,58 @@ export function render() {
                     return;
                 }
 
-                // Envia os dados para o back-end:
-                try {
-                    console.log("Dados do lote: ", { id_controle_estoque, lote_estoque, qtd_entrada, saida_produto, qtd_estoque, produto_validade, perdas_descarte });
-                    const response = await fetch(`https://medcontrol-backend.onrender.com/editar_lote/${id_controle_estoque}`, {
-                        method: "PUT",
-                        headers: {
-                            "Content-Type": "application/json"
-                        },
-                        body: JSON.stringify({ lote_estoque, qtd_entrada, saida_produto, qtd_estoque, produto_validade, perdas_descarte })
-                    });
+                // Lista de possíveis endpoints (online primeiro, depois local)
+                const endpoints = [
+                    `https://medcontrol-backend.onrender.com/editar_lote/${id_controle_estoque}`, // online
+                    `http://localhost:3001/editar_lote/${id_controle_estoque}`                    // local
+                ];
 
-                    if (!res.ok) {
-                        alert("❌ Erro ao editar o lote.");
-                        throw new Error("Erro ao editar o lote.");
-                    } else {
+                let sucesso = false;
+
+                for (const url of endpoints) {
+                    try {
+                        const response = await fetch(url, {
+                            method: "PUT",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify({ lote_estoque, qtd_entrada, saida_produto, qtd_estoque, produto_validade, perdas_descarte })
+                        });
+
+                        if (!response.ok) {
+                            console.warn(`⚠️ Falha em ${url}`);
+                            continue; // tenta o próximo
+                        }
+
                         const data = await response.json();
 
                         console.log("✅ Lote editado com sucesso:", data);
-                        row.querySelector("td:nth-child(2)").textContent = lote_estoque;
-                        row.querySelector("td:nth-child(3)").textContent = qtd_entrada;
-                        row.querySelector("td:nth-child(4)").textContent = saida_produto;
-                        row.querySelector("td:nth-child(5)").textContent = qtd_estoque;
-                        row.querySelector("td:nth-child(6)").textContent = produto_validade;
-                        row.querySelector("td:nth-child(7)").textContent = perdas_descarte;
+                        row.querySelector("td:nth-child(1)").textContent = lote_estoque;
+                        row.querySelector("td:nth-child(2)").textContent = qtd_entrada;
+                        row.querySelector("td:nth-child(3)").textContent = saida_produto;
+                        row.querySelector("td:nth-child(4)").textContent = qtd_estoque;
+                        row.querySelector("td:nth-child(5)").textContent = produto_validade;
+                        row.querySelector("td:nth-child(6)").textContent = perdas_descarte;
 
                         alert(`✅ ${data.mensagem} Lote editado com sucesso!`);
+                        sucesso = true;
                         window.location.reload();
-                        return;
+                        break; // não precisa tentar os outros
+                    } catch (error) {
+                        console.error(`❌ Erro ao editar lote em ${url}:`, error.message);
                     }
-                } catch (error) {
-                    console.error("❌ Erro ao editar o lote:", error);
-                    alert(`❌ ${error.message}`)
                 }
+
+                if (!sucesso) {
+                    alert("❌ Erro ao editar lote (nenhum servidor respondeu).");
+                }
+
                 modal.remove();
             });
         });
 
     }, 0);
 
-    // Script para apagar da tabela e do bando um registro pelo front-end atraves do botão excluir:
+
+    // Script para apagar da tabela e do banco um registro pelo front-end através do botão excluir:
     setTimeout(() => {
         const table = document.querySelector('table');
 
@@ -528,24 +685,40 @@ export function render() {
                 const confirmar = confirm('Tem certeza de que deseja excluir o lote?');
                 if (!confirmar) return;
 
-                try {
-                    const response = await fetch(`https://medcontrol-backend.onrender.com/deletar_lote/${id}`, {
-                        method: 'DELETE'
-                    });
+                // Lista de possíveis endpoints (online primeiro, depois local)
+                const endpoints = [
+                    `https://medcontrol-backend.onrender.com/deletar_lote/${id}`, // online
+                    `http://localhost:3001/deletar_lote/${id}`                    // local
+                ];
 
-                    if (response.ok) {
-                        alert('✅ Lote excluído com sucesso!');
-                        row.remove();
-                    } else {
-                        throw new Error('Erro ao excluir o lote.');
+                let sucesso = false;
+
+                for (const url of endpoints) {
+                    try {
+                        const response = await fetch(url, { method: 'DELETE' });
+
+                        if (response.ok) {
+                            const data = await response.json();
+                            alert(`✅ ${data.mensagem || "Lote excluído com sucesso!"}`);
+                            row.remove();
+                            sucesso = true;
+                            break; // não precisa tentar os outros
+                        } else {
+                            console.warn(`⚠️ Falha em ${url}`);
+                            continue; // tenta o próximo endpoint
+                        }
+                    } catch (error) {
+                        console.error(`❌ Erro ao excluir lote em ${url}:`, error.message);
                     }
-                } catch (error) {
-                    console.error('❌ Erro ao excluir o lote:', error.message);
-                    alert(`❌ Erro ao excluir o lote: ${error.message}`);
+                }
+
+                if (!sucesso) {
+                    alert("❌ Erro ao excluir lote (nenhum servidor respondeu).");
                 }
             }
         });
     }, 0);
+
 
     return div;
 }

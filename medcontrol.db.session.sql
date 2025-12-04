@@ -379,3 +379,10 @@ INSERT INTO funcionarios (
   status
 ) VALUES
 ('Pablo', 'Q.A', 1500.00, '(61)98317618', 'pablo@medcontrol', 'pablo', '123456789', '2025-10-26', NULL, 'Ativo');
+
+SELECT 
+    SUM(qtd_entrada) AS total_entrada,
+    SUM(saida_produto) AS produtos_saida, 
+    SUM(perdas_descarte) AS produtos_perdidos, 
+    SUM(qtd_estoque) AS total_estoque
+FROM controle_estoque;
