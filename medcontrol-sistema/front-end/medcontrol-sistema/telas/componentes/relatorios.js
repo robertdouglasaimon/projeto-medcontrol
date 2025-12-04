@@ -385,11 +385,10 @@ export function render () {
         if (window.jspdf && window.jspdf.jsPDF) {
         clearInterval(aguardarJsPDF);
 
-        const { jsPDF } = window.jspdf;
-        const botao = document.querySelector("#emitir-relatorio");
-        const botao1 = document.querySelector(".btn-emitir-relatorio");
+        const botao = document.querySelector(".btn-emitir-relatorio");
         console.log("📥 Botão encontrado:", botao);
-        console.log("📥 Botão encontrado:", botao1);
+
+        const { jsPDF } = window.jspdf;
 
         if (!botao) return;
 
@@ -511,7 +510,7 @@ export function render () {
         }
         }
     }, 100);
-    }, 100);
+    }, 0);
 
     return div
 }
