@@ -115,62 +115,51 @@ export function render() {
 
     // Script relacionado aos valores dos dashboard de funcionários:------------------------------------------------------
     setTimeout(() => {
-
-    // Total de fornecedores:
       const funcionariosTotal = document.querySelector(".total-funcionarios-valor");
-      fetch('https://medcontrol-backend.onrender.com/dashboard_funcionarios')
-      .then((resposta) => {
-        if (resposta.ok) {
-          return resposta.json();
-        } else {
-          throw new Error('Erro ao buscar total de funcionários');
-        }
-      })
-      .then((data) => {
-        funcionariosTotal.textContent = data.total_funcionario;
-      })
-      .catch((error) => {
-        console.error("❌ Erro ao buscar total de funcionários:", error);
-        funcionariosTotal.textContent = "Erro ao buscar total de funcionários";
-      })
-
-      // Funcionários ativos:
       const funcionariosAtivos = document.querySelector(".funcionario-ativo-valor");
-      fetch('https://medcontrol-backend.onrender.com/dashboard_funcionarios_ativos')
-      .then((resposta) => {
-        if (resposta.ok) {
-          return resposta.json();
-        } else {
-          throw new Error('Erro ao buscar total de funcionários ativos');
-        }
-      })
-      .then((data) => {
-        funcionariosAtivos.textContent = data.total_funcionario_ativos;
-      })
-      .catch((error) => {
-        console.error("❌ Erro ao buscar total de funcionários ativos:", error);
-        funcionariosAtivos.textContent = "Erro ao buscar total de funcionários ativos";
-      })
-
-      // Funcionários inativos:
       const funcionariosInativos = document.querySelector(".funcionario-desligado-valor");
-      fetch('https://medcontrol-backend.onrender.com/dashboard_funcionarios_inativos')
-      .then((resposta) => {
-        if (resposta.ok) {
-          return resposta.json();
-        } else {
-          throw new Error('Erro ao buscar total de funcionários inativos');
-        }
-      })
-      .then((data) => {
-        funcionariosInativos.textContent = data.total_funcionario_inativos;
-      })
-      .catch((error) => {
-        console.error("❌ Erro ao buscar total de funcionários inativos:", error);
-        funcionariosInativos.textContent = "Erro ao buscar total de funcionários inativos";
-      })
 
-    }, 0)
+      // Endpoints online e local por métrica
+      const endpoints = {
+        total: [
+          "https://medcontrol-backend.onrender.com/dashboard_funcionarios",
+          "http://localhost:3001/dashboard_funcionarios"
+        ],
+        ativos: [
+          "https://medcontrol-backend.onrender.com/dashboard_funcionarios_ativos",
+          "http://localhost:3001/dashboard_funcionarios_ativos"
+        ],
+        inativos: [
+          "https://medcontrol-backend.onrender.com/dashboard_funcionarios_inativos",
+          "http://localhost:3001/dashboard_funcionarios_inativos"
+        ]
+      };
+
+      // Função genérica de busca com fallback
+      async function buscarDados(endpointsLista, elemento, campo, mensagemErro) {
+        for (const url of endpointsLista) {
+          try {
+            const resposta = await fetch(url);
+            if (resposta.ok) {
+              const data = await resposta.json();
+              elemento.textContent = data[campo];
+              return true;
+            } else {
+              console.warn(`⚠️ Falha em ${url}`);
+            }
+          } catch (error) {
+            console.error(`❌ Erro em ${url}:`, error.message);
+          }
+        }
+        elemento.textContent = mensagemErro;
+        return false;
+      }
+
+      // ✅ Executa cada busca separadamente
+      buscarDados(endpoints.total, funcionariosTotal, "total_funcionario", "Erro ao buscar total de funcionários");
+      buscarDados(endpoints.ativos, funcionariosAtivos, "total_funcionario_ativos", "Erro ao buscar total de funcionários ativos");
+      buscarDados(endpoints.inativos, funcionariosInativos, "total_funcionario_inativos", "Erro ao buscar total de funcionários inativos");
+    }, 0);
 
     // Script para barra de busca por nome do funcionário:-----------------------------------------------------------------
     setTimeout(() => {
@@ -192,176 +181,214 @@ export function render() {
       });
     })
 
-    // Script para abrir a tela de cadastro de funcionários pelo botão "+ Novo Funcionário":-------------------------------------------------------------
+    // Script relacionado aos valores dos dashboard de funcionários:------------------------------------------------------
     setTimeout(() => {
-    const form = div.querySelector(".cadastro-funcionario-modal");
-    const table = div.querySelector(".funcionarios-tabela table tbody");
-    const modal = div.querySelector("#NovoFuncionario");
+      const form = div.querySelector(".cadastro-funcionario-modal");
+      const table = div.querySelector(".funcionarios-tabela table tbody");
+      const modal = div.querySelector("#NovoFuncionario");
 
-    const btnNovoFornecedor = document.querySelector("#btnNovoFuncionario");
-    const fecharModal = document.querySelector("#fecharModal");
-    const btnCancelar = document.querySelector(".cancelar");
-
+      const btnNovoFornecedor = document.querySelector("#btnNovoFuncionario");
+      const fecharModal = document.querySelector("#fecharModal");
+      const btnCancelar = document.querySelector(".cancelar");
 
       // Abrir o modal
       if (btnNovoFornecedor && modal) {
-          btnNovoFornecedor.addEventListener("click", () => {
-              modal.classList.remove("hidden");
-          });
+        btnNovoFornecedor.addEventListener("click", () => {
+          modal.classList.remove("hidden");
+        });
       }
 
       // Fechar o modal pelo ícone ×
       if (fecharModal && modal) {
-          fecharModal.addEventListener("click", () => {
-              modal.classList.add("hidden");
-          });
+        fecharModal.addEventListener("click", () => {
+          modal.classList.add("hidden");
+        });
       }
 
       // Fechar o modal pelo botão cancelar
       if (btnCancelar && modal) {
-          btnCancelar.addEventListener("click", () => {
-              modal.classList.add("hidden");
-          });
+        btnCancelar.addEventListener("click", () => {
+          modal.classList.add("hidden");
+        });
       }
 
       // Fechar o modal ao clicar fora dele
       modal.addEventListener("click", (event) => {
-          if (event.target === modal) {
-              modal.classList.add("hidden");
-          }
+        if (event.target === modal) {
+          modal.classList.add("hidden");
+        }
       });
 
-    form.addEventListener("submit", async (event) => {
-      event.preventDefault();
-      
-      const nome_funcionario = form.querySelector("input[name='nome_funcionario']").value.trim();
-      const cargo_funcionario = form.querySelector("input[name='cargo_funcionario']").value.trim();
-      const salario_funcionario = form.querySelector("input[name='salario_funcionario']").value.trim();
-      const tel_funcionario = form.querySelector("input[name='tel_funcionario']").value.trim();
-      const email_funcionario = form.querySelector("input[name='email_funcionario']").value.trim();
-      const login_funcionario = form.querySelector("input[name='login_funcionario']").value.trim();
-      const senha_funcionario = form.querySelector("input[name='senha_funcionario']").value.trim();
-      const admissao = form.querySelector("input[name='admissao']").value.trim();
-      const demissao = form.querySelector("input[name='demissao']").value.trim();
-      const status = form.querySelector("select[name='status']").value;
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
 
+        const nome_funcionario = form.querySelector("input[name='nome_funcionario']").value.trim();
+        const cargo_funcionario = form.querySelector("input[name='cargo_funcionario']").value.trim();
+        const salario_funcionario = form.querySelector("input[name='salario_funcionario']").value.trim();
+        const tel_funcionario = form.querySelector("input[name='tel_funcionario']").value.trim();
+        const email_funcionario = form.querySelector("input[name='email_funcionario']").value.trim();
+        const login_funcionario = form.querySelector("input[name='login_funcionario']").value.trim();
+        const senha_funcionario = form.querySelector("input[name='senha_funcionario']").value.trim();
+        const admissao = form.querySelector("input[name='admissao']").value.trim();
+        const demissao = form.querySelector("input[name='demissao']").value.trim();
+        const status = form.querySelector("select[name='status']").value;
 
-      // ✅ Validações
-
-      // Verifica se todos os campos foram preenchidos:
-      if (
-        !nome_funcionario ||
-        !cargo_funcionario ||
-        !salario_funcionario ||
-        !tel_funcionario ||
-        !email_funcionario ||
-        !login_funcionario ||
-        !senha_funcionario ||
-        !admissao ||
-        !demissao ||
-        !status
-      ) {
-        alert("Por favor, preencha todos os campos.");
-        return;
-      }
-      
-      // Verifica se o contato é um número de telefone fixo ou celular válido (apenas números):
-      if (!/^\(\d{2}\)\s?\d{4,5}-\d{4}$/.test(tel_funcionario)) {
-        alert("Por favor, insira um contato válido. Modelos aceitos: (XX) XXXX-XXXX ou (XX) XXXXX-XXXX");
-        return;
-      }
-
-      try {
-        const resposta = await fetch("https://medcontrol-backend.onrender.com/cadastro_funcionarios", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ nome_funcionario, cargo_funcionario, salario_funcionario, tel_funcionario, email_funcionario, login_funcionario, senha_funcionario, admissao, demissao, status }),
-        })
-
-        if (!resposta.ok) {
-          const errorText = await resposta.text();
-          console.error("❌ Status da resposta:", resposta.status);
-          console.error("❌ Texto do erro:", errorText);
-          throw new Error(errorText || "Erro ao cadastrar funcionario.");
+        // ✅ Validações
+        if (
+          !nome_funcionario ||
+          !cargo_funcionario ||
+          !salario_funcionario ||
+          !tel_funcionario ||
+          !email_funcionario ||
+          !login_funcionario ||
+          !senha_funcionario ||
+          !admissao ||
+          !demissao ||
+          !status
+        ) {
+          alert("Por favor, preencha todos os campos.");
+          return;
         }
 
-        const data = await resposta.json();
-        alert(`✅ ${data.mensagem}`);
-        form.reset();
-        modal.classList.add("hidden");
+        if (!/^\(\d{2}\)\s?\d{4,5}-\d{4}$/.test(tel_funcionario)) {
+          alert("Por favor, insira um contato válido. Modelos aceitos: (XX) XXXX-XXXX ou (XX) XXXXX-XXXX");
+          return;
+        }
 
-        // ✅ Só adiciona na tabela se deu certo:
-        const novaLinha = document.createElement("tr");
-        novaLinha.innerHTML = `
-          <td>${nome_funcionario}</td>
-          <td>${cargo_funcionario}</td>
-          <td>${admissao}</td>
-          <td>${demissao}</td>
-          <td>${salario_funcionario}</td>
-          <td>${status}</td>
-          <td>
-            <button class="btn btn-warning  btn-funcionarios-editar">Editar</button>
-            <button class="btn btn-danger  btn-funcionarios-excluir">Excluir</button>
-          </td>
-        `;
+        // Endpoints com fallback (online, depois local)
+        const endpoints = [
+          "https://medcontrol-backend.onrender.com/cadastro_funcionarios",
+          "http://localhost:3001/cadastro_funcionarios"
+        ];
 
-        alert("✅ Funcionario cadastrado com sucesso!");
-        table.appendChild(novaLinha);
+        let sucesso = false;
 
-      } catch (error) {
-        console.error("❌ Erro ao cadastrar funcionario:", error);
-        return;
-      }
+        for (const url of endpoints) {
+          try {
+            const resposta = await fetch(url, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                nome_funcionario,
+                cargo_funcionario,
+                salario_funcionario,
+                tel_funcionario,
+                email_funcionario,
+                login_funcionario,
+                senha_funcionario,
+                admissao,
+                demissao,
+                status
+              })
+            });
 
-    })
+            if (!resposta.ok) {
+              const errorText = await resposta.text();
+              console.warn(`⚠️ Falha em ${url} - ${resposta.status}: ${errorText}`);
+              continue; // tenta o próximo endpoint
+            }
 
+            const data = await resposta.json();
+            alert(`✅ ${data.mensagem}`);
+            form.reset();
+            modal.classList.add("hidden");
+
+            // ✅ Só adiciona na tabela se deu certo:
+            const novaLinha = document.createElement("tr");
+            novaLinha.innerHTML = `
+              <td>${nome_funcionario}</td>
+              <td>${cargo_funcionario}</td>
+              <td>${admissao}</td>
+              <td>${demissao}</td>
+              <td>${salario_funcionario}</td>
+              <td>${status}</td>
+              <td>
+                <button class="btn btn-warning  btn-funcionarios-editar">Editar</button>
+                <button class="btn btn-danger  btn-funcionarios-excluir">Excluir</button>
+              </td>
+            `;
+            table.appendChild(novaLinha);
+
+            sucesso = true;
+            break; // não precisa tentar os outros
+          } catch (error) {
+            console.error(`❌ Erro ao cadastrar funcionario em ${url}:`, error.message);
+          }
+        }
+
+        if (!sucesso) {
+          alert("❌ Erro ao cadastrar funcionario (nenhum servidor respondeu).");
+        }
+      });
     }, 0);
 
     // Script para inserir os dados do banco de dados na tabela de funcionários:------------------------------------------------------------------
     setTimeout(() => {
       const tbody = div.querySelector("tbody");
       tbody.innerHTML = "";
-      
-      fetch('https://medcontrol-backend.onrender.com/tabela_funcionarios')  
-      .then((resposta) => {
-      if (resposta.ok) {
-        return resposta.json();
+
+      // Endpoints com fallback (online, depois local)
+      const endpoints = [
+        "https://medcontrol-backend.onrender.com/tabela_funcionarios",
+        "http://localhost:3001/tabela_funcionarios"
+      ];
+
+      let sucesso = false;
+
+      for (const url of endpoints) {
+        try {
+          fetch(url)
+            .then((resposta) => {
+              if (resposta.ok) {
+                return resposta.json();
+              }
+              console.warn(`⚠️ Falha em ${url}`);
+            })
+            .then((data) => {
+              if (!data) return;
+
+              data.forEach((item) => {
+                const linha = document.createElement("tr");
+                linha.setAttribute("data-id_funcionario", item.id_funcionario);
+
+                // Dados ocultos para uso no modal/edição:
+                linha.setAttribute("data-tel_funcionario", item.tel_funcionario);
+                linha.setAttribute("data-email_funcionario", item.email_funcionario);
+                linha.setAttribute("data-login_funcionario", item.login_funcionario);
+                linha.setAttribute("data-senha_funcionario", item.senha_funcionario);
+
+                // Dados visíveis na tabela:
+                linha.innerHTML = `
+                  <td>${item.nome_funcionario}</td>
+                  <td>${item.cargo_funcionario}</td>
+                  <td>${item.admissao}</td>
+                  <td>${item.demissao}</td>
+                  <td>${item.salario_funcionario}</td>
+                  <td>${item.status}</td>
+                  <td>
+                    <button class="btn btn-warning  btn-funcionarios-editar">Editar</button>
+                    <button class="btn btn-danger  btn-funcionarios-excluir">Excluir</button>
+                  </td>
+                `;
+                tbody.appendChild(linha);
+              });
+
+              sucesso = true;
+            })
+            .catch((error) => {
+              console.error(`❌ Erro em ${url}:`, error.message);
+            });
+
+          if (sucesso) break; // não precisa tentar os outros
+        } catch (error) {
+          console.error("❌ Erro ao buscar funcionarios:", error.message);
+        }
       }
-        throw new Error('Erro ao buscar funcionários');
-      })
-      .then((data) => {
-        data.forEach((item) => {
-          const linha = document.createElement("tr");
-          linha.setAttribute("data-id_funcionario", item.id_funcionario); 
 
-          // Aqui é os dados que eu NÃO QUERO que apareçam na tabela mas que sejam usados no modal e
-          // via botão editar:
-          linha.setAttribute("data-tel_funcionario", item.tel_funcionario);
-          linha.setAttribute("data-email_funcionario", item.email_funcionario);
-          linha.setAttribute("data-login_funcionario", item.login_funcionario);
-          linha.setAttribute("data-senha_funcionario", item.senha_funcionario);
-
-          // Aqui é os dados que eu QUERO que apareçam na tabela:
-          linha.innerHTML = `
-            <td>${item.nome_funcionario}</td>
-            <td>${item.cargo_funcionario}</td>
-            <td>${item.admissao}</td>
-            <td>${item.demissao}</td>
-            <td>${item.salario_funcionario}</td>
-            <td>${item.status}</td>
-            <td>
-              <button class="btn btn-warning  btn-funcionarios-editar">Editar</button>
-              <button class="btn btn-danger  btn-funcionarios-excluir">Excluir</button>
-            </td>
-          `;
-          tbody.appendChild(linha);
-        })
-      })
-      .catch((error) => {
-        console.error("❌ Erro ao buscar funcionarios:", error);
-      });
-  
-    }, 100)
+      if (!sucesso) {
+        console.error("❌ Nenhum servidor respondeu para tabela_funcionarios.");
+      }
+    }, 100);
 
     // Script para editar a linha da tabela funcionários:------------------------------------:
     setTimeout(() => {
@@ -478,49 +505,65 @@ export function render() {
             return;
           }
 
-          try {
-            const resposta = await fetch(`https://medcontrol-backend.onrender.com/editar_funcionario/${id_funcionario}`, {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({
-                nome_funcionario,
-                cargo_funcionario,
-                admissao,
-                demissao,
-                salario_funcionario,
-                status,
-                tel_funcionario,
-                email_funcionario,
-                login_funcionario,
-                senha_funcionario
-              })
-            });
+          // Endpoints com fallback (online, depois local)
+          const endpoints = [
+            `https://medcontrol-backend.onrender.com/editar_funcionario/${id_funcionario}`,
+            `http://localhost:3001/editar_funcionario/${id_funcionario}`
+          ];
 
-            if (!resposta.ok) {
-              throw new Error("Erro ao editar o funcionário.");
+          let sucesso = false;
+
+          for (const url of endpoints) {
+            try {
+              const resposta = await fetch(url, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                  nome_funcionario,
+                  cargo_funcionario,
+                  admissao,
+                  demissao,
+                  salario_funcionario,
+                  status,
+                  tel_funcionario,
+                  email_funcionario,
+                  login_funcionario,
+                  senha_funcionario
+                })
+              });
+
+              if (!resposta.ok) {
+                console.warn(`⚠️ Falha em ${url}`);
+                continue; // tenta o próximo endpoint
+              }
+
+              const data = await resposta.json();
+
+              // Atualiza os dados que vão aparecer na tabela:
+              linha.querySelector("td:nth-child(1)").textContent = nome_funcionario;
+              linha.querySelector("td:nth-child(2)").textContent = cargo_funcionario;
+              linha.querySelector("td:nth-child(3)").textContent = admissao;
+              linha.querySelector("td:nth-child(4)").textContent = demissao;
+              linha.querySelector("td:nth-child(5)").textContent = salario_funcionario;
+              linha.querySelector("td:nth-child(6)").textContent = status;
+
+              // Atualiza os que NÃO VÃO APARECER NA TABELA:
+              linha.setAttribute("data-tel_funcionario", tel_funcionario);
+              linha.setAttribute("data-email_funcionario", email_funcionario);
+              linha.setAttribute("data-login_funcionario", login_funcionario);
+              linha.setAttribute("data-senha_funcionario", senha_funcionario);
+
+              alert(`✅ ${data.mensagem}`);
+              sucesso = true;
+              modal.remove();
+              break;
+            } catch (error) {
+              console.error(`❌ Erro ao editar funcionário em ${url}:`, error.message);
             }
+          }
 
-            const data = await resposta.json();
-
-            // Atualiza os dados que vão aparecer na tabela:
-            linha.querySelector("td:nth-child(1)").textContent = nome_funcionario;
-            linha.querySelector("td:nth-child(2)").textContent = cargo_funcionario;
-            linha.querySelector("td:nth-child(3)").textContent = admissao;
-            linha.querySelector("td:nth-child(4)").textContent = demissao;
-            linha.querySelector("td:nth-child(5)").textContent = salario_funcionario;
-            linha.querySelector("td:nth-child(6)").textContent = status;
-
-            // Atualiza os que NÃO VÃO APARECER NA TABELA:
-            linha.setAttribute("data-tel_funcionario", tel_funcionario);
-            linha.setAttribute("data-email_funcionario", email_funcionario);
-            linha.setAttribute("data-login_funcionario", login_funcionario);
-            linha.setAttribute("data-senha_funcionario", senha_funcionario);
-
-            alert(`✅ ${data.mensagem}`);
-            modal.remove();
-          } catch (error) {
-            console.error("❌ Erro ao editar o funcionário:", error);
-            alert(`❌ ${error.message}`);
+          if (!sucesso) {
+            alert("❌ Erro ao editar funcionário (nenhum servidor respondeu).");
           }
         });
       });
@@ -531,40 +574,53 @@ export function render() {
       const table = document.querySelector('table');
 
       table.addEventListener('click', async (event) => {
-          if (event.target.classList.contains('btn-funcionarios-excluir')) {
-            
+        if (event.target.classList.contains('btn-funcionarios-excluir')) {
+          
           const linha = event.target.closest('tr');
-          console.log('Linha para excluir seleciodanada:', linha);
+          console.log('Linha para excluir selecionada:', linha);
           const id_funcionario = linha.getAttribute('data-id_funcionario');
 
-              if (!id_funcionario) {
-                  alert('❌ ID do funcionario não encontrado.');
-                  return;
-              }
-
-              const confirmar = confirm('❓ Tem certeza de que deseja excluir o funcionário?');
-              if (!confirmar) return;
-
-              try {
-                  const resposta = await fetch(`https://medcontrol-backend.onrender.com/deletar_funcionario/${id_funcionario}`, {
-                  method: 'DELETE'
-                  });
-
-                  if (resposta.ok) {
-                  alert('✅ Funcionário excluído com sucesso!');
-                  linha.remove();
-                  } else {
-                  throw new Error('Erro ao excluir o lote.');
-                  }
-              } catch (error) {
-                  console.error('❌ Erro ao excluir o funcionário:', error.message);
-                  alert(`❌ Erro ao excluir o funcionário: ${error.message}`);
-
-              }
+          if (!id_funcionario) {
+            alert('❌ ID do funcionario não encontrado.');
+            return;
           }
+
+          const confirmar = confirm('❓ Tem certeza de que deseja excluir o funcionário?');
+          if (!confirmar) return;
+
+          // Endpoints com fallback (online, depois local)
+          const endpoints = [
+            `https://medcontrol-backend.onrender.com/deletar_funcionario/${id_funcionario}`,
+            `http://localhost:3001/deletar_funcionario/${id_funcionario}`
+          ];
+
+          let sucesso = false;
+
+          for (const url of endpoints) {
+            try {
+              const resposta = await fetch(url, { method: 'DELETE' });
+
+              if (resposta.ok) {
+                const data = await resposta.json();
+                alert(`✅ ${data.mensagem || "Funcionário excluído com sucesso!"}`);
+                linha.remove();
+                sucesso = true;
+                break; // não precisa tentar os outros
+              } else {
+                console.warn(`⚠️ Falha em ${url}`);
+                continue; // tenta o próximo endpoint
+              }
+            } catch (error) {
+              console.error(`❌ Erro ao excluir funcionário em ${url}:`, error.message);
+            }
+          }
+
+          if (!sucesso) {
+            alert("❌ Erro ao excluir funcionário (nenhum servidor respondeu).");
+          }
+        }
       });
-    },0);
-    
+    }, 0);
 
     return div
 }
