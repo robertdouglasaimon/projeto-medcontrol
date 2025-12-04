@@ -136,90 +136,104 @@ export function render() {
     const table = div.querySelector(".clientes-tabela table tbody");
     const modal = div.querySelector("#modalNovoCliente");
 
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
 
-  form.addEventListener("submit", async (event) => {
-    event.preventDefault();
+      const nome = form.querySelector("input[name='nome_cliente']").value;
+      const telefone = form.querySelector("input[name='telefone']").value;
+      const endereco = form.querySelector("input[name='endereco']").value;
+      const cpf = form.querySelector("input[name='cpf']").value;
+      const status = form.querySelector("select[name='status_cliente']").value;
 
-    const nome = form.querySelector("input[name='nome_cliente']").value;
-    const telefone = form.querySelector("input[name='telefone']").value;
-    const endereco = form.querySelector("input[name='endereco']").value;
-    const cpf = form.querySelector("input[name='cpf']").value;
-    const status = form.querySelector("select[name='status_cliente']").value;
+      // ✅ Validações
 
-    // ✅ Validações
-
-    // Verifica se todos os campos foram preenchidos:
-    if (!nome || !telefone || !endereco || !cpf || !status) {
-      alert("Por favor, preencha todos os campos.");
-      return;
-    }
-    
-    // Verifica se o CPF possui 11 dígitos:
-    if (cpf.length !== 14) {
-      alert("O CPF deve conter 14 caracteres (Considerando o formato XXX.XXX.XXX-XX).");
-      return;
-    }
-
-    // Verificando se o CPF ta sendo escrito de forma correta:
-    if (!/^\d{3}\.\d{3}\.\d{3}-\d{2}$/.test(cpf)) {
-      alert("O CPF deve estar no formato 000.000.000-00.");
-      return;
-    }
-
-    // Verifica se o telefone possui 14 dígitos:
-    if (telefone.length !== 14) {
-      alert("O telefone deve conter 14 caracteres.");
-      return;
-    }
-
-    try {
-      const response = await fetch('https://medcontrol-backend.onrender.com/novo_cliente', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          nome_cliente: nome,
-          telefone,
-          endereco,
-          cpf,
-          status_cliente: status
-        })
-      });
-
-      if (!response.ok) {
-        const errorText = await response.text();
-        throw new Error(errorText || "Erro ao cadastrar cliente.");
+      // Verifica se todos os campos foram preenchidos:
+      if (!nome || !telefone || !endereco || !cpf || !status) {
+        alert("Por favor, preencha todos os campos.");
+        return;
+      }
+      
+      // Verifica se o CPF possui 11 dígitos:
+      if (cpf.length !== 14) {
+        alert("O CPF deve conter 14 caracteres (Considerando o formato XXX.XXX.XXX-XX).");
+        return;
       }
 
-      const data = await response.json();
-      alert(`✅ ${data.mensagem}`);
-      form.reset();
-      modal.classList.add("hidden");
+      // Verificando se o CPF ta sendo escrito de forma correta:
+      if (!/^\d{3}\.\d{3}\.\d{3}-\d{2}$/.test(cpf)) {
+        alert("O CPF deve estar no formato 000.000.000-00.");
+        return;
+      }
 
-      // ✅ Só adiciona na tabela se deu certo
-      const novaLinha = document.createElement("tr");
-      novaLinha.innerHTML = `
-        <td>${nome}</td>
-        <td>${telefone}</td>
-        <td>${endereco}</td>
-        <td>${cpf}</td>
-        <td>${status}</td>
-        <td>
-          <button class="btn btn-warning editar-cliente">Editar</button>
-          <button class="btn btn-danger excluir-cliente">Excluir</button>
-        </td>
-      `;
-      table.appendChild(novaLinha);
+      // Verifica se o telefone possui 14 dígitos:
+      if (telefone.length !== 14) {
+        alert("O telefone deve conter 14 caracteres.");
+        return;
+      }
 
-    } catch (error) {
-      console.error('❌ Erro ao cadastrar cliente:', error.message);
-      alert(`❌ ${error.message}`);
-    }
-  });
+      // 🔧 Lista de endpoints (online primeiro, depois local)
+      const endpoints = [
+        "https://medcontrol-backend.onrender.com/novo_cliente", // online
+        "http://localhost:3001/novo_cliente"                    // local
+      ];
 
+      let sucesso = false;
 
+      for (const url of endpoints) {
+        try {
+          const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              nome_cliente: nome,
+              telefone,
+              endereco,
+              cpf,
+              status_cliente: status
+            })
+          });
+
+          if (!response.ok) {
+            const errorText = await response.text();
+            console.warn(`⚠️ Falha em ${url}:`, errorText);
+            continue; // tenta o próximo endpoint
+          }
+
+          const data = await response.json();
+          alert(`✅ ${data.mensagem}`);
+          form.reset();
+          modal.classList.add("hidden");
+
+          // ✅ Só adiciona na tabela se deu certo
+          const novaLinha = document.createElement("tr");
+          novaLinha.innerHTML = `
+            <td>${nome}</td>
+            <td>${telefone}</td>
+            <td>${endereco}</td>
+            <td>${cpf}</td>
+            <td>${status}</td>
+            <td>
+              <button class="btn btn-warning editar-cliente">Editar</button>
+              <button class="btn btn-danger excluir-cliente">Excluir</button>
+            </td>
+          `;
+          table.appendChild(novaLinha);
+
+          sucesso = true;
+          break; // não precisa tentar os outros
+        } catch (error) {
+          console.error(`❌ Erro ao cadastrar cliente em ${url}:`, error.message);
+        }
+      }
+
+      if (!sucesso) {
+        alert("❌ Erro ao cadastrar cliente (nenhum servidor respondeu).");
+      }
+    });
   }, 0);
+
 
   // Script para abrir e fechar o modal:
   setTimeout(() => {
@@ -251,65 +265,98 @@ export function render() {
   // Scrip para inserir os dados especificos puxados do banco de dados nos dashboards:
   setTimeout(() => {
 
+    // Lista de possíveis endpoints (online primeiro, depois local)
+    const endpoints = [
+      "https://medcontrol-backend.onrender.com",
+      "http://localhost:3001"
+    ];
+
     // Inserindo o total de clientes no dashboard
     const totalClientes = div.querySelector(".total-clientes-valor");
-    fetch("https://medcontrol-backend.onrender.com/total_clientes")
-    .then((response) => {
-      if (response.ok) {
-        return response.json();
-      } else {
-        console.error("Erro ao buscar clientes:", error);
+    let sucessoClientes = false;
+    for (const base of endpoints) {
+      try {
+        fetch(`${base}/total_clientes`)
+          .then((response) => {
+            if (response.ok) {
+              return response.json();
+            } else {
+              console.warn(`⚠️ Falha em ${base}/total_clientes`);
+            }
+          })
+          .then((data) => {
+            if (data) {
+              totalClientes.textContent = data.total_clientes;
+              sucessoClientes = true;
+            }
+          })
+          .catch((error) => {
+            console.error(`❌ Erro em ${base}/total_clientes:`, error.message);
+          });
+        if (sucessoClientes) break;
+      } catch (error) {
+        console.error(`❌ Erro ao buscar clientes:`, error.message);
       }
-    })
-    .then((data) => {
-      totalClientes.textContent = data.total_clientes;
-    })
-    .catch((error) => {
-      console.error("Erro ao buscar clientes:", error);
-    });
-
+    }
 
     // Inserindo o total de clientes ativos no dashboard
     const totalClientesAtivos = div.querySelector(".cliente-ativo-valor");
-    fetch("https://medcontrol-backend.onrender.com/total_clientes_ativos")
-    .then((response) => {
-      if (response.ok) {
-        return response.json();
-      } else {
-        console.error("Erro ao buscar clientes:", error);
-        res.status(500).json({ mensagem: "Erro ao buscar clientes ativos." });
+    let sucessoAtivos = false;
+    for (const base of endpoints) {
+      try {
+        fetch(`${base}/total_clientes_ativos`)
+          .then((response) => {
+            if (response.ok) {
+              return response.json();
+            } else {
+              console.warn(`⚠️ Falha em ${base}/total_clientes_ativos`);
+            }
+          })
+          .then((data) => {
+            if (data) {
+              totalClientesAtivos.textContent = data.total_clientes_ativos;
+              sucessoAtivos = true;
+            }
+          })
+          .catch((error) => {
+            console.error(`❌ Erro em ${base}/total_clientes_ativos:`, error.message);
+          });
+        if (sucessoAtivos) break;
+      } catch (error) {
+        console.error(`❌ Erro ao buscar clientes ativos:`, error.message);
       }
-    })
-    .then((data) => {
-      totalClientesAtivos.textContent = data.total_clientes_ativos;
-    })
-    .catch((error) => {
-      console.error("❌ Erro ao buscar clientes ativos:", err.message);
-      res.status(500).json({ mensagem: "Erro ao buscar clientes ativos." });
-    });
-
+    }
 
     // Inserindo o total de clientes inativos no dashboard
     const totalClientesInativos = div.querySelector(".cliente-inativo-valor");
-    fetch("https://medcontrol-backend.onrender.com/total_clientes_inativos")
-    .then((response) => {
-      if (response.ok) {
-        return response.json();
-      } else {
-        console.error("Erro ao buscar clientes:", error);
-        res.status(500).json({ mensagem: "Erro ao buscar clientes inativos." });
+    let sucessoInativos = false;
+    for (const base of endpoints) {
+      try {
+        fetch(`${base}/total_clientes_inativos`)
+          .then((response) => {
+            if (response.ok) {
+              return response.json();
+            } else {
+              console.warn(`⚠️ Falha em ${base}/total_clientes_inativos`);
+            }
+          })
+          .then((data) => {
+            if (data) {
+              totalClientesInativos.textContent = data.total_clientes_inativos;
+              sucessoInativos = true;
+            }
+          })
+          .catch((error) => {
+            console.error(`❌ Erro em ${base}/total_clientes_inativos:`, error.message);
+          });
+        if (sucessoInativos) break;
+      } catch (error) {
+        console.error(`❌ Erro ao buscar clientes inativos:`, error.message);
       }
-    })
-    .then((data) => {
-      totalClientesInativos.textContent = data.total_clientes_inativos;
-    })
-    .catch((error) => {
-      console.error("❌ Erro ao buscar clientes inativos:", err.message);
-      res.status(500).json({ mensagem: "Erro ao buscar clientes inativos." });
-    });
-
+    }
 
   }, 0);
+
 
   // Script para inserir os dados do banco de dados na tabela:
   setTimeout(() => {
@@ -317,32 +364,59 @@ export function render() {
     const tbody = div.querySelector("tbody");
     tbody.innerHTML = ""; // Limpa o conteúdo anterior
 
-    // Criando a função para receber os dados do banco de dados via fetch no na tabela
-    fetch("https://medcontrol-backend.onrender.com/tabela_clientes") 
-    .then((response) => {
-      if (response.ok) {
-        return response.json();
+    // Lista de possíveis endpoints (online primeiro, depois local)
+    const endpoints = [
+      "https://medcontrol-backend.onrender.com/tabela_clientes", // online
+      "http://localhost:3001/tabela_clientes"                    // local
+    ];
+
+    let sucesso = false;
+
+    for (const url of endpoints) {
+      try {
+        fetch(url)
+          .then((response) => {
+            if (response.ok) {
+              return response.json();
+            } else {
+              console.warn(`⚠️ Falha em ${url}`);
+            }
+          })
+          .then((data) => {
+            if (data) {
+              data.forEach((item) => {
+                const row = document.createElement("tr");
+                row.setAttribute("data-id", item.id_cliente);
+                row.innerHTML = `
+                  <td>${item.nome_cliente}</td>
+                  <td>${item.telefone}</td>
+                  <td>${item.endereco}</td>
+                  <td>${item.cpf}</td>
+                  <td>${item.status_cliente}</td>
+                  <td>
+                    <button class="btn btn-warning editar-cliente">Editar</button>
+                    <button class="btn btn-danger excluir-cliente">Excluir</button>
+                  </td>
+                `;
+                tbody.appendChild(row);
+              });
+              sucesso = true;
+            }
+          })
+          .catch((error) => {
+            console.error(`❌ Erro em ${url}:`, error.message);
+          });
+        if (sucesso) break; // não precisa tentar os outros
+      } catch (error) {
+        console.error(`❌ Erro ao buscar tabela de clientes:`, error.message);
       }
-    })
-    .then((data) => {
-      data.forEach((item) => {
-        const row = document.createElement("tr");
-        row.setAttribute("data-id", item.id_cliente);
-        row.innerHTML = `
-          <td>${item.nome_cliente}</td>
-          <td>${item.telefone}</td>
-          <td>${item.endereco}</td>
-          <td>${item.cpf}</td>
-          <td>${item.status_cliente}</td>
-          <td>
-            <button class="btn btn-warning  editar-cliente">Editar</button>
-            <button class="btn btn-danger  excluir-cliente">Excluir</button>
-          </td>
-        `;
-        tbody.appendChild(row);
-    })
-    })
+    }
+
+    if (!sucesso) {
+      console.error("❌ Nenhum servidor respondeu para tabela de clientes.");
+    }
   }, 0);
+
 
   // Editando os itens da tabela pelo front através do botão editar e excluindo pelo botão excluir:
   setTimeout(() => {
@@ -360,26 +434,40 @@ export function render() {
       const confirmar = confirm("Tem certeza que deseja excluir esse cliente?");
       if (!confirmar) return;
 
-      try {
-        const res = await fetch(`https://medcontrol-backend.onrender.com/deletar_cliente/${id_cliente}`, {
-          method: "DELETE"
-        });
-        console.log("Status da resposta:", res.status);
+      // Lista de possíveis endpoints (online primeiro, depois local)
+      const endpointsDelete = [
+        `https://medcontrol-backend.onrender.com/deletar_cliente/${id_cliente}`, // online
+        `http://localhost:3001/deletar_cliente/${id_cliente}`                    // local
+      ];
 
-        if (!res.ok) {
-          throw new Error("Erro ao excluir cliente!");
+      let sucessoDelete = false;
+
+      for (const url of endpointsDelete) {
+        try {
+          const res = await fetch(url, { method: "DELETE" });
+          console.log("Status da resposta:", res.status);
+
+          if (!res.ok) {
+            console.warn(`⚠️ Falha em ${url}`);
+            continue; // tenta o próximo
+          }
+
+          const data = await res.json();
+          console.log("Resposta do servidor:", data);
+
+          row.remove();
+          alert(`✅ ${data.mensagem}`);
+
+          sucessoDelete = true;
+          break; // não precisa tentar os outros
+        } catch (error) {
+          console.error(`❌ Erro ao excluir cliente em ${url}:`, error.message);
         }
-
-        const data = await res.json();
-        console.log("Resposta do servidor:", data);
-
-        row.remove();
-        alert(`✅ ${data.mensagem}`);
-      } catch (error) {
-        console.error("❌ Erro ao excluir cliente:", error.message);
-        alert(`❌ ${error.message}`);
       }
 
+      if (!sucessoDelete) {
+        alert("❌ Erro ao excluir cliente (nenhum servidor respondeu).");
+      }
     });
 
 
@@ -436,14 +524,14 @@ export function render() {
 
       document.body.appendChild(modal);
 
-// Fecha o modal ao clicar no botão "fechar" ou clicar "fora do modal": ---------------------
-    modal.addEventListener("click", (event) => {
-      if (event.target.classList.contains("close-modal") || event.target.classList.contains("modal")) {
-        modal.remove();
-      }
-    });
+      // Fecha o modal ao clicar no botão "fechar" ou clicar "fora do modal": ---------------------
+      modal.addEventListener("click", (event) => {
+        if (event.target.classList.contains("close-modal") || event.target.classList.contains("modal")) {
+          modal.remove();
+        }
+      });
 
-// Script para salvar os dados editados:------------------------------------------------------
+      // Script para salvar os dados editados:------------------------------------------------------
       const form = document.getElementById("form-editar-cliente");
       form.addEventListener("submit", async (event) => {
         event.preventDefault();
@@ -473,36 +561,56 @@ export function render() {
           alert("O telefone deve estar no formato (XX) XXXXX-XXXX!");
           return;
         }
- 
-        try {
-          console.log("Dados enviados:", { nome, telefone, endereco, cpf, status });
-          const res = await fetch(`https://medcontrol-backend.onrender.com/editar_cliente/${id_cliente}`, {
-            method: "PUT",
-            headers: {
-              "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ nome_cliente: nome, telefone, endereco, cpf, status_cliente: status })
-          });
-          if (!res.ok) {
-            throw new Error("Erro ao editar cliente!");
-          } else {
+
+        // Lista de possíveis endpoints (online primeiro, depois local)
+        const endpointsEdit = [
+          `https://medcontrol-backend.onrender.com/editar_cliente/${id_cliente}`, // online
+          `http://localhost:3001/editar_cliente/${id_cliente}`                    // local
+        ];
+
+        let sucessoEdit = false;
+
+        for (const url of endpointsEdit) {
+          try {
+            console.log("Dados enviados:", { nome, telefone, endereco, cpf, status });
+            const res = await fetch(url, {
+              method: "PUT",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ nome_cliente: nome, telefone, endereco, cpf, status_cliente: status })
+            });
+
+            if (!res.ok) {
+              console.warn(`⚠️ Falha em ${url}`);
+              continue; // tenta o próximo
+            }
+
             const data = await res.json();
             console.log("Resposta do servidor:", data);
+
             row.querySelector("td:nth-child(1)").textContent = nome;
             row.querySelector("td:nth-child(2)").textContent = telefone;
             row.querySelector("td:nth-child(3)").textContent = endereco;
             row.querySelector("td:nth-child(4)").textContent = cpf;
             row.querySelector("td:nth-child(5)").textContent = status;
+
             alert(`✅ ${data.mensagem}`);
+
+            sucessoEdit = true;
+            break; // não precisa tentar os outros
+          } catch (error) {
+            console.error(`❌ Erro ao editar cliente em ${url}:`, error.message);
           }
-        } catch (error) {
-          console.error("❌ Erro ao editar cliente:", error.message);
-          alert(`❌ ${error.message}`)
         }
+
+        if (!sucessoEdit) {
+          alert("❌ Erro ao editar cliente (nenhum servidor respondeu).");
+        }
+
         modal.remove();
       });
     });   
   },0);
+
 
 
   return div;

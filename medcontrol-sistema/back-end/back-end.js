@@ -10,18 +10,30 @@ import bcrypt from 'bcrypt';
 const app = express(); // ✅ DECLARADO ANTES DE USAR
 app.use(express.json()); // ✅ ESSENCIAL para req.body funcionar
 
-const allowedOrigin = process.env.ALLOWED_ORIGIN ?? "http://localhost:5500";
-
-console.log("🌐 Origin permitido:", allowedOrigin);
-
+// Lista de origens permitidas
+const allowedOrigins = [
+  "http://localhost:5500",
+  "http://127.0.0.1:5500",
+  "https://projeto-medcontrol.vercel.app"
+];
 
 app.use(cors({
-  origin: allowedOrigin,
+  origin: function (origin, callback) {
+    // Se não tiver origin (ex: curl, Postman) ou se estiver na lista, libera
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("CORS bloqueado para esta origem: " + origin));
+    }
+  },
   credentials: true
 }));
 
+// Middleware manual para headers
 app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", allowedOrigin);
+  if (allowedOrigins.includes(req.headers.origin)) {
+    res.header("Access-Control-Allow-Origin", req.headers.origin);
+  }
   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
   res.header("Access-Control-Allow-Headers", "Content-Type");
   res.header("Access-Control-Allow-Credentials", "true");
@@ -972,9 +984,9 @@ if (process.env.NODE_ENV !== "production") {
   app.use(express.static(path.join(__dirname, '../../front-end/medcontrol-login')));
 }
 
-
 // Iniciar servidor (Colocando também a porta online no render)
 const PORT = process.env.PORT || 3001;
+
 
 app.listen(PORT, () => {
   console.log(`🚀 Servidor rodando na porta ${PORT}`);

@@ -83,61 +83,54 @@ export function render () {
     // Script relacionado aos valores dos dashboard de vendas------------------------------------------------------
     setTimeout(() => {
 
-        // Total de vendas realizadas:
+        // Elementos do dashboard
         const totalReceitaDia = document.querySelector(".valor-total-dia");
-        fetch("https://medcontrol-backend.onrender.com/dashboard_vendas")
-        .then((response) => {
-            if (response.ok) {
-                return response.json();
-            } else {
-                throw new Error("Erro ao buscar vendas.");
-            }
-        })
-        .then((data) => {
-            totalReceitaDia.textContent = data.total_vendas;
-        })
-        .catch((error) => {
-            console.error("Erro ao buscar vendas:", error);
-            totalReceitaDia.textContent = "Erro ao buscar vendas.";
-        })  
-
-        // Total de vendas realizadas:
         const totalVendasRealizadas = document.querySelector(".valor-vendas-realizadas");
-        fetch("https://medcontrol-backend.onrender.com/dashboard_vendas")
-        .then((response) => {
-            if (response.ok) {
-                return response.json();
-            } else {
-                throw new Error("Erro ao buscar vendas.");
-            }
-        })
-        .then((data) => {
-            totalVendasRealizadas.textContent = data.vendas_realizadas;
-        })
-        .catch((error) => {
-            console.error("Erro ao buscar vendas:", error);
-            totalVendasRealizadas.textContent = "Erro ao buscar vendas.";
-        })  
-
-        // Médias por vendas:
         const totalVendasMedias = document.querySelector(".valor-vendas-medias");
-        fetch("https://medcontrol-backend.onrender.com/dashboard_vendas")
-        .then((response) => {
-            if (response.ok) {
-                return response.json();
-            } else {
-                throw new Error("Erro ao buscar vendas.");
-            }
-        })
-        .then((data) => {
-            totalVendasMedias.textContent = data.vendas_medias;
-        })
-        .catch((error) => {
-            console.error("Erro ao buscar vendas:", error);
-            totalVendasMedias.textContent = "Erro ao buscar vendas.";
-        })
 
-    
+        // Lista de possíveis endpoints (online primeiro, depois local)
+        const endpoints = [
+            "https://medcontrol-backend.onrender.com/dashboard_vendas", // online
+            "http://localhost:3001/dashboard_vendas"                    // local
+        ];
+
+        let sucesso = false;
+
+        for (const url of endpoints) {
+            try {
+                fetch(url)
+                    .then((response) => {
+                        if (response.ok) {
+                            return response.json();
+                        } else {
+                            console.warn(`⚠️ Falha em ${url}`);
+                        }
+                    })
+                    .then((data) => {
+                        if (data) {
+                            // ✅ Preenche todos os valores de uma vez
+                            totalReceitaDia.textContent = data.total_vendas;
+                            totalVendasRealizadas.textContent = data.vendas_realizadas;
+                            totalVendasMedias.textContent = data.vendas_medias;
+                            sucesso = true;
+                        }
+                    })
+                    .catch((error) => {
+                        console.error(`❌ Erro em ${url}:`, error.message);
+                        totalReceitaDia.textContent = "Erro ao buscar vendas.";
+                        totalVendasRealizadas.textContent = "Erro ao buscar vendas.";
+                        totalVendasMedias.textContent = "Erro ao buscar vendas.";
+                    });
+                if (sucesso) break; // não precisa tentar os outros
+            } catch (error) {
+                console.error("❌ Erro ao buscar vendas:", error.message);
+            }
+        }
+
+        if (!sucesso) {
+            console.error("❌ Nenhum servidor respondeu para dashboard_vendas.");
+        }
+
     }, 0);
 
     // Script relacionado a barra de busca por nome do produto vendido ou pelo valor da venda:
@@ -161,42 +154,62 @@ export function render () {
 
     // Script para inserir os dados do banco de dados na tabela de vendas :
     setTimeout(() => {
-        fetch("https://medcontrol-backend.onrender.com/tabela_vendas")
-            .then((response) => {
-                if (response.ok) {
-                    return response.json();
-                } else {
-                    throw new Error("Erro ao buscar vendas.");
-                }
-            })
-            .then((data) => {
-                const tbody = document.querySelector(".vendas-lista table tbody");
+        // Lista de possíveis endpoints (online primeiro, depois local)
+        const endpoints = [
+            "https://medcontrol-backend.onrender.com/tabela_vendas", // online
+            "http://localhost:3001/tabela_vendas"                    // local
+        ];
 
-                data.forEach((venda) => {
-                    const row = document.createElement("tr");
-                    row.setAttribute("data-id-venda", venda.id_vendas); 
-                    row.innerHTML = `
-                        <td>${venda.produtos_vendidos}</td>
-                        <td>R$ ${venda.valor_venda}</td>
-                        <td>R$ ${venda.vendas_medias}</td>
-                        <td>${venda.cupom_fiscal}</td>
-                        <td>${venda.data_venda}</td>
-                        <td>
-                            <button class="btn btn-warning btn-editar-venda">Editar</button>
-                            <button 
-                                class="btn btn-danger btn-excluir-venda"
-                                data-id-venda="${venda.id_vendas}"
-                            >Excluir</button>
-                        </td>
-                    `;
+        let sucesso = false;
 
-                
-                    tbody.appendChild(row);
-                });
-            })
-            .catch((error) => {
-                console.error("Erro ao buscar vendas:", error);
-            });
+        for (const url of endpoints) {
+            try {
+                fetch(url)
+                    .then((response) => {
+                        if (response.ok) {
+                            return response.json();
+                        } else {
+                            console.warn(`⚠️ Falha em ${url}`);
+                        }
+                    })
+                    .then((data) => {
+                        if (data) {
+                            const tbody = document.querySelector(".vendas-lista table tbody");
+
+                            data.forEach((venda) => {
+                                const row = document.createElement("tr");
+                                row.setAttribute("data-id-venda", venda.id_vendas); 
+                                row.innerHTML = `
+                                    <td>${venda.produtos_vendidos}</td>
+                                    <td>R$ ${venda.valor_venda}</td>
+                                    <td>R$ ${venda.vendas_medias}</td>
+                                    <td>${venda.cupom_fiscal}</td>
+                                    <td>${venda.data_venda}</td>
+                                    <td>
+                                        <button class="btn btn-warning btn-editar-venda">Editar</button>
+                                        <button 
+                                            class="btn btn-danger btn-excluir-venda"
+                                            data-id-venda="${venda.id_vendas}"
+                                        >Excluir</button>
+                                    </td>
+                                `;
+                                tbody.appendChild(row);
+                            });
+                            sucesso = true;
+                        }
+                    })
+                    .catch((error) => {
+                        console.error(`❌ Erro em ${url}:`, error.message);
+                    });
+                if (sucesso) break; // não precisa tentar os outros
+            } catch (error) {
+                console.error("❌ Erro ao buscar vendas:", error.message);
+            }
+        }
+
+        if (!sucesso) {
+            console.error("❌ Nenhum servidor respondeu para tabela_vendas.");
+        }
     },0);
 
     // Script para cadastrar um novo cliente pelo botão e modal "+ Nova Venda":
@@ -237,30 +250,54 @@ export function render () {
             }
         });
 
-    // ESQUEMA para pegar os IDs automaticamente de cliente e estoque para não dar conflito no UPDATE lá no front. 
-    // Os ids de cliente e estoque devem ser pegos automaticamente no back-end e passados para o front-end só que 
-    // sem aparecer na tela de cadastro de vendas. Tudo vai acontecer pelo back-end, mas os ids serao passados pelo 
-    // front-end:
+        // ESQUEMA para pegar os IDs automaticamente de cliente e estoque
         let id_cliente = null;
         let id_controle_estoque = null;
 
         btnNovoVenda.addEventListener("click", async () => {
-        modal.classList.remove("hidden");
+            modal.classList.remove("hidden");
 
-        // Busca os IDs automaticamente
+            // Lista de endpoints para buscar IDs
+            const clienteEndpoints = [
+                "https://medcontrol-backend.onrender.com/cliente-ultimo",
+                "http://localhost:3001/cliente-ultimo"
+            ];
+            const estoqueEndpoints = [
+                "https://medcontrol-backend.onrender.com/estoque-ultimo",
+                "http://localhost:3001/estoque-ultimo"
+            ];
+
             try {
-                const clienteRes = await fetch("https://medcontrol-backend.onrender.com/cliente-ultimo");
-                const clienteData = await clienteRes.json();
-                id_cliente = clienteData.id_cliente;
+                for (const url of clienteEndpoints) {
+                    try {
+                        const clienteRes = await fetch(url);
+                        if (clienteRes.ok) {
+                            const clienteData = await clienteRes.json();
+                            id_cliente = clienteData.id_cliente;
+                            break;
+                        }
+                    } catch (err) {
+                        console.warn(`⚠️ Falha ao buscar cliente em ${url}`);
+                    }
+                }
 
-                const estoqueRes = await fetch("https://medcontrol-backend.onrender.com/estoque-ultimo");
-                const estoqueData = await estoqueRes.json();
-                id_controle_estoque = estoqueData.id_controle_estoque;
+                for (const url of estoqueEndpoints) {
+                    try {
+                        const estoqueRes = await fetch(url);
+                        if (estoqueRes.ok) {
+                            const estoqueData = await estoqueRes.json();
+                            id_controle_estoque = estoqueData.id_controle_estoque;
+                            break;
+                        }
+                    } catch (err) {
+                        console.warn(`⚠️ Falha ao buscar estoque em ${url}`);
+                    }
+                }
             } catch (err) {
-                console.error("Erro ao buscar IDs automáticos:", err);
+                console.error("❌ Erro ao buscar IDs automáticos:", err);
             }
         });
-    // Fim do ESQUEMA --------------------------------------------------------------------------------------------//
+        // Fim do ESQUEMA --------------------------------------------------------------------------------------------//
 
         form.addEventListener("submit", async (event) => {
             event.preventDefault();
@@ -272,67 +309,80 @@ export function render () {
             const valor_venda = form.querySelector("input[name='valor_venda']").value.trim();
             const cupom_fiscal = form.querySelector("input[name='cupom_fiscal']").value.trim();
 
-             // ✅ Validações:
-             if (!produtos_vendidos || !vendas_medias || !data_venda || !registro_receita_medica || !valor_venda || !cupom_fiscal) {
-                alert("Por favor, preencha todos os campos obrigatórios.");
+            // ✅ Validações:
+            if (!produtos_vendidos || !vendas_medias || !data_venda || !registro_receita_medica || !valor_venda || !cupom_fiscal) {
+                alert("Por favor, preencha todos os campos obrigatórios.");
                 return;
             }
 
-            // Verifica se o campo da data de validade foi preenchido corretamente:
             if (data_venda && !/^\d{4}-\d{2}-\d{2}$/.test(data_venda)) {
-            alert("Por favor, insira a data de validade no formato AAAA-MM-DD.");
-            return;
+                alert("Por favor, insira a data de validade no formato AAAA-MM-DD.");
+                return;
             }
 
-            try {
-                const resposta = await fetch("https://medcontrol-backend.onrender.com/cadastrar_venda", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({
-                        produtos_vendidos,
-                        vendas_medias,
-                        data_venda,
-                        registro_receita_medica,
-                        valor_venda,
-                        cupom_fiscal,
+            // Lista de endpoints para cadastrar venda
+            const endpoints = [
+                "https://medcontrol-backend.onrender.com/cadastrar_venda",
+                "http://localhost:3001/cadastrar_venda"
+            ];
 
-                        id_cliente,
-                        id_controle_estoque
-                    })
-                });
+            let sucesso = false;
 
-                const data = await resposta.json();
-                console.log("Resposta do backend:", resposta);
-                console.log("Dados recebidos:", data);
+            for (const url of endpoints) {
+                try {
+                    const resposta = await fetch(url, {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({
+                            produtos_vendidos,
+                            vendas_medias,
+                            data_venda,
+                            registro_receita_medica,
+                            valor_venda,
+                            cupom_fiscal,
+                            id_cliente,
+                            id_controle_estoque
+                        })
+                    });
 
-                
-                // Verifica se a resposta foi negativa
-                if (!resposta.ok) {
-                    throw new Error(data.message || data.response || "Erro ao cadastrar venda.");
+                    const data = await resposta.json();
+                    console.log("Resposta do backend:", resposta);
+                    console.log("Dados recebidos:", data);
+
+                    if (!resposta.ok) {
+                        console.warn(`⚠️ Falha em ${url}`);
+                        continue; // tenta o próximo endpoint
+                    }
+
+                    alert(`✅ ${data.mensagem}`);
+                    form.reset();
+                    modal.classList.add("hidden");
+                    location.reload();
+
+                    // ✅ Só adiciona na tabela se deu certo
+                    const novaLinha = document.createElement("tr");
+                    novaLinha.innerHTML = `
+                        <td>${produtos_vendidos}</td>
+                        <td>R$ ${valor_venda}</td>
+                        <td>R$ ${vendas_medias}</td>
+                        <td>${data_venda}</td>
+                        <td>
+                            <button class="btn btn-warning btn-editar-venda">Editar</button>
+                            <button class="btn btn-danger btn-excluir-venda">Excluir</button>
+                        </td>
+                    `;
+                    table.appendChild(novaLinha);
+
+                    sucesso = true;
+                    break; // não precisa tentar os outros
+                } catch (error) {
+                    console.error(`❌ Erro ao cadastrar venda em ${url}:`, error.message);
                 }
+            }
 
-                alert(`✅ ${data.mensagem}`);
-                form.reset();
-                modal.classList.add("hidden");
-                location.reload();
-
-                // ✅ Só adiciona na tabela se deu certo
-                const novaLinha = document.createElement("tr");
-                novaLinha.innerHTML = `
-                <td>${produtos_vendidos}</td>
-                <td>R$ ${valor_venda}</td>
-                <td>R$ ${vendas_medias}</td>
-                <td>${data_venda}</td>
-                <td>
-                    <button class="btn btn-warning  btn-editar-venda">Editar</button>
-                    <button class="btn btn-danger  btn-excluir-venda">Excluir</button>
-                </td>
-                `;
-                table.appendChild(novaLinha);
-
-            } catch (error) {
-                console.error("Erro ao cadastrar venda:", error);
-            }         
+            if (!sucesso) {
+                alert("❌ Erro ao cadastrar venda (nenhum servidor respondeu).");
+            }
         });
     }, 0);
 
@@ -354,12 +404,10 @@ export function render () {
             const row = btn.closest("tr");
             const id_vendas = row.getAttribute("data-id-venda");
             console.log("ID da venda a editar:", id_vendas);
-            console.log("🔗 URL da edição:", `https://medcontrol-backend.onrender.com/editar_venda/${id_vendas}`);
-
 
             const produtos_vendidos = row.querySelector("td:nth-child(1)").textContent;
-            const valor_venda = row.querySelector("td:nth-child(2)").textContent;
-            const vendas_medias = row.querySelector("td:nth-child(3)").textContent;
+            const valor_venda = row.querySelector("td:nth-child(2)").textContent.replace("R$ ", "");
+            const vendas_medias = row.querySelector("td:nth-child(3)").textContent.replace("R$ ", "");
             const cupom_fiscal = row.querySelector("td:nth-child(4)").textContent;
             const data_venda = row.querySelector("td:nth-child(5)").textContent;
 
@@ -373,7 +421,7 @@ export function render () {
                         <input type="text" name="produtos_vendidos" value="${produtos_vendidos}" required>
                         <label for="valor_venda">Valor da Venda:</label>
                         <input type="text" name="valor_venda" value="${valor_venda}" required>
-                        <label for="vendas_medias">Vendas Médias:</label>
+                        <label for="vendas_medias">Vendas Médias:</label>
                         <input type="text" name="vendas_medias" value="${vendas_medias}" required>
                         <label for="cupom_fiscal">Cupom Fiscal:</label>
                         <input type="text" name="cupom_fiscal" value="${cupom_fiscal}" required>
@@ -386,12 +434,12 @@ export function render () {
               </div> 
             `;
 
-            document.body.appendChild(modal); -// ✅ modal agora está no DOM! Agora vai brasil porra!
+            document.body.appendChild(modal); // ✅ modal agora está no DOM!
             modal.addEventListener("click", (event) => {
-                    if(event.target.classList.contains("modal") || event.target.classList.contains("close-modal")) {
-                        modal.remove();
-                        btn.classList.remove("hidden");
-                    }
+                if (event.target.classList.contains("modal") || event.target.classList.contains("close-modal")) {
+                    modal.remove();
+                    btn.classList.remove("hidden");
+                }
             });
 
             // Script para salvar a edição da venda:
@@ -406,61 +454,101 @@ export function render () {
                 const cupom_fiscal = form.querySelector("input[name='cupom_fiscal']").value.trim();
                 const data_venda = form.querySelector("input[name='data_venda']").value.trim();
 
-                // Verifica se todos os campos foram preenchidos:
                 if (!produtos_vendidos || !valor_venda || !vendas_medias || !cupom_fiscal || !data_venda) {
                     alert("Todos os campos devem ser preenchidos!");
                     return;
                 }
 
                 try {
+                    // Busca IDs automáticos para evitar erro de chave estrangeira
+                    const clienteEndpoints = [
+                        "https://medcontrol-backend.onrender.com/cliente-ultimo",
+                        "http://localhost:3001/cliente-ultimo"
+                    ];
+                    const estoqueEndpoints = [
+                        "https://medcontrol-backend.onrender.com/estoque-ultimo",
+                        "http://localhost:3001/estoque-ultimo"
+                    ];
 
-                    // Fazendo um malabarismo aqui para inserir os ids dos clientes e do estoque na venda sem ser feito um cadastro novo
-                    // e sem ser feito pelo front-end, para evitar o erro de chave estrangeira na tabela venda:
-                    // 🔥 Busca o último cliente
-                    const clienteRes = await fetch("https://medcontrol-backend.onrender.com/cliente-ultimo");
-                    const clienteData = await clienteRes.json();
-                    const id_cliente = clienteData.id_cliente;
+                    let id_cliente = null;
+                    let id_controle_estoque = null;
 
-                    // 🔥 Busca o último estoque
-                    const estoqueRes = await fetch("https://medcontrol-backend.onrender.com/estoque-ultimo");
-                    const estoqueData = await estoqueRes.json();
-                    const id_controle_estoque = estoqueData.id_controle_estoque;
-
-
-
-                    // Continuando com o código normalmente e editando a venda:
-                    const resposta = await fetch(`https://medcontrol-backend.onrender.com/editar_venda/${id_vendas}`, {
-                        method: "PUT",
-                        headers: {
-                            "Content-Type": "application/json",
-                        },
-                        body: JSON.stringify({
-                            produtos_vendidos,
-                            valor_venda,
-                            vendas_medias,
-                            cupom_fiscal,
-                            data_venda,
-
-                            id_vendas, // Adicionar a redundância de id_vendas novamente aqui só para evitar o erro de chave estrangeira.
-                            id_cliente,
-                            id_controle_estoque
-                        })
-                    });
-                    
-                    if(!resposta.ok) {
-                    throw new Error("Erro ao editar venda!");    
+                    for (const url of clienteEndpoints) {
+                        try {
+                            const clienteRes = await fetch(url);
+                            if (clienteRes.ok) {
+                                const clienteData = await clienteRes.json();
+                                id_cliente = clienteData.id_cliente;
+                                break;
+                            }
+                        } catch (err) {
+                            console.warn(`⚠️ Falha ao buscar cliente em ${url}`);
+                        }
                     }
-                    
-                    const data = await resposta.json();
-                    row.querySelector("td:nth-child(1)").textContent = data.produtos_vendidos;
-                    row.querySelector("td:nth-child(2)").textContent = `R$ ${valor_venda}`;
-                    row.querySelector("td:nth-child(3)").textContent = `R$ ${vendas_medias}`;
-                    row.querySelector("td:nth-child(4)").textContent = data.cupom_fiscal;
-                    row.querySelector("td:nth-child(5)").textContent = data.data_venda;
 
-                    alert(`${data.mensagem}`);
+                    for (const url of estoqueEndpoints) {
+                        try {
+                            const estoqueRes = await fetch(url);
+                            if (estoqueRes.ok) {
+                                const estoqueData = await estoqueRes.json();
+                                id_controle_estoque = estoqueData.id_controle_estoque;
+                                break;
+                            }
+                        } catch (err) {
+                            console.warn(`⚠️ Falha ao buscar estoque em ${url}`);
+                        }
+                    }
+
+                    // Lista de endpoints para editar venda
+                    const endpoints = [
+                        `https://medcontrol-backend.onrender.com/editar_venda/${id_vendas}`,
+                        `http://localhost:3001/editar_venda/${id_vendas}`
+                    ];
+
+                    let sucesso = false;
+
+                    for (const url of endpoints) {
+                        try {
+                            const resposta = await fetch(url, {
+                                method: "PUT",
+                                headers: { "Content-Type": "application/json" },
+                                body: JSON.stringify({
+                                    produtos_vendidos,
+                                    valor_venda,
+                                    vendas_medias,
+                                    cupom_fiscal,
+                                    data_venda,
+                                    id_vendas,
+                                    id_cliente,
+                                    id_controle_estoque
+                                })
+                            });
+
+                            if (!resposta.ok) {
+                                console.warn(`⚠️ Falha em ${url}`);
+                                continue;
+                            }
+
+                            const data = await resposta.json();
+                            row.querySelector("td:nth-child(1)").textContent = data.produtos_vendidos;
+                            row.querySelector("td:nth-child(2)").textContent = `R$ ${valor_venda}`;
+                            row.querySelector("td:nth-child(3)").textContent = `R$ ${vendas_medias}`;
+                            row.querySelector("td:nth-child(4)").textContent = data.cupom_fiscal;
+                            row.querySelector("td:nth-child(5)").textContent = data.data_venda;
+
+                            alert(`✅ ${data.mensagem}`);
+                            sucesso = true;
+                            break;
+                        } catch (error) {
+                            console.error(`❌ Erro ao editar venda em ${url}:`, error.message);
+                        }
+                    }
+
+                    if (!sucesso) {
+                        alert("❌ Erro ao editar venda (nenhum servidor respondeu).");
+                    }
+
                     modal.remove();
-                    
                 } catch (error) {
                     console.error("❌ Erro ao editar venda:", error);
                     alert(`❌ ${error.message}`);
@@ -495,31 +583,44 @@ export function render () {
             const confirmacao = confirm("Tem certeza que deseja excluir esse registro?");
             if (!confirmacao) return;
 
-            try {
-                const resposta = await fetch(`https://medcontrol-backend.onrender.com/deletar_venda/${id_vendas}`, {
-                    method: "DELETE"
-                });
+            // Lista de possíveis endpoints (online primeiro, depois local)
+            const endpoints = [
+                `https://medcontrol-backend.onrender.com/deletar_venda/${id_vendas}`, // online
+                `http://localhost:3001/deletar_venda/${id_vendas}`                    // local
+            ];
 
-                console.log("Status da resposta:", resposta.status);
+            let sucesso = false;
 
-                if (!resposta.ok) {
-                    throw new Error("Erro ao excluir venda.");
+            for (const url of endpoints) {
+                try {
+                    const resposta = await fetch(url, { method: "DELETE" });
+
+                    console.log("Status da resposta:", resposta.status);
+
+                    if (!resposta.ok) {
+                        console.warn(`⚠️ Falha em ${url}`);
+                        continue; // tenta o próximo endpoint
+                    }
+
+                    const data = await resposta.json();
+                    console.log("Resposta do servidor:", data);
+
+                    // ✅ Remove a linha da tabela
+                    const row = btn.closest("tr");
+                    row.remove();
+                    alert(`✅ ${data.mensagem}`);
+                    sucesso = true;
+                    break; // não precisa tentar os outros
+                } catch (error) {
+                    console.error(`❌ Erro ao excluir venda em ${url}:`, error.message);
                 }
+            }
 
-                const data = await resposta.json();
-                console.log("Resposta do servidor:", data);
-
-                // ✅ Remove a linha da tabela
-                const row = btn.closest("tr");
-                row.remove();
-                alert(`✅ ${data.mensagem}`);
-            } catch (error) {
-                console.error("❌ Erro ao excluir venda:", error);
-                alert(`❌ ${error.message}`);
+            if (!sucesso) {
+                alert("❌ Erro ao excluir venda (nenhum servidor respondeu).");
             }
         });
     }, 0);
-
 
     return div;
 

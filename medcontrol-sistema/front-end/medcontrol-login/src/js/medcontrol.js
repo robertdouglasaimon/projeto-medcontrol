@@ -21,6 +21,45 @@ document.addEventListener("DOMContentLoaded", () => {
       senha_funcionario: document.getElementById("senha").value.trim()
     };
 
+    // Online com VERCEL e RENDER:
+    try {
+        const cadastroRes = await fetch("https://medcontrol-backend.onrender.com/cadastrar_funcionario", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify(dados)
+      });
+
+      console.log("📡 Status da resposta:", cadastroRes.status);
+      console.log("📦 Tipo de conteúdo:", cadastroRes.headers.get("content-type"));
+
+      let data;
+      try {
+        const raw = await cadastroRes.text();
+        console.log("📄 Resposta bruta:", raw);
+        data = JSON.parse(raw);
+      } catch (jsonError) {
+        console.error("❌ Erro ao converter resposta em JSON:", jsonError);
+        alert("Erro inesperado ao processar resposta do servidor.");
+        return;
+      }
+
+      if (!cadastroRes.ok) {
+        console.warn("⚠️ Resposta com erro:", data.mensagem);
+        alert(data.mensagem || "Erro desconhecido.");
+        return;
+      }
+
+      console.log("✅ Cadastro efetuado com sucesso:", data);
+      alert("✅ Cadastro efetuado com sucesso!");
+      window.location.href = "cadastro_efetuado.html";
+
+    } catch (error) {
+      console.error("🔥 Erro no fetch:", error);
+      alert("Erro ao cadastrar funcionário. Detalhes no console.");
+    }
+
+    // Offline com LOCALHOST:
     try {
         const cadastroRes = await fetch("http://localhost:3001/cadastrar_funcionario", {
         method: "POST",
@@ -57,5 +96,6 @@ document.addEventListener("DOMContentLoaded", () => {
       console.error("🔥 Erro no fetch:", error);
       alert("Erro ao cadastrar funcionário. Detalhes no console.");
     }
+
   });
 });
