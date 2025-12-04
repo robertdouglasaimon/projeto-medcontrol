@@ -10,9 +10,10 @@ CORS(app)
 @app.route('/grafico-estoque')
 def grafico_estoque():
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-    db_path = os.environ.get("DB_PATH", os.path.join(BASE_DIR, "/medcontrol-sistema/banco-dados/farmacia.db"))
+    db_path = os.environ.get("DB_PATH", os.path.join(BASE_DIR, "E:/PROJETO DO GITHUB DESKTOP - NUNCA APAGAR/projeto-medcontrol/medcontrol-sistema/banco-dados/farmacia.db"))
     
     print("D:/GitHub Projetos/projeto-medcontrol/medcontrol-sistema/banco-dados/farmacia.db", db_path)
+    print("E:/PROJETO DO GITHUB DESKTOP - NUNCA APAGAR/projeto-medcontrol/medcontrol-sistema/banco-dados/farmacia.db", db_path)
 
 
     try:
