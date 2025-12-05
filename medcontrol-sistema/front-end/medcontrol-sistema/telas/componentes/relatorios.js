@@ -5,96 +5,89 @@ export function render () {
         <section class="dashboard-cards">
 
             <div class="card-relatorio receita-total">
-                <p>
-                    <i class="fas fa-usd"></i>
-                    Receita Total
-                </p>
+                <i class="fas fa-usd"></i>
+                <p>Receita Total</p>
                 <span class="valores-relatorio valor-receita">
-                    
                     <!-- Inserir aqui pelo banco de dados -->
                 </span>
             </div>
 
             <div class="card-relatorio usuarios-ativos">
-                <p>
-                    <i class="fas fa-o"></i>
-                    Usuarios Ativos
-                </p>
+                <i class="fa-solid fa-users"></i>
+                <p>Usuarios Ativos</p>
                 <span class="valores-relatorio valor-usuarios-ativos">
-                    
                     <!-- Inserir aqui pelo banco de dados -->
                 </span>
-            </div>    
-
+            </div>   
+            
             <div class="card-relatorio total-clientes-relatorio">
-                <p>
-                    <i class="fas fa-user-plus"></i>
-                    Total de Clientes
-                </p>
+                <i class="fas fa-user-plus"></i>
+                <p> Total de Clientes </p>
                 <span class="valores-relatorio valor-clientes-relatorio">
-                     <!-- Inserir aqui pelo banco de dados -->
+                    <!-- Inserir aqui pelo banco de dados -->
                 </span>
             </div>  
 
             <div class="card-relatorio relatorio-vendas-total">
-                <p>
-                    <i class="fas fa-box"></i>
-                    Total de Vendas
-                </p>
+                <i class="fas fa-box"></i>
+                <p>Total de Vendas</p>
                 <span class="valores-relatorio valor-relatorio-vendas-total">
                      <!-- Inserir aqui pelo banco de dados -->
                 </span>
             </div>  
         </section>
 
-
         <section class="container-relatorios"> 
             <!-- Grafico relatorio -->
-            <div class="grafico-relatorio">
-                <div class="titulo-grafico">
-                    <p>
-                        <i class="fas fa-line-chart"></i>
-                        Top 5 Produtos Mais e Menos Vendidos
-                    </p>
-                </div>
+            <div class="container-grafico">
+                <div class="grafico-relatorio">
+                    <div class="titulo-grafico">
+                        <p>
+                            <i class="fas fa-line-chart"></i>
+                            Top 5 Produtos Mais e Menos Vendidos
+                        </p>
+                    </div>
 
-                <!---- Grafico ---->
-                <div id="estatisticas">
-                    <canvas id="graficoDeLinhas" width="100" height="100" style="margin: 0 1rem 0 0; padding: 0 1.5rem 0 0";></canvas>
+                    <!---- Grafico ---->
+                    <div id="estatisticas">
+                        <canvas id="graficoDeLinhas" width="250" height="100" style="margin: 0 1rem 0 0; padding: 0 1.5rem 0 0";></canvas>
+                    </div>
                 </div>
-            </div>
-
-            
-            <!-- Calentario de pagamentos -->
-            <div class="calendario-pagamento">
-                <div class="titulo-calendario">
-                    <p>
-                        <i class="fas fa-calendar"></i>
-                        Produtos proximos a vencer
-                    </p>
-                </div>
-                <!---- Calendario ---->
-                <div id="datas">
-                    <div id="calendarioDeValidadeDosLotes"></div>
-                </div>
-            </div>
-
-            
+            </div>  
+        </section>
+        <section class="container-relatorios-secundarios"> 
             <!-- nivel de estoque -->
-            <div class="nivel-do-estoque">
-                <div class="titulo-nivel-estoque">
-                    <p>
-                        <i class="fas fa-pie-chart"></i>
-                        Nivel de Estoque
-                    </p>
-                </div>
-                <!---- Pizza ---->
-                <div id="nivel-estoque">
-                    <canvas id="graficoPizzaNivelEstoque" width="120" height="50"></canvas>
+            <div class="container-estoque">
+                <div class="nivel-do-estoque">
+                    <div class="titulo-nivel-estoque">
+                        <p>
+                            <i class="fas fa-pie-chart"></i>
+                            Nivel de Estoque
+                        </p>
+                    </div>
+                    <!---- Pizza ---->
+                    <div id="nivel-estoque">
+                        <canvas id="graficoPizzaNivelEstoque" width="50"= height="100"></canvas>
+                    </div>
                 </div>
             </div>
-        </section> 
 
+            <!-- Calentario de pagamentos -->
+            <div class="container-calendario">
+                <div class="calendario-pagamento">
+                    <div class="titulo-calendario">
+                        <p>
+                            <i class="fas fa-calendar"></i>
+                            Produtos proximos a vencer
+                        </p>
+                    </div>
+                    <!---- Calendario ---->
+                    <div id="datas">
+                        <div id="calendarioDeValidadeDosLotes"></div>
+                    </div>
+                </div>
+            </div>
+        </section>    
         
         <section class="tabela-relatorio">
             <table>
