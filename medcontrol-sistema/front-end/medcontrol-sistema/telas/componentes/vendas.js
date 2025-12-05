@@ -82,55 +82,87 @@ export function render () {
 
     // Script relacionado aos valores dos dashboard de vendas------------------------------------------------------
     setTimeout(() => {
+    // Elementos do dashboard
+    const totalReceitaDia = document.querySelector(".valor-total-dia");
+    const totalVendasRealizadas = document.querySelector(".valor-vendas-realizadas");
+    const totalVendasMedias = document.querySelector(".valor-vendas-medias");
 
-        // Elementos do dashboard
-        const totalReceitaDia = document.querySelector(".valor-total-dia");
-        const totalVendasRealizadas = document.querySelector(".valor-vendas-realizadas");
-        const totalVendasMedias = document.querySelector(".valor-vendas-medias");
 
-        // Lista de possíveis endpoints (online primeiro, depois local)
-        const endpoints = [
-            "https://medcontrol-backend.onrender.com/dashboard_vendas", // online
-            "http://localhost:3001/dashboard_vendas"                    // local
-        ];
+    // Total de receita do dia
+    const endpointsReceita = [
+        "https://medcontrol-backend.onrender.com/dashboard_vendas",
+        "http://localhost:3001/dashboard_vendas"
+    ];
 
-        let sucesso = false;
-
-        for (const url of endpoints) {
-            try {
-                fetch(url)
-                    .then((response) => {
-                        if (response.ok) {
-                            return response.json();
-                        } else {
-                            console.warn(`⚠️ Falha em ${url}`);
-                        }
-                    })
-                    .then((data) => {
-                        if (data) {
-                            // ✅ Preenche todos os valores de uma vez
-                            totalReceitaDia.textContent = data.total_vendas;
-                            totalVendasRealizadas.textContent = data.vendas_realizadas;
-                            totalVendasMedias.textContent = data.vendas_medias;
-                            sucesso = true;
-                        }
-                    })
-                    .catch((error) => {
-                        console.error(`❌ Erro em ${url}:`, error.message);
-                        totalReceitaDia.textContent = "Erro ao buscar vendas.";
-                        totalVendasRealizadas.textContent = "Erro ao buscar vendas.";
-                        totalVendasMedias.textContent = "Erro ao buscar vendas.";
-                    });
-                if (sucesso) break; // não precisa tentar os outros
-            } catch (error) {
-                console.error("❌ Erro ao buscar vendas:", error.message);
+    async function buscarReceitaDia() {
+        for (const url of endpointsReceita) {
+        try {
+            const resposta = await fetch(url);
+            if (resposta.ok) {
+            const data = await resposta.json();
+            totalReceitaDia.textContent = data.total_vendas;
+            return;
+            } else {
+            console.warn(`⚠️ Falha em ${url}`);
             }
+        } catch (error) {
+            console.error(`❌ Erro em ${url}:`, error.message);
         }
-
-        if (!sucesso) {
-            console.error("❌ Nenhum servidor respondeu para dashboard_vendas.");
         }
+        totalReceitaDia.textContent = "Erro ao buscar vendas.";
+    }
+    buscarReceitaDia();
 
+
+    // Total de vendas realizadas
+    const endpointsRealizadas = [
+        "https://medcontrol-backend.onrender.com/dashboard_vendas",
+        "http://localhost:3001/dashboard_vendas"
+    ];
+
+    async function buscarVendasRealizadas() {
+        for (const url of endpointsRealizadas) {
+        try {
+            const resposta = await fetch(url);
+            if (resposta.ok) {
+            const data = await resposta.json();
+            totalVendasRealizadas.textContent = data.vendas_realizadas;
+            return;
+            } else {
+            console.warn(`⚠️ Falha em ${url}`);
+            }
+        } catch (error) {
+            console.error(`❌ Erro em ${url}:`, error.message);
+        }
+        }
+        totalVendasRealizadas.textContent = "Erro ao buscar vendas realizadas.";
+    }
+    buscarVendasRealizadas();
+
+    // Vendas médias
+    const endpointsMedias = [
+        "https://medcontrol-backend.onrender.com/dashboard_vendas",
+        "http://localhost:3001/dashboard_vendas"
+    ];
+
+    async function buscarVendasMedias() {
+        for (const url of endpointsMedias) {
+        try {
+            const resposta = await fetch(url);
+            if (resposta.ok) {
+            const data = await resposta.json();
+            totalVendasMedias.textContent = data.vendas_medias;
+            return;
+            } else {
+            console.warn(`⚠️ Falha em ${url}`);
+            }
+        } catch (error) {
+            console.error(`❌ Erro em ${url}:`, error.message);
+        }
+        }
+        totalVendasMedias.textContent = "Erro ao buscar vendas médias.";
+    }
+    buscarVendasMedias();
     }, 0);
 
     // Script relacionado a barra de busca por nome do produto vendido ou pelo valor da venda:
