@@ -10,7 +10,7 @@ CORS(app)
 @app.route('/grafico-estoque')
 def grafico_estoque():
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-    db_path = os.environ.get("DB_PATH", os.path.join(BASE_DIR, "../banco-dados/farmacia.db"))
+    db_path = os.environ.get("DB_PATH", os.path.join(BASE_DIR, "C:/Users/Gabriel/Documents/GitHub/projeto-medcontrol/medcontrol-sistema/banco-dados/farmacia.db"))
     
     # Caminhos para facilitar a troca do caminhdo de DBA (NOTA: Só troque o caminho global se não abrir de forma nenhuma os gráficos no sistema)
     print("D:/GitHub Projetos/projeto-medcontrol/medcontrol-sistema/banco-dados/farmacia.db", db_path) # Caminho para o arquivo .db no NOTBOOK Robert.

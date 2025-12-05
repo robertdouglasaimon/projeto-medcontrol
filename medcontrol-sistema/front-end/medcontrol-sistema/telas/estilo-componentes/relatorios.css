@@ -197,6 +197,7 @@
   padding: 1.5rem;
   font-weight: bold;
   height: 400px;
+  color: white;
 }
 
 .titulo-calendario{
@@ -250,10 +251,6 @@
   width: 34%;
 }
 
-.pizza-estoque{
-  width: 10%;
-  height: 400px;
-}
 
 /*-------------------------------------------------------------------------------------------*/
 table tbody td {
