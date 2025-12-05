@@ -37,6 +37,7 @@
 .dashboard-cards {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   justify-content: space-between;
   gap: 10px;
   color: var(--cor-branca);
@@ -45,7 +46,7 @@
 .card-relatorio p {
   font-size: 1.5rem;
   margin-top: 1rem;
-  color: var(--cor-preta);
+  color: var(--cor-branca);
 }
 
 .valores-relatorio {
@@ -53,173 +54,250 @@
   top: -26px;
   font-size: 2.5rem !important;
   font-weight: bold;
-  color: var(--cor-preta);
+  color: var(--cor-branca);
 }
 
 .receita-total {
   width: 300px;
-  height: 100px;
+  height: 160px;
   background-color: var(--cor-branca);
   border-radius: 15px;
   text-align: center;
+  background-color: var(--fundo-card);
+  border: solid 1px #ffee00;
+}
+.receita-total p {
+  margin-top: 10px;
 }
 
 .usuarios-ativos {
   width: 300px;
-  height: 100px;
+  height: 160px;
   background-color: var(--cor-branca);
   border-radius: 15px;
   text-align: center;
+  background-color: var(--fundo-card);
+  border: solid 1px #0077ff;
 }
+.usuarios-ativos p {
+  margin-top: 10px;
+}
+
 .total-clientes-relatorio {
   width: 300px;
-  height: 100px;
+  height: 160px;
   background-color: var(--cor-branca);
   border-radius: 15px;
   text-align: center;
+  background-color: var(--fundo-card);
+  border: solid 1px #59f01d;
+}
+
+.total-clientes-relatorio p {
+  margin-top: 10px;
 }
 
 .relatorio-vendas-total {
   width: 300px;
-  height: 100px;
+  height: 160px;
   background-color: var(--cor-branca);
   border-radius: 15px;
   text-align: center;
+  background-color: var(--fundo-card);
+  border: solid 1px #59f01d;
 }
+
+/* icones dos cards */
+.dashboard-cards i {
+  margin-top: 15px;
+  font-size: 40px;
+  color: orange;
+}
+
+
 
 /*Estilos relaciona ao hover do dashboard-cards*/
 /* Hover para cada card */
 .receita-total:hover {
-  background-color: #04f066;
+  background-color:  #ffee00a4;
   transform: scale(1.05);
   transition: all 0.3s ease-in-out;
-
-  /* listra azul na parte inferior do card */
-  border-bottom: 5px solid orange;
 }
 
 .total-clientes-relatorio:hover {
-  background-color: #ffde4c;
+  background-color: #59f01d;
   transform: scale(1.05);
   transition: all 0.3s ease-in-out;
-
-  /* listra azul na parte inferior do card */
-  border-bottom: 5px solid orange;
 }
 
 .usuarios-ativos:hover{
-  background-color: #ffde4c;
-  transform: scale(1.05);
-  transition: all 0.3s ease-in-out;
-
-  /* listra azul na parte inferior do card */
-  border-bottom: 5px solid orange;
-}
-
-.relatorio-vendas-total:hover {
   background-color: #0077ff;
   transform: scale(1.05);
   transition: all 0.3s ease-in-out;
+}
 
-  /* listra azul na parte inferior do card */
-  border-bottom: 5px solid orange;
+.relatorio-vendas-total:hover {
+  background-color: #59f01d;
+  transform: scale(1.05);
+  transition: all 0.3s ease-in-out;
 }
 /*-------------------------------------------------------------------------------------------*/
 /*Estilos relaciona ao geral relatorios*/
 .container-relatorios {
-  display: flex;
-  flex-wrap: wrap;
+  display: block;
+  justify-items: center;
   gap: 35px;
   margin-top: 40px; 
-  margin-bottom: 40px;
+  margin-bottom: 4px;
 }
+
+.container-relatorios-secundarios{
+  display: inline-flex;
+  justify-content: space-around;
+}
+
 /*-------------------------------------------------------------------------------------------*/
 /*Estilos relaciona ao grafico relatorio*/
-.grafico-relatorio {
-  width: 35%;
-  background-color: #fff;
+.container-grafico{
+  width: 100%;
+  background-color: var(--fundo-card);
   border-radius: 8px;
   padding: 1.5rem;
   font-weight: bold;
-  height: 400px;
-  box-shadow: 1px 1px 5px orange;
+  height: 700px;
+  margin-bottom: 30px;
 }
 
-.titulo-grafico p {
+.titulo-grafico{
   font-size: 1.2rem;
   margin-bottom: 1rem;
-  color: #000000;
-  border-bottom: solid 2px orange;
+  color: var(--cor-branca);
+  position: relative;
+}
+.titulo-grafico::before{
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 500px;
+  height: 1px;
+  background-color: orange;
+  transition: width 0.3s ease-in-out;
+}
+.titulo-grafico:hover::before{
+  width: 34%;
 }
 
 /*-----------------------------------------------------------------------------------------*/
 /*Estilos relaciona ao calendario*/
-.calendario-pagamento {
-  width: 30%;
-  background-color: #fff;
+.container-calendario {
+  width: 40%;
+  background-color: var(--fundo-card);
   border-radius: 8px;
-  padding: 0.5rem;
-  height: 370px;
-  box-shadow: 1px 1px 5px orange;
+  padding: 1.5rem;
+  font-weight: bold;
+  height: 400px;
 }
 
-.titulo-calendario p {
+.titulo-calendario{
   font-size: 1.2rem;
-  font-weight: bold;
   margin-bottom: 1rem;
-  color: #000000;
-  border-bottom: solid 2px orange;
+  color: var(--cor-branca);
+  position: relative;
 }
+.titulo-calendario::before{
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 400px;
+  height: 1px;
+  background-color: orange;
+  transition: width 0.3s ease-in-out;
+}
+.titulo-calendario:hover::before{
+  width: 34%;
+}
+
 /*-----------------------------------------------------------------------------------------*/
 /*Estilos relaciona ao nivel de estoque*/
-.nivel-do-estoque{
-  width: 27%;
-  background-color: #fff;
+.container-estoque{
+  width: 55%;
+  background-color: var(--fundo-card);
   border-radius: 8px;
   padding: 1.5rem;
   position: relative;
-  height: 370px;
-  box-shadow: 1px 1px 5px orange;
+  height: 850px;
 }
 
-.titulo-nivel-estoque p {
+.titulo-nivel-estoque{
   font-size: 1.2rem;
-  font-weight: bold;
   margin-bottom: 1rem;
-  color: #000000;
-  border-bottom: solid 2px orange;
+  color: var(--cor-branca);
+  position: relative;
+}
+.titulo-nivel-estoque::before{
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 400px;
+  height: 1px;
+  background-color: orange;
+  transition: width 0.3s ease-in-out;
+}
+.titulo-nivel-estoque:hover::before{
+  width: 34%;
+}
+
+.pizza-estoque{
+  width: 10%;
+  height: 400px;
 }
 
 /*-------------------------------------------------------------------------------------------*/
-.tabela-geral h2 {
-  background-color: var(--fundo-principal);
-  padding: 10px;
-  font-size: 1.5rem;
-  margin-bottom: 10px;
-  margin-top: 2rem;
-  color: var(--cor-branca);
-  border-radius: 5px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
+table tbody td {
+  padding: 14px;
+  font-size: 16px;
 }
 
-table {
+table tbody tr {
+  background-color: var(--cor-branca);
+  border-bottom: 1px solid #e5e5e5;
+}
+
+table th {
+  padding: 20px;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.tabela-relatorio table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
   background-color: var(--cor-branca);
   border-radius: 8px;
   overflow: hidden;
-  color: var(--cor-preta);
 }
 
-.tabela-geral th {
+.tabela-relatorio th {
   height: 50px;
   text-align: left;
   padding-left: 20px;
-  background-color: var(--fundo-principal);
+  background-color: var(--fundo-card);
   color: var(--cor-branca);
+}
+
+/* Estilo dos hover da tabela -------------------*/
+.tabela-relatorio tr:nth-child(odd),
+.tabela-relatorio tr:nth-child(even){
+  background-color: var(--fundo-card);
+  color: var(--cor-branca);
+}
+
+.tabela-relatorio tr:hover {
+  background-color: var(--amarelo-medcontrol);
+  color: var(--cor-preta);
 }
 
 
