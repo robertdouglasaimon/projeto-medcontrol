@@ -130,10 +130,10 @@ nav input {
     white-space: nowrap;
 }
 
-#Admin:hover {
-    background-color: #008000;
-    color: white;
+#Admin,  a:hover {
+    color: white !important;
     transform: translateY(-2px);
+    text-decoration: none;
     box-shadow: 0 4px 8px rgba(44, 128, 184, 0.3);
 }
 
