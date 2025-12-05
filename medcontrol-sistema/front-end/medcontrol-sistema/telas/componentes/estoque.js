@@ -32,8 +32,7 @@ export function render() {
         </section>
 
         <section class="lote-header">
-            <h2> <i class="fas fa-barcode"></i> Buscar por Lote </h2>
-
+          
             <div class="lote-pesquisa">
                 <div class="input-wrapper">
                     <input type="text" id="busca-lote" placeholder="Buscar por numero de lote" class="buscar-input-lote">
@@ -66,7 +65,6 @@ export function render() {
     </div>
 
         <section class="lote-tabela">
-            <h2> <i class="fas fa-table"></i> Tabela de Registro e Lotes do Estoque </h2>
             <table>
                 <thead>
                     <tr>
