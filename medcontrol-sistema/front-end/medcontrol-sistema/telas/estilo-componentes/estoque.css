@@ -163,6 +163,11 @@
     position: relative;
 }
 
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 .modal-content h3 {
     margin-top: 10px;
     text-align: center;
@@ -232,6 +237,7 @@
     border-radius: 5px;
 }
 
+
 .table {
     width: 100%;
     border-collapse: collapse;
@@ -248,7 +254,7 @@
     padding-left: 20px;
     background-color: var(--fundo-card);
     color: var(--cor-branca);
-    border-bottom: 1px solid #e5e5e5;
+    
 }
 
 .lote-tabela tr:hover {
@@ -260,6 +266,14 @@
     padding: 14px;
     font-size: 16px;
     border-bottom: 1px solid #e5e5e5;
+}
+
+.lote-tabela tr td:last-child {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
 }
 
 .lote-tabela tr:nth-child(odd),
@@ -277,6 +291,9 @@
 .lote td i {
     color: var(--amarelo-medcontrol);
 }
+
+
+
 
 /*Botões de editar e excluir ----------------------*/
 
@@ -314,3 +331,5 @@
 .btn-excluir-lote:hover {
     background-color: #c23616;
 }
+
+
