@@ -355,6 +355,25 @@
     border-radius: 5px;
 }
 
+.tabela-estoque{
+    width: 100%;
+    overflow-x: auto;
+}
+
+.lote-tabela {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: var(--fundo-card);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.lote-tabela table {
+    width: 100%;
+}
+
+
 
 .table {
     width: 100%;
