@@ -214,6 +214,32 @@ table th {
   background-color: var(--amarelo-medcontrol);
   color: var(--cor-preta);
 }
+
+.vendas-lista {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--fundo-card);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.vendas-lista th,
+.vendas-lista td {
+    padding: 14px;
+}
+
+.vendas-lista {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.vendas-lista table {
+    width: 100%;
+}
+
+
+
+
 /*=================================================*/
 
 .vendas-lista td i {
