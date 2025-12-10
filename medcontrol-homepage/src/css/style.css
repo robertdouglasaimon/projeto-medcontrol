@@ -130,7 +130,7 @@ nav input {
     white-space: nowrap;
 }
 
-#Admin,  a:hover {
+#Admin:hover {
     color: white !important;
     transform: translateY(-2px);
     text-decoration: none;
