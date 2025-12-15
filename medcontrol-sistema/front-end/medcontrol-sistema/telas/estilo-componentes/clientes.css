@@ -578,6 +578,7 @@ table th {
 
   .search-container {
     width: 100%;
+    border-radius: 5px;
     flex-direction: column;
   }
 

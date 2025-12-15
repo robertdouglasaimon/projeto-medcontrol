@@ -93,14 +93,6 @@
 }
 
 /* -----------------Pesquisa---------------- */
-/* .lote-header h2 {
-    background-color: var(--fundo-principal);
-    padding: 10px;
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-    color: var(--cor-branca);
-    border-radius: 5px;
-} */
 
 .lote-pesquisa  {
     display: flex;
@@ -208,14 +200,6 @@
 }
 
 /* -----------------Pesquisa---------------- */
-/* .lote-header h2 {
-    background-color: var(--fundo-principal);
-    padding: 10px;
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-    color: var(--cor-branca);
-    border-radius: 5px;
-} */
 
 .lote-pesquisa  {
     display: flex;
@@ -528,4 +512,108 @@
   font-weight: bold;
 }
 
+
+/* --------------------------------- */
+       /* Responsividade */
+
+       @media (max-width: 768px) {
+
+    .tela-estoque {
+        padding: 0.5rem;
+        gap: 15px;
+    }
+
+    .estoque-cards {
+        flex-direction: column; 
+        align-items: stretch;
+        gap: 15px;
+    }
+
+    .card-estoque {
+        width: 100%;
+        height: auto; 
+        padding-bottom: 1rem;
+    }
+
+    .card-estoque p {
+        font-size: 1.2rem;
+    }
+
+    .card-estoque span {
+        font-size: 2rem; 
+        top: 0; 
+    }
+
+    .lote-pesquisa {
+        flex-direction: column;
+        gap: 15px;
+        margin-top: 30px;
+        margin-bottom: 30px;
+    }
+
+    .buscar-input-lote {
+        width: 100%; 
+        border-radius: 5px; 
+        flex-direction: column;
+    }
+
+    .btn-novo-lote {
+        border-radius: 5px; 
+        padding: 14px 20px;
+    }
+
+    .tabela-estoque {
+        overflow-x: auto; 
+    }
+
+    .lote-tabela {
+        min-width: 900px; 
+    }
+
+    .lote-tabela th,
+    .lote-tabela td {
+        font-size: 13px;
+        padding: 8px 10px;
+    }
+
+    .lote-tabela tr td:last-child {
+        flex-direction: column; 
+        gap: 5px;
+        align-items: flex-start;
+    }
+
+    .btn-editar-lote,
+    .editar-lote,
+    .excluir-lote {
+        width: 100%; 
+        padding: 8px;
+        font-size: 12px;
+    }
+
+    .modal {
+        padding: 50px;
+    }
+
+    .modal-content {
+        
+        max-width: 100%; 
+        padding: 1.5rem;
+    }
+
+    .modal-content h3 {
+        font-size: 1.4rem;
+    }
+    
+    .modal-content input,
+    .cadastro-lote-modal button {
+        font-size: 0.95rem;
+        padding: 0.8rem;
+    }
+
+    .fechar-modal {
+        font-size: 1.3rem;
+        top: 0.8rem;
+        right: 0.8rem;
+    }
+}
 
