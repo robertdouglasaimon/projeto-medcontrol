@@ -483,4 +483,49 @@
   background-color: rgb(190, 147, 29)
 }
 
+/* ---------Salvar e cancelar (modal)---------------- */
+
+#modalNovoLote .modal-content h3 {
+  color: var(--amarelo-medcontrol);
+}
+
+#modalNovoLote .modal-content {
+  background-color: var(--fundo-card);
+}
+
+.cadastro-lote-modal button[type="submit"] {
+  background-color: #44bd32;
+  color: white;
+  border: none;
+  padding: 0.8rem;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.cadastro-lote-modal .cancelar {
+  background-color: #e84118;
+  color: white;
+  border: none;
+  padding: 0.8rem;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.cadastro-lote-modal button[type="submit"]:hover {
+  background-color: #4cd137;
+  color: var(--cor-branca);
+  transform: scale(1.05);
+}
+
+.cadastro-lote-modal button[type="button"]:hover {
+  background-color: #e84118;
+  color: var(--cor-branca);
+  transform: scale(1.05);
+  font-weight: bold;
+}
+
 
