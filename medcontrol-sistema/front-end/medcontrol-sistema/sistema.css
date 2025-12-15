@@ -378,7 +378,7 @@ main#app {
   display: none !important; /* escondido no desktop */
 }
 
-
+/* celulares com 768 ou menor de largura */
 @media (max-width: 768px) {
 
   /* esconder elementos */
@@ -393,7 +393,7 @@ main#app {
   }
   /*--------------------------*/
 
-  /* mostrar menu mobile */
+  /* mostrar menu mobile para todos os despositivos com menor resolução que essa! */
   .mb-3 {
     display: block !important;
   }
@@ -420,12 +420,12 @@ main#app {
 
   /*estilo relacionado ao header*/
   .logo {
-    width: 250px;
+    width: 255px;
     padding: 20px;
 
   }
   .logo p {
-    font-size: 20px;
+    font-size: 25px;
     justify-items: center;
     align-items: center;
   }
@@ -435,7 +435,7 @@ main#app {
     align-items: center;
   }
   .guia-atual{
-    font-size: 20px;
+    font-size: 25px;
     margin-top: 27px;
     align-items: center;
     justify-content: end;
@@ -447,5 +447,30 @@ main#app {
     display: flex;
     flex-direction: column;
   }
+
+   /*estilo relacionado ao collapse */
+  .collapse, #navbarToggleExternalContent10{
+    justify-items: center;
+
+  }
 }
 
+@media (max-width: 480px) {
+  .logo {
+    width: 255px;
+    padding: 24px;
+  }
+  .logo p {
+    font-size: 25px;
+  }
+  .guia-atual{
+    font-size: 25px;
+    margin-top: 27px;
+    align-items: center;
+    justify-content: end;
+  }
+  footer {
+    padding-left: 10px;
+    font-size: 18px;
+  }
+}
