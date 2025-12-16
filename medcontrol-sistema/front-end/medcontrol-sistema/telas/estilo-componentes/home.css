@@ -130,7 +130,38 @@
 .card-alertas i     { color: #ff5c5c; }
 
 /* Responsivo */
-@media (max-width: 768px) {
-  .card-dashboard { width: 100%; max-width: 560px; }
-  .home-boas-vindas { padding: 0 1rem; }
+/* Ajustes para telas com 700px de largura  */
+@media (max-width: 700px) {
+  .card-dashboard{
+    width: 200px;
+  }
+
+  .recursos-botoes .card-dashboard{
+    width: 170px;
+    height: 150px;
+    padding: 20px;
+  }
+}
+
+/* Ajustes para telas com 400px de largura*/
+@media (max-width: 400px){
+  .tela-home {
+    width: 40vh;
+    min-height: 165vh;
+    padding: 1rem;
+  }
+  
+  
+  .card-dashboard{
+    width: 190px;
+    height: 130px;
+    padding: 20px;
+  }
+
+  .recursos-botoes .card-dashboard{
+    width: 190px;
+    height: 130px;
+    padding: 20px;
+  }
+
 }
