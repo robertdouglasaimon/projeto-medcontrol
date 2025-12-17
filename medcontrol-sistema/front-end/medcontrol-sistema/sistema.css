@@ -402,7 +402,7 @@ main#app {
 
   /* fixar no topo */
   .mb-3 nav.navbar {
-    position: fixed;
+    position: absolute;
     margin: 10px;
     top: 0;
     right: 0;
@@ -411,7 +411,7 @@ main#app {
   }
 
   #navbarToggleExternalContent10 {
-    position: fixed;
+    position: absolute;
     top: 110px;
     right: 0;
     width: 100%;
