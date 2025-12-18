@@ -309,7 +309,7 @@ table th {
   color: var(--cor-branca);
 }
 
-/* Título do modal de novo cliente e modal mudança de cor */
+/* Título do modal de novo funcionario e modal mudança de cor */
 #NovoFuncionario .modal-content h3 {
   color: var(--amarelo-medcontrol);
   margin-bottom: 12px;
@@ -468,3 +468,121 @@ table th {
   transform: scale(1.05);
 }
 
+
+
+/*--------------------------------- Responsividade para telas menores ------------------------------------------------ */
+/* Estilos para telas menores que 768px */
+@media (max-width: 768px) {
+
+  .tela-funcionarios {
+    padding: 0.5rem;
+  }
+
+  .card-funcionarios {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .total-funcionarios,
+  .funcionario-ativo,
+  .funcionario-desligado {
+    width: 100%;
+    height: auto;
+    padding-bottom: 1rem;
+  }
+
+  .card-funcionarios p {
+    font-size: 1.6rem;
+  }
+
+  .valores-funcionarios {
+    font-size: 2rem !important;
+    top: -10px;
+  }
+
+  .funcionarios-pesquisa {
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+
+  .search-container {
+    width: 100%;
+    border-radius: 5px;
+    flex-direction: column;
+  }
+
+  .input-wrapper {
+    width: 100%;
+  }
+
+  .buscar-input {
+    border-radius: 5px;
+  }
+
+  .btn-novo-funcionario {
+    border-radius: 5px;
+    padding: 0.1rem;
+  }
+
+  .funcionarios-tabela {
+    overflow-x: auto;
+  }
+
+  .funcionarios-tabela table {
+    min-width: 700px;
+  }
+
+  table th,
+  table td {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .editar-funcionario,
+  .excluir-funcionario {
+    width: 100%;
+    padding: 10px;
+    font-size: 13px;
+  }
+
+  .modal {
+    padding: 10px;
+  }
+
+  .modal-content,
+  .modal-editar-content,
+  .modal-editar-content #form-editar-funcionario {
+    width: 100%;
+    max-width: 100%;
+    padding: 1rem;
+  }
+
+  .modal-content h3,
+  .modal-editar-content h3 {
+    font-size: 1.3rem;
+  }
+
+
+  .cadastro-funcionario-modal input,
+  .cadastro-funcionario-modal select,
+  #form-editar-funcionario input,
+  #form-editar-funcionario select {
+    font-size: 0.95rem;
+    padding: 0.8rem;
+  }
+
+  .cadastro-funcionario-modal button,
+  #form-editar-funcionario .btn-primary,
+  #form-editar-funcionario .btn-secondary {
+    width: 100%;
+    padding: 0.8rem;
+    font-size: 1rem;
+  }
+
+  .fechar-modal {
+    font-size: 1.3rem;
+  }
+
+}

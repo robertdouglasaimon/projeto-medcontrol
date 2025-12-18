@@ -435,7 +435,7 @@ main#app {
     align-items: center;
   }
   .guia-atual{
-    font-size: 25px;
+    font-size: 20px;
     margin-top: 27px;
     align-items: center;
     justify-content: end;
@@ -459,12 +459,16 @@ main#app {
   .logo {
     width: 255px;
     padding: 24px;
+    justify-content: start;
+    align-items: center;
   }
   .logo p {
-    font-size: 25px;
+    font-size: 20px;
+    justify-content: start;
+    align-items: center;
   }
   .guia-atual{
-    font-size: 25px;
+    font-size: 20px;
     margin-top: 27px;
     align-items: center;
     justify-content: end;
