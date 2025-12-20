@@ -186,7 +186,7 @@ table th {
   border-bottom: 1px solid #e5e5e5;
 }
 
-.funcionarios-tabela table {
+.tabela-relatorio table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
@@ -195,7 +195,7 @@ table th {
   overflow: hidden;
 }
 
-.funcionarios-tabela th {
+.tabela-relatorio th {
   height: 50px;
   text-align: left;
   padding-left: 20px;
@@ -204,19 +204,19 @@ table th {
 }
 
 /* Estilo dos hover da tabela ---------------------*/
-.funcionarios-tabela tr:nth-child(odd),
-.funcionarios-tabela tr:nth-child(even){
+.tabela-relatorio tr:nth-child(odd),
+.tabela-relatorio tr:nth-child(even){
   background-color: var(--fundo-card);
   color: var(--cor-branca);
 }
 
-.funcionarios-tabela tr:hover {
+.tabela-relatorio tr:hover {
   background-color: var(--amarelo-medcontrol);
   color: var(--cor-preta);
 }
 /*---------------------------------------------------------*/
 
-.funcionarios-tabela td i {
+.tabela-relatorio td i {
   color: var(--amarelo-medcontrol);
 }
 
@@ -474,63 +474,39 @@ table th {
 /* Estilos para telas menores que 768px */
 @media (max-width: 768px) {
 
-  .tela-funcionarios {
-    padding: 0.5rem;
+  .tela-relatorio {
+    padding: 1.0rem;
   }
 
-  .card-funcionarios {
+  .dashboard-cards {
     flex-direction: column;
     align-items: stretch;
   }
 
-  .total-funcionarios,
-  .funcionario-ativo,
-  .funcionario-desligado {
+  .receita-total,
+  .usuarios-ativos,
+  .total-clientes-relatorio, 
+  .relatorio-vendas-total{
     width: 100%;
     height: auto;
     padding-bottom: 1rem;
+
   }
 
-  .card-funcionarios p {
+  .dashboard-cards p {
     font-size: 1.6rem;
   }
 
-  .valores-funcionarios {
+  .valores-relatorio {
     font-size: 2rem !important;
     top: -10px;
   }
 
-  .funcionarios-pesquisa {
-    flex-direction: column;
-    gap: 15px;
-    margin-top: 30px;
-    margin-bottom: 30px;
-  }
-
-  .search-container {
-    width: 100%;
-    border-radius: 5px;
-    flex-direction: column;
-  }
-
-  .input-wrapper {
-    width: 100%;
-  }
-
-  .buscar-input {
-    border-radius: 5px;
-  }
-
-  .btn-novo-funcionario {
-    border-radius: 5px;
-    padding: 0.1rem;
-  }
-
-  .funcionarios-tabela {
+  .tabela-relatorio {
     overflow-x: auto;
   }
 
-  .funcionarios-tabela table {
+  .tabela-relatorio table {
     min-width: 700px;
   }
 
@@ -540,49 +516,11 @@ table th {
     padding: 10px;
   }
 
-  .editar-funcionario,
-  .excluir-funcionario {
-    width: 100%;
-    padding: 10px;
-    font-size: 13px;
+  .container-grafico,
+  .container-calendario,
+  .container-estoque{
+    display: none;
   }
-
-  .modal {
-    padding: 10px;
-  }
-
-  .modal-content,
-  .modal-editar-content,
-  .modal-editar-content #form-editar-funcionario {
-    width: 100%;
-    max-width: 100%;
-    padding: 1rem;
-  }
-
-  .modal-content h3,
-  .modal-editar-content h3 {
-    font-size: 1.3rem;
-  }
-
-
-  .cadastro-funcionario-modal input,
-  .cadastro-funcionario-modal select,
-  #form-editar-funcionario input,
-  #form-editar-funcionario select {
-    font-size: 0.95rem;
-    padding: 0.8rem;
-  }
-
-  .cadastro-funcionario-modal button,
-  #form-editar-funcionario .btn-primary,
-  #form-editar-funcionario .btn-secondary {
-    width: 100%;
-    padding: 0.8rem;
-    font-size: 1rem;
-  }
-
-  .fechar-modal {
-    font-size: 1.3rem;
-  }
-
 }
+
+/*! */

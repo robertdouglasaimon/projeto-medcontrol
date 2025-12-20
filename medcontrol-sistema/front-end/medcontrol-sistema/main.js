@@ -91,6 +91,17 @@ if (usuario) { // Verifique se o usuário foi encontrado no localStorage.
 
 //------------------------------------------------------------------------------------------//
 
+// Preenchendo o nome e cargo do usuário no cabeçalho do hamburguer do sistema:
+const usuario_hamburguer = JSON.parse(localStorage.getItem("usuarioLogado")); // Obtenha os dados do usuário do localStorage.
+
+if (usuario_hamburguer) { // Verifique se o usuário foi encontrado no localStorage.
+  const nomeSpan = document.getElementById("cargo-texto-hamburger");
+  const cargoSpan = document.getElementById("nome-texto-hamburguer");
+
+  if (nomeSpan) nomeSpan.textContent = usuario.nome;
+  if (cargoSpan) cargoSpan.textContent = usuario.cargo;
+}
+
 
 //------------------------------------------------------------------------------------------//
 // Destruindo a sessão quando o usuário fechar a aba ou fechar o navegador (sair):

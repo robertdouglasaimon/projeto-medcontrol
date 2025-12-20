@@ -570,6 +570,7 @@ table th {
     flex-direction: column;
   }
 
+
   .input-wrapper {
     width: 100%;
   }
@@ -581,6 +582,13 @@ table th {
   .btn-novo-produto {
     border-radius: 5px;
     padding: 0.4rem;
+  }
+
+
+  table tbody td  {
+    flex-direction: column;
+    width: 100%;
+
   }
 
   .produtos-lista {
