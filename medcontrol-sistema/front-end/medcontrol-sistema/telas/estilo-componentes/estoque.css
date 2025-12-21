@@ -513,107 +513,129 @@
 }
 
 
-/* --------------------------------- */
-       /* Responsividade */
+/*-------------------------------------------------------------------------------------------*/
+                                 /* Responsividade - mobile */
 
-       @media (max-width: 768px) {
 
-    .tela-estoque {
-        padding: 0.5rem;
-        gap: 15px;
-    }
 
-    .estoque-cards {
-        flex-direction: column; 
-        align-items: stretch;
-        gap: 15px;
-    }
+/* Tablets e celulares */
+@media (max-width: 768px) {
 
-    .card-estoque {
-        width: 100%;
-        height: auto; 
-        padding-bottom: 1rem;
-    }
+  .tela-estoque {
+    padding: 0.5rem;
+    gap: 15px;
+  }
 
-    .card-estoque p {
-        font-size: 1.2rem;
-    }
+  .estoque-cards {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 15px;
+  }
 
-    .card-estoque span {
-        font-size: 2rem; 
-        top: 0; 
-    }
+  .card-estoque {
+    width: 100%;
+    height: auto;
+    padding-bottom: 1rem;
+  }
 
-    .lote-pesquisa {
-        flex-direction: column;
-        gap: 15px;
-        margin-top: 30px;
-        margin-bottom: 30px;
-    }
+  .card-estoque p {
+    font-size: 1.2rem;
+  }
 
-    .buscar-input-lote {
-        width: 100%; 
-        border-radius: 5px; 
-        flex-direction: column;
-    }
+  .card-estoque span {
+    font-size: 2rem;
+    top: 0;
+  }
 
-    .btn-novo-lote {
-        border-radius: 5px; 
-        padding: 14px 20px;
-    }
+  .lote-pesquisa {
+    flex-direction: column;
+    gap: 15px;
+    margin: 30px 0;
+  }
 
-    .tabela-estoque {
-        overflow-x: auto; 
-    }
+  .buscar-input-lote {
+    width: 100%;
+    border-radius: 5px;
+  }
 
-    .lote-tabela {
-        min-width: 900px; 
-    }
+  .btn-novo-lote {
+    width: auto;
+    border-radius: 5px;
+    padding: 14px 20px;
+  }
 
-    .lote-tabela th,
-    .lote-tabela td {
-        font-size: 13px;
-        padding: 8px 10px;
-    }
+  .tabela-estoque {
+    overflow-x: auto;
+  }
 
-    .lote-tabela tr td:last-child {
-        flex-direction: column; 
-        gap: 5px;
-        align-items: flex-start;
-    }
+  .lote-tabela {
+    min-width: 900px;
+  }
 
-    .btn-editar-lote,
-    .editar-lote,
-    .excluir-lote {
-        width: 100%; 
-        padding: 8px;
-        font-size: 12px;
-    }
+  .lote-tabela th,
+  .lote-tabela td {
+    font-size: 13px;
+    padding: 8px 10px;
+  }
 
-    .modal {
-        padding: 50px;
-    }
+  .lote-tabela tr td:last-child {
+    flex-direction: column;
+    gap: 5px;
+    align-items: flex-start;
+  }
 
-    .modal-content {
-        
-        max-width: 100%; 
-        padding: 1.5rem;
-    }
+  .btn-editar-lote,
+  .editar-lote,
+  .excluir-lote {
+    width: 100%;
+    font-size: 12px;
+    padding: 8px;
+  }
 
-    .modal-content h3 {
-        font-size: 1.4rem;
-    }
-    
-    .modal-content input,
-    .cadastro-lote-modal button {
-        font-size: 0.95rem;
-        padding: 0.8rem;
-    }
+  .modal {
+    padding: 40px 20px;
+  }
 
-    .fechar-modal {
-        font-size: 1.3rem;
-        top: 0.8rem;
-        right: 0.8rem;
-    }
+  .modal-content {
+    max-width: 100%;
+    padding: 1.5rem;
+  }
+
+  .modal-content h3 {
+    font-size: 1.4rem;
+  }
 }
+
+/* ------------------------------------------------------------------------------------------- */
+                                /* Responsividade - telas maiores */ 
+                                
+@media (min-width: 1024px) {
+
+  .tabela-estoque {
+    overflow-x: auto;
+    width: 100%;
+  }
+
+  .lote-tabela {
+    min-width: 1100px;
+  }
+
+  .lote-tabela td:last-child {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: flex-start;
+    white-space: nowrap;
+  }
+
+  .editar-lote,
+  .excluir-lote {
+    min-width: 90px;
+    text-align: center;
+    padding: 8px 0;
+  }
+}
+
+
+
 
