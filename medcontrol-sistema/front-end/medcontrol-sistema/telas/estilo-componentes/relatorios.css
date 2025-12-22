@@ -325,58 +325,34 @@ table th {
   }
 
   .dashboard-cards {
-    flex-direction: column;
-    align-items: stretch;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
   }
 
-  .receita-total-dia,
-  .vendas-realizadas,
-  .vendas-medias {
+  .receita-total,
+  .usuarios-ativos,
+  .total-clientes-relatorio,
+  .relatorio-vendas-total {
     width: 100%;
     height: auto;
     padding-bottom: 1rem;
   }
 
-  .card-vendas p {
+  .dashboard-cards p {
     font-size: 1.6rem;
   }
 
-  .valores-vendas {
+  .valores-relatorio {
     font-size: 2rem !important;
     top: -12px;
   }
 
-  .vendas-pesquisa {
-    flex-direction: column;
-    gap: 15px;
-    margin-top: 30px;
-    margin-bottom: 30px;
-  }
-
-  .search-container {
-    width: 100%;
-    border-radius: 5px;
-    flex-direction: column;
-  }
-
-  .input-wrapper {
-    width: 100%;
-  }
-
-  .buscar-input {
-    border-radius: 5px;
-  }
-
-  .btn-novo-venda {
-    border-radius: 5px;
-    padding: 0.1rem;
-  }
-
-  .vendas-lista {
+  .tabela-relatorio {
     overflow-x: auto;
   }
 
-  .vendas-lista table {
+  .tabela-relatorio table {
     min-width: 700px;
   }
 
@@ -384,50 +360,6 @@ table th {
   table td {
     font-size: 14px;
     padding: 10px;
-  }
-
-  .btn-editar-venda,
-  .btn-excluir-venda {
-    width: 100%;
-    padding: 10px;
-    font-size: 13px;
-  }
-
-  .modal {
-    padding: 10px;
-  }
-
-  .modal-content,
-  .modal-editar-content,
-  .modal-editar-content #form-editar-venda {
-    width: 100%;
-    max-width: 100%;
-    padding: 1rem;
-  }
-
-  .modal-content h3,
-  .modal-editar-content h3 {
-    font-size: 1.3rem;
-  }
-
-  .cadastro-venda-modal input,
-  .cadastro-venda-modal select,
-  #form-editar-venda input,
-  #form-editar-venda select {
-    font-size: 0.95rem;
-    padding: 0.8rem;
-  }
-
-  .cadastro-venda-modal button,
-  #form-editar-venda .btn-primary,
-  #form-editar-venda .btn-secondary {
-    width: 100%;
-    padding: 0.8rem;
-    font-size: 1rem;
-  }
-
-  .fechar-modal {
-    font-size: 1.3rem;
   }
 
 }

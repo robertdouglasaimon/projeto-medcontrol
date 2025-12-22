@@ -129,40 +129,61 @@
 .card-relatorios i  { color: #ffba49; }
 .card-alertas i     { color: #ff5c5c; }
 
-/* Responsivo */
-/* Ajustes para telas com 700px de largura  */
-@media (max-width: 700px) {
+
+
+
+
+
+/* ------------------------------ Responsivo ----------------------------------------------------- */
+/* Ajustes para telas com 700px de largura*/
+@media (max-width: 700px){
+  .tela-home {
+    width: 38vh;
+    min-height: 135vh;
+    padding: 1rem;
+  }
+  
   .card-dashboard{
-    width: 200px;
+    width: 260px;
+    height: 130px;
+    padding: 20px;
   }
 
   .recursos-botoes .card-dashboard{
-    width: 170px;
-    height: 150px;
+    width: 260px;
+    height: 130px;
     padding: 20px;
   }
+
 }
 
 /* Ajustes para telas com 400px de largura*/
 @media (max-width: 400px){
   .tela-home {
     width: 40vh;
-    min-height: 165vh;
+    min-height: 145vh;
     padding: 1rem;
   }
   
   .card-dashboard{
-    width: 190px;
+    width: 260px;
     height: 130px;
     padding: 20px;
   }
 
   .recursos-botoes .card-dashboard{
-    width: 190px;
+    width: 260px;
     height: 130px;
     padding: 20px;
   }
 
 }
 
+@media (max-width: 380px){
+   .tela-home {
+    width: 40vh;
+    min-height: 165vh;
+    padding: 1rem;
+  }
+}
 /*! */
