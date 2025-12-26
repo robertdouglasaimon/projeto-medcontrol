@@ -569,7 +569,8 @@
   }
 
   .lote-tabela {
-    min-width: 900px;
+    max-width: 768px;
+    overflow-x: auto;
   }
 
   .lote-tabela th,
