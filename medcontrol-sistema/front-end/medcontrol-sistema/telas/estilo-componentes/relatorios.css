@@ -362,5 +362,10 @@ table th {
     padding: 10px;
   }
 
+  .container-grafico,
+  .container-estoque,
+  .container-calendario {
+    display: none;
+  }
+
 }
-/*! */

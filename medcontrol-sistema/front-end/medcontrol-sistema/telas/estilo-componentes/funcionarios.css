@@ -497,38 +497,65 @@ table th {
 /* Estilos para telas menores que 768px */
 @media (max-width: 768px) {
 
-  .tela-relatorio {
-    padding: 1.0rem;
+  .tela-funcionarios {
+    padding: 0.5rem;
   }
 
-  .dashboard-cards {
+  .card-funcionarios {
     flex-direction: column;
     align-items: stretch;
+    gap: 15px;
   }
 
-  .receita-total,
-  .usuarios-ativos,
-  .total-clientes-relatorio, 
-  .relatorio-vendas-total{
+  .total-funcionarios,
+  .funcionario-ativo,
+  .funcionario-desligado {
     width: 100%;
     height: auto;
     padding-bottom: 1rem;
   }
 
-  .dashboard-cards p {
-    font-size: 1.6rem;
+  .card-funcionarios p {
+    font-size: 1.3rem;
   }
 
-  .valores-relatorio {
+  .valores-funcionarios {
     font-size: 2rem !important;
     top: -10px;
   }
 
-  .tabela-relatorio {
-    overflow-x: auto;
+  .funcionarios-pesquisa {
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 30px;
+    margin-bottom: 30px;
   }
 
-  .tabela-relatorio table {
+  .search-container {
+    width: 100;
+    flex-direction: column;
+  }
+
+  .input-wrapper {
+    width: 100%;
+  }
+
+  .buscar-input {
+    border-radius: 5px;
+  }
+
+  .btn-novo-cliente {
+    width: auto;
+    border-radius: 5px;
+    padding: 14px;
+  }
+
+  .funcionarios-tabela {
+    overflow-x: auto;
+    display: block;
+  }
+
+  .funcionarios-tabela table {
     min-width: 700px;
   }
 
@@ -538,10 +565,48 @@ table th {
     padding: 10px;
   }
 
-  .container-grafico,
-  .container-calendario,
-  .container-estoque{
-    display: none;
+  .editar-cliente,
+  .excluir-cliente {
+    width: 100%;
+    padding: 10px;
+    font-size: 13px;
+  }
+
+  .modal {
+    padding: 10px;
+  }
+
+  .modal-content,
+  .modal-editar-content,
+  .modal-editar-content #form-editar-cliente {
+    width: 100%;
+    max-width: 100%;
+    padding: 1rem;
+  }
+
+  .modal-content h3,
+  .modal-editar-content h3 {
+    font-size: 1.3rem;
+  }
+
+  .cadastro-cliente-modal input,
+  .cadastro-cliente-modal select,
+  #form-editar-cliente input,
+  #form-editar-cliente select {
+    font-size: 0.95rem;
+    padding: 0.8rem;
+  }
+
+  .cadastro-cliente-modal button,
+  #form-editar-cliente .btn-primary,
+  #form-editar-cliente .btn-secondary {
+    width: 100%;
+    padding: 0.8rem;
+    font-size: 1rem;
+  }
+
+  .fechar-modal {
+    font-size: 1.3rem;
   }
 }
 
