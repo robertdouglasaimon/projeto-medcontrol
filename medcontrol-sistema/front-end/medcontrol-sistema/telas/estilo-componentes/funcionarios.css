@@ -171,9 +171,22 @@
 
 /* Tabela de Funcionários -----------------------------------------------------------*/
 
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background-color: #0F2036;
+  border-radius: 8px;
+  overflow: hidden;
+  text-align: center;
+}
+
 table tbody td {
   padding: 14px;
   font-size: 16px;
+  background-color: #0F2036;
+  color: var(--cor-branca)
+  
 }
 
 table tbody tr {
@@ -184,6 +197,7 @@ table tbody tr {
 table th {
   padding: 20px;
   border-bottom: 1px solid #e5e5e5;
+  color: var(--cor-branca);
 }
 
 .tabela-relatorio table {
@@ -522,4 +536,5 @@ table th {
   }
 }
 
-/*! */
+
+
