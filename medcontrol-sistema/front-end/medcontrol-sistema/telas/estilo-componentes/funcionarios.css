@@ -171,9 +171,21 @@
 
 /* Tabela de Funcionários -----------------------------------------------------------*/
 
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background-color: #0F2036;
+  border-radius: 8px;
+  overflow: hidden;
+  text-align: center;
+}
+
 table tbody td {
   padding: 14px;
   font-size: 16px;
+  background-color: #0F2036;
+  color: var(--cor-branca);
 }
 
 table tbody tr {
@@ -184,9 +196,11 @@ table tbody tr {
 table th {
   padding: 20px;
   border-bottom: 1px solid #e5e5e5;
+  color: var(--cor-branca);
 }
 
-.funcionarios-tabela table {
+/* Tabela de Relatório -----------------------------------------------------------*/
+.tabela-relatorio table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
@@ -195,7 +209,7 @@ table th {
   overflow: hidden;
 }
 
-.funcionarios-tabela th {
+.tabela-relatorio th {
   height: 50px;
   text-align: left;
   padding-left: 20px;
@@ -204,24 +218,32 @@ table th {
 }
 
 /* Estilo dos hover da tabela ---------------------*/
-.funcionarios-tabela tr:nth-child(odd),
-.funcionarios-tabela tr:nth-child(even){
-  background-color: var(--fundo-card);
-  color: var(--cor-branca);
+/* Neutraliza fundo dos td dentro da tabela de relatório */
+.tabela-relatorio td {
+  background-color: transparent !important;
 }
 
-.funcionarios-tabela tr:hover {
-  background-color: var(--amarelo-medcontrol);
-  color: var(--cor-preta);
+/* Define cor base das linhas (odd/even) nos td */
+.tabela-relatorio tbody tr:nth-child(odd) td,
+.tabela-relatorio tbody tr:nth-child(even) td {
+  background-color: var(--fundo-card) !important;
+  color: var(--cor-branca) !important;
 }
+
+/* Aplica o hover nas células */
+.tabela-relatorio tbody tr:hover td {
+  background-color: var(--amarelo-medcontrol) !important;
+  color: var(--cor-branca) !important;
+}
+
 /*---------------------------------------------------------*/
 
-.funcionarios-tabela td i {
+.tabela-relatorio td i {
   color: var(--amarelo-medcontrol);
 }
 
 /*Botões de editar e excluir de produtos: */
-.btn-funcionarios-editar{
+.btn-funcionarios-editar {
   background-color: var(--amarelo-medcontrol);
   color: var(--cor-branca);
   border: none;
@@ -233,7 +255,7 @@ table th {
   margin-bottom: 0.3rem;
 }
 
-.btn-funcionarios-excluir{
+.btn-funcionarios-excluir {
   background-color: #e84118;
   color: var(--cor-branca);
   border: none;
@@ -250,8 +272,9 @@ table th {
 }
 
 .btn-funcionarios-editar:hover {
-  background-color: rgb(190, 147, 29)
+  background-color: rgb(190, 147, 29);
 }
+
 /*----------------------- modal de novo funcionario----------------------------------*/
 .hidden{
   width: 100%;
@@ -309,7 +332,7 @@ table th {
   color: var(--cor-branca);
 }
 
-/* Título do modal de novo cliente e modal mudança de cor */
+/* Título do modal de novo funcionario e modal mudança de cor */
 #NovoFuncionario .modal-content h3 {
   color: var(--amarelo-medcontrol);
   margin-bottom: 12px;
@@ -467,4 +490,125 @@ table th {
   transition: all 0.3s ease-in-out;
   transform: scale(1.05);
 }
+
+
+
+/*--------------------------------- Responsividade para telas menores ------------------------------------------------ */
+/* Estilos para telas menores que 768px */
+@media (max-width: 768px) {
+
+  .tela-funcionarios {
+    padding: 0.5rem;
+  }
+
+  .card-funcionarios {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 15px;
+  }
+
+  .total-funcionarios,
+  .funcionario-ativo,
+  .funcionario-desligado {
+    width: 100%;
+    height: auto;
+    padding-bottom: 1rem;
+  }
+
+  .card-funcionarios p {
+    font-size: 1.3rem;
+  }
+
+  .valores-funcionarios {
+    font-size: 2rem !important;
+    top: -10px;
+  }
+
+  .funcionarios-pesquisa {
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+
+  .search-container {
+    width: 100;
+    flex-direction: column;
+  }
+
+  .input-wrapper {
+    width: 100%;
+  }
+
+  .buscar-input {
+    border-radius: 5px;
+  }
+
+  .btn-novo-cliente {
+    width: auto;
+    border-radius: 5px;
+    padding: 14px;
+  }
+
+  .funcionarios-tabela {
+    overflow-x: auto;
+    display: block;
+  }
+
+  .funcionarios-tabela table {
+    min-width: 700px;
+  }
+
+  table th,
+  table td {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .editar-cliente,
+  .excluir-cliente {
+    width: 100%;
+    padding: 10px;
+    font-size: 13px;
+  }
+
+  .modal {
+    padding: 10px;
+  }
+
+  .modal-content,
+  .modal-editar-content,
+  .modal-editar-content #form-editar-cliente {
+    width: 100%;
+    max-width: 100%;
+    padding: 1rem;
+  }
+
+  .modal-content h3,
+  .modal-editar-content h3 {
+    font-size: 1.3rem;
+  }
+
+  .cadastro-cliente-modal input,
+  .cadastro-cliente-modal select,
+  #form-editar-cliente input,
+  #form-editar-cliente select {
+    font-size: 0.95rem;
+    padding: 0.8rem;
+  }
+
+  .cadastro-cliente-modal button,
+  #form-editar-cliente .btn-primary,
+  #form-editar-cliente .btn-secondary {
+    width: 100%;
+    padding: 0.8rem;
+    font-size: 1rem;
+  }
+
+  .fechar-modal {
+    font-size: 1.3rem;
+  }
+}
+
+
 

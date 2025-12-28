@@ -93,14 +93,6 @@
 }
 
 /* -----------------Pesquisa---------------- */
-/* .lote-header h2 {
-    background-color: var(--fundo-principal);
-    padding: 10px;
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-    color: var(--cor-branca);
-    border-radius: 5px;
-} */
 
 .lote-pesquisa  {
     display: flex;
@@ -208,14 +200,6 @@
 }
 
 /* -----------------Pesquisa---------------- */
-/* .lote-header h2 {
-    background-color: var(--fundo-principal);
-    padding: 10px;
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-    color: var(--cor-branca);
-    border-radius: 5px;
-} */
 
 .lote-pesquisa  {
     display: flex;
@@ -346,72 +330,49 @@
 }
 
 /* -----------------Tabela---------------- */
-.lote-tabela h2 {
-    background-color: var(--fundo-principal);
-    padding: 10px;
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-    color: var(--cor-branca);
-    border-radius: 5px;
+table tbody td {
+  padding: 14px;
+  font-size: 16px;
 }
 
-
-.table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-    background-color: var(--cor-branca);
-    border-radius: 8px;
-    overflow: hidden;
+table tbody tr {
+  background-color: var(--cor-branca);
+  border-bottom: 1px solid #e5e5e5;
 }
 
+table th {
+  padding: 20px;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.lote-tabela table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background-color: var(--cor-branca);
+  border-radius: 8px;
+  overflow: hidden;
+}
 
 .lote-tabela th {
-   height: 50px;
-    text-align: left;
-    padding-left: 20px;
-    background-color: var(--fundo-card);
-    color: var(--cor-branca);
-    
+  height: 50px;
+  text-align: left;
+  padding-left: 20px;
+  background-color: var(--fundo-card);
+  color: var(--cor-branca);
 }
 
-.lote-tabela tr:hover {
-    background-color: var(--amarelo-medcontrol);
-    color: var(--cor-preta);
-}
-
-.lote-tabela td {
-    padding: 14px;
-    font-size: 16px;
-    border-bottom: 1px solid #e5e5e5;
-}
-
-.lote-tabela tr td:last-child {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-    justify-content: flex-start;
-    flex-wrap: nowrap;
-}
-
+/* Estilo dos hover da tabela -------------------*/
 .lote-tabela tr:nth-child(odd),
-.lote-tabela tr:nth-child(even) {
-    background-color: var(--fundo-card);
-    color: var(--cor-branca);
+.lote-tabela tr:nth-child(even){
+  background-color: var(--fundo-card);
+  color: var(--cor-branca);
 }
 
 .lote-tabela tr:hover {
-    background-color: var(--amarelo-medcontrol);
-    color: var(--cor-preta);
+  background-color: var(--amarelo-medcontrol);
+  color: var(--cor-preta);
 }
-
-
-.lote td i {
-    color: var(--amarelo-medcontrol);
-}
-
-
-
 
 /*Botões de editar e excluir ----------------------*/
 
@@ -463,5 +424,182 @@
 .editar-lote:hover {
   background-color: rgb(190, 147, 29)
 }
+
+/* ---------Salvar e cancelar (modal)---------------- */
+
+#modalNovoLote .modal-content h3 {
+  color: var(--amarelo-medcontrol);
+}
+
+#modalNovoLote .modal-content {
+  background-color: var(--fundo-card);
+}
+
+.cadastro-lote-modal button[type="submit"] {
+  background-color: #44bd32;
+  color: white;
+  border: none;
+  padding: 0.8rem;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.cadastro-lote-modal .cancelar {
+  background-color: #e84118;
+  color: white;
+  border: none;
+  padding: 0.8rem;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.cadastro-lote-modal button[type="submit"]:hover {
+  background-color: #4cd137;
+  color: var(--cor-branca);
+  transform: scale(1.05);
+}
+
+.cadastro-lote-modal button[type="button"]:hover {
+  background-color: #e84118;
+  color: var(--cor-branca);
+  transform: scale(1.05);
+  font-weight: bold;
+}
+
+
+/*-------------------------------------------------------------------------------------------*/
+                                 /* Responsividade - mobile */
+
+
+
+/* Tablets e celulares */
+@media (max-width: 768px) {
+
+  .tela-estoque {
+    padding: 0.5rem;
+    gap: 15px;
+  }
+
+  .estoque-cards {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 15px;
+  }
+
+  .card-estoque {
+    width: 100%;
+    height: auto;
+    padding-bottom: 1rem;
+  }
+
+  .card-estoque p {
+    font-size: 1.2rem;
+  }
+
+  .card-estoque span {
+    font-size: 2rem;
+    top: 0;
+  }
+
+  .lote-pesquisa {
+    flex-direction: column;
+    gap: 15px;
+    margin: 30px 0;
+  }
+
+  .buscar-input-lote {
+    width: 100%;
+    border-radius: 5px;
+  }
+
+  .btn-novo-lote {
+    width: auto;
+    border-radius: 5px;
+    padding: 14px 20px;
+  }
+
+  .tabela-estoque {
+    overflow-x: auto;
+  }
+
+  .lote-tabela {
+    max-width: 768px; 
+    overflow-x: auto;
+  }
+
+  .lote-tabela th,
+  .lote-tabela td {
+    font-size: 13px;
+    padding: 8px 10px;
+  }
+
+  .lote-tabela tr td:last-child {
+    flex-direction: column;
+    gap: 5px;
+    align-items: flex-start;
+  }
+
+  .btn-editar-lote,
+  .editar-lote,
+  .excluir-lote {
+    width: 100%;
+    font-size: 12px;
+    padding: 8px;
+  }
+
+  .modal {
+    padding: 40px 20px;
+  }
+
+  .modal-content {
+    max-width: 100%;
+    padding: 1.5rem;
+  }
+
+  .modal-content h3 {
+    font-size: 1.4rem;
+  }
+
+  .estoque-header{
+    display: none;
+  }
+}
+
+/* ------------------------------------------------------------------------------------------- */
+                                /* Responsividade - telas maiores */ 
+                                
+@media (min-width: 1024px) {
+
+  .tabela-estoque {
+    overflow-x: auto;
+    width: 100%;
+  }
+
+  .lote-tabela {
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  .lote-tabela td:last-child {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: flex-start;
+    white-space: nowrap;
+  }
+
+  .editar-lote,
+  .excluir-lote {
+    min-width: 90px;
+    text-align: center;
+    padding: 8px 0;
+  }
+}
+
+
 
 

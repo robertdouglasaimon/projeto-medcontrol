@@ -520,3 +520,130 @@ table th {
 }
 
 /*-------------------------------------------------------------------------------------------*/
+/*--------------------------------- Responsividade para telas menores ------------------------------------------------ */
+/* Estilos para telas menores que 768px */
+@media (max-width: 768px) {
+
+  .tela-produtos {
+    padding: 0.5rem;
+  }
+
+  .card-produtos {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .total-produtos,
+  .produto-mais-vendido,
+  .produto-menos-vendido,
+  .valor-estoque {
+    width: 100%;
+    height: auto;
+    padding-bottom: 1rem;
+  }
+
+  .card-produtos p {
+    font-size: 1.6rem;
+  }
+
+  .valores-produtos-mais-vendidos,
+  .valores-produtos-menos-vendidos{
+    font-size: 2rem !important;
+    top: -10px;
+  }
+
+  .total-produtos-valor{
+    font-size: 2.5rem !important;
+    top: -10px;
+  }
+
+  .produtos-pesquisa {
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+
+  .search-container {
+    width: 100%;
+    border-radius: 5px;
+    flex-direction: column;
+  }
+
+
+  .input-wrapper {
+    width: 100%;
+  }
+
+  .buscar-input {
+    border-radius: 5px;
+  }
+
+  .btn-novo-produto {
+    border-radius: 5px;
+    padding: 0.4rem;
+  }
+
+
+  table tbody td  {
+    flex-direction: column;
+    width: 100%;
+
+  }
+
+  .produtos-lista {
+    overflow-x: auto;
+    display: block;
+  }
+
+  .produtos-lista table {
+    min-width: 700px;
+  }
+
+  table th,
+  table td {
+    font-size: 14px;
+    padding: 0px;
+  }
+
+
+  /* Modal de cadastro e edição de produtos */
+  .modal {
+    padding: 10px;
+  }
+
+  .modal-content,
+  .modal-editar-content,
+  .modal-editar-content #form-editar-produtos {
+    width: 100%;
+    max-width: 100%;
+    padding: 1rem;
+  }
+
+  .modal-content h3,
+  .modal-editar-content h3 {
+    font-size: 1.3rem;
+  }
+
+
+  .cadastro-produtos-modal input,
+  .cadastro-produtos-modal select,
+  #form-editar-produtos input,
+  #form-editar-produtos select {
+    font-size: 0.95rem;
+    padding: 0.8rem;
+  }
+
+  .cadastro-produtos-modal button,
+  #form-editar-produtos .btn-primary,
+  #form-editar-produtos .btn-secondary {
+    width: 100%;
+    padding: 0.8rem;
+    font-size: 1rem;
+  }
+
+  .fechar-modal {
+    font-size: 1.3rem;
+  }
+
+}

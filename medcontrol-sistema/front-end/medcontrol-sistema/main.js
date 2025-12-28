@@ -91,6 +91,17 @@ if (usuario) { // Verifique se o usuário foi encontrado no localStorage.
 
 //------------------------------------------------------------------------------------------//
 
+// Preenchendo o nome e cargo do usuário no cabeçalho do hamburguer do sistema:
+const usuario_hamburguer = JSON.parse(localStorage.getItem("usuarioLogado")); // Obtenha os dados do usuário do localStorage.
+
+if (usuario_hamburguer) { // Verifique se o usuário foi encontrado no localStorage.
+  const nomeSpan = document.getElementById("cargo-texto-hamburger");
+  const cargoSpan = document.getElementById("nome-texto-hamburguer");
+
+  if (nomeSpan) nomeSpan.textContent = usuario.nome;
+  if (cargoSpan) cargoSpan.textContent = usuario.cargo;
+}
+
 
 //------------------------------------------------------------------------------------------//
 // Destruindo a sessão quando o usuário fechar a aba ou fechar o navegador (sair):
@@ -108,6 +119,39 @@ document.addEventListener("DOMContentLoaded", () => {
     menu.classList.toggle("inativo");
   });
 
-  
+
 });
 //------------------------------------------------------------------------------------------//
+
+// Funcão para ao clicar no botão hamburguer mobile ele abrir e fechar
+document.addEventListener("DOMContentLoaded", function () {
+
+  const botao = document.getElementById("btnHamburguer");
+  const menu = document.getElementById("navbarToggleExternalContent10");
+  const icone = document.querySelector(".animated-icon2");
+
+  // Função para fechar o menu
+  function fecharMenu() {
+    menu.classList.remove("show");
+    icone.classList.remove("open");
+  }
+
+  // Clique no botão hamburguer
+  botao.addEventListener("click", function (event) {
+    event.stopPropagation(); // impede que o clique chegue no document
+
+    menu.classList.toggle("show");
+    icone.classList.toggle("open");
+  });
+
+  // Impede clique dentro do menu de fechar ele
+  menu.addEventListener("click", function (event) {
+    event.stopPropagation();
+  });
+
+  // Clique fora do botão e do menu
+  document.addEventListener("click", function () {
+    fecharMenu();
+  });
+
+});

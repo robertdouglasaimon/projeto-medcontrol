@@ -315,3 +315,57 @@ table th {
   background-color: rgb(190, 147, 29);
 }
 
+
+/*--------------------------------- Responsividade para telas menores ------------------------------------------------ */
+/* Estilos para telas menores que 768px */
+@media (max-width: 768px) {
+
+  .tela-relatorio {
+    padding: 0.5rem;
+  }
+
+  .dashboard-cards {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .receita-total,
+  .usuarios-ativos,
+  .total-clientes-relatorio,
+  .relatorio-vendas-total {
+    width: 100%;
+    height: auto;
+    padding-bottom: 1rem;
+  }
+
+  .dashboard-cards p {
+    font-size: 1.6rem;
+  }
+
+  .valores-relatorio {
+    font-size: 2rem !important;
+    top: -12px;
+  }
+
+  .tabela-relatorio {
+    overflow-x: auto;
+  }
+
+  .tabela-relatorio table {
+    min-width: 700px;
+  }
+
+  table th,
+  table td {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .container-grafico,
+  .container-estoque,
+  .container-calendario {
+    display: none;
+  }
+
+}

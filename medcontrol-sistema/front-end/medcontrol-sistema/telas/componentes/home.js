@@ -34,7 +34,7 @@ export function render() {
       <h2>Explorar Recursos</h2>
 
 
-        <div class="recursos-botoes">
+      <div class="recursos-botoes">
         <a href="#estoque"">
             <div class="card-dashboard">
               <i class="fas fa-chart-line fa-2x"></i>
