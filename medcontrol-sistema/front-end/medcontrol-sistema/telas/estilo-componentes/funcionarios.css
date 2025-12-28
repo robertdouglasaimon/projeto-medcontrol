@@ -185,8 +185,7 @@ table tbody td {
   padding: 14px;
   font-size: 16px;
   background-color: #0F2036;
-  color: var(--cor-branca)
-  
+  color: var(--cor-branca);
 }
 
 table tbody tr {
@@ -200,6 +199,7 @@ table th {
   color: var(--cor-branca);
 }
 
+/* Tabela de Relatório -----------------------------------------------------------*/
 .tabela-relatorio table {
   width: 100%;
   border-collapse: collapse;
@@ -218,16 +218,24 @@ table th {
 }
 
 /* Estilo dos hover da tabela ---------------------*/
-.tabela-relatorio tr:nth-child(odd),
-.tabela-relatorio tr:nth-child(even){
-  background-color: var(--fundo-card);
-  color: var(--cor-branca);
+/* Neutraliza fundo dos td dentro da tabela de relatório */
+.tabela-relatorio td {
+  background-color: transparent !important;
 }
 
-.tabela-relatorio tr:hover {
-  background-color: var(--amarelo-medcontrol);
-  color: var(--cor-preta);
+/* Define cor base das linhas (odd/even) nos td */
+.tabela-relatorio tbody tr:nth-child(odd) td,
+.tabela-relatorio tbody tr:nth-child(even) td {
+  background-color: var(--fundo-card) !important;
+  color: var(--cor-branca) !important;
 }
+
+/* Aplica o hover nas células */
+.tabela-relatorio tbody tr:hover td {
+  background-color: var(--amarelo-medcontrol) !important;
+  color: var(--cor-branca) !important;
+}
+
 /*---------------------------------------------------------*/
 
 .tabela-relatorio td i {
@@ -235,7 +243,7 @@ table th {
 }
 
 /*Botões de editar e excluir de produtos: */
-.btn-funcionarios-editar{
+.btn-funcionarios-editar {
   background-color: var(--amarelo-medcontrol);
   color: var(--cor-branca);
   border: none;
@@ -247,7 +255,7 @@ table th {
   margin-bottom: 0.3rem;
 }
 
-.btn-funcionarios-excluir{
+.btn-funcionarios-excluir {
   background-color: #e84118;
   color: var(--cor-branca);
   border: none;
@@ -264,8 +272,9 @@ table th {
 }
 
 .btn-funcionarios-editar:hover {
-  background-color: rgb(190, 147, 29)
+  background-color: rgb(190, 147, 29);
 }
+
 /*----------------------- modal de novo funcionario----------------------------------*/
 .hidden{
   width: 100%;
