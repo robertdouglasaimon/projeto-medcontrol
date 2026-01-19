@@ -65,7 +65,7 @@ O sistema inclui uma funcionalidade de controle de vencimentos com:
 
 ## 👥 Equipe
 
-Este projeto está sendo desenvolvido em equipe por <a href="https://github.com/robertdouglasaimon">Robert Douglas</a> e <a href="https://github.com/k-kevinferreira">Kevin Ferreira</a>, com foco total em aprendizado.  
+Este projeto está sendo desenvolvido em equipe por <a href="https://github.com/robertdouglasaimon">Robert Douglas</a>, <a href="https://github.com/k-kevinferreira">Kevin Ferreira</a> e <a href="https://github.com/Gabriel20px">Gabriel Soares</a>, com foco total em aprendizado.  
 Ideal para iniciantes que desejam entender a estrutura de um sistema completo.
 
 ---
